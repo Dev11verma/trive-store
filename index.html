@@ -14,8 +14,8 @@
       --border: #232328;
       --text: #f4f4f5;
       --muted: #a1a1aa;
-      --accent: #e4d804;
-      --accent-hover: #c8bd03;
+      --accent: #d7ff3e;
+      --accent-hover: #bde628;
       --danger: #ef4444;
       --font-display: 'Syne', sans-serif;
       --font-body: 'Space Grotesk', sans-serif;
@@ -54,7 +54,7 @@
     }
     .nav-links {
       display: flex;
-      gap: 24px;
+      gap: 20px;
     }
     .nav-link {
       background: none;
@@ -110,7 +110,7 @@
       border: 1px solid #3f3f46;
       border-radius: 12px;
       padding: 24px 32px;
-      margin-bottom: 40px;
+      margin-bottom: 32px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -138,7 +138,7 @@
     }
     .deal-content h2 {
       font-family: var(--font-display);
-      font-size: clamp(20px, 4vw, 28px);
+      font-size: clamp(20px, 4vw, 26px);
       font-weight: 900;
       text-transform: uppercase;
       letter-spacing: 0.02em;
@@ -154,7 +154,7 @@
     .deal-price-strike {
       color: var(--muted);
       text-decoration: line-through;
-      font-size: 15px;
+      font-size: 14px;
     }
     .deal-timer {
       background: #09090b;
@@ -165,9 +165,10 @@
       font-weight: 700;
       color: var(--accent);
       letter-spacing: 0.1em;
+      white-space: nowrap;
     }
 
-    /* CATEGORY & GENDER TABS */
+    /* FILTERS */
     .filter-section {
       margin-bottom: 32px;
       display: flex;
@@ -190,7 +191,7 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
       cursor: pointer;
-      padding: 6px 12px;
+      padding: 6px 14px;
       border-radius: 6px;
       transition: all 0.2s;
     }
@@ -202,13 +203,13 @@
       display: flex;
       gap: 10px;
       overflow-x: auto;
-      padding-bottom: 4px;
+      padding-bottom: 6px;
     }
     .pill {
       background: var(--card-bg);
       border: 1px solid var(--border);
       color: var(--muted);
-      padding: 8px 16px;
+      padding: 8px 18px;
       border-radius: 99px;
       font-size: 13px;
       font-weight: 600;
@@ -271,7 +272,7 @@
     .product-card h3 { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; }
     .product-card .price { font-size: 14px; color: var(--muted); font-weight: 500; }
 
-    /* 2. DEDICATED PRODUCT VIEW */
+    /* DEDICATED PRODUCT VIEW */
     .breadcrumb {
       color: var(--muted);
       font-size: 13px;
@@ -291,6 +292,7 @@
     @media (max-width: 768px) {
       .product-view-layout { grid-template-columns: 1fr; gap: 28px; }
       .deal-banner { flex-direction: column; align-items: flex-start; }
+      .nav-links { display: none; }
     }
     .gallery { display: flex; flex-direction: column; gap: 16px; }
     .main-img-box {
@@ -318,7 +320,7 @@
 
     .product-meta h2 {
       font-family: var(--font-display);
-      font-size: 32px;
+      font-size: 30px;
       font-weight: 900;
       text-transform: uppercase;
       letter-spacing: 0.02em;
@@ -384,7 +386,7 @@
     }
     .btn-primary:hover { background: var(--accent-hover); }
 
-    /* 3. ADDRESS & CHECKOUT */
+    /* CHECKOUT */
     .checkout-container {
       max-width: 580px;
       margin: 0 auto;
@@ -474,7 +476,7 @@
       font-weight: 700;
     }
 
-    /* 4. PAYMENT STAGE */
+    /* PAYMENT */
     .payment-options { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
     .pay-card {
       background: #09090b;
@@ -519,7 +521,7 @@
       margin-bottom: 12px;
     }
 
-    /* 5. STATUS CONFIRMATION */
+    /* CONFIRMATION */
     .status-card {
       max-width: 540px;
       margin: 40px auto;
@@ -616,10 +618,10 @@
     </button>
   </header>
 
-  <!-- 1. HOME CATALOG VIEW -->
+  <!-- 1. HOME CATALOG -->
   <main id="view-catalog" class="view active">
     
-    <!-- DEAL OF THE DAY BANNER -->
+    <!-- DEAL OF THE DAY -->
     <div class="deal-banner" onclick="openProduct('deal-01')">
       <div class="deal-content">
         <span class="deal-badge">⚡ Deal of the Day</span>
@@ -633,7 +635,7 @@
       <div class="deal-timer" id="countdown-timer">ENDS IN 04:22:15</div>
     </div>
 
-    <!-- CATEGORY FILTER CHIPS -->
+    <!-- FILTER BARS -->
     <div class="filter-section">
       <div class="gender-tabs">
         <button class="gender-tab active" onclick="setGenderFilter('all', this)">All Archival</button>
@@ -649,11 +651,11 @@
       </div>
     </div>
 
-    <!-- PRODUCT GRID -->
+    <!-- GRID -->
     <div class="grid" id="products-grid"></div>
   </main>
 
-  <!-- 2. DEDICATED PRODUCT VIEW -->
+  <!-- 2. PRODUCT DETAIL -->
   <section id="view-product" class="view">
     <div class="breadcrumb" onclick="navigateTo('catalog')">&larr; Back to Archival Collection</div>
     <div class="product-view-layout">
@@ -680,7 +682,7 @@
     </div>
   </section>
 
-  <!-- 3. ADDRESS & SHIPPING VIEW -->
+  <!-- 3. SHIPPING & LOGISTICS -->
   <section id="view-checkout" class="view">
     <div class="checkout-container">
       <div class="breadcrumb" onclick="navigateTo('catalog')">&larr; Return to Store</div>
@@ -688,10 +690,10 @@
 
       <div class="form-group">
         <label>Full Name</label>
-        <input type="text" id="cust-name" placeholder="John Doe">
+        <input type="text" id="cust-name" placeholder="Dev Verma">
       </div>
       <div class="form-group">
-        <label>Mobile Number (For WhatsApp Updates)</label>
+        <label>Mobile Number (For WhatsApp Dispatch Alerts)</label>
         <input type="tel" id="cust-phone" placeholder="9876543210">
       </div>
       <div class="form-group">
@@ -737,7 +739,7 @@
     </div>
   </section>
 
-  <!-- 4. FOCUSED PAYMENT VIEW (UPI & COD ONLY) -->
+  <!-- 4. PAYMENT (UPI / COD ONLY) -->
   <section id="view-payment" class="view">
     <div class="checkout-container">
       <div class="breadcrumb" onclick="navigateTo('checkout')">&larr; Edit Shipping Address</div>
@@ -781,7 +783,7 @@
     <div class="status-card">
       <div class="status-icon success">&#10003;</div>
       <h2>Order Placed Successfully</h2>
-      <p id="success-sub">Your garment has been forwarded to the Tirupur DTG manufacturing queue.</p>
+      <p id="success-sub">Your garment has been logged into the Tirupur DTG manufacturing queue.</p>
       
       <div class="track-box">
         <div class="track-step">
@@ -816,7 +818,7 @@
     </div>
   </section>
 
-  <!-- CART SLIDE-OVER DRAWER -->
+  <!-- CART DRAWER -->
   <div class="cart-drawer-overlay" id="cart-overlay" onclick="toggleCart(false)"></div>
   <div class="cart-drawer" id="cart-drawer">
     <div class="cart-header">
@@ -834,7 +836,7 @@
   </div>
 
   <script>
-    // FULL ARCHIVAL CATALOG WITH GENDER & PRODUCT CATEGORIES
+    // FULL CATALOG (MEN, WOMEN, HOODIE, T-SHIRT, SHIRT, LOWER WEAR)
     const PRODUCTS = [
       {
         id: 'deal-01',
@@ -845,7 +847,7 @@
         category: 'hoodie',
         sku: 'TRV-HD-DEAL',
         tag: 'Deal for the Day',
-        desc: '450 GSM Double-Fleece Thermal Cotton. Limited-run archival wash with dropped shoulders and gunmetal finishes.',
+        desc: '450 GSM Double-Fleece Thermal Cotton. Limited-run archival wash with dropped shoulders, heavyweight ribbing, and gunmetal finishes.',
         images: [
           'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=800&auto=format&fit=crop&q=80',
           'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?w=800&auto=format&fit=crop&q=80'
@@ -859,7 +861,7 @@
         category: 't-shirt',
         sku: 'TRV-TEE-01',
         tag: 'Men // Heavy Tee',
-        desc: '280 GSM Luxury Combed Terry Cotton. Archival drop shoulder fit with high-density puff print detailing. Tailored in Tirupur.',
+        desc: '280 GSM Luxury Combed Terry Cotton. Archival drop shoulder boxy fit with high-density puff print detailing. Tailored in Tirupur.',
         images: [
           'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80',
           'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&auto=format&fit=crop&q=80'
@@ -873,10 +875,24 @@
         category: 't-shirt',
         sku: 'TRV-TEE-W01',
         tag: 'Women // Relaxed',
-        desc: '260 GSM Ultra-Soft Biowashed Cotton. Clean dropped silhouette crafted for contemporary street drape.',
+        desc: '260 GSM Ultra-Soft Biowashed Cotton. Clean dropped silhouette crafted for contemporary street drape and breathable structure.',
         images: [
           'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format&fit=crop&q=80',
           'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&auto=format&fit=crop&q=80'
+        ]
+      },
+      {
+        id: 'hoodie-02',
+        name: 'Shadow Boxy Heavyweight Hoodie',
+        price: 2299,
+        gender: 'men',
+        category: 'hoodie',
+        sku: 'TRV-HD-02',
+        tag: 'Men // 420 GSM',
+        desc: '420 GSM 100% French Terry Cotton. Seamless hood construction with raw aesthetic, ribbed cuffs, and concealed kangaroo pouch.',
+        images: [
+          'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?w=800&auto=format&fit=crop&q=80',
+          'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=800&auto=format&fit=crop&q=80'
         ]
       },
       {
@@ -887,7 +903,7 @@
         category: 'shirt',
         sku: 'TRV-SHT-01',
         tag: 'Men // Structured',
-        desc: 'Heavyweight Cotton Twill. Relaxed Cuban collar with twin chest cargo pockets and matte tonal buttons.',
+        desc: 'Heavyweight Cotton Twill. Relaxed Cuban collar with twin chest cargo pockets, matte tonal buttons, and archival wash.',
         images: [
           'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&auto=format&fit=crop&q=80',
           'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=800&auto=format&fit=crop&q=80'
@@ -900,8 +916,8 @@
         gender: 'women',
         category: 'shirt',
         sku: 'TRV-SHT-W01',
-        tag: 'Women // Flow Drape',
-        desc: 'Rayon-Tencel blended relaxed resort shirt with minimal collar geometry and tailored vented hem.',
+        tag: 'Women // Resort',
+        desc: 'Rayon-Tencel blended relaxed resort shirt with minimal collar geometry and tailored vented side hems for layered drape.',
         images: [
           'https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=800&auto=format&fit=crop&q=80',
           'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&auto=format&fit=crop&q=80'
@@ -915,7 +931,7 @@
         category: 'lower',
         sku: 'TRV-LOW-01',
         tag: 'Men // Lower',
-        desc: '380 GSM Heavy French Terry with extended contrast drawstrings, deep zip pockets, and relaxed ankle cuffs.',
+        desc: '380 GSM Heavy French Terry with extended contrast drawstrings, deep zip pockets, and tailored relaxed straight ankle cuffs.',
         images: [
           'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?w=800&auto=format&fit=crop&q=80',
           'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=800&auto=format&fit=crop&q=80'
@@ -929,7 +945,7 @@
         category: 'lower',
         sku: 'TRV-LOW-W01',
         tag: 'Women // Lower',
-        desc: 'High-waisted wide-leg straight trousers with concealed drawstrings and structured crease front.',
+        desc: 'High-waisted wide-leg straight trousers with concealed drawstrings, front crease structure, and breathable cotton blend.',
         images: [
           'https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&auto=format&fit=crop&q=80',
           'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=800&auto=format&fit=crop&q=80'
@@ -945,7 +961,7 @@
     let selectedPaymentMode = 'UPI';
     let discountAmount = 0;
 
-    // NAVIGATION
+    // VIEW ROUTING
     function navigateTo(viewId) {
       document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
       const target = document.getElementById(`view-${viewId}`);
@@ -956,7 +972,7 @@
       toggleCart(false);
     }
 
-    // FILTER LOGIC
+    // GENDER & CATEGORY FILTERING
     function setGenderFilter(gender, btn) {
       activeGender = gender;
       document.querySelectorAll('.gender-tab, .nav-link').forEach(b => {
@@ -976,7 +992,7 @@
       renderCatalog();
     }
 
-    // RENDER PRODUCTS
+    // RENDER CATALOG
     function renderCatalog() {
       const grid = document.getElementById('products-grid');
       const filtered = PRODUCTS.filter(p => {
@@ -1002,7 +1018,7 @@
       `).join('');
     }
 
-    // PRODUCT VIEW
+    // DEDICATED PRODUCT VIEW
     function openProduct(id) {
       const p = PRODUCTS.find(x => x.id === id);
       if (!p) return;
@@ -1090,7 +1106,7 @@
       navigateTo('checkout');
     }
 
-    // COUPON & TOTALS
+    // COUPON & SUMMARY
     function getTotals() {
       const subtotal = cart.reduce((acc, item) => acc + item.price, 0);
       const total = Math.max(0, subtotal - discountAmount);
@@ -1149,7 +1165,7 @@
       document.getElementById('upi-box').style.display = (mode === 'UPI') ? 'block' : 'none';
     }
 
-    // ORDER DISPATCH TO RENDER BACKEND
+    // DISPATCH ORDER
     async function dispatchOrder() {
       const btn = document.getElementById('btn-submit-order');
       const utr = (selectedPaymentMode === 'COD') ? 'COD' : document.getElementById('pay-utr').value.trim();
@@ -1211,7 +1227,7 @@
       }
     }
 
-    // COUNTDOWN TIMER SIMULATION
+    // COUNTDOWN TIMER
     let seconds = 15735;
     setInterval(() => {
       seconds--;
@@ -1222,7 +1238,7 @@
       if (timerEl) timerEl.innerText = `ENDS IN ${h}:${m}:${s}`;
     }, 1000);
 
-    // INITIAL RENDER
+    // INIT
     renderCatalog();
   </script>
 </body>
