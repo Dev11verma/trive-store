@@ -354,7 +354,7 @@ footer {
   <div class="logo">TRIVÉ</div>
   <nav class="nav-links">
     <a href="#drop">The Drop</a>
-    <a href="http://localhost:5000/api/orders" target="_blank" style="color:var(--accent);">Live Orders ↗</a>
+    <a href="https://trive-api.onrender.com/api/orders" target="_blank" style="color:var(--accent);">Live Orders ↗</a>
   </nav>
 </header>
 
@@ -553,7 +553,7 @@ document.getElementById('order-form').addEventListener('submit', async (e) => {
   };
 
   try {
-    const res = await fetch('http://localhost:5000/api/order', {
+    const res = await fetch('https://trive-api.onrender.com/api/order', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(orderData)
