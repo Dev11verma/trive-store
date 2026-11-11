@@ -35,7 +35,6 @@ function saveOrders(ordersList) {
 
 let orders = loadOrders();
 
-// Qikink Auth Gateway
 async function getQikinkAuth() {
   const hosts = [
     'https://api.qikink.com',
@@ -56,9 +55,7 @@ async function getQikinkAuth() {
 
       const data = await res.json();
       const token = data?.Accesstoken || data?.access_token || data?.token;
-      if (token) {
-        return { token, baseUrl: host };
-      }
+      if (token) return { token, baseUrl: host };
     } catch (e) {
       console.log(`Token fetch failed on ${host}:`, e.message);
     }
@@ -75,7 +72,6 @@ app.get('/', (req, res) => {
   });
 });
 
-// Admin Command Center with Accept/Reject controls
 app.get('/admin', (req, res) => {
   orders = loadOrders();
   const orderCards = orders.slice().reverse().map(o => {
@@ -83,10 +79,10 @@ app.get('/admin', (req, res) => {
     const isRejected = o.acceptanceStatus === 'REJECTED';
 
     const statusBadge = isAccepted
-      ? `<span style="background:#22c55e22;color:#22c55e;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:700;">APPROVED & DISPATCHED</span>`
+      ? `<span style="background:#22c55e22;color:#22c55e;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:700;">APPROVED</span>`
       : isRejected
       ? `<span style="background:#ef444422;color:#ef4444;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:700;">DECLINED</span>`
-      : `<span style="background:#f59e0b22;color:#f59e0b;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:700;">PENDING YOUR APPROVAL</span>`;
+      : `<span style="background:#f59e0b22;color:#f59e0b;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:700;">PENDING APPROVAL</span>`;
 
     return `
       <div style="background:#141414;border:1px solid #2a2a2a;border-radius:12px;padding:20px;margin-bottom:16px;color:#eee;">
@@ -167,7 +163,6 @@ app.get('/admin', (req, res) => {
   `);
 });
 
-// Endpoint to update order review state
 app.post('/api/order/status', (req, res) => {
   const { orderId, status } = req.body || {};
   orders = loadOrders();
@@ -188,7 +183,9 @@ app.post('/api/order', async (req, res) => {
   }
 
   orders = loadOrders();
-  const orderNum = 1000 + orders.length + 1; const orderId = `TV-${orderNum}`;
+  const orderNum = 1000 + orders.length + 1;
+  const orderId = `TV-${orderNum}`;
+  const alphanumericOrderNo = `TRV${Date.now().toString().slice(-4)}${orderNum}`;
   
   let unitPrice = Number(product?.price) || 1799;
   if (unitPrice > 10000) unitPrice = Math.round(unitPrice / 100);
@@ -196,14 +193,23 @@ app.post('/api/order', async (req, res) => {
   const qty = parseInt(quantity, 10) || 1;
   const totalAmount = unitPrice;
   const garmentColor = color || 'Washed Mineral Grey';
+  const garmentSize = (size || 'XL').toUpperCase();
   const cleanPhone = customer.phone.replace(/[^0-9]/g, '').slice(-10);
+
+  // Map to Qikink product SKU
+  let colorCode = 'Bk';
+  if (garmentColor.toLowerCase().includes('blue')) colorCode = 'Nb';
+  else if (garmentColor.toLowerCase().includes('green')) colorCode = 'Gn';
+  else if (garmentColor.toLowerCase().includes('maroon') || garmentColor.toLowerCase().includes('brown')) colorCode = 'Mn';
+
+  const mappedSku = `UAHD-${colorCode}-${garmentSize}`;
 
   const waMsg = encodeURIComponent(
     `*TRIVÉ // ORDER CONFIRMED [${orderId}]*\n\n` +
     `Hey ${customer.name},\n` +
     `Your order for *${product?.name || "You Can't Please Everyone // Acid Wash Hoodie"}* has been received:\n\n` +
     `• *Colorway:* ${garmentColor}\n` +
-    `• *Size:* ${size || 'L'}\n` +
+    `• *Size:* ${garmentSize}\n` +
     `• *Quantity:* ${qty}\n\n` +
     `📦 *Delivery Destination:* ${address.city}, ${address.pincode}\n` +
     `💰 *Total Amount:* ₹${totalAmount.toLocaleString('en-IN')}\n` +
@@ -211,12 +217,10 @@ app.post('/api/order', async (req, res) => {
     `_TRIVÉ Heavywear — Lost But Never Broken._`
   );
   const whatsappLink = `https://wa.me/91${cleanPhone}?text=${waMsg}`;
-
   const isCod = utr?.toUpperCase() === 'COD';
 
-  // Strict Qikink V2 Specification: province and country_code only
   const qikinkPayload = {
-    order_number: `TRV${Date.now().toString().slice(-4)}${orderNum}`, // purely alphanumeric ""),
+    order_number: alphanumericOrderNo,
     qikink_shipping: "1",
     gateway: isCod ? "COD" : "Prepaid",
     total_order_value: String(totalAmount),
@@ -235,7 +239,7 @@ app.post('/api/order', async (req, res) => {
     line_items: [
       {
         search_from_my_products: 1,
-        sku: `UH62-${(size || 'L').toUpperCase()}`,
+        sku: mappedSku,
         quantity: String(qty),
         price: String(unitPrice)
       }
@@ -278,7 +282,7 @@ app.post('/api/order', async (req, res) => {
     brand: 'TRIVÉ',
     product: product?.name || "You Can't Please Everyone // Acid Wash Hoodie",
     color: garmentColor,
-    size: size || 'L',
+    size: garmentSize,
     quantity: qty,
     total: totalAmount,
     paymentStatus: isCod ? 'Pending (COD)' : `Prepaid (UTR: ${utr})`,
@@ -310,5 +314,3 @@ app.get('/api/orders', (req, res) => res.json({ brand: 'TRIVÉ', total: orders.l
 app.listen(PORT, () => {
   console.log(`TRIVÉ Engine running on http://localhost:${PORT}`);
 });
-
-
