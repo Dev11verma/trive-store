@@ -35,6 +35,45 @@ function saveOrders(ordersList) {
 
 let orders = loadOrders();
 
+// Comprehensive Store SKU Dictionary for all 28 variants
+const QIKINK_STORE_SKUS = {
+  // Black / Grey
+  'Bk-XS': 'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9neU',
+  'Bk-S':  'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nee',
+  'Bk-M':  'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nef',
+  'Bk-L':  'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9neY',
+  'Bk-XL': 'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9neZ',
+  'Bk-XXL':'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nea',
+  'Bk-3XL':'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9neb',
+
+  // Navy Blue
+  'Nb-XS': 'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nSZ',
+  'Nb-S':  'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9neV',
+  'Nb-M':  'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nSc',
+  'Nb-L':  'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nSd',
+  'Nb-XL': 'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nSe',
+  'Nb-XXL':'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nSf',
+  'Nb-3XL':'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nSY',
+
+  // Bottle Green
+  'Gn-XS': 'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nWe',
+  'Gn-S':  'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nSa',
+  'Gn-M':  'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nSb',
+  'Gn-L':  'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nSU',
+  'Gn-XL': 'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nSV',
+  'Gn-XXL':'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nWc',
+  'Gn-3XL':'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nWd',
+
+  // Maroon
+  'Mn-XS': 'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nWV',
+  'Mn-S':  'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nWf',
+  'Mn-M':  'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nWY',
+  'Mn-L':  'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nWZ',
+  'Mn-XL': 'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nWa',
+  'Mn-XXL':'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nWb',
+  'Mn-3XL':'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nWU'
+};
+
 async function getQikinkAuth() {
   const hosts = [
     'https://api.qikink.com',
@@ -79,7 +118,7 @@ app.get('/admin', (req, res) => {
     const isRejected = o.acceptanceStatus === 'REJECTED';
 
     const statusBadge = isAccepted
-      ? `<span style="background:#22c55e22;color:#22c55e;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:700;">APPROVED</span>`
+      ? `<span style="background:#22c55e22;color:#22c55e;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:700;">APPROVED & DISPATCHED</span>`
       : isRejected
       ? `<span style="background:#ef444422;color:#ef4444;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:700;">DECLINED</span>`
       : `<span style="background:#f59e0b22;color:#f59e0b;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:700;">PENDING APPROVAL</span>`;
@@ -193,16 +232,19 @@ app.post('/api/order', async (req, res) => {
   const qty = parseInt(quantity, 10) || 1;
   const totalAmount = unitPrice;
   const garmentColor = color || 'Washed Mineral Grey';
-  const garmentSize = (size || 'XL').toUpperCase();
+  let garmentSize = (size || 'L').toUpperCase().trim();
+  if (garmentSize === '2XL') garmentSize = 'XXL';
+
   const cleanPhone = customer.phone.replace(/[^0-9]/g, '').slice(-10);
 
-  // Map to Qikink product SKU
-  let colorCode = 'Bk';
-  if (garmentColor.toLowerCase().includes('blue')) colorCode = 'Nb';
-  else if (garmentColor.toLowerCase().includes('green')) colorCode = 'Gn';
-  else if (garmentColor.toLowerCase().includes('maroon') || garmentColor.toLowerCase().includes('brown')) colorCode = 'Mn';
+  // Parse color prefix
+  let colorPrefix = 'Bk';
+  if (garmentColor.toLowerCase().includes('blue')) colorPrefix = 'Nb';
+  else if (garmentColor.toLowerCase().includes('green')) colorPrefix = 'Gn';
+  else if (garmentColor.toLowerCase().includes('maroon') || garmentColor.toLowerCase().includes('brown')) colorPrefix = 'Mn';
 
-  const mappedSku = `UAHD-${colorCode}-${garmentSize}`;
+  const variantKey = `${colorPrefix}-${garmentSize}`;
+  const resolvedStoreSku = QIKINK_STORE_SKUS[variantKey] || QIKINK_STORE_SKUS['Bk-L'];
 
   const waMsg = encodeURIComponent(
     `*TRIVÉ // ORDER CONFIRMED [${orderId}]*\n\n` +
@@ -239,7 +281,7 @@ app.post('/api/order', async (req, res) => {
     line_items: [
       {
         search_from_my_products: 1,
-        sku: mappedSku,
+        sku: resolvedStoreSku,
         quantity: String(qty),
         price: String(unitPrice)
       }
@@ -314,4 +356,3 @@ app.get('/api/orders', (req, res) => res.json({ brand: 'TRIVÉ', total: orders.l
 app.listen(PORT, () => {
   console.log(`TRIVÉ Engine running on http://localhost:${PORT}`);
 });
-
