@@ -216,7 +216,7 @@ app.post('/api/order', async (req, res) => {
 
   // Strict Qikink V2 Specification: province and country_code only
   const qikinkPayload = {
-    order_number: orderId,
+    order_number: orderId.replace(/[^a-zA-Z0-9]/g, ""),
     qikink_shipping: "1",
     gateway: isCod ? "COD" : "Prepaid",
     total_order_value: String(totalAmount),
@@ -310,3 +310,4 @@ app.get('/api/orders', (req, res) => res.json({ brand: 'TRIVÉ', total: orders.l
 app.listen(PORT, () => {
   console.log(`TRIVÉ Engine running on http://localhost:${PORT}`);
 });
+
