@@ -35,7 +35,7 @@ function saveOrders(ordersList) {
 
 let orders = loadOrders();
 
-// Resilient Qikink Auth: Checks endpoints and returns token with matching base URL
+// Qikink Auth Gateway
 async function getQikinkAuth() {
   const hosts = [
     'https://api.qikink.com',
@@ -57,7 +57,6 @@ async function getQikinkAuth() {
       const data = await res.json();
       const token = data?.Accesstoken || data?.access_token || data?.token;
       if (token) {
-        console.log(`Qikink Authenticated successfully on: ${host}`);
         return { token, baseUrl: host };
       }
     } catch (e) {
@@ -76,34 +75,59 @@ app.get('/', (req, res) => {
   });
 });
 
+// Admin Command Center with Accept/Reject controls
 app.get('/admin', (req, res) => {
   orders = loadOrders();
-  const orderCards = orders.slice().reverse().map(o => `
-    <div style="background:#141414;border:1px solid #2a2a2a;border-radius:12px;padding:18px;margin-bottom:14px;color:#eee;">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-        <span style="font-weight:900;color:#d7ff3e;font-size:16px;">#${o.orderId}</span>
-        <span style="font-size:12px;color:#888;">${o.createdAt}</span>
+  const orderCards = orders.slice().reverse().map(o => {
+    const isAccepted = o.acceptanceStatus === 'ACCEPTED';
+    const isRejected = o.acceptanceStatus === 'REJECTED';
+
+    const statusBadge = isAccepted
+      ? `<span style="background:#22c55e22;color:#22c55e;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:700;">APPROVED & DISPATCHED</span>`
+      : isRejected
+      ? `<span style="background:#ef444422;color:#ef4444;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:700;">DECLINED</span>`
+      : `<span style="background:#f59e0b22;color:#f59e0b;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:700;">PENDING YOUR APPROVAL</span>`;
+
+    return `
+      <div style="background:#141414;border:1px solid #2a2a2a;border-radius:12px;padding:20px;margin-bottom:16px;color:#eee;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span style="font-weight:900;color:#d7ff3e;font-size:17px;">#${o.orderId}</span>
+            ${statusBadge}
+          </div>
+          <span style="font-size:12px;color:#888;">${o.createdAt}</span>
+        </div>
+        <div style="font-size:15px;font-weight:bold;margin-bottom:4px;">${o.product}</div>
+        <div style="font-size:13px;color:#d7ff3e;margin-bottom:8px;">
+          <strong>Color:</strong> ${o.color} &bull; <strong>Size:</strong> ${o.size} &bull; <strong>Qty:</strong> ${o.quantity}
+        </div>
+        <div style="color:#aaa;font-size:13px;line-height:1.6;margin-bottom:12px;">
+          <strong>Customer:</strong> ${o.customer} (<a href="tel:${o.phone}" style="color:#d7ff3e;">${o.phone}</a>)<br>
+          <strong>Address:</strong> ${o.address}<br>
+          <strong>Payment:</strong> ₹${o.total.toLocaleString('en-IN')} &bull; ${o.paymentStatus}<br>
+          <strong>Qikink Status:</strong> <span style="color:#38bdf8;">${o.qikinkStatus || 'Awaiting Review'}</span>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;border-top:1px solid #222;padding-top:12px;">
+          ${!isAccepted ? `
+            <button onclick="updateOrderStatus('${o.orderId}', 'ACCEPTED')" style="background:#d7ff3e;color:#000;border:none;padding:8px 16px;border-radius:6px;font-size:12px;font-weight:bold;cursor:pointer;">
+              ✓ Accept Order
+            </button>
+          ` : ''}
+          ${!isRejected ? `
+            <button onclick="updateOrderStatus('${o.orderId}', 'REJECTED')" style="background:#222;color:#ef4444;border:1px solid #444;padding:8px 14px;border-radius:6px;font-size:12px;cursor:pointer;">
+              ✕ Reject
+            </button>
+          ` : ''}
+          <a href="${o.whatsappLink}" target="_blank" style="background:#25D366;color:#000;text-decoration:none;padding:8px 14px;border-radius:6px;font-size:12px;font-weight:bold;text-transform:uppercase;">
+            📲 WhatsApp
+          </a>
+          <button onclick="navigator.clipboard.writeText(decodeURIComponent('${encodeURIComponent(JSON.stringify(o.qikinkPayload))}')); alert('Qikink payload copied!');" style="background:#1a1a1a;color:#fff;border:1px solid #333;padding:8px 14px;border-radius:6px;font-size:12px;cursor:pointer;">
+            📋 Copy Payload
+          </button>
+        </div>
       </div>
-      <div style="font-size:15px;font-weight:bold;margin-bottom:4px;">${o.product}</div>
-      <div style="font-size:13px;color:#d7ff3e;margin-bottom:6px;">
-        <strong>Color:</strong> ${o.color} &bull; <strong>Size:</strong> ${o.size} &bull; <strong>Qty:</strong> ${o.quantity}
-      </div>
-      <div style="color:#aaa;font-size:13px;margin-bottom:8px;">
-        <strong>Customer:</strong> ${o.customer} (<a href="tel:${o.phone}" style="color:#d7ff3e;">${o.phone}</a>)<br>
-        <strong>Address:</strong> ${o.address}<br>
-        <strong>Payment:</strong> ₹${o.total.toLocaleString('en-IN')} &bull; ${o.paymentStatus}<br>
-        <strong>Qikink Status:</strong> <span style="color:#22c55e;">${o.qikinkStatus || 'Queued'}</span>
-      </div>
-      <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
-        <a href="${o.whatsappLink}" target="_blank" style="background:#25D366;color:#000;text-decoration:none;padding:8px 14px;border-radius:6px;font-size:12px;font-weight:bold;text-transform:uppercase;">
-          📲 WhatsApp Customer
-        </a>
-        <button onclick="navigator.clipboard.writeText(decodeURIComponent('${encodeURIComponent(JSON.stringify(o.qikinkPayload))}')); alert('Qikink payload copied!');" style="background:#222;color:#fff;border:1px solid #444;padding:8px 14px;border-radius:6px;font-size:12px;cursor:pointer;">
-          📋 Copy Payload
-        </button>
-      </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 
   res.send(`
     <!doctype html>
@@ -121,12 +145,39 @@ app.get('/admin', (req, res) => {
       <body>
         <div class="container">
           <h1>TRIVÉ Command Center</h1>
-          <div class="sub">Total Orders Logged: ${orders.length}</div>
+          <div class="sub">Total Orders Logged: ${orders.length} (Persistent Storage)</div>
           ${orders.length ? orderCards : '<div style="color:#555;padding:40px 0;text-align:center;">No orders yet. Place an order from your storefront.</div>'}
         </div>
+        <script>
+          async function updateOrderStatus(orderId, status) {
+            try {
+              const res = await fetch('/api/order/status', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ orderId, status })
+              });
+              if (res.ok) window.location.reload();
+            } catch (e) {
+              alert('Failed to update status');
+            }
+          }
+        </script>
       </body>
     </html>
   `);
+});
+
+// Endpoint to update order review state
+app.post('/api/order/status', (req, res) => {
+  const { orderId, status } = req.body || {};
+  orders = loadOrders();
+  const order = orders.find(o => o.orderId === orderId);
+  if (order) {
+    order.acceptanceStatus = status;
+    saveOrders(orders);
+    return res.json({ success: true });
+  }
+  res.status(404).json({ error: 'Order not found' });
 });
 
 app.post('/api/order', async (req, res) => {
@@ -150,21 +201,20 @@ app.post('/api/order', async (req, res) => {
   const waMsg = encodeURIComponent(
     `*TRIVÉ // ORDER CONFIRMED [${orderId}]*\n\n` +
     `Hey ${customer.name},\n` +
-    `Your order for *${product?.name || "You Can't Please Everyone // Acid Wash Hoodie"}* has been confirmed:\n\n` +
+    `Your order for *${product?.name || "You Can't Please Everyone // Acid Wash Hoodie"}* has been received:\n\n` +
     `• *Colorway:* ${garmentColor}\n` +
     `• *Size:* ${size || 'L'}\n` +
     `• *Quantity:* ${qty}\n\n` +
     `📦 *Delivery Destination:* ${address.city}, ${address.pincode}\n` +
     `💰 *Total Amount:* ₹${totalAmount.toLocaleString('en-IN')}\n` +
-    `⚡ *Status:* Moving to TRIVÉ Printing & Packaging.\n\n` +
-    `We will send your tracking link as soon as it leaves the facility.\n` +
+    `⚡ *Status:* Reviewing order in TRIVÉ Command Center.\n\n` +
     `_TRIVÉ Heavywear — Lost But Never Broken._`
   );
   const whatsappLink = `https://wa.me/91${cleanPhone}?text=${waMsg}`;
 
   const isCod = utr?.toUpperCase() === 'COD';
 
-  // Exact Qikink V2 Order Specification
+  // Strict Qikink V2 Specification: province and country_code only
   const qikinkPayload = {
     order_number: orderId,
     qikink_shipping: "1",
@@ -179,8 +229,8 @@ app.post('/api/order', async (req, res) => {
       email: customer.email || "support@trive.in",
       city: address.city,
       zip: String(address.pincode),
-      state: address.state || "Madhya Pradesh",
-      country: "IN"
+      province: address.state || "Madhya Pradesh",
+      country_code: "IN"
     },
     line_items: [
       {
@@ -238,6 +288,7 @@ app.post('/api/order', async (req, res) => {
     whatsappLink,
     qikinkPayload,
     qikinkStatus: qikinkLiveStatus,
+    acceptanceStatus: 'PENDING',
     createdAt: new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata' })
   };
 
@@ -250,7 +301,7 @@ app.post('/api/order', async (req, res) => {
     total: totalAmount,
     whatsappLink,
     qikinkStatus: qikinkLiveStatus,
-    message: `Order #${orderId} confirmed! Forwarded to TRIVÉ Printing & Packaging queue.`
+    message: `Order #${orderId} logged successfully into TRIVÉ Command Center.`
   });
 });
 
