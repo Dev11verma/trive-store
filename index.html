@@ -1365,6 +1365,126 @@
       }
     }
   </script>
+  <!-- NEW DROP: HYPERSPORT BIKER HOODIE -->
+  <section id="biker-hoodie-drop" style="max-width:1100px;margin:60px auto 40px;padding:0 20px;">
+    <div style="border-top:1px solid #222;padding-top:40px;margin-bottom:28px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+          <span style="background:#d7ff3e;color:#000;font-size:10px;font-weight:900;padding:3px 8px;border-radius:4px;letter-spacing:0.1em;text-transform:uppercase;">New Item Available</span>
+          <span style="font-size:11px;font-weight:900;letter-spacing:0.2em;color:#888;text-transform:uppercase;">HEAVYWEIGHT 300 GSM</span>
+        </div>
+        <h2 style="font-size: clamp(22px, 4vw, 34px);font-weight:900;margin:0;letter-spacing:0.05em;color:#fff;text-transform:uppercase;">Hypersport Biker // Heavy Hoodie</h2>
+      </div>
+      <div style="font-size:24px;font-weight:900;color:#fff;">₹1,899 <span style="font-size:13px;color:#666;text-decoration:line-through;font-weight:normal;">₹2,499</span></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));gap:32px;align-items:start;">
+      <!-- Interactive Image Viewer with Front/Back Switch -->
+      <div style="background:#0e0e0e;border:1px solid #1f1f1f;border-radius:16px;padding:20px;text-align:center;">
+        <img id="biker-main-img" src="assets/hoodies/white_front.png" alt="Hypersport Biker Hoodie" style="width:100%;max-height:460px;object-fit:contain;border-radius:10px;transition:opacity 0.2s ease;">
+        
+        <!-- View Toggle Buttons -->
+        <div style="display:flex;justify-content:center;gap:10px;margin-top:16px;">
+          <button type="button" onclick="setBikerV('front')" id="btn-biker-front" style="background:#222;color:#fff;border:1px solid #444;padding:8px 16px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:0.1em;cursor:pointer;text-transform:uppercase;">Front View (Chest)</button>
+          <button type="button" onclick="setBikerV('back')" id="btn-biker-back" style="background:#111;color:#888;border:1px solid #222;padding:8px 16px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:0.1em;cursor:pointer;text-transform:uppercase;">Back View (Graphic)</button>
+        </div>
+      </div>
+
+      <!-- Options & Checkout Panel -->
+      <div style="background:#0e0e0e;border:1px solid #1f1f1f;border-radius:16px;padding:26px;">
+        <label style="display:block;font-size:11px;font-weight:800;letter-spacing:0.15em;color:#888;text-transform:uppercase;margin-bottom:10px;">Select Colorway</label>
+        <div style="display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap;">
+          <button type="button" onclick="setBikerC('white')" class="biker-c-btn active" data-color="white" style="padding:10px 14px;background:#161616;border:2px solid #d7ff3e;color:#fff;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Pure White</button>
+          <button type="button" onclick="setBikerC('black')" class="biker-c-btn" data-color="black" style="padding:10px 14px;background:#161616;border:2px solid #222;color:#aaa;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Jet Black</button>
+          <button type="button" onclick="setBikerC('blue')" class="biker-c-btn" data-color="blue" style="padding:10px 14px;background:#161616;border:2px solid #222;color:#aaa;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Navy Blue</button>
+          <button type="button" onclick="setBikerC('green')" class="biker-c-btn" data-color="green" style="padding:10px 14px;background:#161616;border:2px solid #222;color:#aaa;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Bottle Green</button>
+        </div>
+
+        <label style="display:block;font-size:11px;font-weight:800;letter-spacing:0.15em;color:#888;text-transform:uppercase;margin-bottom:10px;">Select Size</label>
+        <div style="display:grid;grid-template-columns:repeat(5, 1fr);gap:8px;margin-bottom:24px;">
+          <button type="button" onclick="selectBikerSz(this, 'S')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">S</button>
+          <button type="button" onclick="selectBikerSz(this, 'M')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">M</button>
+          <button type="button" onclick="selectBikerSz(this, 'L')" class="selected-size" style="padding:12px 0;background:#161616;border:2px solid #d7ff3e;color:#fff;border-radius:6px;font-weight:800;cursor:pointer;">L</button>
+          <button type="button" onclick="selectBikerSz(this, 'XL')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">XL</button>
+          <button type="button" onclick="selectBikerSz(this, '2XL')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">2XL</button>
+        </div>
+
+        <div style="font-size:12px;color:#777;line-height:1.7;margin-bottom:24px;border-top:1px solid #1a1a1a;padding-top:16px;">
+          <div>• <strong>Chest:</strong> Helmet / Rider Chest Print</div>
+          <div>• <strong>Back:</strong> High-Resolution Hypersport Motorcycle Print</div>
+          <div>• <strong>Fabric:</strong> 300 GSM Super-Combed Cotton Fleece with Bio-Wash</div>
+        </div>
+
+        <button type="button" onclick="orderBikerHoodie()" style="width:100%;padding:16px;background:#d7ff3e;color:#000;border:none;border-radius:8px;font-weight:900;letter-spacing:0.12em;font-size:14px;text-transform:uppercase;cursor:pointer;">
+          Order Hypersport Hoodie &bull; ₹1,899 (COD / UPI)
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const bikerData = {
+      white: { front: 'assets/hoodies/white_front.png', back: 'assets/hoodies/white_back.png' },
+      black: { front: 'assets/hoodies/black_front.jpg', back: 'assets/hoodies/blck_back.png' },
+      blue: { front: 'assets/hoodies/blue_front.png', back: 'assets/hoodies/blue_back.jpg' },
+      green: { front: 'assets/hoodies/green_front.png', back: 'assets/hoodies/green_back.png' }
+    };
+    let bikerColor = 'white';
+    let bikerView = 'front';
+    let bikerSize = 'L';
+
+    function setBikerC(color) {
+      bikerColor = color;
+      document.querySelectorAll('.biker-c-btn').forEach(btn => {
+        btn.style.borderColor = btn.dataset.color === color ? '#d7ff3e' : '#222';
+        btn.style.color = btn.dataset.color === color ? '#fff' : '#aaa';
+      });
+      updateBikerImg();
+    }
+
+    function setBikerV(view) {
+      bikerView = view;
+      document.getElementById('btn-biker-front').style.background = view === 'front' ? '#222' : '#111';
+      document.getElementById('btn-biker-front').style.borderColor = view === 'front' ? '#444' : '#222';
+      document.getElementById('btn-biker-front').style.color = view === 'front' ? '#fff' : '#888';
+
+      document.getElementById('btn-biker-back').style.background = view === 'back' ? '#222' : '#111';
+      document.getElementById('btn-biker-back').style.borderColor = view === 'back' ? '#444' : '#222';
+      document.getElementById('btn-biker-back').style.color = view === 'back' ? '#fff' : '#888';
+      updateBikerImg();
+    }
+
+    function updateBikerImg() {
+      const img = document.getElementById('biker-main-img');
+      if (img && bikerData[bikerColor]) {
+        img.src = bikerData[bikerColor][bikerView];
+      }
+    }
+
+    function selectBikerSz(el, sz) {
+      bikerSize = sz;
+      el.parentElement.querySelectorAll('button').forEach(b => {
+        b.style.borderColor = '#2a2a2a';
+        b.style.color = '#eee';
+      });
+      el.style.borderColor = '#d7ff3e';
+      el.style.color = '#fff';
+    }
+
+    function orderBikerHoodie() {
+      if (typeof openCheckoutModal === 'function') {
+        openCheckoutModal({
+          title: "Hypersport Biker Heavy Hoodie",
+          color: bikerColor,
+          size: bikerSize,
+          price: 1899,
+          type: "hoodie"
+        });
+      } else {
+        alert("Hypersport Biker Hoodie selected in " + bikerColor.toUpperCase() + " (" + bikerSize + "). Ready for dispatch!");
+      }
+    }
+  </script>
 <footer style="margin-top:60px;padding:30px 20px 40px;border-top:1px solid #1f1f1f;text-align:center;color:#666;font-size:12px;">
     <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;">
       <img src="assets/logo.svg" alt="TRIVÉ" style="height:24px;width:auto;">
@@ -1466,6 +1586,7 @@
   </div>
 </body>
 </html>
+
 
 
 
