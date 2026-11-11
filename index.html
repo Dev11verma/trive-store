@@ -604,11 +604,14 @@
         <div class="color-picker" id="color-picker"></div>
 
         <div class="option-label">Select Specification</div>
-        <div class="size-picker" id="size-options">
+        <div class="size-picker" id="size-options" style="flex-wrap: wrap; gap: 8px;">
+          <button class="size-btn" onclick="selectSize('XS', this)">XS</button>
           <button class="size-btn" onclick="selectSize('S', this)">S</button>
           <button class="size-btn" onclick="selectSize('M', this)">M</button>
           <button class="size-btn active" onclick="selectSize('L', this)">L</button>
           <button class="size-btn" onclick="selectSize('XL', this)">XL</button>
+          <button class="size-btn" onclick="selectSize('XXL', this)">XXL</button>
+          <button class="size-btn" onclick="selectSize('3XL', this)">3XL</button>
         </div>
         <button class="btn-primary" onclick="addToCartCurrentProduct()">Add to Cart</button>
       </div>
@@ -1216,3 +1219,4 @@
   </script>
 </body>
 </html>
+
