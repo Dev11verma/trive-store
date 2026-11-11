@@ -1242,7 +1242,130 @@
     renderCatalog();
   </script>
   <!-- FOOTER & LEGAL MODALS -->
-  <footer style="margin-top:60px;padding:30px 20px 40px;border-top:1px solid #1f1f1f;text-align:center;color:#666;font-size:12px;">
+    <!-- DROP 02: LOST BUT NEVER BROKEN OVERSIZED TEE -->
+  <section id="tee-drop" style="max-width:1100px;margin:50px auto 40px;padding:0 20px;">
+    <div style="border-top:1px solid #222;padding-top:40px;margin-bottom:28px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;">
+      <div>
+        <div style="font-size:11px;font-weight:900;letter-spacing:0.25em;color:#d7ff3e;text-transform:uppercase;">DROP 02 // 240 GSM HEAVYWEAR</div>
+        <h2 style="font-size: clamp(22px, 4vw, 32px);font-weight:900;margin:6px 0 0;letter-spacing:0.05em;color:#fff;text-transform:uppercase;">Lost But Never Broken // Oversized Tee</h2>
+      </div>
+      <div style="font-size:22px;font-weight:900;color:#fff;">₹1,199 <span style="font-size:13px;color:#666;text-decoration:line-through;font-weight:normal;">₹1,999</span></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));gap:32px;align-items:start;">
+      <!-- Image Display with Front/Back View Switcher -->
+      <div style="background:#0e0e0e;border:1px solid #1f1f1f;border-radius:16px;padding:20px;text-align:center;position:relative;">
+        <img id="tee-main-img" src="assets/tees/black_back.jpg" alt="Lost But Never Broken Tee" style="width:100%;max-height:480px;object-fit:contain;border-radius:10px;transition:opacity 0.2s ease;">
+        
+        <!-- Front / Back View Switcher Toggle -->
+        <div style="display:flex;justify-content:center;gap:10px;margin-top:16px;">
+          <button type="button" onclick="setTeeView('back')" id="btn-view-back" style="background:#222;color:#fff;border:1px solid #444;padding:8px 16px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:0.1em;cursor:pointer;text-transform:uppercase;">Back Print (Main)</button>
+          <button type="button" onclick="setTeeView('pocket')" id="btn-view-pocket" style="background:#111;color:#888;border:1px solid #222;padding:8px 16px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:0.1em;cursor:pointer;text-transform:uppercase;">Pocket Print (Front)</button>
+        </div>
+      </div>
+
+      <!-- Customization & Purchase Box -->
+      <div style="background:#0e0e0e;border:1px solid #1f1f1f;border-radius:16px;padding:26px;">
+        <!-- Colorway Selector -->
+        <label style="display:block;font-size:11px;font-weight:800;letter-spacing:0.15em;color:#888;text-transform:uppercase;margin-bottom:10px;">Select Colorway</label>
+        <div style="display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap;">
+          <button type="button" onclick="setTeeColor('black')" class="tee-color-btn active" data-color="black" style="padding:10px 14px;background:#161616;border:2px solid #d7ff3e;color:#fff;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Onyx Black</button>
+          <button type="button" onclick="setTeeColor('blue')" class="tee-color-btn" data-color="blue" style="padding:10px 14px;background:#161616;border:2px solid #222;color:#aaa;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Navy Blue</button>
+          <button type="button" onclick="setTeeColor('yellow')" class="tee-color-btn" data-color="yellow" style="padding:10px 14px;background:#161616;border:2px solid #222;color:#aaa;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Mustard Yellow</button>
+          <button type="button" onclick="setTeeColor('olive')" class="tee-color-btn" data-color="olive" style="padding:10px 14px;background:#161616;border:2px solid #222;color:#aaa;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Olive / Mehndi</button>
+        </div>
+
+        <!-- Size Selector -->
+        <label style="display:block;font-size:11px;font-weight:800;letter-spacing:0.15em;color:#888;text-transform:uppercase;margin-bottom:10px;">Select Size (Oversized Boxy Fit)</label>
+        <div style="display:grid;grid-template-columns:repeat(5, 1fr);gap:8px;margin-bottom:24px;">
+          <button type="button" onclick="selectTeeSize(this, 'S')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">S</button>
+          <button type="button" onclick="selectTeeSize(this, 'M')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">M</button>
+          <button type="button" onclick="selectTeeSize(this, 'L')" class="selected-size" style="padding:12px 0;background:#161616;border:2px solid #d7ff3e;color:#fff;border-radius:6px;font-weight:800;cursor:pointer;">L</button>
+          <button type="button" onclick="selectTeeSize(this, 'XL')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">XL</button>
+          <button type="button" onclick="selectTeeSize(this, '2XL')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">2XL</button>
+        </div>
+
+        <!-- Garment Spec Highlights -->
+        <div style="font-size:12px;color:#777;line-height:1.7;margin-bottom:24px;border-top:1px solid #1a1a1a;padding-top:16px;">
+          <div>• <strong>Chest:</strong> 4" Pocket Print • <strong>Back:</strong> High-Density Screen Print</div>
+          <div>• <strong>Fabric:</strong> 240 GSM 100% Super Combed Terry Cotton</div>
+          <div>• <strong>Features:</strong> Bio-Washed, Pre-Shrunk, Lycra Ribbed Collar</div>
+        </div>
+
+        <!-- Buy Now / Add to Cart CTA -->
+        <button type="button" onclick="orderTeeDrop()" style="width:100%;padding:16px;background:#d7ff3e;color:#000;border:none;border-radius:8px;font-weight:900;letter-spacing:0.12em;font-size:14px;text-transform:uppercase;cursor:pointer;transition:transform 0.1s ease;">
+          Order Tee &bull; ₹1,199 (COD / UPI)
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const teeData = {
+      black: { back: 'assets/tees/black_back.jpg', pocket: 'assets/tees/black_pocket.jpg' },
+      blue: { back: 'assets/tees/blue_back.jpg', pocket: 'assets/tees/blue_pocket.jpg' },
+      yellow: { back: 'assets/tees/yellow_back.jpg', pocket: 'assets/tees/yellow_pocket.jpg' },
+      olive: { back: 'assets/tees/olive_back.jpg', pocket: 'assets/tees/black_pocket.jpg' }
+    };
+    let currentTeeColor = 'black';
+    let currentTeeView = 'back';
+    let currentTeeSize = 'L';
+
+    function setTeeColor(color) {
+      currentTeeColor = color;
+      document.querySelectorAll('.tee-color-btn').forEach(btn => {
+        btn.style.borderColor = btn.dataset.color === color ? '#d7ff3e' : '#222';
+        btn.style.color = btn.dataset.color === color ? '#fff' : '#aaa';
+      });
+      updateTeeImage();
+    }
+
+    function setTeeView(view) {
+      currentTeeView = view;
+      document.getElementById('btn-view-back').style.background = view === 'back' ? '#222' : '#111';
+      document.getElementById('btn-view-back').style.borderColor = view === 'back' ? '#444' : '#222';
+      document.getElementById('btn-view-back').style.color = view === 'back' ? '#fff' : '#888';
+      
+      document.getElementById('btn-view-pocket').style.background = view === 'pocket' ? '#222' : '#111';
+      document.getElementById('btn-view-pocket').style.borderColor = view === 'pocket' ? '#444' : '#222';
+      document.getElementById('btn-view-pocket').style.color = view === 'pocket' ? '#fff' : '#888';
+      updateTeeImage();
+    }
+
+    function updateTeeImage() {
+      const img = document.getElementById('tee-main-img');
+      if (img && teeData[currentTeeColor]) {
+        img.src = teeData[currentTeeColor][currentTeeView];
+      }
+    }
+
+    function selectTeeSize(el, size) {
+      currentTeeSize = size;
+      el.parentElement.querySelectorAll('button').forEach(b => {
+        b.style.borderColor = '#2a2a2a';
+        b.style.color = '#eee';
+      });
+      el.style.borderColor = '#d7ff3e';
+      el.style.color = '#fff';
+    }
+
+    function orderTeeDrop() {
+      // Direct integration into your checkout flow
+      if (typeof openCheckoutModal === 'function') {
+        openCheckoutModal({
+          title: "Lost But Never Broken // Oversized Tee",
+          color: currentTeeColor,
+          size: currentTeeSize,
+          price: 1199,
+          type: "tee"
+        });
+      } else {
+        const checkoutSec = document.getElementById('checkout') || document.querySelector('form');
+        if (checkoutSec) checkoutSec.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  </script>
+<footer style="margin-top:60px;padding:30px 20px 40px;border-top:1px solid #1f1f1f;text-align:center;color:#666;font-size:12px;">
     <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;">
       <img src="assets/logo.svg" alt="TRIVÉ" style="height:24px;width:auto;">
       <span style="font-weight:900;letter-spacing:0.15em;color:#fff;font-size:14px;">TRIVÉ // HEAVYWEAR</span>
@@ -1343,6 +1466,7 @@
   </div>
 </body>
 </html>
+
 
 
 
