@@ -15,19 +15,21 @@ const TG_TOKEN = '9234651103:AAGBmV8-rDbKecvvFXB8Pr0pRX-qFMxSESI';
 const TG_CHAT_ID = '1167472555';
 
 function sendTelegramAlert(order) {
-  const message = `🚨 **NEW TRIVÉ ORDER PLACED!** 🚨\n\n` +
-    `📦 **Order ID:** ${order.order_number}\n` +
-    `👤 **Customer:** ${order.shipping_address.first_name} ${order.shipping_address.last_name}\n` +
-    `📞 **Phone:** ${order.shipping_address.phone}\n` +
-    `📍 **Address:** ${order.shipping_address.address1}, ${order.shipping_address.city}, ${order.shipping_address.province} - ${order.shipping_address.zip}\n` +
-    `🛍️ **Items:** ${order.line_items.map(i => `${i.name} (${i.variant || i.size || 'Standard'}, Qty: ${i.quantity})`).join(', ')}\n` +
-    `💰 **Total:** ₹${order.total_price}\n` +
-    `💳 **Payment:** ${order.gateway || 'COD / UPI'}`;
+  const lineItemsStr = order.line_items ? order.line_items.map(i => `${i.name} (Qty: ${i.quantity})`).join(', ') : 'N/A';
+  const addr = order.shipping_address || {};
+  
+  const message = `🚨 NEW TRIVÉ ORDER PLACED! 🚨\n\n` +
+    `📦 Order ID: ${order.order_number}\n` +
+    `👤 Customer: ${addr.first_name || ''} ${addr.last_name || ''}\n` +
+    `📞 Phone: ${addr.phone || 'N/A'}\n` +
+    `📍 Address: ${addr.address1 || ''}, ${addr.city || ''}, ${addr.province || ''} - ${addr.zip || ''}\n` +
+    `🛍️ Items: ${lineItemsStr}\n` +
+    `💰 Total: ₹${order.total_price || order.total_order_value || '1799'}\n` +
+    `💳 Payment: ${order.gateway || 'COD'}`;
 
   const data = JSON.stringify({
     chat_id: TG_CHAT_ID,
-    text: message,
-    parse_mode: 'Markdown'
+    text: message
   });
 
   const options = {
@@ -37,14 +39,14 @@ function sendTelegramAlert(order) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Content-Length': data.length
+      'Content-Length': Buffer.byteLength(data)
     }
   };
 
   const req = https.request(options, (res) => {
     let resData = '';
     res.on('data', chunk => resData += chunk);
-    res.on('end', () => console.log('Telegram alert sent:', resData));
+    res.on('end', () => console.log('Telegram alert response:', resData));
   });
 
   req.on('error', error => console.error('Telegram alert error:', error));
@@ -117,6 +119,6 @@ app.get('/api/admin/orders', (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.parseServer = app.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`TRIVÉ Backend Engine running on port ${PORT}`);
 });
