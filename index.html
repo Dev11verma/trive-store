@@ -52,10 +52,7 @@
       text-decoration: none;
       color: #fff;
     }
-    .nav-links {
-      display: flex;
-      gap: 20px;
-    }
+    .nav-links { display: flex; gap: 20px; }
     .nav-link {
       background: none;
       border: none;
@@ -100,11 +97,11 @@
       font-weight: 900;
     }
 
-    /* VIEW CONTAINERS */
+    /* VIEWS */
     .view { display: none; padding: 32px 5%; min-height: 85vh; }
     .view.active { display: block; }
 
-    /* DEAL OF THE DAY BANNER */
+    /* DEAL BANNER */
     .deal-banner {
       background: linear-gradient(135deg, #18181b 0%, #121215 100%);
       border: 1px solid #3f3f46;
@@ -115,15 +112,10 @@
       justify-content: space-between;
       align-items: center;
       gap: 24px;
-      position: relative;
-      overflow: hidden;
       cursor: pointer;
       transition: border-color 0.2s, transform 0.2s;
     }
-    .deal-banner:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
+    .deal-banner:hover { border-color: var(--accent); transform: translateY(-2px); }
     .deal-badge {
       display: inline-block;
       background: var(--accent);
@@ -144,18 +136,8 @@
       letter-spacing: 0.02em;
       margin-bottom: 6px;
     }
-    .deal-price-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 18px;
-      font-weight: 700;
-    }
-    .deal-price-strike {
-      color: var(--muted);
-      text-decoration: line-through;
-      font-size: 14px;
-    }
+    .deal-price-row { display: flex; align-items: center; gap: 12px; font-size: 18px; font-weight: 700; }
+    .deal-price-strike { color: var(--muted); text-decoration: line-through; font-size: 14px; }
     .deal-timer {
       background: #09090b;
       border: 1px solid var(--border);
@@ -169,18 +151,8 @@
     }
 
     /* FILTERS */
-    .filter-section {
-      margin-bottom: 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .gender-tabs {
-      display: flex;
-      gap: 12px;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 12px;
-    }
+    .filter-section { margin-bottom: 32px; display: flex; flex-direction: column; gap: 16px; }
+    .gender-tabs { display: flex; gap: 12px; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
     .gender-tab {
       background: none;
       border: none;
@@ -189,22 +161,13 @@
       font-size: 14px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
       cursor: pointer;
       padding: 6px 14px;
       border-radius: 6px;
       transition: all 0.2s;
     }
-    .gender-tab.active {
-      color: #fff;
-      background: #1e1e24;
-    }
-    .category-pills {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding-bottom: 6px;
-    }
+    .gender-tab.active { color: #fff; background: #1e1e24; }
+    .category-pills { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; }
     .pill {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -217,18 +180,10 @@
       white-space: nowrap;
       transition: all 0.2s;
     }
-    .pill.active, .pill:hover {
-      border-color: #fff;
-      color: #fff;
-      background: #1c1c21;
-    }
+    .pill.active, .pill:hover { border-color: #fff; color: #fff; background: #1c1c21; }
 
-    /* PRODUCT GRID */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-      gap: 28px;
-    }
+    /* GRID */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 28px; }
     .product-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -238,17 +193,8 @@
       transition: transform 0.25s, border-color 0.25s;
       position: relative;
     }
-    .product-card:hover {
-      transform: translateY(-4px);
-      border-color: #3f3f46;
-    }
-    .product-card img {
-      width: 100%;
-      aspect-ratio: 4/5;
-      object-fit: cover;
-      display: block;
-      background: #18181b;
-    }
+    .product-card:hover { transform: translateY(-4px); border-color: #3f3f46; }
+    .product-card img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; background: #18181b; }
     .card-tag {
       position: absolute;
       top: 12px;
@@ -263,16 +209,11 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
-    .product-card .info {
-      padding: 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-    }
+    .product-card .info { padding: 16px; display: flex; justify-content: space-between; align-items: baseline; }
     .product-card h3 { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; }
     .product-card .price { font-size: 14px; color: var(--muted); font-weight: 500; }
 
-    /* DEDICATED PRODUCT VIEW */
+    /* DETAIL VIEW */
     .breadcrumb {
       color: var(--muted);
       font-size: 13px;
@@ -282,13 +223,7 @@
       letter-spacing: 0.05em;
     }
     .breadcrumb:hover { color: #fff; }
-    .product-view-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
+    .product-view-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; max-width: 1100px; margin: 0 auto; }
     @media (max-width: 768px) {
       .product-view-layout { grid-template-columns: 1fr; gap: 28px; }
       .deal-banner { flex-direction: column; align-items: flex-start; }
@@ -326,17 +261,12 @@
       letter-spacing: 0.02em;
       margin-bottom: 8px;
     }
-    .product-meta .meta-price {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 20px;
-    }
+    .product-meta .meta-price { font-size: 22px; font-weight: 700; color: var(--accent); margin-bottom: 20px; }
     .product-desc {
       color: var(--muted);
       font-size: 14px;
       line-height: 1.6;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       padding: 16px 0;
@@ -349,6 +279,25 @@
       color: var(--muted);
       margin-bottom: 10px;
     }
+
+    /* COLOR SWATCH PICKER */
+    .color-picker { display: flex; gap: 12px; margin-bottom: 24px; }
+    .color-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .color-chip.active, .color-chip:hover { border-color: #fff; background: #1c1c21; }
+    .color-dot { width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); }
+
     .size-picker { display: flex; gap: 10px; margin-bottom: 28px; }
     .size-btn {
       width: 48px;
@@ -363,11 +312,7 @@
       cursor: pointer;
       transition: all 0.2s;
     }
-    .size-btn.active, .size-btn:hover {
-      background: #fff;
-      color: #000;
-      border-color: #fff;
-    }
+    .size-btn.active, .size-btn:hover { background: #fff; color: #000; border-color: #fff; }
 
     .btn-primary {
       width: 100%;
@@ -395,13 +340,7 @@
       border-radius: 12px;
       padding: 32px;
     }
-    .checkout-container h2 {
-      font-family: var(--font-display);
-      font-size: 24px;
-      font-weight: 900;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
+    .checkout-container h2 { font-family: var(--font-display); font-size: 24px; font-weight: 900; text-transform: uppercase; margin-bottom: 24px; }
     .form-group { margin-bottom: 16px; }
     .form-group label {
       display: block;
@@ -461,12 +400,7 @@
       margin-bottom: 24px;
       font-size: 13px;
     }
-    .summary-row {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 8px;
-      color: var(--muted);
-    }
+    .summary-row { display: flex; justify-content: space-between; margin-bottom: 8px; color: var(--muted); }
     .summary-row.total {
       border-top: 1px solid var(--border);
       padding-top: 10px;
@@ -591,12 +525,7 @@
     .cart-header h3 { font-family: var(--font-display); font-size: 18px; font-weight: 900; }
     .close-btn { background: none; border: none; color: #fff; font-size: 20px; cursor: pointer; }
     .cart-items { flex: 1; overflow-y: auto; }
-    .cart-item {
-      display: flex;
-      gap: 14px;
-      border-bottom: 1px solid var(--border);
-      padding: 14px 0;
-    }
+    .cart-item { display: flex; gap: 14px; border-bottom: 1px solid var(--border); padding: 14px 0; }
     .cart-item img { width: 64px; height: 80px; object-fit: cover; border-radius: 4px; }
     .cart-item-details { flex: 1; }
     .cart-item-details h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
@@ -625,7 +554,7 @@
     <div class="deal-banner" onclick="openProduct('deal-01')">
       <div class="deal-content">
         <span class="deal-badge">⚡ Deal of the Day</span>
-        <h2>HYPERSPORT Thermal Fleece Hoodie</h2>
+        <h2>You Can't Please Everyone // Acid Wash Heavy Hoodie</h2>
         <div class="deal-price-row">
           <span style="color:var(--accent);">₹1,799</span>
           <span class="deal-price-strike">₹2,499</span>
@@ -670,6 +599,10 @@
         <h2 id="detail-title"></h2>
         <div class="meta-price" id="detail-price"></div>
         <div class="product-desc" id="detail-desc"></div>
+
+        <div class="option-label">Select Colorway</div>
+        <div class="color-picker" id="color-picker"></div>
+
         <div class="option-label">Select Specification</div>
         <div class="size-picker" id="size-options">
           <button class="size-btn" onclick="selectSize('S', this)">S</button>
@@ -722,7 +655,7 @@
           <span id="sum-subtotal">₹0</span>
         </div>
         <div class="summary-row">
-          <span>Tirupur Express Shipping</span>
+          <span>TRIVÉ Express Shipping</span>
           <span style="color:#22c55e;">FREE</span>
         </div>
         <div class="summary-row" id="coupon-row" style="display:none; color:var(--accent);">
@@ -783,7 +716,7 @@
     <div class="status-card">
       <div class="status-icon success">&#10003;</div>
       <h2>Order Placed Successfully</h2>
-      <p id="success-sub">Your garment has been logged into the TRIVÉ Printing & Packaging queue.</p>
+      <p>Your garment has been logged into the TRIVÉ Printing & Packaging queue.</p>
       
       <div class="track-box">
         <div class="track-step">
@@ -836,21 +769,39 @@
   </div>
 
   <script>
-    // FULL CATALOG (MEN, WOMEN, HOODIE, T-SHIRT, SHIRT, LOWER WEAR)
+    // FULL CATALOG WITH YOUR REAL ACID WASH COLORWAYS & FRONT/BACK MOCKUPS
     const PRODUCTS = [
       {
         id: 'deal-01',
-        name: 'HYPERSPORT Thermal Fleece Hoodie',
+        name: "You Can't Please Everyone // Acid Wash Hoodie",
         price: 1799,
         originalPrice: 2499,
         gender: 'unisex',
         category: 'hoodie',
-        sku: 'TRV-HD-DEAL',
+        sku: 'UH62',
         tag: 'Deal for the Day',
-        desc: '450 GSM Double-Fleece Thermal Cotton. Limited-run archival wash with dropped shoulders, heavyweight ribbing, and gunmetal finishes.',
-        images: [
-          'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=800&auto=format&fit=crop&q=80',
-          'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?w=800&auto=format&fit=crop&q=80'
+        desc: '300 GSM Heavyweight Cotton with lived-in acid wash finish. Oversized streetwear drape featuring dropped shoulders, roomy hood, and high-definition archival back screen print.',
+        colors: [
+          {
+            name: 'Washed Mineral Grey',
+            hex: '#2b2b2e',
+            images: ['./images/grey-back.jpg', './images/grey-front.jpg']
+          },
+          {
+            name: 'Washed Indigo Blue',
+            hex: '#263447',
+            images: ['./images/blue-back.jpg', './images/blue-front.jpg']
+          },
+          {
+            name: 'Archival Maroon',
+            hex: '#472228',
+            images: ['./images/brown-back.jpg', './images/brown-front.jpg']
+          },
+          {
+            name: 'Forest Bottle Green',
+            hex: '#1e382b',
+            images: ['./images/green-back.jpg', './images/green-front.jpg']
+          }
         ]
       },
       {
@@ -861,10 +812,13 @@
         category: 't-shirt',
         sku: 'TRV-TEE-01',
         tag: 'Men // Heavy Tee',
-        desc: '280 GSM Luxury Combed Terry Cotton. Archival drop shoulder boxy fit with high-density puff print detailing. Tailored in Tirupur.',
-        images: [
-          'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80',
-          'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&auto=format&fit=crop&q=80'
+        desc: '280 GSM Luxury Combed Terry Cotton. Archival drop shoulder boxy fit with high-density puff print detailing. Crafted by TRIVÉ Atelier.',
+        colors: [
+          {
+            name: 'Vintage Washed Black',
+            hex: '#141416',
+            images: ['https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80']
+          }
         ]
       },
       {
@@ -875,24 +829,13 @@
         category: 't-shirt',
         sku: 'TRV-TEE-W01',
         tag: 'Women // Relaxed',
-        desc: '260 GSM Ultra-Soft Biowashed Cotton. Clean dropped silhouette crafted for contemporary street drape and breathable structure.',
-        images: [
-          'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format&fit=crop&q=80',
-          'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&auto=format&fit=crop&q=80'
-        ]
-      },
-      {
-        id: 'hoodie-02',
-        name: 'Shadow Boxy Heavyweight Hoodie',
-        price: 2299,
-        gender: 'men',
-        category: 'hoodie',
-        sku: 'TRV-HD-02',
-        tag: 'Men // 420 GSM',
-        desc: '420 GSM 100% French Terry Cotton. Seamless hood construction with raw aesthetic, ribbed cuffs, and concealed kangaroo pouch.',
-        images: [
-          'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?w=800&auto=format&fit=crop&q=80',
-          'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=800&auto=format&fit=crop&q=80'
+        desc: '260 GSM Ultra-Soft Biowashed Cotton. Clean dropped silhouette crafted for contemporary street drape.',
+        colors: [
+          {
+            name: 'Chalk White',
+            hex: '#e4e4e7',
+            images: ['https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format&fit=crop&q=80']
+          }
         ]
       },
       {
@@ -903,10 +846,13 @@
         category: 'shirt',
         sku: 'TRV-SHT-01',
         tag: 'Men // Structured',
-        desc: 'Heavyweight Cotton Twill. Relaxed Cuban collar with twin chest cargo pockets, matte tonal buttons, and archival wash.',
-        images: [
-          'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&auto=format&fit=crop&q=80',
-          'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=800&auto=format&fit=crop&q=80'
+        desc: 'Heavyweight Cotton Twill. Relaxed Cuban collar with twin chest cargo pockets and matte tonal buttons.',
+        colors: [
+          {
+            name: 'Dark Slate',
+            hex: '#1f2937',
+            images: ['https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&auto=format&fit=crop&q=80']
+          }
         ]
       },
       {
@@ -917,10 +863,13 @@
         category: 'shirt',
         sku: 'TRV-SHT-W01',
         tag: 'Women // Resort',
-        desc: 'Rayon-Tencel blended relaxed resort shirt with minimal collar geometry and tailored vented side hems for layered drape.',
-        images: [
-          'https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=800&auto=format&fit=crop&q=80',
-          'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&auto=format&fit=crop&q=80'
+        desc: 'Rayon-Tencel blended relaxed resort shirt with minimal collar geometry and tailored vented side hems.',
+        colors: [
+          {
+            name: 'Natural Ecru',
+            hex: '#d6d3d1',
+            images: ['https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=800&auto=format&fit=crop&q=80']
+          }
         ]
       },
       {
@@ -931,10 +880,13 @@
         category: 'lower',
         sku: 'TRV-LOW-01',
         tag: 'Men // Lower',
-        desc: '380 GSM Heavy French Terry with extended contrast drawstrings, deep zip pockets, and tailored relaxed straight ankle cuffs.',
-        images: [
-          'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?w=800&auto=format&fit=crop&q=80',
-          'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=800&auto=format&fit=crop&q=80'
+        desc: '380 GSM Heavy French Terry with extended contrast drawstrings, deep zip pockets, and straight ankle cuffs.',
+        colors: [
+          {
+            name: 'Washed Charcoal',
+            hex: '#27272a',
+            images: ['https://images.unsplash.com/photo-1552902865-b72c031ac5ea?w=800&auto=format&fit=crop&q=80']
+          }
         ]
       },
       {
@@ -945,10 +897,13 @@
         category: 'lower',
         sku: 'TRV-LOW-W01',
         tag: 'Women // Lower',
-        desc: 'High-waisted wide-leg straight trousers with concealed drawstrings, front crease structure, and breathable cotton blend.',
-        images: [
-          'https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&auto=format&fit=crop&q=80',
-          'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=800&auto=format&fit=crop&q=80'
+        desc: 'High-waisted wide-leg straight trousers with concealed drawstrings and breathable structure.',
+        colors: [
+          {
+            name: 'Obsidian Black',
+            hex: '#09090b',
+            images: ['https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&auto=format&fit=crop&q=80']
+          }
         ]
       }
     ];
@@ -956,12 +911,12 @@
     let activeGender = 'all';
     let activeCategory = 'all';
     let currentProduct = PRODUCTS[0];
+    let selectedColor = currentProduct.colors[0];
     let selectedSize = 'L';
     let cart = [];
     let selectedPaymentMode = 'UPI';
     let discountAmount = 0;
 
-    // VIEW ROUTING
     function navigateTo(viewId) {
       document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
       const target = document.getElementById(`view-${viewId}`);
@@ -972,7 +927,6 @@
       toggleCart(false);
     }
 
-    // GENDER & CATEGORY FILTERING
     function setGenderFilter(gender, btn) {
       activeGender = gender;
       document.querySelectorAll('.gender-tab, .nav-link').forEach(b => {
@@ -992,7 +946,6 @@
       renderCatalog();
     }
 
-    // RENDER CATALOG
     function renderCatalog() {
       const grid = document.getElementById('products-grid');
       const filtered = PRODUCTS.filter(p => {
@@ -1009,7 +962,7 @@
       grid.innerHTML = filtered.map(p => `
         <div class="product-card" onclick="openProduct('${p.id}')">
           <span class="card-tag">${p.tag}</span>
-          <img src="${p.images[0]}" alt="${p.name}">
+          <img src="${p.colors[0].images[0]}" alt="${p.name}">
           <div class="info">
             <h3>${p.name}</h3>
             <span class="price">₹${p.price.toLocaleString('en-IN')}</span>
@@ -1018,25 +971,47 @@
       `).join('');
     }
 
-    // DEDICATED PRODUCT VIEW
     function openProduct(id) {
       const p = PRODUCTS.find(x => x.id === id);
       if (!p) return;
       currentProduct = p;
+      selectedColor = p.colors[0];
+
       document.getElementById('detail-tag').innerText = p.tag;
       document.getElementById('detail-title').innerText = p.name;
       document.getElementById('detail-price').innerText = `₹${p.price.toLocaleString('en-IN')}`;
       document.getElementById('detail-desc').innerText = p.desc;
-      document.getElementById('detail-main-img').src = p.images[0];
 
+      // Color picker chips
+      const colorContainer = document.getElementById('color-picker');
+      colorContainer.innerHTML = p.colors.map((c, idx) => `
+        <div class="color-chip ${idx === 0 ? 'active' : ''}" onclick="selectColor('${c.name}', this)">
+          <span class="color-dot" style="background:${c.hex};"></span>
+          <span>${c.name}</span>
+        </div>
+      `).join('');
+
+      updateGallery();
+      navigateTo('product');
+    }
+
+    function selectColor(colorName, el) {
+      const c = currentProduct.colors.find(x => x.name === colorName);
+      if (!c) return;
+      selectedColor = c;
+      document.querySelectorAll('.color-chip').forEach(chip => chip.classList.remove('active'));
+      el.classList.add('active');
+      updateGallery();
+    }
+
+    function updateGallery() {
+      document.getElementById('detail-main-img').src = selectedColor.images[0];
       const thumbs = document.getElementById('detail-thumbs');
-      thumbs.innerHTML = p.images.map((img, i) => `
+      thumbs.innerHTML = selectedColor.images.map((img, i) => `
         <div class="thumb ${i === 0 ? 'active' : ''}" onclick="switchImg('${img}', this)">
           <img src="${img}">
         </div>
       `).join('');
-
-      navigateTo('product');
     }
 
     function switchImg(url, el) {
@@ -1051,10 +1026,11 @@
       btn.classList.add('active');
     }
 
-    // CART SYSTEM
     function addToCartCurrentProduct() {
       cart.push({
         ...currentProduct,
+        color: selectedColor.name,
+        image: selectedColor.images[0],
         size: selectedSize,
         qty: 1
       });
@@ -1076,10 +1052,10 @@
         subtotal += item.price;
         return `
           <div class="cart-item">
-            <img src="${item.images[0]}">
+            <img src="${item.image}">
             <div class="cart-item-details">
               <h4>${item.name}</h4>
-              <p>Size: ${item.size} &bull; ₹${item.price.toLocaleString('en-IN')}</p>
+              <p>${item.color} &bull; Size: ${item.size} &bull; ₹${item.price.toLocaleString('en-IN')}</p>
               <button onclick="removeItem(${idx})" style="background:none;border:none;color:var(--danger);font-size:12px;cursor:pointer;">Remove</button>
             </div>
           </div>
@@ -1106,7 +1082,6 @@
       navigateTo('checkout');
     }
 
-    // COUPON & SUMMARY
     function getTotals() {
       const subtotal = cart.reduce((acc, item) => acc + item.price, 0);
       const total = Math.max(0, subtotal - discountAmount);
@@ -1165,7 +1140,6 @@
       document.getElementById('upi-box').style.display = (mode === 'UPI') ? 'block' : 'none';
     }
 
-    // DISPATCH ORDER
     async function dispatchOrder() {
       const btn = document.getElementById('btn-submit-order');
       const utr = (selectedPaymentMode === 'COD') ? 'COD' : document.getElementById('pay-utr').value.trim();
@@ -1187,6 +1161,7 @@
           name: cart.map(i => i.name).join(', '),
           price: getTotals().total
         },
+        color: cart.map(i => i.color).join(', '),
         size: cart.map(i => i.size).join(', '),
         quantity: cart.length,
         utr: utr,
@@ -1227,7 +1202,6 @@
       }
     }
 
-    // COUNTDOWN TIMER
     let seconds = 15735;
     setInterval(() => {
       seconds--;
@@ -1238,9 +1212,7 @@
       if (timerEl) timerEl.innerText = `ENDS IN ${h}:${m}:${s}`;
     }, 1000);
 
-    // INIT
     renderCatalog();
   </script>
 </body>
 </html>
-
