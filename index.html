@@ -550,6 +550,16 @@
       CART (<span id="cart-count">0</span>)
     </button>
   </header>
+  <!-- PROMINENT BRAND STATEMENT BANNER -->
+  <section style="background:#0e0e0e;border-top:1px solid #1a1a1a;border-bottom:1px solid #1a1a1a;padding:18px 20px;text-align:center;">
+    <div style="max-width:800px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;">
+      <span style="font-size:11px;font-weight:900;letter-spacing:0.25em;color:#888;text-transform:uppercase;">TRIVÉ HEAVYWEAR</span>
+      <span style="color:#2a2a2a;">//</span>
+      <span style="font-size:16px;font-weight:900;letter-spacing:0.3em;color:#d7ff3e;text-transform:uppercase;text-shadow:0 0 12px rgba(215,255,62,0.25);">BORN TO RULE</span>
+      <span style="color:#2a2a2a;">//</span>
+      <span style="font-size:11px;font-weight:700;letter-spacing:0.2em;color:#aaa;text-transform:uppercase;">DROP 01 ARCHIVE</span>
+    </div>
+  </section>
 
   <!-- 1. HOME CATALOG -->
   <main id="view-catalog" class="view active">
@@ -1231,6 +1241,7 @@
     <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:24px;">
       <a href="javascript:void(0)" onclick="openModal('shipping-modal')" style="color:#888;text-decoration:none;font-weight:600;text-transform:uppercase;font-size:11px;">Shipping Policy</a>
       <a href="javascript:void(0)" onclick="openModal('returns-modal')" style="color:#888;text-decoration:none;font-weight:600;text-transform:uppercase;font-size:11px;">Returns & Exchanges</a>
+      <a href="javascript:void(0)" onclick="openModal('terms-modal')" style="color:#888;text-decoration:none;font-weight:600;text-transform:uppercase;font-size:11px;">Terms & Conditions</a>
       <a href="javascript:void(0)" onclick="openModal('support-modal')" style="color:#888;text-decoration:none;font-weight:600;text-transform:uppercase;font-size:11px;">Contact Support</a>
     </div>
     <div>&copy; 2026 TRIVÉ. All Rights Reserved. Crafted for the relentless.</div>
@@ -1297,7 +1308,31 @@
       document.querySelectorAll('.trive-modal').forEach(m => m.style.display = 'none');
     }
   </script>
+  <!-- Terms & Conditions Modal -->
+  <div id="terms-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:92%;max-width:560px;max-height:85vh;overflow-y:auto;background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:26px;z-index:10000;color:#eee;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;position:sticky;top:0;background:#111;padding-bottom:8px;border-bottom:1px solid #222;">
+      <div>
+        <div style="font-weight:900;text-transform:uppercase;color:#d7ff3e;letter-spacing:0.08em;font-size:15px;">Terms & Conditions</div>
+        <div style="font-size:11px;color:#777;letter-spacing:0.05em;">TRIVÉ APPAREL &bull; LEGAL ARCHIVE 2026</div>
+      </div>
+      <button onclick="closeAllModals()" style="background:none;border:none;color:#888;font-size:22px;cursor:pointer;">&times;</button>
+    </div>
+    <div style="font-size:12.5px;line-height:1.75;color:#bbb;">
+      <p style="margin:0 0 12px;"><strong style="color:#fff;">1. Overview & Agreement:</strong> By accessing and ordering through TRIVÉ (trive.in), you acknowledge and agree to be bound by these Terms of Service. All items sold are original pieces designed by TRIVÉ.</p>
+      
+      <p style="margin:0 0 12px;"><strong style="color:#fff;">2. Order Verification & Pricing:</strong> Prices listed are in Indian Rupees (INR) and inclusive of applicable goods taxation. TRIVÉ reserves the right to verify or cancel orders flagged for fraudulent activity, incorrect contact numbers, or incomplete shipping addresses prior to production dispatch.</p>
+      
+      <p style="margin:0 0 12px;"><strong style="color:#fff;">3. Payment Processing:</strong> We accept direct UPI QR payments with UTR verification and Cash on Delivery (COD). For COD orders, telephone or WhatsApp verification may be conducted prior to fulfilling the garment with print facilities.</p>
+      
+      <p style="margin:0 0 12px;"><strong style="color:#fff;">4. Fulfillment & Delivery:</strong> Each garment is individually inspected and dispatched through verified courier partners across India. Estimated delivery timeframes (4–7 business days) are approximate and may vary during national holidays or adverse transit conditions.</p>
+      
+      <p style="margin:0 0 12px;"><strong style="color:#fff;">5. Intellectual Property:</strong> All logos, typography lockups, graphics, garment design assets, and slogans (including "BORN TO RULE") are the exclusive intellectual property of TRIVÉ.</p>
+      
+      <p style="margin:0;"><strong style="color:#fff;">6. Governing Law:</strong> These terms are governed in accordance with the laws of India, under the jurisdiction of Madhya Pradesh courts.</p>
+    </div>
+  </div>
 </body>
 </html>
+
 
 
