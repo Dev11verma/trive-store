@@ -139,18 +139,18 @@ app.post('/api/order', async (req, res) => {
   orders = loadOrders();
   const orderId = `TV-${1000 + orders.length + 1}`;
   
-  let unitPrice = Number(product?.price) || 1299;
+  let unitPrice = Number(product?.price) || 1799;
   if (unitPrice > 10000) unitPrice = Math.round(unitPrice / 100);
 
   const qty = parseInt(quantity, 10) || 1;
   const totalAmount = unitPrice;
-  const garmentColor = color || product?.color || 'Archival Vintage Washed Black';
+  const garmentColor = color || 'Washed Mineral Grey';
   const cleanPhone = customer.phone.replace(/[^0-9]/g, '').slice(-10);
 
   const waMsg = encodeURIComponent(
     `*TRIVÉ // ORDER CONFIRMED [${orderId}]*\n\n` +
     `Hey ${customer.name},\n` +
-    `Your order for *${product?.name || 'TRIVÉ Archival Piece'}* has been confirmed:\n\n` +
+    `Your order for *${product?.name || "You Can't Please Everyone // Acid Wash Hoodie"}* has been confirmed:\n\n` +
     `• *Colorway:* ${garmentColor}\n` +
     `• *Size:* ${size || 'L'}\n` +
     `• *Quantity:* ${qty}\n\n` +
@@ -162,23 +162,30 @@ app.post('/api/order', async (req, res) => {
   );
   const whatsappLink = `https://wa.me/91${cleanPhone}?text=${waMsg}`;
 
-  // Structured Qikink Order Payload
+  const isCod = utr?.toUpperCase() === 'COD';
+
+  // Exact Qikink V2 Order Specification
   const qikinkPayload = {
     order_number: orderId,
-    order_type: utr?.toUpperCase() === 'COD' ? 'cod' : 'prepaid',
+    qikink_shipping: "1",
+    gateway: isCod ? "COD" : "Prepaid",
     total_order_value: String(totalAmount),
-    first_name: customer.name.split(' ')[0],
-    last_name: customer.name.split(' ').slice(1).join(' ') || 'Customer',
-    phone_number: cleanPhone,
-    address1: address.street,
-    city: address.city,
-    state: address.state || 'Madhya Pradesh',
-    country_code: 'IN',
-    zip_code: String(address.pincode),
+    shipping_address: {
+      first_name: customer.name.split(' ')[0],
+      last_name: customer.name.split(' ').slice(1).join(' ') || 'Customer',
+      address1: address.street,
+      address2: "",
+      phone: cleanPhone,
+      email: customer.email || "support@trive.in",
+      city: address.city,
+      zip: String(address.pincode),
+      state: address.state || "Madhya Pradesh",
+      country: "IN"
+    },
     line_items: [
       {
-        search_from_my_products: 0,
-        sku: `TRV-${(size || 'L').toUpperCase()}`,
+        search_from_my_products: 1,
+        sku: `UH62-${(size || 'L').toUpperCase()}`,
         quantity: String(qty),
         price: String(unitPrice)
       }
@@ -189,14 +196,12 @@ app.post('/api/order', async (req, res) => {
   try {
     const auth = await getQikinkAuth();
     if (auth?.token) {
-      // Send universal headers accepted by all Qikink API gateways
       const qikinkRes = await fetch(`${auth.baseUrl}/api/order/create`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'ClientId': QIKINK_CLIENT_ID,
-          'Accesstoken': auth.token,
-          'Authorization': `Bearer ${auth.token}`
+          'Accesstoken': auth.token
         },
         body: JSON.stringify(qikinkPayload)
       });
@@ -205,8 +210,10 @@ app.post('/api/order', async (req, res) => {
 
       if (qikinkData?.error) {
         qikinkLiveStatus = `Qikink: ${qikinkData.error}`;
+      } else if (qikinkData?.errors || qikinkData?.message) {
+        qikinkLiveStatus = qikinkData.message || JSON.stringify(qikinkData.errors);
       } else {
-        qikinkLiveStatus = qikinkData?.message || qikinkData?.status || `Sent (${auth.baseUrl.includes('sandbox') ? 'Sandbox' : 'Live'})`;
+        qikinkLiveStatus = qikinkData?.status || `Sent (${auth.baseUrl.includes('sandbox') ? 'Sandbox' : 'Live'})`;
       }
     } else {
       qikinkLiveStatus = 'Auth Pending (Awaiting Live Activation)';
@@ -219,12 +226,12 @@ app.post('/api/order', async (req, res) => {
   const newOrder = {
     orderId,
     brand: 'TRIVÉ',
-    product: product?.name || 'TRIVÉ Archival Piece',
+    product: product?.name || "You Can't Please Everyone // Acid Wash Hoodie",
     color: garmentColor,
     size: size || 'L',
     quantity: qty,
     total: totalAmount,
-    paymentStatus: utr?.toUpperCase() === 'COD' ? 'Pending (COD)' : `Prepaid (UTR: ${utr})`,
+    paymentStatus: isCod ? 'Pending (COD)' : `Prepaid (UTR: ${utr})`,
     customer: customer.name,
     phone: customer.phone,
     address: `${address.street}, ${address.city}, ${address.state || 'Madhya Pradesh'} - ${address.pincode}`,
