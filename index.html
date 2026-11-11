@@ -1,0 +1,577 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TRIVÉ — Lost But Never Broken // Drop 01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #070707;
+  --panel: #111111;
+  --border: #222222;
+  --accent: #d7ff3e;
+  --cream: #f4efe6;
+  --muted: #7b7b7b;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'Space Grotesk', -apple-system, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--cream);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+
+/* Announcement Bar */
+.ticker {
+  background: var(--accent);
+  color: #000;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  padding: 8px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.ticker span {
+  display: inline-block;
+  animation: tick 24s linear infinite;
+}
+@keyframes tick { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* Navigation */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 5vw;
+  background: rgba(7, 7, 7, 0.85);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.logo {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 26px;
+  letter-spacing: .18em;
+}
+.nav-links {
+  display: flex;
+  gap: 28px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+.nav-links a:hover { color: var(--accent); }
+
+/* Hero Section */
+.hero {
+  min-height: 82vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px 5vw;
+  background: radial-gradient(circle at 50% 30%, #1c1c1c 0%, var(--bg) 75%);
+  position: relative;
+}
+.tag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(215, 255, 62, 0.3);
+  background: rgba(215, 255, 62, 0.08);
+  color: var(--accent);
+  font-size: 11px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 11vw, 130px);
+  line-height: .88;
+  letter-spacing: -.04em;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+.hero-sub {
+  max-width: 540px;
+  color: var(--muted);
+  font-size: 16px;
+  margin: 24px auto 36px;
+}
+.btn-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 32px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: .2s ease;
+}
+.btn-primary { background: var(--accent); color: #000; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(215, 255, 62, 0.25); }
+.btn-ghost { border-color: var(--border); color: var(--cream); }
+.btn-ghost:hover { border-color: var(--cream); }
+
+/* Product Grid */
+.section { padding: 90px 5vw; }
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.section-head h2 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 56px);
+  text-transform: uppercase;
+  letter-spacing: -.02em;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform .3s ease, border-color .3s ease;
+  position: relative;
+}
+.card:hover {
+  transform: translateY(-6px);
+  border-color: #383838;
+}
+.card-media {
+  aspect-ratio: 4/5;
+  background: linear-gradient(145deg, #181818, #0c0c0c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.card-media-watermark {
+  font-family: var(--font-display);
+  font-size: 80px;
+  font-weight: 900;
+  color: #1a1a1a;
+  letter-spacing: .1em;
+  user-select: none;
+}
+.drop-tag {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  background: rgba(0,0,0,.7);
+  backdrop-filter: blur(4px);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+.card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+.card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.card-specs {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+.card-price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.price {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--cream);
+}
+.stock-pill {
+  font-size: 11px;
+  color: #ff6464;
+  background: rgba(255, 100, 100, 0.1);
+  padding: 4px 10px;
+  border-radius: 99px;
+  border: 1px solid rgba(255, 100, 100, 0.2);
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+  place-items: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+.modal {
+  background: #121212;
+  border: 1px solid #2a2a2a;
+  border-radius: 24px;
+  max-width: 480px;
+  width: 100%;
+  padding: 32px;
+  position: relative;
+  box-shadow: 0 25px 60px rgba(0,0,0,.7);
+}
+.modal-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 24px;
+  cursor: pointer;
+}
+.modal-close:hover { color: var(--cream); }
+.modal h2 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.form-group { margin-bottom: 14px; }
+.form-group label {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  margin-bottom: 6px;
+}
+.form-group input, .form-group select {
+  width: 100%;
+  padding: 13px 15px;
+  border-radius: 10px;
+  background: #0a0a0a;
+  border: 1px solid #292929;
+  color: var(--cream);
+  font-family: inherit;
+  font-size: 14px;
+}
+.form-group input:focus, .form-group select:focus {
+  outline: 1px solid var(--accent);
+  border-color: var(--accent);
+}
+.form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+/* UPI Box */
+.upi-box {
+  background: #14170c;
+  border: 1px dashed rgba(215, 255, 62, 0.4);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 18px 0;
+  text-align: center;
+}
+.upi-label { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+.upi-id {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: .08em;
+  cursor: pointer;
+}
+.upi-hint { font-size: 11px; color: #888; margin-top: 4px; }
+
+#order-msg {
+  margin-top: 14px;
+  font-size: 13px;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* Footer */
+footer {
+  padding: 60px 5vw 40px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  font-size: 13px;
+  color: var(--muted);
+}
+</style>
+</head>
+<body>
+
+<div class="ticker">
+  <span>TRIVÉ DROP 01 CAPSULE // THE COMPASS COLLECTION // 380 GSM HEAVYWEIGHT HOODIES // 240 GSM OVERSIZED TEES // ZERO RE-PRINTS // TRIVÉ STREETWEAR // FREE SHIPPING ACROSS INDIA // </span>
+</div>
+
+<header class="nav">
+  <div class="logo">TRIVÉ</div>
+  <nav class="nav-links">
+    <a href="#drop">The Drop</a>
+    <a href="http://localhost:5000/api/orders" target="_blank" style="color:var(--accent);">Live Orders ↗</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="tag-badge">Drop 01 Capsule // Autumn 2026</div>
+    <h1>LOST BUT<br>NEVER BROKEN</h1>
+    <p class="hero-sub">Heavyweight oversized architecture. 380 GSM french terry cotton and high-density custom screen prints, finished with custom TRIVÉ labeling.</p>
+    <div class="btn-row">
+      <a href="#drop" class="btn btn-primary">Shop The Capsule</a>
+    </div>
+  </section>
+
+  <section class="section" id="drop">
+    <div class="section-head">
+      <div>
+        <h2>Drop 01 Pieces</h2>
+        <p style="color:var(--muted);font-size:14px;">Limited numbered garments. Never reprinted in this colorway.</p>
+      </div>
+      <div style="font-size:12px;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;">
+        ● Production Ready via Qikink
+      </div>
+    </div>
+    <div class="grid" id="product-grid"></div>
+  </section>
+</main>
+
+<!-- Checkout Modal -->
+<div class="modal-overlay" id="checkout-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h2 id="modal-product-title">Garment</h2>
+    <p id="modal-product-price" style="color:var(--accent);font-weight:800;font-size:18px;margin-bottom:18px;">₹0</p>
+    
+    <form id="order-form">
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label>Select Size</label>
+          <select id="order-size">
+            <option value="S">S - Oversized (Chest 42")</option>
+            <option value="M">M - Oversized (Chest 44")</option>
+            <option value="L" selected>L - Oversized (Chest 46")</option>
+            <option value="XL">XL - Oversized (Chest 48")</option>
+            <option value="XXL">XXL - Heavyweight (Chest 50")</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Quantity</label>
+          <input type="number" id="order-qty" value="1" min="1" max="5">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="cust-name" placeholder="Dev Verma" required>
+      </div>
+
+      <div class="form-group">
+        <label>WhatsApp / Phone Number</label>
+        <input type="tel" id="cust-phone" placeholder="9977798829" required>
+      </div>
+
+      <div class="form-group">
+        <label>Delivery Address</label>
+        <input type="text" id="cust-street" placeholder="House/Flat No, Landmark, Area" required>
+      </div>
+
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label>City</label>
+          <input type="text" id="cust-city" placeholder="Bhopal" required>
+        </div>
+        <div class="form-group">
+          <label>PIN Code</label>
+          <input type="text" id="cust-pin" placeholder="462044" required>
+        </div>
+      </div>
+
+      <!-- Free UPI Payment Box -->
+      <div class="upi-box">
+        <div class="upi-label">Pay via GPay / PhonePe / Paytm to:</div>
+        <div class="upi-id" onclick="copyUPI()" title="Click to copy">trive@upi <span style="font-size:11px;color:#aaa;">(Click to copy)</span></div>
+        <div class="upi-hint">Enter your 12-digit transaction UTR below, or type "COD".</div>
+      </div>
+
+      <div class="form-group">
+        <label>Payment Reference (UTR / "COD")</label>
+        <input type="text" id="order-utr" placeholder="e.g. 331409281204 or COD" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary" id="submit-btn" style="width:100%;padding:16px;">Confirm & Dispatch Piece</button>
+      <div id="order-msg"></div>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <div style="font-family:var(--font-display);font-weight:900;letter-spacing:.2em;color:var(--cream);font-size:16px;">TRIVÉ</div>
+    <p style="margin-top:6px;">Direct-to-consumer archival garments. Handled via Tirupur dispatch.</p>
+  </div>
+  <p>© 2026 TRIVÉ. Built with zero-inventory pipeline.</p>
+</footer>
+
+<script>
+const products = [
+  {
+    id: 1,
+    name: 'TRIVÉ // "HYPERSPORT" Heavyweight Hoodie',
+    color: 'White / Black',
+    price: 2199,
+    tag: '380 GSM French Terry',
+    stock: 'Only 7 left'
+  },
+  {
+    id: 2,
+    name: 'TRIVÉ // "LOST BUT NEVER BROKEN" Oversized Tee',
+    color: 'Vintage Black',
+    price: 1299,
+    tag: '240 GSM Combed Cotton',
+    stock: 'Only 14 left'
+  },
+  {
+    id: 3,
+    name: 'TRIVÉ // "LOST BUT NEVER BROKEN" Oversized Tee',
+    color: 'Off-White / Cream',
+    price: 1299,
+    tag: '240 GSM Combed Cotton',
+    stock: 'Only 9 left'
+  }
+];
+
+let selectedProduct = null;
+
+document.getElementById('product-grid').innerHTML = products.map(p => `
+  <article class="card">
+    <div class="card-media">
+      <span class="drop-tag">${p.tag}</span>
+      <div class="card-media-watermark">TRIVÉ</div>
+    </div>
+    <div class="card-body">
+      <div>
+        <h3>${p.name}</h3>
+        <p class="card-specs">Colorway: ${p.color}</p>
+      </div>
+      <div>
+        <div class="card-price-row">
+          <span class="price">₹${p.price.toLocaleString('en-IN')}</span>
+          <span class="stock-pill">${p.stock}</span>
+        </div>
+        <button class="btn btn-primary" style="width:100%;" onclick="openCheckout(${p.id})">Order Garment</button>
+      </div>
+    </div>
+  </article>
+`).join('');
+
+function openCheckout(id) {
+  selectedProduct = products.find(p => p.id === id);
+  document.getElementById('modal-product-title').textContent = selectedProduct.name;
+  document.getElementById('modal-product-price').textContent = '₹' + selectedProduct.price.toLocaleString('en-IN');
+  document.getElementById('order-msg').textContent = '';
+  document.getElementById('checkout-modal').style.display = 'grid';
+}
+
+function closeModal() {
+  document.getElementById('checkout-modal').style.display = 'none';
+}
+
+function copyUPI() {
+  navigator.clipboard.writeText('trive@upi');
+  alert('UPI ID copied to clipboard: trive@upi');
+}
+
+document.getElementById('order-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  const msg = document.getElementById('order-msg');
+  btn.disabled = true;
+  msg.textContent = 'Registering order with TRIVÉ dispatch queue...';
+
+  const orderData = {
+    customer: {
+      name: document.getElementById('cust-name').value,
+      phone: document.getElementById('cust-phone').value
+    },
+    product: selectedProduct,
+    size: document.getElementById('order-size').value,
+    quantity: parseInt(document.getElementById('order-qty').value, 10),
+    utr: document.getElementById('order-utr').value,
+    address: {
+      street: document.getElementById('cust-street').value,
+      city: document.getElementById('cust-city').value,
+      state: 'Madhya Pradesh',
+      pincode: document.getElementById('cust-pin').value
+    }
+  };
+
+  try {
+    const res = await fetch('http://localhost:5000/api/order', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(orderData)
+    });
+    const result = await res.json();
+    if (result.success) {
+      msg.innerHTML = '<span style="color:var(--accent);">✅ ' + result.message + '</span>';
+      setTimeout(() => {
+        closeModal();
+        btn.disabled = false;
+        alert('Piece locked in! Manifest generated for #' + result.orderId);
+      }, 1200);
+    }
+  } catch (err) {
+    msg.textContent = 'Backend offline. Make sure port 5000 is running.';
+    btn.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
