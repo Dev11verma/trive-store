@@ -1,577 +1,941 @@
-﻿<!doctype html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TRIVÉ — Lost But Never Broken // Drop 01</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg: #070707;
-  --panel: #111111;
-  --border: #222222;
-  --accent: #d7ff3e;
-  --cream: #f4efe6;
-  --muted: #7b7b7b;
-  --font-display: 'Syne', sans-serif;
-  --font-body: 'Space Grotesk', -apple-system, sans-serif;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  background: var(--bg);
-  color: var(--cream);
-  font-family: var(--font-body);
-  line-height: 1.5;
-  overflow-x: hidden;
-}
-a { color: inherit; text-decoration: none; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRIVÉ // ARCHIVAL HEAVYWEAR</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #09090b;
+      --card-bg: #121215;
+      --border: #232328;
+      --text: #f4f4f5;
+      --muted: #a1a1aa;
+      --accent: #e4d804;
+      --accent-hover: #c8bd03;
+      --danger: #ef4444;
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'Space Grotesk', sans-serif;
+    }
 
-/* Announcement Bar */
-.ticker {
-  background: var(--accent);
-  color: #000;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .2em;
-  padding: 8px 0;
-  overflow: hidden;
-  white-space: nowrap;
-}
-.ticker span {
-  display: inline-block;
-  animation: tick 24s linear infinite;
-}
-@keyframes tick { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
 
-/* Navigation */
-.nav {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 5vw;
-  background: rgba(7, 7, 7, 0.85);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--border);
-}
-.logo {
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: 26px;
-  letter-spacing: .18em;
-}
-.nav-links {
-  display: flex;
-  gap: 28px;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-}
-.nav-links a:hover { color: var(--accent); }
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 5%;
+      background: rgba(9, 9, 11, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      cursor: pointer;
+      text-decoration: none;
+      color: #fff;
+    }
+    .cart-btn {
+      position: relative;
+      background: none;
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 99px;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .cart-btn:hover { border-color: var(--text); }
+    .cart-badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      background: var(--accent);
+      color: #000;
+      font-size: 11px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+    }
 
-/* Hero Section */
-.hero {
-  min-height: 82vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 60px 5vw;
-  background: radial-gradient(circle at 50% 30%, #1c1c1c 0%, var(--bg) 75%);
-  position: relative;
-}
-.tag-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  border: 1px solid rgba(215, 255, 62, 0.3);
-  background: rgba(215, 255, 62, 0.08);
-  color: var(--accent);
-  font-size: 11px;
-  letter-spacing: .25em;
-  text-transform: uppercase;
-  margin-bottom: 22px;
-}
-.hero h1 {
-  font-family: var(--font-display);
-  font-size: clamp(48px, 11vw, 130px);
-  line-height: .88;
-  letter-spacing: -.04em;
-  text-transform: uppercase;
-  font-weight: 900;
-}
-.hero-sub {
-  max-width: 540px;
-  color: var(--muted);
-  font-size: 16px;
-  margin: 24px auto 36px;
-}
-.btn-row {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 15px 32px;
-  border-radius: 999px;
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  cursor: pointer;
-  border: 1px solid transparent;
-  transition: .2s ease;
-}
-.btn-primary { background: var(--accent); color: #000; }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(215, 255, 62, 0.25); }
-.btn-ghost { border-color: var(--border); color: var(--cream); }
-.btn-ghost:hover { border-color: var(--cream); }
+    /* VIEW CONTAINERS */
+    .view { display: none; padding: 40px 5%; min-height: 85vh; }
+    .view.active { display: block; }
 
-/* Product Grid */
-.section { padding: 90px 5vw; }
-.section-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 40px;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-.section-head h2 {
-  font-family: var(--font-display);
-  font-size: clamp(32px, 5vw, 56px);
-  text-transform: uppercase;
-  letter-spacing: -.02em;
-}
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
-}
-.card {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: transform .3s ease, border-color .3s ease;
-  position: relative;
-}
-.card:hover {
-  transform: translateY(-6px);
-  border-color: #383838;
-}
-.card-media {
-  aspect-ratio: 4/5;
-  background: linear-gradient(145deg, #181818, #0c0c0c);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-.card-media-watermark {
-  font-family: var(--font-display);
-  font-size: 80px;
-  font-weight: 900;
-  color: #1a1a1a;
-  letter-spacing: .1em;
-  user-select: none;
-}
-.drop-tag {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  padding: 5px 12px;
-  border-radius: 6px;
-  background: rgba(0,0,0,.7);
-  backdrop-filter: blur(4px);
-  font-size: 11px;
-  color: var(--accent);
-  letter-spacing: .15em;
-  text-transform: uppercase;
-}
-.card-body {
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  justify-content: space-between;
-}
-.card h3 {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-.card-specs {
-  color: var(--muted);
-  font-size: 13px;
-  margin-bottom: 18px;
-}
-.card-price-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-}
-.price {
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--cream);
-}
-.stock-pill {
-  font-size: 11px;
-  color: #ff6464;
-  background: rgba(255, 100, 100, 0.1);
-  padding: 4px 10px;
-  border-radius: 99px;
-  border: 1px solid rgba(255, 100, 100, 0.2);
-}
+    /* 1. HOME CATALOG */
+    .hero {
+      text-align: center;
+      padding: 60px 0 40px;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 8vw, 72px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .hero p { color: var(--muted); font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; }
 
-/* Modal Overlay */
-.modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
-  backdrop-filter: blur(12px);
-  z-index: 100;
-  place-items: center;
-  padding: 20px;
-  overflow-y: auto;
-}
-.modal {
-  background: #121212;
-  border: 1px solid #2a2a2a;
-  border-radius: 24px;
-  max-width: 480px;
-  width: 100%;
-  padding: 32px;
-  position: relative;
-  box-shadow: 0 25px 60px rgba(0,0,0,.7);
-}
-.modal-close {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  background: none;
-  border: none;
-  color: var(--muted);
-  font-size: 24px;
-  cursor: pointer;
-}
-.modal-close:hover { color: var(--cream); }
-.modal h2 {
-  font-family: var(--font-display);
-  font-size: 22px;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-}
-.form-group { margin-bottom: 14px; }
-.form-group label {
-  display: block;
-  font-size: 11px;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: .12em;
-  margin-bottom: 6px;
-}
-.form-group input, .form-group select {
-  width: 100%;
-  padding: 13px 15px;
-  border-radius: 10px;
-  background: #0a0a0a;
-  border: 1px solid #292929;
-  color: var(--cream);
-  font-family: inherit;
-  font-size: 14px;
-}
-.form-group input:focus, .form-group select:focus {
-  outline: 1px solid var(--accent);
-  border-color: var(--accent);
-}
-.form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 32px;
+      margin-top: 40px;
+    }
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.25s, border-color 0.25s;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      border-color: #3f3f46;
+    }
+    .product-card img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      display: block;
+      background: #18181b;
+    }
+    .product-card .info {
+      padding: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .product-card h3 { font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+    .product-card .price { font-size: 14px; color: var(--muted); font-weight: 500; }
 
-/* UPI Box */
-.upi-box {
-  background: #14170c;
-  border: 1px dashed rgba(215, 255, 62, 0.4);
-  border-radius: 12px;
-  padding: 16px;
-  margin: 18px 0;
-  text-align: center;
-}
-.upi-label { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
-.upi-id {
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--accent);
-  letter-spacing: .08em;
-  cursor: pointer;
-}
-.upi-hint { font-size: 11px; color: #888; margin-top: 4px; }
+    /* 2. DEDICATED PRODUCT VIEW */
+    .breadcrumb {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 24px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .breadcrumb:hover { color: #fff; }
+    .product-view-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    @media (max-width: 768px) {
+      .product-view-layout { grid-template-columns: 1fr; gap: 28px; }
+    }
+    .gallery { display: flex; flex-direction: column; gap: 16px; }
+    .main-img-box {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: #18181b;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .main-img-box img { width: 100%; height: 100%; object-fit: cover; }
+    .thumbs { display: flex; gap: 12px; }
+    .thumb {
+      width: 68px;
+      height: 85px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      overflow: hidden;
+      opacity: 0.6;
+      transition: all 0.2s;
+    }
+    .thumb.active, .thumb:hover { opacity: 1; border-color: #fff; }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; }
 
-#order-msg {
-  margin-top: 14px;
-  font-size: 13px;
-  text-align: center;
-  font-weight: 700;
-}
+    .product-meta h2 {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 8px;
+    }
+    .product-meta .meta-price {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+    .product-desc {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 28px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+    }
+    .option-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .size-picker { display: flex; gap: 10px; margin-bottom: 28px; }
+    .size-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 6px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: #fff;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .size-btn.active, .size-btn:hover {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
+    }
 
-/* Footer */
-footer {
-  padding: 60px 5vw 40px;
-  border-top: 1px solid var(--border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  font-size: 13px;
-  color: var(--muted);
-}
-</style>
+    .btn-primary {
+      width: 100%;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      padding: 16px;
+      border-radius: 6px;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--accent-hover); }
+
+    /* 3. ADDRESS & CHECKOUT STAGE */
+    .checkout-container {
+      max-width: 580px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+    }
+    .checkout-container h2 {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .form-group input {
+      width: 100%;
+      background: #09090b;
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 12px 14px;
+      border-radius: 6px;
+      font-family: var(--font-body);
+      font-size: 14px;
+    }
+    .form-group input:focus { outline: none; border-color: #fff; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    /* COUPON BOX */
+    .coupon-box {
+      display: flex;
+      gap: 10px;
+      margin: 20px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+    }
+    .coupon-box input {
+      flex: 1;
+      background: #09090b;
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-family: var(--font-body);
+      text-transform: uppercase;
+    }
+    .coupon-box button {
+      background: #27272a;
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 0 16px;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .order-summary-box {
+      background: #09090b;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+    }
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      color: var(--muted);
+    }
+    .summary-row.total {
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+      margin-top: 10px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    /* 4. PAYMENT STAGE (CLEAN & FOCUSED) */
+    .payment-options { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
+    .pay-card {
+      background: #09090b;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.2s;
+    }
+    .pay-card.selected { border-color: var(--accent); background: #121204; }
+    .pay-card input[type="radio"] { accent-color: var(--accent); }
+    .pay-card-info h4 { font-size: 14px; font-weight: 700; }
+    .pay-card-info p { font-size: 12px; color: var(--muted); }
+
+    .upi-display {
+      background: #09090b;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .upi-qr-box {
+      background: #fff;
+      padding: 12px;
+      display: inline-block;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+    .upi-qr-box img { width: 140px; height: 140px; display: block; }
+    .upi-id-badge {
+      display: inline-block;
+      background: #18181b;
+      padding: 6px 14px;
+      border-radius: 99px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    /* 5. SUCCESS & FAILURE SCREENS */
+    .status-card {
+      max-width: 540px;
+      margin: 40px auto;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px 32px;
+      text-align: center;
+    }
+    .status-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin: 0 auto 20px;
+    }
+    .status-icon.success { background: rgba(34, 197, 94, 0.1); color: #22c55e; border: 1px solid #22c55e; }
+    .status-icon.fail { background: rgba(239, 68, 68, 0.1); color: var(--danger); border: 1px solid var(--danger); }
+    .status-card h2 { font-family: var(--font-display); font-size: 28px; font-weight: 900; margin-bottom: 8px; }
+    .status-card p { color: var(--muted); font-size: 14px; line-height: 1.5; margin-bottom: 24px; }
+    .track-box {
+      background: #09090b;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: left;
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+    .track-step { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .track-step:last-child { margin-bottom: 0; }
+    .track-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; }
+
+    /* CART DRAWER */
+    .cart-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .cart-drawer-overlay.open { opacity: 1; pointer-events: auto; }
+    .cart-drawer {
+      position: fixed;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 400px;
+      background: var(--card-bg);
+      border-left: 1px solid var(--border);
+      z-index: 201;
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+    }
+    .cart-drawer.open { transform: translateX(0); }
+    .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .cart-header h3 { font-family: var(--font-display); font-size: 18px; font-weight: 900; }
+    .close-btn { background: none; border: none; color: #fff; font-size: 20px; cursor: pointer; }
+    .cart-items { flex: 1; overflow-y: auto; }
+    .cart-item {
+      display: flex;
+      gap: 14px;
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+    }
+    .cart-item img { width: 64px; height: 80px; object-fit: cover; border-radius: 4px; }
+    .cart-item-details { flex: 1; }
+    .cart-item-details h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .cart-item-details p { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+  </style>
 </head>
 <body>
 
-<div class="ticker">
-  <span>TRIVÉ DROP 01 CAPSULE // THE COMPASS COLLECTION // 380 GSM HEAVYWEIGHT HOODIES // 240 GSM OVERSIZED TEES // ZERO RE-PRINTS // TRIVÉ STREETWEAR // FREE SHIPPING ACROSS INDIA // </span>
-</div>
+  <!-- HEADER -->
+  <header>
+    <a class="logo" onclick="navigateTo('catalog')">TRIVÉ</a>
+    <button class="cart-btn" onclick="toggleCart(true)">
+      CART (<span id="cart-count">0</span>)
+    </button>
+  </header>
 
-<header class="nav">
-  <div class="logo">TRIVÉ</div>
-  <nav class="nav-links">
-    <a href="#drop">The Drop</a>
-    <a href="https://trive-api.onrender.com/api/orders" target="_blank" style="color:var(--accent);">Live Orders ↗</a>
-  </nav>
-</header>
+  <!-- 1. HOME CATALOG VIEW -->
+  <main id="view-catalog" class="view active">
+    <div class="hero">
+      <p>ARCHIVAL HEAVYWEAR // DROP 01</p>
+      <h1>THE FOUNDATION</h1>
+    </div>
+    <div class="grid" id="products-grid"></div>
+  </main>
 
-<main>
-  <section class="hero">
-    <div class="tag-badge">Drop 01 Capsule // Autumn 2026</div>
-    <h1>LOST BUT<br>NEVER BROKEN</h1>
-    <p class="hero-sub">Heavyweight oversized architecture. 380 GSM french terry cotton and high-density custom screen prints, finished with custom TRIVÉ labeling.</p>
-    <div class="btn-row">
-      <a href="#drop" class="btn btn-primary">Shop The Capsule</a>
+  <!-- 2. DEDICATED PRODUCT VIEW -->
+  <section id="view-product" class="view">
+    <div class="breadcrumb" onclick="navigateTo('catalog')">&larr; Back to Archival Collection</div>
+    <div class="product-view-layout">
+      <div class="gallery">
+        <div class="main-img-box">
+          <img id="detail-main-img" src="" alt="Garment Preview">
+        </div>
+        <div class="thumbs" id="detail-thumbs"></div>
+      </div>
+      <div class="product-meta">
+        <h2 id="detail-title"></h2>
+        <div class="meta-price" id="detail-price"></div>
+        <div class="product-desc" id="detail-desc"></div>
+        <div class="option-label">Select Specification</div>
+        <div class="size-picker" id="size-options">
+          <button class="size-btn" onclick="selectSize('S', this)">S</button>
+          <button class="size-btn" onclick="selectSize('M', this)">M</button>
+          <button class="size-btn active" onclick="selectSize('L', this)">L</button>
+          <button class="size-btn" onclick="selectSize('XL', this)">XL</button>
+        </div>
+        <button class="btn-primary" onclick="addToCartCurrentProduct()">Add to Cart</button>
+      </div>
     </div>
   </section>
 
-  <section class="section" id="drop">
-    <div class="section-head">
-      <div>
-        <h2>Drop 01 Pieces</h2>
-        <p style="color:var(--muted);font-size:14px;">Limited numbered garments. Never reprinted in this colorway.</p>
-      </div>
-      <div style="font-size:12px;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;">
-        ● Production Ready via Qikink
-      </div>
-    </div>
-    <div class="grid" id="product-grid"></div>
-  </section>
-</main>
-
-<!-- Checkout Modal -->
-<div class="modal-overlay" id="checkout-modal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()">×</button>
-    <h2 id="modal-product-title">Garment</h2>
-    <p id="modal-product-price" style="color:var(--accent);font-weight:800;font-size:18px;margin-bottom:18px;">₹0</p>
-    
-    <form id="order-form">
-      <div class="form-grid-2">
-        <div class="form-group">
-          <label>Select Size</label>
-          <select id="order-size">
-            <option value="S">S - Oversized (Chest 42")</option>
-            <option value="M">M - Oversized (Chest 44")</option>
-            <option value="L" selected>L - Oversized (Chest 46")</option>
-            <option value="XL">XL - Oversized (Chest 48")</option>
-            <option value="XXL">XXL - Heavyweight (Chest 50")</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Quantity</label>
-          <input type="number" id="order-qty" value="1" min="1" max="5">
-        </div>
-      </div>
+  <!-- 3. ADDRESS & SHIPPING VIEW -->
+  <section id="view-checkout" class="view">
+    <div class="checkout-container">
+      <div class="breadcrumb" onclick="navigateTo('catalog')">&larr; Return to Store</div>
+      <h2>Shipping & Logistics</h2>
 
       <div class="form-group">
         <label>Full Name</label>
-        <input type="text" id="cust-name" placeholder="Dev Verma" required>
+        <input type="text" id="cust-name" placeholder="John Doe">
       </div>
-
       <div class="form-group">
-        <label>WhatsApp / Phone Number</label>
-        <input type="tel" id="cust-phone" placeholder="9977798829" required>
+        <label>Mobile Number (For WhatsApp Updates)</label>
+        <input type="tel" id="cust-phone" placeholder="9876543210">
       </div>
-
       <div class="form-group">
-        <label>Delivery Address</label>
-        <input type="text" id="cust-street" placeholder="House/Flat No, Landmark, Area" required>
+        <label>Street Address</label>
+        <input type="text" id="cust-street" placeholder="Flat / House / Street Name">
       </div>
-
-      <div class="form-grid-2">
+      <div class="form-row">
         <div class="form-group">
           <label>City</label>
-          <input type="text" id="cust-city" placeholder="Bhopal" required>
+          <input type="text" id="cust-city" placeholder="Bhopal">
         </div>
         <div class="form-group">
           <label>PIN Code</label>
-          <input type="text" id="cust-pin" placeholder="462044" required>
+          <input type="text" id="cust-pin" placeholder="462001">
         </div>
       </div>
 
-      <!-- Free UPI Payment Box -->
-      <div class="upi-box">
-        <div class="upi-label">Pay via GPay / PhonePe / Paytm to:</div>
-        <div class="upi-id" onclick="copyUPI()" title="Click to copy">trive@upi <span style="font-size:11px;color:#aaa;">(Click to copy)</span></div>
-        <div class="upi-hint">Enter your 12-digit transaction UTR below, or type "COD".</div>
+      <div class="coupon-box">
+        <input type="text" id="coupon-code" placeholder="Enter Promo (Try: FIRSTDROP)">
+        <button type="button" onclick="applyCoupon()">Apply</button>
       </div>
 
-      <div class="form-group">
-        <label>Payment Reference (UTR / "COD")</label>
-        <input type="text" id="order-utr" placeholder="e.g. 331409281204 or COD" required>
-      </div>
-
-      <button type="submit" class="btn btn-primary" id="submit-btn" style="width:100%;padding:16px;">Confirm & Dispatch Piece</button>
-      <div id="order-msg"></div>
-    </form>
-  </div>
-</div>
-
-<footer>
-  <div>
-    <div style="font-family:var(--font-display);font-weight:900;letter-spacing:.2em;color:var(--cream);font-size:16px;">TRIVÉ</div>
-    <p style="margin-top:6px;">Direct-to-consumer archival garments. Handled via Tirupur dispatch.</p>
-  </div>
-  <p>© 2026 TRIVÉ. Built with zero-inventory pipeline.</p>
-</footer>
-
-<script>
-const products = [
-  {
-    id: 1,
-    name: 'TRIVÉ // "HYPERSPORT" Heavyweight Hoodie',
-    color: 'White / Black',
-    price: 2199,
-    tag: '380 GSM French Terry',
-    stock: 'Only 7 left'
-  },
-  {
-    id: 2,
-    name: 'TRIVÉ // "LOST BUT NEVER BROKEN" Oversized Tee',
-    color: 'Vintage Black',
-    price: 1299,
-    tag: '240 GSM Combed Cotton',
-    stock: 'Only 14 left'
-  },
-  {
-    id: 3,
-    name: 'TRIVÉ // "LOST BUT NEVER BROKEN" Oversized Tee',
-    color: 'Off-White / Cream',
-    price: 1299,
-    tag: '240 GSM Combed Cotton',
-    stock: 'Only 9 left'
-  }
-];
-
-let selectedProduct = null;
-
-document.getElementById('product-grid').innerHTML = products.map(p => `
-  <article class="card">
-    <div class="card-media">
-      <span class="drop-tag">${p.tag}</span>
-      <div class="card-media-watermark">TRIVÉ</div>
-    </div>
-    <div class="card-body">
-      <div>
-        <h3>${p.name}</h3>
-        <p class="card-specs">Colorway: ${p.color}</p>
-      </div>
-      <div>
-        <div class="card-price-row">
-          <span class="price">₹${p.price.toLocaleString('en-IN')}</span>
-          <span class="stock-pill">${p.stock}</span>
+      <div class="order-summary-box">
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="sum-subtotal">₹0</span>
         </div>
-        <button class="btn btn-primary" style="width:100%;" onclick="openCheckout(${p.id})">Order Garment</button>
+        <div class="summary-row">
+          <span>Tirupur Express Shipping</span>
+          <span style="color:#22c55e;">FREE</span>
+        </div>
+        <div class="summary-row" id="coupon-row" style="display:none; color:var(--accent);">
+          <span>Promo Discount</span>
+          <span id="sum-discount">-₹0</span>
+        </div>
+        <div class="summary-row total">
+          <span>Total Payable</span>
+          <span id="sum-total">₹0</span>
+        </div>
       </div>
+
+      <button class="btn-primary" onclick="goToPayment()">Continue to Payment &rarr;</button>
     </div>
-  </article>
-`).join('');
+  </section>
 
-function openCheckout(id) {
-  selectedProduct = products.find(p => p.id === id);
-  document.getElementById('modal-product-title').textContent = selectedProduct.name;
-  document.getElementById('modal-product-price').textContent = '₹' + selectedProduct.price.toLocaleString('en-IN');
-  document.getElementById('order-msg').textContent = '';
-  document.getElementById('checkout-modal').style.display = 'grid';
-}
+  <!-- 4. FOCUSED PAYMENT VIEW (UPI & COD ONLY) -->
+  <section id="view-payment" class="view">
+    <div class="checkout-container">
+      <div class="breadcrumb" onclick="navigateTo('checkout')">&larr; Edit Shipping Address</div>
+      <h2>Select Payment Mode</h2>
 
-function closeModal() {
-  document.getElementById('checkout-modal').style.display = 'none';
-}
+      <div class="payment-options">
+        <label class="pay-card selected" id="opt-upi" onclick="selectPaymentMode('UPI')">
+          <input type="radio" name="paymethod" checked>
+          <div class="pay-card-info">
+            <h4>Instant UPI / QR</h4>
+            <p>Google Pay, PhonePe, Paytm, or BHIM</p>
+          </div>
+        </label>
+        <label class="pay-card" id="opt-cod" onclick="selectPaymentMode('COD')">
+          <input type="radio" name="paymethod">
+          <div class="pay-card-info">
+            <h4>Cash on Delivery (COD)</h4>
+            <p>Pay when delivered to your door</p>
+          </div>
+        </label>
+      </div>
 
-function copyUPI() {
-  navigator.clipboard.writeText('trive@upi');
-  alert('UPI ID copied to clipboard: trive@upi');
-}
+      <div id="upi-box" class="upi-display">
+        <div class="upi-id-badge">UPI: dev11verma@okaxis</div>
+        <div class="upi-qr-box">
+          <!-- Dynamic high-contrast QR code -->
+          <img id="dynamic-qr" src="" alt="Scan & Pay QR">
+        </div>
+        <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">Scan the QR code with any UPI app to complete the payment.</p>
+        <div class="form-group" style="text-align:left;">
+          <label>12-Digit UPI Transaction ID / UTR</label>
+          <input type="text" id="pay-utr" placeholder="e.g. 432109876543">
+        </div>
+      </div>
 
-document.getElementById('order-form').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const btn = document.getElementById('submit-btn');
-  const msg = document.getElementById('order-msg');
-  btn.disabled = true;
-  msg.textContent = 'Registering order with TRIVÉ dispatch queue...';
+      <button class="btn-primary" id="btn-submit-order" onclick="dispatchOrder()">Confirm & Place Order</button>
+    </div>
+  </section>
 
-  const orderData = {
-    customer: {
-      name: document.getElementById('cust-name').value,
-      phone: document.getElementById('cust-phone').value
-    },
-    product: selectedProduct,
-    size: document.getElementById('order-size').value,
-    quantity: parseInt(document.getElementById('order-qty').value, 10),
-    utr: document.getElementById('order-utr').value,
-    address: {
-      street: document.getElementById('cust-street').value,
-      city: document.getElementById('cust-city').value,
-      state: 'Madhya Pradesh',
-      pincode: document.getElementById('cust-pin').value
+  <!-- 5A. SUCCESS VIEW -->
+  <section id="view-success" class="view">
+    <div class="status-card">
+      <div class="status-icon success">&#10003;</div>
+      <h2>Order Placed Successfully</h2>
+      <p id="success-sub">Your garment has been forwarded to the Tirupur DTG manufacturing queue.</p>
+      
+      <div class="track-box">
+        <div class="track-step">
+          <div class="track-dot"></div>
+          <div><strong>Order ID:</strong> <span id="confirmed-id">#TV-1001</span></div>
+        </div>
+        <div class="track-step">
+          <div class="track-dot"></div>
+          <div><strong>Delivery to:</strong> <span id="confirmed-address">Bhopal, MP</span></div>
+        </div>
+        <div class="track-step">
+          <div class="track-dot"></div>
+          <div><strong>Estimated Dispatch:</strong> Within 48 Hours via Bluedart/Delhivery</div>
+        </div>
+      </div>
+
+      <a id="btn-wa-confirm" href="#" target="_blank" class="btn-primary" style="display:inline-block; text-decoration:none; margin-bottom:12px; background:#22c55e;">
+        📲 Open WhatsApp Tracking
+      </a>
+      <button class="cart-btn" style="width:100%; border-radius:6px;" onclick="navigateTo('catalog')">Return to Catalog</button>
+    </div>
+  </section>
+
+  <!-- 5B. FAILURE VIEW -->
+  <section id="view-fail" class="view">
+    <div class="status-card">
+      <div class="status-icon fail">&#10005;</div>
+      <h2>Payment Verification Denied</h2>
+      <p>We could not verify your payment transaction ID or the server timed out. The order has not been placed.</p>
+      <button class="btn-primary" style="margin-bottom:12px;" onclick="navigateTo('payment')">Try Payment Again</button>
+      <button class="cart-btn" style="width:100%; border-radius:6px;" onclick="navigateTo('catalog')">Cancel & Return Home</button>
+    </div>
+  </section>
+
+  <!-- CART SLIDE-OVER DRAWER -->
+  <div class="cart-drawer-overlay" id="cart-overlay" onclick="toggleCart(false)"></div>
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-header">
+      <h3>YOUR BAG</h3>
+      <button class="close-btn" onclick="toggleCart(false)">&times;</button>
+    </div>
+    <div class="cart-items" id="cart-items-list"></div>
+    <div style="border-top:1px solid var(--border); padding-top:16px;">
+      <div class="summary-row total">
+        <span>Total:</span>
+        <span id="drawer-total">₹0</span>
+      </div>
+      <button class="btn-primary" style="margin-top:14px;" onclick="proceedToCheckoutFromCart()">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <script>
+    // PRODUCT CATALOG DATA
+    const PRODUCTS = [
+      {
+        id: 'tee-01',
+        name: 'Lost But Never Broken Tee',
+        price: 1299,
+        sku: 'TRV-TEE-01',
+        desc: '280 GSM Luxury Combed Terry Cotton. Archival drop shoulder fit with high-density puff print detailing. Tailored at our Tirupur facility.',
+        images: [
+          'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80',
+          'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&auto=format&fit=crop&q=80'
+        ]
+      },
+      {
+        id: 'hoodie-01',
+        name: 'HYPERSPORT Heavyweight Hoodie',
+        price: 2199,
+        sku: 'TRV-HD-01',
+        desc: '450 GSM Double-Fleece Cotton Blend. Oversized vintage boxy drape with concealed kangaroo pockets and custom gunmetal eyelets.',
+        images: [
+          'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=800&auto=format&fit=crop&q=80',
+          'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?w=800&auto=format&fit=crop&q=80'
+        ]
+      }
+    ];
+
+    let currentProduct = PRODUCTS[0];
+    let selectedSize = 'L';
+    let cart = [];
+    let selectedPaymentMode = 'UPI';
+    let discountAmount = 0;
+
+    // NAVIGATION SYSTEM
+    function navigateTo(viewId) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      const target = document.getElementById(`view-${viewId}`);
+      if (target) {
+        target.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      toggleCart(false);
     }
-  };
 
-  try {
-    const res = await fetch('https://trive-api.onrender.com/api/order', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(orderData)
-    });
-    const result = await res.json();
-    if (result.success) {
-      msg.innerHTML = '<span style="color:var(--accent);">✅ ' + result.message + '</span>';
-      setTimeout(() => {
-        closeModal();
+    // RENDER PRODUCTS
+    function renderCatalog() {
+      const grid = document.getElementById('products-grid');
+      grid.innerHTML = PRODUCTS.map(p => `
+        <div class="product-card" onclick="openProduct('${p.id}')">
+          <img src="${p.images[0]}" alt="${p.name}">
+          <div class="info">
+            <h3>${p.name}</h3>
+            <span class="price">₹${p.price.toLocaleString('en-IN')}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // OPEN DETAILED PRODUCT PAGE
+    function openProduct(id) {
+      const p = PRODUCTS.find(x => x.id === id);
+      if (!p) return;
+      currentProduct = p;
+      document.getElementById('detail-title').innerText = p.name;
+      document.getElementById('detail-price').innerText = `₹${p.price.toLocaleString('en-IN')}`;
+      document.getElementById('detail-desc').innerText = p.desc;
+      document.getElementById('detail-main-img').src = p.images[0];
+
+      // Thumbs
+      const thumbs = document.getElementById('detail-thumbs');
+      thumbs.innerHTML = p.images.map((img, i) => `
+        <div class="thumb ${i === 0 ? 'active' : ''}" onclick="switchImg('${img}', this)">
+          <img src="${img}">
+        </div>
+      `).join('');
+
+      navigateTo('product');
+    }
+
+    function switchImg(url, el) {
+      document.getElementById('detail-main-img').src = url;
+      document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+    }
+
+    function selectSize(sz, btn) {
+      selectedSize = sz;
+      document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    // CART SYSTEM
+    function addToCartCurrentProduct() {
+      cart.push({
+        ...currentProduct,
+        size: selectedSize,
+        qty: 1
+      });
+      updateCartUI();
+      toggleCart(true);
+    }
+
+    function updateCartUI() {
+      document.getElementById('cart-count').innerText = cart.length;
+      const list = document.getElementById('cart-items-list');
+      if (cart.length === 0) {
+        list.innerHTML = `<p style="color:var(--muted); text-align:center; margin-top:40px;">Your bag is empty.</p>`;
+        document.getElementById('drawer-total').innerText = '₹0';
+        return;
+      }
+
+      let subtotal = 0;
+      list.innerHTML = cart.map((item, idx) => {
+        subtotal += item.price;
+        return `
+          <div class="cart-item">
+            <img src="${item.images[0]}">
+            <div class="cart-item-details">
+              <h4>${item.name}</h4>
+              <p>Size: ${item.size} &bull; ₹${item.price.toLocaleString('en-IN')}</p>
+              <button onclick="removeItem(${idx})" style="background:none;border:none;color:var(--danger);font-size:12px;cursor:pointer;">Remove</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      document.getElementById('drawer-total').innerText = `₹${subtotal.toLocaleString('en-IN')}`;
+    }
+
+    function removeItem(idx) {
+      cart.splice(idx, 1);
+      updateCartUI();
+    }
+
+    function toggleCart(show) {
+      document.getElementById('cart-drawer').classList.toggle('open', show);
+      document.getElementById('cart-overlay').classList.toggle('open', show);
+    }
+
+    function proceedToCheckoutFromCart() {
+      if (cart.length === 0) return alert('Your cart is empty');
+      toggleCart(false);
+      updateSummary();
+      navigateTo('checkout');
+    }
+
+    // COUPON & TOTALS
+    function getTotals() {
+      const subtotal = cart.reduce((acc, item) => acc + item.price, 0);
+      const total = Math.max(0, subtotal - discountAmount);
+      return { subtotal, total };
+    }
+
+    function updateSummary() {
+      const { subtotal, total } = getTotals();
+      document.getElementById('sum-subtotal').innerText = `₹${subtotal.toLocaleString('en-IN')}`;
+      document.getElementById('sum-total').innerText = `₹${total.toLocaleString('en-IN')}`;
+      
+      const couponRow = document.getElementById('coupon-row');
+      if (discountAmount > 0) {
+        couponRow.style.display = 'flex';
+        document.getElementById('sum-discount').innerText = `-₹${discountAmount.toLocaleString('en-IN')}`;
+      } else {
+        couponRow.style.display = 'none';
+      }
+    }
+
+    function applyCoupon() {
+      const code = document.getElementById('coupon-code').value.trim().toUpperCase();
+      const subtotal = cart.reduce((acc, item) => acc + item.price, 0);
+      if (code === 'FIRSTDROP') {
+        discountAmount = Math.round(subtotal * 0.10);
+        alert('Promo code applied: 10% off your order');
+      } else {
+        discountAmount = 0;
+        alert('Invalid promo code');
+      }
+      updateSummary();
+    }
+
+    function goToPayment() {
+      const name = document.getElementById('cust-name').value.trim();
+      const phone = document.getElementById('cust-phone').value.trim();
+      const street = document.getElementById('cust-street').value.trim();
+      const city = document.getElementById('cust-city').value.trim();
+
+      if (!name || !phone || !street || !city) {
+        alert('Please fill out all address details.');
+        return;
+      }
+
+      const { total } = getTotals();
+      // Generate Dynamic QR with total amount
+      const upiUrl = `upi://pay?pa=dev11verma@okaxis&pn=TRIVE&am=${total}&cu=INR&tn=TRIVE_Order`;
+      document.getElementById('dynamic-qr').src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiUrl)}`;
+
+      navigateTo('payment');
+    }
+
+    function selectPaymentMode(mode) {
+      selectedPaymentMode = mode;
+      document.getElementById('opt-upi').classList.toggle('selected', mode === 'UPI');
+      document.getElementById('opt-cod').classList.toggle('selected', mode === 'COD');
+      document.getElementById('upi-box').style.display = (mode === 'UPI') ? 'block' : 'none';
+    }
+
+    // DISPATCH ORDER
+    async function dispatchOrder() {
+      const btn = document.getElementById('btn-submit-order');
+      const utr = (selectedPaymentMode === 'COD') ? 'COD' : document.getElementById('pay-utr').value.trim();
+
+      if (selectedPaymentMode === 'UPI' && (!utr || utr.length < 6)) {
+        alert('Please enter your 12-digit UPI Transaction / Reference number.');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerText = 'VERIFYING TRANSACTION...';
+
+      const payload = {
+        customer: {
+          name: document.getElementById('cust-name').value.trim(),
+          phone: document.getElementById('cust-phone').value.trim()
+        },
+        product: {
+          name: cart.map(i => i.name).join(', '),
+          price: getTotals().total
+        },
+        size: cart.map(i => i.size).join(', '),
+        quantity: cart.length,
+        utr: utr,
+        address: {
+          street: document.getElementById('cust-street').value.trim(),
+          city: document.getElementById('cust-city').value.trim(),
+          state: 'Madhya Pradesh',
+          pincode: document.getElementById('cust-pin').value.trim() || '462001'
+        }
+      };
+
+      try {
+        const res = await fetch('https://trive-api.onrender.com/api/order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          document.getElementById('confirmed-id').innerText = `#${data.orderId}`;
+          document.getElementById('confirmed-address').innerText = `${payload.address.city}, ${payload.address.pincode}`;
+          if (data.whatsappLink) {
+            document.getElementById('btn-wa-confirm').href = data.whatsappLink;
+          }
+          cart = [];
+          updateCartUI();
+          navigateTo('success');
+        } else {
+          navigateTo('fail');
+        }
+      } catch (err) {
+        console.error(err);
+        navigateTo('fail');
+      } finally {
         btn.disabled = false;
-        alert('Piece locked in! Manifest generated for #' + result.orderId);
-      }, 1200);
+        btn.innerText = 'Confirm & Place Order';
+      }
     }
-  } catch (err) {
-    msg.textContent = 'Backend offline. Make sure port 5000 is running.';
-    btn.disabled = false;
-  }
-});
-</script>
+
+    // INIT
+    renderCatalog();
+  </script>
 </body>
 </html>
