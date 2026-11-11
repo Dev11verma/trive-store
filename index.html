@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TRIVÉ // ARCHIVAL HEAVYWEAR</title>
@@ -536,7 +537,10 @@
 
   <!-- HEADER -->
   <header>
-    <a class="logo" onclick="navigateTo('catalog')">TRIVÉ</a>
+    <a href="#" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+      <img src="assets/logo.svg" alt="TRIVÉ" style="height:36px;width:auto;display:block;">
+      <span style="font-weight:900;letter-spacing:0.18em;font-size:18px;color:#fff;">TRIVÉ</span>
+    </a>
     <div class="nav-links">
       <button class="nav-link active" onclick="setGenderFilter('all', this)">All</button>
       <button class="nav-link" onclick="setGenderFilter('men', this)">Men</button>
@@ -809,7 +813,7 @@
       },
       {
         id: 'tee-01',
-        name: 'Lost But Never Broken Tee',
+        name: 'BORN TO RULE Tee',
         price: 1299,
         gender: 'men',
         category: 't-shirt',
@@ -1217,6 +1221,83 @@
 
     renderCatalog();
   </script>
+  <!-- FOOTER & LEGAL MODALS -->
+  <footer style="margin-top:60px;padding:30px 20px 40px;border-top:1px solid #1f1f1f;text-align:center;color:#666;font-size:12px;">
+    <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;">
+      <img src="assets/logo.svg" alt="TRIVÉ" style="height:24px;width:auto;">
+      <span style="font-weight:900;letter-spacing:0.15em;color:#fff;font-size:14px;">TRIVÉ // HEAVYWEAR</span>
+    </div>
+    <div style="color:#d7ff3e;letter-spacing:0.1em;font-size:11px;font-weight:700;margin-bottom:20px;">BORN TO RULE</div>
+    <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:24px;">
+      <a href="javascript:void(0)" onclick="openModal('shipping-modal')" style="color:#888;text-decoration:none;font-weight:600;text-transform:uppercase;font-size:11px;">Shipping Policy</a>
+      <a href="javascript:void(0)" onclick="openModal('returns-modal')" style="color:#888;text-decoration:none;font-weight:600;text-transform:uppercase;font-size:11px;">Returns & Exchanges</a>
+      <a href="javascript:void(0)" onclick="openModal('support-modal')" style="color:#888;text-decoration:none;font-weight:600;text-transform:uppercase;font-size:11px;">Contact Support</a>
+    </div>
+    <div>&copy; 2026 TRIVÉ. All Rights Reserved. Crafted for the relentless.</div>
+  </footer>
+
+  <!-- Modal Backdrop -->
+  <div id="modal-backdrop" onclick="closeAllModals()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(6px);z-index:9999;"></div>
+
+  <!-- Shipping Modal -->
+  <div id="shipping-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:24px;z-index:10000;color:#eee;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <div style="font-weight:900;text-transform:uppercase;color:#d7ff3e;letter-spacing:0.05em;">Shipping & Delivery</div>
+      <button onclick="closeAllModals()" style="background:none;border:none;color:#888;font-size:20px;cursor:pointer;">&times;</button>
+    </div>
+    <div style="font-size:13px;line-height:1.7;color:#aaa;">
+      <p style="margin:0 0 10px;">• <strong>Processing:</strong> Every order is carefully printed, quality-inspected, and pressed upon confirmation.</p>
+      <p style="margin:0 0 10px;">• <strong>Standard Delivery:</strong> Dispatched via premium couriers (Bluedart, Delhivery, Ekart). Typical transit time is <strong>4–7 business days</strong> across India.</p>
+      <p style="margin:0;">• <strong>Tracking:</strong> Real-time WhatsApp and SMS tracking links are sent upon dispatch.</p>
+    </div>
+  </div>
+
+  <!-- Returns Modal -->
+  <div id="returns-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:24px;z-index:10000;color:#eee;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <div style="font-weight:900;text-transform:uppercase;color:#d7ff3e;letter-spacing:0.05em;">Returns & Exchanges</div>
+      <button onclick="closeAllModals()" style="background:none;border:none;color:#888;font-size:20px;cursor:pointer;">&times;</button>
+    </div>
+    <div style="font-size:13px;line-height:1.7;color:#aaa;">
+      <p style="margin:0 0 10px;">• <strong>7-Day Replacement Guarantee:</strong> In case of manufacturing defects, print misalignments, or transit damage, we offer a 100% free doorstep replacement.</p>
+      <p style="margin:0 0 10px;">• <strong>Sizing Exchanges:</strong> Sizing exchanges are supported within 7 days of delivery as long as the garment remains unworn with original tags attached.</p>
+      <p style="margin:0;">• Contact our support team via WhatsApp with an unboxing video/photo to initiate an exchange.</p>
+    </div>
+  </div>
+
+  <!-- Support Modal -->
+  <div id="support-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:24px;z-index:10000;color:#eee;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <div style="font-weight:900;text-transform:uppercase;color:#d7ff3e;letter-spacing:0.05em;">Customer Concierge</div>
+      <button onclick="closeAllModals()" style="background:none;border:none;color:#888;font-size:20px;cursor:pointer;">&times;</button>
+    </div>
+    <div style="font-size:13px;line-height:1.7;color:#aaa;margin-bottom:18px;">
+      Need assistance with your drop sizing, tracking, or instant order inquiries? Our direct line is available daily.
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <a href="https://wa.me/919977798829?text=Hi%20TRIV%C3%89%20Support%2C%20I%20have%20an%20inquiry%20regarding%20my%20order." target="_blank" style="background:#25D366;color:#000;text-align:center;padding:12px;border-radius:8px;font-weight:bold;text-decoration:none;font-size:13px;text-transform:uppercase;">
+        Chat on WhatsApp
+      </a>
+      <a href="mailto:support@trive.in" style="background:#1a1a1a;color:#eee;border:1px solid #333;text-align:center;padding:12px;border-radius:8px;font-weight:600;text-decoration:none;font-size:13px;">
+        support@trive.in
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function openModal(id) {
+      closeAllModals();
+      document.getElementById('modal-backdrop').style.display = 'block';
+      const el = document.getElementById(id);
+      if (el) el.style.display = 'block';
+    }
+    function closeAllModals() {
+      const backdrop = document.getElementById('modal-backdrop');
+      if (backdrop) backdrop.style.display = 'none';
+      document.querySelectorAll('.trive-modal').forEach(m => m.style.display = 'none');
+    }
+  </script>
 </body>
 </html>
+
 

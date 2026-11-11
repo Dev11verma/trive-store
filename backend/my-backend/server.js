@@ -179,7 +179,7 @@ app.get('/admin', (req, res) => {
       </head>
       <body>
         <div class="container">
-          <h1>TRIVÉ Command Center</h1>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;"><span style="background:#fff;color:#000;font-weight:900;padding:4px 8px;border-radius:4px;font-size:14px;letter-spacing:1px;">TRIVÉ</span><h1 style="margin:0;font-size:20px;">COMMAND CENTER</h1></div>
           <div class="sub">Total Orders Logged: ${orders.length} (Persistent Storage)</div>
           ${orders.length ? orderCards : '<div style="color:#555;padding:40px 0;text-align:center;">No orders yet. Place an order from your storefront.</div>'}
         </div>
@@ -256,7 +256,7 @@ app.post('/api/order', async (req, res) => {
     `📦 *Delivery Destination:* ${address.city}, ${address.pincode}\n` +
     `💰 *Total Amount:* ₹${totalAmount.toLocaleString('en-IN')}\n` +
     `⚡ *Status:* Reviewing order in TRIVÉ Command Center.\n\n` +
-    `_TRIVÉ Heavywear — Lost But Never Broken._`
+    `_TRIVÉ Heavywear — BORN TO RULE._`
   );
   const whatsappLink = `https://wa.me/91${cleanPhone}?text=${waMsg}`;
   const isCod = utr?.toUpperCase() === 'COD';
@@ -356,3 +356,4 @@ app.get('/api/orders', (req, res) => res.json({ brand: 'TRIVÉ', total: orders.l
 app.listen(PORT, () => {
   console.log(`TRIVÉ Engine running on http://localhost:${PORT}`);
 });
+
