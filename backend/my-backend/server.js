@@ -188,7 +188,7 @@ app.post('/api/order', async (req, res) => {
   }
 
   orders = loadOrders();
-  const orderId = `TV-${1000 + orders.length + 1}`;
+  const orderNum = 1000 + orders.length + 1; const orderId = `TV-${orderNum}`;
   
   let unitPrice = Number(product?.price) || 1799;
   if (unitPrice > 10000) unitPrice = Math.round(unitPrice / 100);
@@ -216,7 +216,7 @@ app.post('/api/order', async (req, res) => {
 
   // Strict Qikink V2 Specification: province and country_code only
   const qikinkPayload = {
-    order_number: orderId.replace(/[^a-zA-Z0-9]/g, ""),
+    order_number: `TRV${Date.now().toString().slice(-4)}${orderNum}`, // purely alphanumeric ""),
     qikink_shipping: "1",
     gateway: isCod ? "COD" : "Prepaid",
     total_order_value: String(totalAmount),
@@ -310,4 +310,5 @@ app.get('/api/orders', (req, res) => res.json({ brand: 'TRIVÉ', total: orders.l
 app.listen(PORT, () => {
   console.log(`TRIVÉ Engine running on http://localhost:${PORT}`);
 });
+
 
