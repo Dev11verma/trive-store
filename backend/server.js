@@ -35,33 +35,33 @@ function saveOrders(ordersList) {
 
 let orders = loadOrders();
 
-// Resilient Qikink Auth: Checks Live first, falls back to Sandbox
+// Resilient Qikink Auth: Checks endpoints and returns token with matching base URL
 async function getQikinkAuth() {
-  const endpoints = [
+  const hosts = [
     'https://api.qikink.com',
     'https://sandbox.qikink.com'
   ];
 
-  for (const base of endpoints) {
+  for (const host of hosts) {
     try {
       const params = new URLSearchParams();
       params.append('ClientId', QIKINK_CLIENT_ID);
       params.append('client_secret', QIKINK_CLIENT_SECRET);
 
-      const res = await fetch(`${base}/api/token`, {
+      const res = await fetch(`${host}/api/token`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: params.toString()
       });
 
       const data = await res.json();
-      const token = data?.Accesstoken || data?.access_token;
+      const token = data?.Accesstoken || data?.access_token || data?.token;
       if (token) {
-        console.log(`Qikink Authenticated successfully via: ${base}`);
-        return { token, baseUrl: base };
+        console.log(`Qikink Authenticated successfully on: ${host}`);
+        return { token, baseUrl: host };
       }
     } catch (e) {
-      console.log(`Auth attempt on ${base} failed, trying next...`);
+      console.log(`Token fetch failed on ${host}:`, e.message);
     }
   }
   return null;
@@ -162,7 +162,7 @@ app.post('/api/order', async (req, res) => {
   );
   const whatsappLink = `https://wa.me/91${cleanPhone}?text=${waMsg}`;
 
-  // Structured Qikink Live API Payload
+  // Structured Qikink Order Payload
   const qikinkPayload = {
     order_number: orderId,
     order_type: utr?.toUpperCase() === 'COD' ? 'cod' : 'prepaid',
@@ -189,23 +189,30 @@ app.post('/api/order', async (req, res) => {
   try {
     const auth = await getQikinkAuth();
     if (auth?.token) {
+      // Send universal headers accepted by all Qikink API gateways
       const qikinkRes = await fetch(`${auth.baseUrl}/api/order/create`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'ClientId': QIKINK_CLIENT_ID,
-          'Accesstoken': auth.token
+          'Accesstoken': auth.token,
+          'Authorization': `Bearer ${auth.token}`
         },
         body: JSON.stringify(qikinkPayload)
       });
       const qikinkData = await qikinkRes.json();
       console.log('Qikink Response:', qikinkData);
-      qikinkLiveStatus = qikinkData?.message || qikinkData?.status || `Sent (${auth.baseUrl.includes('sandbox') ? 'Sandbox' : 'Live'})`;
+
+      if (qikinkData?.error) {
+        qikinkLiveStatus = `Qikink: ${qikinkData.error}`;
+      } else {
+        qikinkLiveStatus = qikinkData?.message || qikinkData?.status || `Sent (${auth.baseUrl.includes('sandbox') ? 'Sandbox' : 'Live'})`;
+      }
     } else {
-      qikinkLiveStatus = 'Auth Failed (Pending Live Approval)';
+      qikinkLiveStatus = 'Auth Pending (Awaiting Live Activation)';
     }
   } catch (err) {
-    console.error('Qikink Direct Dispatch Error:', err.message);
+    console.error('Qikink Dispatch Error:', err.message);
     qikinkLiveStatus = 'Dispatch Timeout (Manual Payload Available)';
   }
 
