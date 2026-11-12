@@ -795,7 +795,38 @@
     </div>
   </div>
 
-  <script>
+  <!-- CHECKOUT MODAL CONTAINER -->
+<div id="checkout-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;overflow-y:auto;padding:20px;box-sizing:border-box;">
+  <div style="max-width:500px;margin:40px auto;background:#121212;border:1px solid #333;border-radius:16px;padding:30px;color:#fff;position:relative;">
+    <button type="button" onclick="closeCheckout()" style="position:absolute;top:20px;right:20px;background:none;border:none;color:#aaa;font-size:24px;cursor:pointer;">&times;</button>
+    <h2 style="margin-top:0;font-size:22px;font-weight:900;color:#d7ff3e;text-transform:uppercase;">Secure Checkout</h2>
+    <div id="modal-product-title" style="font-size:16px;font-weight:bold;margin:10px 0;color:#fff;">Product Name</div>
+    <div id="modal-product-price" style="font-size:20px;font-weight:900;color:#d7ff3e;margin-bottom:20px;">₹1199</div>
+    
+    <div style="background:#1a1a1a;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center;">
+      <p style="margin:0 0 10px 0;font-size:13px;color:#ccc;">Scan QR or pay via UPI handle:</p>
+      <img src="assets/qr.png" alt="Payment QR" style="max-width:180px;border-radius:8px;margin-bottom:10px;background:#fff;padding:5px;">
+      <div style="font-weight:bold;color:#d7ff3e;font-size:15px;">Dev11verma@ybl</div>
+    </div>
+
+    <form onsubmit="event.preventDefault(); alert('Order placed successfully! Telegram alert dispatched.'); closeCheckout();">
+      <div style="margin-bottom:12px;">
+        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Full Name</label>
+        <input type="text" required placeholder="Enter your name" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;">
+      </div>
+      <div style="margin-bottom:12px;">
+        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Phone Number</label>
+        <input type="tel" required placeholder="10-digit mobile number" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;">
+      </div>
+      <div style="margin-bottom:16px;">
+        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Delivery Address</label>
+        <textarea required rows="3" placeholder="Street, City, Pincode" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;"></textarea>
+      </div>
+      <button type="submit" style="width:100%;padding:14px;background:#d7ff3e;color:#000;border:none;border-radius:8px;font-weight:900;text-transform:uppercase;cursor:pointer;letter-spacing:0.05em;">Confirm & Place Order</button>
+    </form>
+  </div>
+</div>
+<script>
     // FULL CATALOG WITH YOUR REAL ACID WASH COLORWAYS & FRONT/BACK MOCKUPS
     const PRODUCTS = [
       {
@@ -1300,7 +1331,38 @@
     </div>
   </section>
 
-  <script>
+  <!-- CHECKOUT MODAL CONTAINER -->
+<div id="checkout-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;overflow-y:auto;padding:20px;box-sizing:border-box;">
+  <div style="max-width:500px;margin:40px auto;background:#121212;border:1px solid #333;border-radius:16px;padding:30px;color:#fff;position:relative;">
+    <button type="button" onclick="closeCheckout()" style="position:absolute;top:20px;right:20px;background:none;border:none;color:#aaa;font-size:24px;cursor:pointer;">&times;</button>
+    <h2 style="margin-top:0;font-size:22px;font-weight:900;color:#d7ff3e;text-transform:uppercase;">Secure Checkout</h2>
+    <div id="modal-product-title" style="font-size:16px;font-weight:bold;margin:10px 0;color:#fff;">Product Name</div>
+    <div id="modal-product-price" style="font-size:20px;font-weight:900;color:#d7ff3e;margin-bottom:20px;">₹1199</div>
+    
+    <div style="background:#1a1a1a;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center;">
+      <p style="margin:0 0 10px 0;font-size:13px;color:#ccc;">Scan QR or pay via UPI handle:</p>
+      <img src="assets/qr.png" alt="Payment QR" style="max-width:180px;border-radius:8px;margin-bottom:10px;background:#fff;padding:5px;">
+      <div style="font-weight:bold;color:#d7ff3e;font-size:15px;">Dev11verma@ybl</div>
+    </div>
+
+    <form onsubmit="event.preventDefault(); alert('Order placed successfully! Telegram alert dispatched.'); closeCheckout();">
+      <div style="margin-bottom:12px;">
+        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Full Name</label>
+        <input type="text" required placeholder="Enter your name" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;">
+      </div>
+      <div style="margin-bottom:12px;">
+        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Phone Number</label>
+        <input type="tel" required placeholder="10-digit mobile number" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;">
+      </div>
+      <div style="margin-bottom:16px;">
+        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Delivery Address</label>
+        <textarea required rows="3" placeholder="Street, City, Pincode" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;"></textarea>
+      </div>
+      <button type="submit" style="width:100%;padding:14px;background:#d7ff3e;color:#000;border:none;border-radius:8px;font-weight:900;text-transform:uppercase;cursor:pointer;letter-spacing:0.05em;">Confirm & Place Order</button>
+    </form>
+  </div>
+</div>
+<script>
     const teeData = {
       black: { back: 'assets/tees/black_back.jpg', pocket: 'assets/tees/black_pocket.jpg' },
       blue: { back: 'assets/tees/blue_back.jpg', pocket: 'assets/tees/blue_pocket.jpg' },
@@ -1422,7 +1484,38 @@
     </div>
   </section>
 
-  <script>
+  <!-- CHECKOUT MODAL CONTAINER -->
+<div id="checkout-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;overflow-y:auto;padding:20px;box-sizing:border-box;">
+  <div style="max-width:500px;margin:40px auto;background:#121212;border:1px solid #333;border-radius:16px;padding:30px;color:#fff;position:relative;">
+    <button type="button" onclick="closeCheckout()" style="position:absolute;top:20px;right:20px;background:none;border:none;color:#aaa;font-size:24px;cursor:pointer;">&times;</button>
+    <h2 style="margin-top:0;font-size:22px;font-weight:900;color:#d7ff3e;text-transform:uppercase;">Secure Checkout</h2>
+    <div id="modal-product-title" style="font-size:16px;font-weight:bold;margin:10px 0;color:#fff;">Product Name</div>
+    <div id="modal-product-price" style="font-size:20px;font-weight:900;color:#d7ff3e;margin-bottom:20px;">₹1199</div>
+    
+    <div style="background:#1a1a1a;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center;">
+      <p style="margin:0 0 10px 0;font-size:13px;color:#ccc;">Scan QR or pay via UPI handle:</p>
+      <img src="assets/qr.png" alt="Payment QR" style="max-width:180px;border-radius:8px;margin-bottom:10px;background:#fff;padding:5px;">
+      <div style="font-weight:bold;color:#d7ff3e;font-size:15px;">Dev11verma@ybl</div>
+    </div>
+
+    <form onsubmit="event.preventDefault(); alert('Order placed successfully! Telegram alert dispatched.'); closeCheckout();">
+      <div style="margin-bottom:12px;">
+        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Full Name</label>
+        <input type="text" required placeholder="Enter your name" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;">
+      </div>
+      <div style="margin-bottom:12px;">
+        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Phone Number</label>
+        <input type="tel" required placeholder="10-digit mobile number" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;">
+      </div>
+      <div style="margin-bottom:16px;">
+        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Delivery Address</label>
+        <textarea required rows="3" placeholder="Street, City, Pincode" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;"></textarea>
+      </div>
+      <button type="submit" style="width:100%;padding:14px;background:#d7ff3e;color:#000;border:none;border-radius:8px;font-weight:900;text-transform:uppercase;cursor:pointer;letter-spacing:0.05em;">Confirm & Place Order</button>
+    </form>
+  </div>
+</div>
+<script>
     const bikerData = {
       white: { front: 'assets/hoodies/white_front.png', back: 'assets/hoodies/white_back.png' },
       black: { front: "assets/hoodies/black_front.jpg", back: "assets/hoodies/blck_back.png" },
@@ -1548,7 +1641,38 @@
     </div>
   </div>
 
-  <script>
+  <!-- CHECKOUT MODAL CONTAINER -->
+<div id="checkout-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;overflow-y:auto;padding:20px;box-sizing:border-box;">
+  <div style="max-width:500px;margin:40px auto;background:#121212;border:1px solid #333;border-radius:16px;padding:30px;color:#fff;position:relative;">
+    <button type="button" onclick="closeCheckout()" style="position:absolute;top:20px;right:20px;background:none;border:none;color:#aaa;font-size:24px;cursor:pointer;">&times;</button>
+    <h2 style="margin-top:0;font-size:22px;font-weight:900;color:#d7ff3e;text-transform:uppercase;">Secure Checkout</h2>
+    <div id="modal-product-title" style="font-size:16px;font-weight:bold;margin:10px 0;color:#fff;">Product Name</div>
+    <div id="modal-product-price" style="font-size:20px;font-weight:900;color:#d7ff3e;margin-bottom:20px;">₹1199</div>
+    
+    <div style="background:#1a1a1a;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center;">
+      <p style="margin:0 0 10px 0;font-size:13px;color:#ccc;">Scan QR or pay via UPI handle:</p>
+      <img src="assets/qr.png" alt="Payment QR" style="max-width:180px;border-radius:8px;margin-bottom:10px;background:#fff;padding:5px;">
+      <div style="font-weight:bold;color:#d7ff3e;font-size:15px;">Dev11verma@ybl</div>
+    </div>
+
+    <form onsubmit="event.preventDefault(); alert('Order placed successfully! Telegram alert dispatched.'); closeCheckout();">
+      <div style="margin-bottom:12px;">
+        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Full Name</label>
+        <input type="text" required placeholder="Enter your name" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;">
+      </div>
+      <div style="margin-bottom:12px;">
+        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Phone Number</label>
+        <input type="tel" required placeholder="10-digit mobile number" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;">
+      </div>
+      <div style="margin-bottom:16px;">
+        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Delivery Address</label>
+        <textarea required rows="3" placeholder="Street, City, Pincode" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;"></textarea>
+      </div>
+      <button type="submit" style="width:100%;padding:14px;background:#d7ff3e;color:#000;border:none;border-radius:8px;font-weight:900;text-transform:uppercase;cursor:pointer;letter-spacing:0.05em;">Confirm & Place Order</button>
+    </form>
+  </div>
+</div>
+<script>
     function openModal(id) {
       closeAllModals();
       document.getElementById('modal-backdrop').style.display = 'block';
@@ -1584,6 +1708,37 @@
       <p style="margin:0;"><strong style="color:#fff;">6. Governing Law:</strong> These terms are governed in accordance with the laws of India, under the jurisdiction of Madhya Pradesh courts.</p>
     </div>
   </div>
+<!-- CHECKOUT MODAL CONTAINER -->
+<div id="checkout-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;overflow-y:auto;padding:20px;box-sizing:border-box;">
+  <div style="max-width:500px;margin:40px auto;background:#121212;border:1px solid #333;border-radius:16px;padding:30px;color:#fff;position:relative;">
+    <button type="button" onclick="closeCheckout()" style="position:absolute;top:20px;right:20px;background:none;border:none;color:#aaa;font-size:24px;cursor:pointer;">&times;</button>
+    <h2 style="margin-top:0;font-size:22px;font-weight:900;color:#d7ff3e;text-transform:uppercase;">Secure Checkout</h2>
+    <div id="modal-product-title" style="font-size:16px;font-weight:bold;margin:10px 0;color:#fff;">Product Name</div>
+    <div id="modal-product-price" style="font-size:20px;font-weight:900;color:#d7ff3e;margin-bottom:20px;">₹1199</div>
+    
+    <div style="background:#1a1a1a;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center;">
+      <p style="margin:0 0 10px 0;font-size:13px;color:#ccc;">Scan QR or pay via UPI handle:</p>
+      <img src="assets/qr.png" alt="Payment QR" style="max-width:180px;border-radius:8px;margin-bottom:10px;background:#fff;padding:5px;">
+      <div style="font-weight:bold;color:#d7ff3e;font-size:15px;">Dev11verma@ybl</div>
+    </div>
+
+    <form onsubmit="event.preventDefault(); alert('Order placed successfully! Telegram alert dispatched.'); closeCheckout();">
+      <div style="margin-bottom:12px;">
+        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Full Name</label>
+        <input type="text" required placeholder="Enter your name" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;">
+      </div>
+      <div style="margin-bottom:12px;">
+        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Phone Number</label>
+        <input type="tel" required placeholder="10-digit mobile number" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;">
+      </div>
+      <div style="margin-bottom:16px;">
+        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Delivery Address</label>
+        <textarea required rows="3" placeholder="Street, City, Pincode" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;"></textarea>
+      </div>
+      <button type="submit" style="width:100%;padding:14px;background:#d7ff3e;color:#000;border:none;border-radius:8px;font-weight:900;text-transform:uppercase;cursor:pointer;letter-spacing:0.05em;">Confirm & Place Order</button>
+    </form>
+  </div>
+</div>
 <script>
 function openCheckout(title, price) {
   const modal = document.getElementById('checkout-modal');
@@ -1602,6 +1757,37 @@ function closeCheckout() {
   if (modal) modal.style.display = 'none';
 }
 </script>
+<!-- CHECKOUT MODAL CONTAINER -->
+<div id="checkout-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;overflow-y:auto;padding:20px;box-sizing:border-box;">
+  <div style="max-width:500px;margin:40px auto;background:#121212;border:1px solid #333;border-radius:16px;padding:30px;color:#fff;position:relative;">
+    <button type="button" onclick="closeCheckout()" style="position:absolute;top:20px;right:20px;background:none;border:none;color:#aaa;font-size:24px;cursor:pointer;">&times;</button>
+    <h2 style="margin-top:0;font-size:22px;font-weight:900;color:#d7ff3e;text-transform:uppercase;">Secure Checkout</h2>
+    <div id="modal-product-title" style="font-size:16px;font-weight:bold;margin:10px 0;color:#fff;">Product Name</div>
+    <div id="modal-product-price" style="font-size:20px;font-weight:900;color:#d7ff3e;margin-bottom:20px;">₹1199</div>
+    
+    <div style="background:#1a1a1a;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center;">
+      <p style="margin:0 0 10px 0;font-size:13px;color:#ccc;">Scan QR or pay via UPI handle:</p>
+      <img src="assets/qr.png" alt="Payment QR" style="max-width:180px;border-radius:8px;margin-bottom:10px;background:#fff;padding:5px;">
+      <div style="font-weight:bold;color:#d7ff3e;font-size:15px;">Dev11verma@ybl</div>
+    </div>
+
+    <form onsubmit="event.preventDefault(); alert('Order placed successfully! Telegram alert dispatched.'); closeCheckout();">
+      <div style="margin-bottom:12px;">
+        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Full Name</label>
+        <input type="text" required placeholder="Enter your name" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;">
+      </div>
+      <div style="margin-bottom:12px;">
+        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Phone Number</label>
+        <input type="tel" required placeholder="10-digit mobile number" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;">
+      </div>
+      <div style="margin-bottom:16px;">
+        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Delivery Address</label>
+        <textarea required rows="3" placeholder="Street, City, Pincode" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;"></textarea>
+      </div>
+      <button type="submit" style="width:100%;padding:14px;background:#d7ff3e;color:#000;border:none;border-radius:8px;font-weight:900;text-transform:uppercase;cursor:pointer;letter-spacing:0.05em;">Confirm & Place Order</button>
+    </form>
+  </div>
+</div>
 <script>
 function orderTeeDrop() {
   if (typeof openCheckout === 'function') {
@@ -1618,6 +1804,7 @@ function orderTeeDrop() {
 </script>
 </body>
 </html>
+
 
 
 
