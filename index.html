@@ -1411,17 +1411,7 @@
       el.style.color = '#fff';
     }
 
-    function orderTeeDrop() {
-      // Direct integration into your checkout flow
-      if (typeof openCheckoutModal === 'function') {
-        openCheckoutModal({
-          title: "Lost But Never Broken // Oversized Tee",
-          color: currentTeeColor,
-          size: currentTeeSize,
-          price: 1199,
-          type: "tee"
-        });
-      } else {
+     else {
         const checkoutSec = document.getElementById('checkout') || document.querySelector('form');
         if (checkoutSec) checkoutSec.scrollIntoView({ behavior: 'smooth' });
       }
@@ -1789,21 +1779,52 @@ function closeCheckout() {
   </div>
 </div>
 <script>
-function orderTeeDrop() {
-  if (typeof openCheckout === 'function') {
-    openCheckout('Lost But Never Broken // Oversized Tee', 1199);
-  } else {
-    const modal = document.getElementById('checkout-modal');
-    if (modal) modal.style.display = 'block';
-    const titleEl = document.getElementById('modal-product-title');
-    if (titleEl) titleEl.innerText = 'Lost But Never Broken // Oversized Tee';
-    const priceEl = document.getElementById('modal-product-price');
-    if (priceEl) priceEl.innerText = '₹1199';
+
+}
+</script>
+<script>
+// Unified Cart & Checkout Handler for Tee and Hoodie
+let cart = [];
+
+function addToCartAndCheckout(title, price, size, color) {
+  // Add item to cart array
+  const item = { title, price: Number(price), size: size || 'Standard', color: color || 'Default', quantity: 1 };
+  cart.push(item);
+  
+  // Update cart count UI if present
+  const cartCountEl = document.querySelector('.cart-count, #cart-count, [onclick*="cart"]');
+  if (cartCountEl) {
+    cartCountEl.innerText = 'CART (' + cart.length + ')';
   }
+
+  // Populate checkout modal or open cart drawer
+  const modal = document.getElementById('checkout-modal');
+  if (modal) {
+    modal.style.display = 'block';
+  }
+  
+  const titleEl = document.getElementById('modal-product-title');
+  if (titleEl) titleEl.innerText = title + ' (' + (color || '') + ' - ' + (size || '') + ')';
+  
+  const priceEl = document.getElementById('modal-product-price');
+  if (priceEl) priceEl.innerText = '₹' + price;
+}
+
+// Bind tee drop button
+function orderTeeDrop() {
+  const colorSelect = document.querySelector('#tee-drop input[type="radio"]:checked') || document.querySelector('.tee-color-btn.active') || { value: 'Onyx Black' };
+  const sizeSelect = document.querySelector('#tee-drop .size-btn.active, #tee-drop button[style*="border-color: rgb"]');
+  addToCartAndCheckout('Lost But Never Broken // Oversized Tee', 1199, 'L', 'Onyx Black');
+}
+
+// Bind hoodie drop button
+function orderHoodieDrop() {
+  addToCartAndCheckout('Hypersport Biker // Heavy Hoodie', 1899, 'L', 'Pure White');
 }
 </script>
 </body>
 </html>
+
 
 
 
