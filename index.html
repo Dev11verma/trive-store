@@ -1822,8 +1822,43 @@ function orderHoodieDrop() {
   addToCartAndCheckout('Hypersport Biker // Heavy Hoodie', 1899, 'L', 'Pure White');
 }
 </script>
+<script>
+// Global cart array
+window.cart = window.cart || [];
+
+function addToCartAndCheckout(title, price, size, color) {
+  const item = { title, price: Number(price), size: size || 'L', color: color || 'Default', quantity: 1 };
+  window.cart.push(item);
+
+  // Update cart badge if present
+  const cartBadge = document.querySelector('.cart-count, #cart-count');
+  if (cartBadge) cartBadge.innerText = 'CART (' + window.cart.length + ')';
+
+  // Open checkout modal
+  const modal = document.getElementById('checkout-modal');
+  if (modal) {
+    modal.style.display = 'block';
+  }
+
+  // Populate modal details
+  const titleEl = document.getElementById('modal-product-title');
+  if (titleEl) titleEl.innerText = title + ' (' + item.color + ' / ' + item.size + ')';
+
+  const priceEl = document.getElementById('modal-product-price');
+  if (priceEl) priceEl.innerText = '₹' + price;
+}
+
+function orderTeeDrop() {
+  addToCartAndCheckout('Lost But Never Broken // Oversized Tee', 1199, 'L', 'Onyx Black');
+}
+
+function orderBikerHoodie() {
+  addToCartAndCheckout('Hypersport Biker // Heavy Hoodie', 1899, 'L', 'Pure White');
+}
+</script>
 </body>
 </html>
+
 
 
 
