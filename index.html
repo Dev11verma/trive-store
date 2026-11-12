@@ -1602,8 +1602,23 @@ function closeCheckout() {
   if (modal) modal.style.display = 'none';
 }
 </script>
+<script>
+function orderTeeDrop() {
+  if (typeof openCheckout === 'function') {
+    openCheckout('Lost But Never Broken // Oversized Tee', 1199);
+  } else {
+    const modal = document.getElementById('checkout-modal');
+    if (modal) modal.style.display = 'block';
+    const titleEl = document.getElementById('modal-product-title');
+    if (titleEl) titleEl.innerText = 'Lost But Never Broken // Oversized Tee';
+    const priceEl = document.getElementById('modal-product-price');
+    if (priceEl) priceEl.innerText = '₹1199';
+  }
+}
+</script>
 </body>
 </html>
+
 
 
 
