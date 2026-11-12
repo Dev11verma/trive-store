@@ -1584,8 +1584,27 @@
       <p style="margin:0;"><strong style="color:#fff;">6. Governing Law:</strong> These terms are governed in accordance with the laws of India, under the jurisdiction of Madhya Pradesh courts.</p>
     </div>
   </div>
+<script>
+function openCheckout(title, price) {
+  const modal = document.getElementById('checkout-modal');
+  if (modal) {
+    modal.style.display = 'block';
+  }
+  // Populate hidden fields or display product title/price if elements exist
+  const titleEl = document.getElementById('modal-product-title');
+  if (titleEl) titleEl.innerText = title;
+  const priceEl = document.getElementById('modal-product-price');
+  if (priceEl) priceEl.innerText = '₹' + price;
+}
+
+function closeCheckout() {
+  const modal = document.getElementById('checkout-modal');
+  if (modal) modal.style.display = 'none';
+}
+</script>
 </body>
 </html>
+
 
 
 
