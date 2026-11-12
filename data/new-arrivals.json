@@ -1,0 +1,48 @@
+﻿{
+    "collection":  "Legacy Edition",
+    "variants":  [
+                     {
+                         "color":  "Charcoal / Washed Black",
+                         "front":  "Front_1_c_2.jpg",
+                         "sku_suffix":  "BW-S",
+                         "back":  "Back_2_c_2.jpg"
+                     },
+                     {
+                         "color":  "Vintage Olive / Forest Green",
+                         "front":  "Front_1_c_8.jpg",
+                         "sku_suffix":  "OG-S",
+                         "back":  "Back_2_c_8.jpg"
+                     },
+                     {
+                         "color":  "Deep Burgundy / Wine Red",
+                         "front":  "Front_1_c_25.jpg",
+                         "sku_suffix":  "BR-S",
+                         "back":  "Back_2_c_25.jpg"
+                     },
+                     {
+                         "color":  "Washed Indigo / Navy",
+                         "front":  "Front_1_c_3.jpg",
+                         "sku_suffix":  "NV-S",
+                         "back":  "Back_2_c_3.jpg"
+                     },
+                     {
+                         "color":  "Dark Slate / Charcoal Grey",
+                         "front":  "Front_1_c_41.jpg",
+                         "sku_suffix":  "DS-S",
+                         "back":  "Back_2_c_41.jpg"
+                     }
+                 ],
+    "title":  "TRIVÉ - Born to Reign // Legacy Edition Tee",
+    "tags":  [
+                 "new-arrival",
+                 "legacy-edition",
+                 "born-to-rule",
+                 "trive",
+                 "tee",
+                 "oversized"
+             ],
+    "category":  "New Arrivals",
+    "price":  1299,
+    "description":  "Heavyweight acid wash oversized tee featuring the iconic \u0027Born to Reign\u0027 skeleton king back print.",
+    "slug":  "born-to-reign-legacy-edition-tee"
+}
