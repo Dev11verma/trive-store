@@ -1372,10 +1372,19 @@
       }
     }
 
-    function applyCoupon() {
+        function applyCoupon() {
       const code = document.getElementById('coupon-code').value.trim().toUpperCase();
       const subtotal = cart.reduce((acc, item) => acc + item.price, 0);
-      if (code === 'FIRSTDROP') {
+      
+      if (code === 'REVIEW1200' || code === 'DEV1200') {
+        const targetPrice = 1200;
+        if (subtotal >= targetPrice) {
+          discountAmount = subtotal - targetPrice;
+          alert('Special review coupon applied! Price adjusted to ₹1,200.');
+        } else {
+          alert('Cart total is lower than ₹1,200.');
+        }
+      } else if (code === 'FIRSTDROP') {
         discountAmount = Math.round(subtotal * 0.10);
         alert('Promo code applied: 10% off your order');
       } else {
