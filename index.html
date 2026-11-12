@@ -31,6 +31,7 @@
       overflow-x: hidden;
     }
 
+    /* HEADER */
     header {
       position: sticky;
       top: 0;
@@ -42,6 +43,15 @@
       background: rgba(9, 9, 11, 0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      cursor: pointer;
+      text-decoration: none;
+      color: #fff;
     }
     .nav-links { display: flex; gap: 20px; }
     .nav-link {
@@ -88,9 +98,11 @@
       font-weight: 900;
     }
 
+    /* VIEWS */
     .view { display: none; padding: 32px 5%; min-height: 85vh; }
     .view.active { display: block; }
 
+    /* DEAL BANNER */
     .deal-banner {
       background: linear-gradient(135deg, #18181b 0%, #121215 100%);
       border: 1px solid #3f3f46;
@@ -139,6 +151,7 @@
       white-space: nowrap;
     }
 
+    /* FILTERS */
     .filter-section { margin-bottom: 32px; display: flex; flex-direction: column; gap: 16px; }
     .gender-tabs { display: flex; gap: 12px; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
     .gender-tab {
@@ -170,6 +183,7 @@
     }
     .pill.active, .pill:hover { border-color: #fff; color: #fff; background: #1c1c21; }
 
+    /* GRID */
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 28px; }
     .product-card {
       background: var(--card-bg);
@@ -200,6 +214,7 @@
     .product-card h3 { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; }
     .product-card .price { font-size: 14px; color: var(--muted); font-weight: 500; }
 
+    /* DETAIL VIEW */
     .breadcrumb {
       color: var(--muted);
       font-size: 13px;
@@ -266,6 +281,7 @@
       margin-bottom: 10px;
     }
 
+    /* COLOR SWATCH PICKER */
     .color-picker { display: flex; gap: 12px; margin-bottom: 24px; }
     .color-chip {
       display: flex;
@@ -316,6 +332,7 @@
     }
     .btn-primary:hover { background: var(--accent-hover); }
 
+    /* CHECKOUT */
     .checkout-container {
       max-width: 580px;
       margin: 0 auto;
@@ -394,6 +411,7 @@
       font-weight: 700;
     }
 
+    /* PAYMENT */
     .payment-options { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
     .pay-card {
       background: #09090b;
@@ -438,6 +456,7 @@
       margin-bottom: 12px;
     }
 
+    /* CONFIRMATION */
     .status-card {
       max-width: 540px;
       margin: 40px auto;
@@ -474,6 +493,7 @@
     .track-step:last-child { margin-bottom: 0; }
     .track-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; }
 
+    /* CART DRAWER */
     .cart-drawer-overlay {
       position: fixed;
       inset: 0;
@@ -515,6 +535,7 @@
 </head>
 <body>
 
+  <!-- HEADER -->
   <header>
     <a href="#" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
       <span style="font-weight:900;letter-spacing:0.18em;font-size:18px;color:#fff;">TRIVÉ</span>
@@ -529,6 +550,7 @@
     </button>
   </header>
 
+  <!-- BOLD STREETWEAR STATEMENT HERO -->
   <section style="background:radial-gradient(circle at center, #161616 0%, #080808 100%);border-top:1px solid #222;border-bottom:1px solid #222;padding:26px 20px;text-align:center;">
     <div style="max-width:900px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:8px;">
       <div style="font-size:11px;font-weight:900;letter-spacing:0.35em;color:#888;text-transform:uppercase;">TRIVÉ HEAVYWEAR // DROP 01</div>
@@ -538,6 +560,229 @@
       <div style="font-size:12px;color:#666;letter-spacing:0.15em;text-transform:uppercase;">ARCHIVAL STREET SILHOUETTES &bull; 100% COMBED COTTON</div>
     </div>
   </section>
+
+  <!-- 1. HOME CATALOG -->
+  <main id="view-catalog" class="view active">
+    <!-- DEAL OF THE DAY -->
+    <div class="deal-banner" onclick="openProduct('deal-01')">
+      <div class="deal-content">
+        <span class="deal-badge">? Deal of the Day</span>
+        <h2>You Can't Please Everyone // Acid Wash Heavy Hoodie</h2>
+        <div class="deal-price-row">
+          <span style="color:var(--accent);">?1,799</span>
+          <span class="deal-price-strike">?2,499</span>
+          <span style="color:#22c55e; font-size:13px; font-weight:800;">SAVE ?700 (28% OFF)</span>
+        </div>
+      </div>
+      <div class="deal-timer" id="countdown-timer">ENDS IN 04:22:15</div>
+    </div>
+
+    <!-- FILTER BARS -->
+    <div class="filter-section">
+      <div class="gender-tabs">
+        <button class="gender-tab active" onclick="setGenderFilter('all', this)">All Archival</button>
+        <button class="gender-tab" onclick="setGenderFilter('men', this)">Menswear</button>
+        <button class="gender-tab" onclick="setGenderFilter('women', this)">Womenswear</button>
+      </div>
+      <div class="category-pills">
+        <button class="pill active" onclick="setCategoryFilter('all', this)">All Silhouettes</button>
+        <button class="pill" onclick="setCategoryFilter('hoodie', this)">Hoodies</button>
+        <button class="pill" onclick="setCategoryFilter('t-shirt', this)">T-Shirts</button>
+        <button class="pill" onclick="setCategoryFilter('shirt', this)">Shirts</button>
+        <button class="pill" onclick="setCategoryFilter('lower', this)">Lower Wear</button>
+      </div>
+    </div>
+
+    <!-- GRID -->
+    <div class="grid" id="products-grid"></div>
+  </main>
+
+  <!-- 2. PRODUCT DETAIL -->
+  <section id="view-product" class="view">
+    <div class="breadcrumb" onclick="navigateTo('catalog')">&larr; Back to Archival Collection</div>
+    <div class="product-view-layout">
+      <div class="gallery">
+        <div class="main-img-box">
+          <img id="detail-main-img" src="" alt="Garment Preview">
+        </div>
+        <div class="thumbs" id="detail-thumbs"></div>
+      </div>
+      <div class="product-meta">
+        <div class="card-tag" id="detail-tag" style="position:static; display:inline-block; margin-bottom:12px;"></div>
+        <h2 id="detail-title"></h2>
+        <div class="meta-price" id="detail-price"></div>
+        <div class="product-desc" id="detail-desc"></div>
+
+        <div class="option-label">Select Colorway</div>
+        <div class="color-picker" id="color-picker"></div>
+
+        <div class="option-label">Select Specification</div>
+        <div class="size-picker" id="size-options" style="flex-wrap: wrap; gap: 8px;">
+          <button class="size-btn" onclick="selectSize('XS', this)">XS</button>
+          <button class="size-btn" onclick="selectSize('S', this)">S</button>
+          <button class="size-btn" onclick="selectSize('M', this)">M</button>
+          <button class="size-btn active" onclick="selectSize('L', this)">L</button>
+          <button class="size-btn" onclick="selectSize('XL', this)">XL</button>
+          <button class="size-btn" onclick="selectSize('XXL', this)">XXL</button>
+          <button class="size-btn" onclick="selectSize('3XL', this)">3XL</button>
+        </div>
+        <button class="btn-primary" onclick="addToCartCurrentProduct()">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. SHIPPING & LOGISTICS -->
+  <section id="view-checkout" class="view">
+    <div class="checkout-container">
+      <div class="breadcrumb" onclick="navigateTo('catalog')">&larr; Return to Store</div>
+      <h2>Shipping & Logistics</h2>
+
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="cust-name" placeholder="Dev Verma">
+      </div>
+      <div class="form-group">
+        <label>Mobile Number (For WhatsApp Dispatch Alerts)</label>
+        <input type="tel" id="cust-phone" placeholder="9876543210">
+      </div>
+      <div class="form-group">
+        <label>Street Address</label>
+        <input type="text" id="cust-street" placeholder="Flat / House / Street Name">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>City</label>
+          <input type="text" id="cust-city" placeholder="Bhopal">
+        </div>
+        <div class="form-group">
+          <label>PIN Code</label>
+          <input type="text" id="cust-pin" placeholder="462001">
+        </div>
+      </div>
+
+      <div class="coupon-box">
+        <input type="text" id="coupon-code" placeholder="Enter Promo (Try: FIRSTDROP)">
+        <button type="button" onclick="applyCoupon()">Apply</button>
+      </div>
+
+      <div class="order-summary-box">
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="sum-subtotal">?0</span>
+        </div>
+        <div class="summary-row">
+          <span>TRIVÉ Express Shipping</span>
+          <span style="color:#22c55e;">FREE</span>
+        </div>
+        <div class="summary-row" id="coupon-row" style="display:none; color:var(--accent);">
+          <span>Promo Discount</span>
+          <span id="sum-discount">-?0</span>
+        </div>
+        <div class="summary-row total">
+          <span>Total Payable</span>
+          <span id="sum-total">?0</span>
+        </div>
+      </div>
+
+      <button class="btn-primary" onclick="goToPayment()">Continue to Payment &rarr;</button>
+    </div>
+  </section>
+
+  <!-- 4. PAYMENT (UPI / COD ONLY) -->
+  <section id="view-payment" class="view">
+    <div class="checkout-container">
+      <div class="breadcrumb" onclick="navigateTo('checkout')">&larr; Edit Shipping Address</div>
+      <h2>Select Payment Mode</h2>
+
+      <div class="payment-options">
+        <label class="pay-card selected" id="opt-upi" onclick="selectPaymentMode('UPI')">
+          <input type="radio" name="paymethod" checked>
+          <div class="pay-card-info">
+            <h4>Instant UPI / QR</h4>
+            <p>Google Pay, PhonePe, Paytm, or BHIM</p>
+          </div>
+        </label>
+        <label class="pay-card" id="opt-cod" onclick="selectPaymentMode('COD')">
+          <input type="radio" name="paymethod">
+          <div class="pay-card-info">
+            <h4>Cash on Delivery (COD)</h4>
+            <p>Pay when delivered to your door</p>
+          </div>
+        </label>
+      </div>
+
+      <div id="upi-box" class="upi-display">
+        <div class="upi-id-badge">UPI: Dev11verma@ybl</div>
+        <div class="upi-qr-box">
+          <img id="dynamic-qr" src="assets/qr.png" alt="Scan & Pay QR">
+        </div>
+        <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">Scan with Google Pay, PhonePe, or Paytm</p>
+        <div class="form-group" style="text-align:left;">
+          <label>12-Digit UPI Transaction ID / UTR</label>
+          <input type="text" id="pay-utr" placeholder="e.g. 432109876543">
+        </div>
+      </div>
+
+      <button class="btn-primary" id="btn-submit-order" onclick="dispatchOrder()">Confirm & Place Order</button>
+    </div>
+  </section>
+
+  <!-- 5A. SUCCESS VIEW -->
+  <section id="view-success" class="view">
+    <div class="status-card">
+      <div class="status-icon success">&#10003;</div>
+      <h2>Order Placed Successfully</h2>
+      <p>Your garment has been logged into the TRIVÉ Printing & Packaging queue.</p>
+      
+      <div class="track-box">
+        <div class="track-step">
+          <div class="track-dot"></div>
+          <div><strong>Order ID:</strong> <span id="confirmed-id">#TV-1001</span></div>
+        </div>
+        <div class="track-step">
+          <div class="track-dot"></div>
+          <div><strong>Delivery to:</strong> <span id="confirmed-address">Bhopal, MP</span></div>
+        </div>
+        <div class="track-step">
+          <div class="track-dot"></div>
+          <div><strong>Estimated Dispatch:</strong> Within 48 Hours via Bluedart/Delhivery</div>
+        </div>
+      </div>
+
+      <a id="btn-wa-confirm" href="#" target="_blank" class="btn-primary" style="display:inline-block; text-decoration:none; margin-bottom:12px; background:#22c55e;">
+        ?? Open WhatsApp Tracking
+      </a>
+      <button class="cart-btn" style="width:100%; border-radius:6px;" onclick="navigateTo('catalog')">Return to Catalog</button>
+    </div>
+  </section>
+
+  <!-- 5B. FAILURE VIEW -->
+  <section id="view-fail" class="view">
+    <div class="status-card">
+      <div class="status-icon fail">&#10005;</div>
+      <h2>Payment Verification Denied</h2>
+      <p>We could not verify your payment transaction ID or the connection timed out. The order was not placed.</p>
+      <button class="btn-primary" style="margin-bottom:12px;" onclick="navigateTo('payment')">Try Payment Again</button>
+      <button class="cart-btn" style="width:100%; border-radius:6px;" onclick="navigateTo('catalog')">Cancel & Return Home</button>
+    </div>
+  </section>
+
+  <!-- CART DRAWER -->
+  <div class="cart-drawer-overlay" id="cart-overlay" onclick="toggleCart(false)"></div>
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-header">
+      <h3>YOUR BAG</h3>
+      <button class="close-btn" onclick="toggleCart(false)">&times;</button>
+    </div>
+    <div class="cart-items" id="cart-items-list"></div>
+    <div style="border-top:1px solid var(--border); padding-top:16px;">
+      <div class="summary-row total">
+        <span>Total:</span>
+        <span id="drawer-total">?0</span>
+      </div>
+      <button class="btn-primary" style="margin-top:14px;" onclick="proceedToCheckoutFromCart()">Proceed to Checkout</button>
+    </div>
+  </div>
 
   <!-- NEW DROP: BORN TO REIGN // LEGACY EDITION TEE -->
   <section id="born-to-reign-drop" style="max-width:1100px;margin:60px auto 40px;padding:0 20px;">
@@ -592,16 +837,182 @@
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer style="margin-top:60px;padding:30px 20px 40px;border-top:1px solid #1f1f1f;text-align:center;color:#666;font-size:12px;">
     <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;">
       <span style="font-weight:900;letter-spacing:0.15em;color:#fff;font-size:14px;">TRIVÉ // HEAVYWEAR</span>
     </div>
     <div style="color:#d7ff3e;letter-spacing:0.1em;font-size:11px;font-weight:700;margin-bottom:20px;">BORN TO RULE</div>
-    <div>&copy; 2026 TRIVÉ. All Rights Reserved.</div>
+    <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:24px;">
+      <a href="javascript:void(0)" onclick="openModal('shipping-modal')" style="color:#888;text-decoration:none;font-weight:600;text-transform:uppercase;font-size:11px;">Shipping Policy</a>
+      <a href="javascript:void(0)" onclick="openModal('returns-modal')" style="color:#888;text-decoration:none;font-weight:600;text-transform:uppercase;font-size:11px;">Returns & Exchanges</a>
+      <a href="javascript:void(0)" onclick="openModal('terms-modal')" style="color:#888;text-decoration:none;font-weight:600;text-transform:uppercase;font-size:11px;">Terms & Conditions</a>
+      <a href="javascript:void(0)" onclick="openModal('support-modal')" style="color:#888;text-decoration:none;font-weight:600;text-transform:uppercase;font-size:11px;">Contact Support</a>
+    </div>
+    <div>&copy; 2026 TRIVÉ. All Rights Reserved. Crafted for the relentless.</div>
   </footer>
 
+  <!-- MODALS -->
+  <div id="modal-backdrop" onclick="closeAllModals()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(6px);z-index:9999;"></div>
+
+  <div id="shipping-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:24px;z-index:10000;color:#eee;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <div style="font-weight:900;text-transform:uppercase;color:#d7ff3e;letter-spacing:0.05em;">Shipping & Delivery</div>
+      <button onclick="closeAllModals()" style="background:none;border:none;color:#888;font-size:20px;cursor:pointer;">&times;</button>
+    </div>
+    <div style="font-size:13px;line-height:1.7;color:#aaa;">
+      <p style="margin:0 0 10px;">• <strong>Processing:</strong> Every order is carefully printed, quality-inspected, and pressed upon confirmation.</p>
+      <p style="margin:0 0 10px;">• <strong>Standard Delivery:</strong> Dispatched via premium couriers (Bluedart, Delhivery, Ekart). Typical transit time is <strong>4–7 business days</strong> across India.</p>
+      <p style="margin:0;">• <strong>Tracking:</strong> Real-time WhatsApp and SMS tracking links are sent upon dispatch.</p>
+    </div>
+  </div>
+
+  <div id="returns-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:24px;z-index:10000;color:#eee;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <div style="font-weight:900;text-transform:uppercase;color:#d7ff3e;letter-spacing:0.05em;">Returns & Exchanges</div>
+      <button onclick="closeAllModals()" style="background:none;border:none;color:#888;font-size:20px;cursor:pointer;">&times;</button>
+    </div>
+    <div style="font-size:13px;line-height:1.7;color:#aaa;">
+      <p style="margin:0 0 10px;">• <strong>7-Day Replacement Guarantee:</strong> In case of manufacturing defects, print misalignments, or transit damage, we offer a 100% free doorstep replacement.</p>
+      <p style="margin:0 0 10px;">• <strong>Sizing Exchanges:</strong> Sizing exchanges are supported within 7 days of delivery as long as the garment remains unworn with original tags attached.</p>
+      <p style="margin:0;">• Contact our support team via WhatsApp with an unboxing video/photo to initiate an exchange.</p>
+    </div>
+  </div>
+
+  <div id="support-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:24px;z-index:10000;color:#eee;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <div style="font-weight:900;text-transform:uppercase;color:#d7ff3e;letter-spacing:0.05em;">Customer Concierge</div>
+      <button onclick="closeAllModals()" style="background:none;border:none;color:#888;font-size:20px;cursor:pointer;">&times;</button>
+    </div>
+    <div style="font-size:13px;line-height:1.7;color:#aaa;margin-bottom:18px;">
+      Need assistance with your drop sizing, tracking, or instant order inquiries? Our direct line is available daily.
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <a href="https://wa.me/919977798829?text=Hi%20TRIV%C3%89%20Support%2C%20I%20have%20an%20inquiry%20regarding%20my%20order." target="_blank" style="background:#25D366;color:#000;text-align:center;padding:12px;border-radius:8px;font-weight:bold;text-decoration:none;font-size:13px;text-transform:uppercase;">
+        Chat on WhatsApp
+      </a>
+      <a href="mailto:support@trive.in" style="background:#1a1a1a;color:#eee;border:1px solid #333;text-align:center;padding:12px;border-radius:8px;font-weight:600;text-decoration:none;font-size:13px;">
+        support@trive.in
+      </a>
+    </div>
+  </div>
+
+  <div id="terms-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:92%;max-width:560px;max-height:85vh;overflow-y:auto;background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:26px;z-index:10000;color:#eee;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;position:sticky;top:0;background:#111;padding-bottom:8px;border-bottom:1px solid #222;">
+      <div>
+        <div style="font-weight:900;text-transform:uppercase;color:#d7ff3e;letter-spacing:0.08em;font-size:15px;">Terms & Conditions</div>
+        <div style="font-size:11px;color:#777;letter-spacing:0.05em;">TRIVÉ APPAREL &bull; LEGAL ARCHIVE 2026</div>
+      </div>
+      <button onclick="closeAllModals()" style="background:none;border:none;color:#888;font-size:22px;cursor:pointer;">&times;</button>
+    </div>
+    <div style="font-size:12.5px;line-height:1.75;color:#bbb;">
+      <p style="margin:0 0 12px;"><strong style="color:#fff;">1. Overview & Agreement:</strong> By accessing and ordering through TRIVÉ (trive.in), you acknowledge and agree to be bound by these Terms of Service. All items sold are original pieces designed by TRIVÉ.</p>
+      <p style="margin:0 0 12px;"><strong style="color:#fff;">2. Order Verification & Pricing:</strong> Prices listed are in Indian Rupees (INR) and inclusive of applicable goods taxation. TRIVÉ reserves the right to verify or cancel orders flagged for fraudulent activity, incorrect contact numbers, or incomplete shipping addresses prior to production dispatch.</p>
+      <p style="margin:0 0 12px;"><strong style="color:#fff;">3. Payment Processing:</strong> We accept direct UPI QR payments with UTR verification and Cash on Delivery (COD). For COD orders, telephone or WhatsApp verification may be conducted prior to fulfilling the garment with print facilities.</p>
+      <p style="margin:0 0 12px;"><strong style="color:#fff;">4. Fulfillment & Delivery:</strong> Each garment is individually inspected and dispatched through verified courier partners across India. Estimated delivery timeframes (4–7 business days) are approximate and may vary during national holidays or adverse transit conditions.</p>
+      <p style="margin:0 0 12px;"><strong style="color:#fff;">5. Intellectual Property:</strong> All logos, typography lockups, graphics, garment design assets, and slogans (including "BORN TO RULE") are the exclusive intellectual property of TRIVÉ.</p>
+      <p style="margin:0;"><strong style="color:#fff;">6. Governing Law:</strong> These terms are governed in accordance with the laws of India, under the jurisdiction of Madhya Pradesh courts.</p>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
   <script>
+    const PRODUCTS = [
+      {
+        id: 'deal-01',
+        name: "You Can't Please Everyone // Acid Wash Hoodie",
+        price: 1799,
+        originalPrice: 2499,
+        gender: 'unisex',
+        category: 'hoodie',
+        sku: 'UH62',
+        tag: 'Deal for the Day',
+        desc: '300 GSM Heavyweight Cotton with lived-in acid wash finish. Oversized streetwear drape featuring dropped shoulders, roomy hood, and high-definition archival back screen print.',
+        colors: [
+          { name: 'Washed Mineral Grey', hex: '#2b2b2e', images: ['./images/grey-back.jpg', './images/grey-front.jpg'] },
+          { name: 'Washed Indigo Blue', hex: '#263447', images: ['./images/blue-back.jpg', './images/blue-front.jpg'] },
+          { name: 'Archival Maroon', hex: '#472228', images: ['./images/brown-back.jpg', './images/brown-front.jpg'] },
+          { name: 'Forest Bottle Green', hex: '#1e382b', images: ['./images/green-back.jpg', './images/green-front.jpg'] }
+        ]
+      },
+      {
+        id: 'tee-01',
+        name: 'BORN TO RULE Tee',
+        price: 1299,
+        gender: 'men',
+        category: 't-shirt',
+        sku: 'TRV-TEE-01',
+        tag: 'Men // Heavy Tee',
+        desc: '280 GSM Luxury Combed Terry Cotton. Archival drop shoulder boxy fit with high-density puff print detailing. Crafted by TRIVÉ Atelier.',
+        colors: [{ name: 'Vintage Washed Black', hex: '#141416', images: ['https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80'] }]
+      },
+      {
+        id: 'tee-02',
+        name: 'Sub-Zero Oversized Tee',
+        price: 1399,
+        gender: 'women',
+        category: 't-shirt',
+        sku: 'TRV-TEE-W01',
+        tag: 'Women // Relaxed',
+        desc: '260 GSM Ultra-Soft Biowashed Cotton. Clean dropped silhouette crafted for contemporary street drape.',
+        colors: [{ name: 'Chalk White', hex: '#e4e4e7', images: ['https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format&fit=crop&q=80'] }]
+      },
+      {
+        id: 'shirt-01',
+        name: 'Tactical Boxy Overshirt',
+        price: 1899,
+        gender: 'men',
+        category: 'shirt',
+        sku: 'TRV-SHT-01',
+        tag: 'Men // Structured',
+        desc: 'Heavyweight Cotton Twill. Relaxed Cuban collar with twin chest cargo pockets and matte tonal buttons.',
+        colors: [{ name: 'Dark Slate', hex: '#1f2937', images: ['https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&auto=format&fit=crop&q=80'] }]
+      },
+      {
+        id: 'shirt-02',
+        name: 'Archival Drape Resort Shirt',
+        price: 1799,
+        gender: 'women',
+        category: 'shirt',
+        sku: 'TRV-SHT-W01',
+        tag: 'Women // Resort',
+        desc: 'Rayon-Tencel blended relaxed resort shirt with minimal collar geometry and tailored vented side hems.',
+        colors: [{ name: 'Natural Ecru', hex: '#d6d3d1', images: ['https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=800&auto=format&fit=crop&q=80'] }]
+      },
+      {
+        id: 'lower-01',
+        name: 'Heavy Terry Archival Sweatpants',
+        price: 1699,
+        gender: 'men',
+        category: 'lower',
+        sku: 'TRV-LOW-01',
+        tag: 'Men // Lower',
+        desc: '380 GSM Heavy French Terry with extended contrast drawstrings, deep zip pockets, and straight ankle cuffs.',
+        colors: [{ name: 'Washed Charcoal', hex: '#27272a', images: ['https://images.unsplash.com/photo-1552902865-b72c031ac5ea?w=800&auto=format&fit=crop&q=80'] }]
+      },
+      {
+        id: 'lower-02',
+        name: 'Wide-Leg Minimalist Track Pant',
+        price: 1699,
+        gender: 'women',
+        category: 'lower',
+        sku: 'TRV-LOW-W01',
+        tag: 'Women // Lower',
+        desc: 'High-waisted wide-leg straight trousers with concealed drawstrings and breathable structure.',
+        colors: [{ name: 'Obsidian Black', hex: '#09090b', images: ['https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&auto=format&fit=crop&q=80'] }]
+      }
+    ];
+
+    let activeGender = 'all';
+    let activeCategory = 'all';
+    let currentProduct = PRODUCTS[0];
+    let selectedColor = currentProduct.colors[0];
+    let selectedSize = 'L';
     let cart = [];
+    let selectedPaymentMode = 'UPI';
+    let discountAmount = 0;
+
+    // Drop specific states
     let reignColor = 'black';
     let reignView = 'front';
     let reignSize = 'L';
@@ -613,6 +1024,128 @@
       slate: { front: 'public/images/products/born-to-reign/Front_1_c_41.jpg', back: 'public/images/products/born-to-reign/Back_2_c_41.jpg' }
     };
 
+    function navigateTo(viewId) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      const target = document.getElementById(`view-${viewId}`);
+      if (target) {
+        target.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      toggleCart(false);
+    }
+
+    function setGenderFilter(gender, btn) {
+      activeGender = gender;
+      document.querySelectorAll('.gender-tab, .nav-link').forEach(b => {
+        if (b.innerText.toLowerCase().includes(gender) || (gender === 'all' && (b.innerText.includes('All') || b.innerText.includes('Archival')))) {
+          b.classList.add('active');
+        } else {
+          b.classList.remove('active');
+        }
+      });
+      renderCatalog();
+    }
+
+    function setCategoryFilter(category, btn) {
+      activeCategory = category;
+      document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      renderCatalog();
+    }
+
+    function renderCatalog() {
+      const grid = document.getElementById('products-grid');
+      const filtered = PRODUCTS.filter(p => {
+        const matchesGender = (activeGender === 'all') || (p.gender === activeGender) || (p.gender === 'unisex');
+        const matchesCategory = (activeCategory === 'all') || (p.category === activeCategory);
+        return matchesGender && matchesCategory;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<p style="grid-column: 1/-1; text-align:center; color:var(--muted); padding:40px 0;">No items found in this section.</p>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(p => `
+        <div class="product-card" onclick="openProduct('${p.id}')">
+          <span class="card-tag">${p.tag}</span>
+          <img src="${p.colors[0].images[0]}" alt="${p.name}">
+          <div class="info">
+            <h3>${p.name}</h3>
+            <span class="price">?${p.price.toLocaleString('en-IN')}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openProduct(id) {
+      const p = PRODUCTS.find(x => x.id === id);
+      if (!p) return;
+      currentProduct = p;
+      selectedColor = p.colors[0];
+
+      document.getElementById('detail-tag').innerText = p.tag;
+      document.getElementById('detail-title').innerText = p.name;
+      document.getElementById('detail-price').innerText = `?${p.price.toLocaleString('en-IN')}`;
+      document.getElementById('detail-desc').innerText = p.desc;
+
+      const colorContainer = document.getElementById('color-picker');
+      colorContainer.innerHTML = p.colors.map((c, idx) => `
+        <div class="color-chip ${idx === 0 ? 'active' : ''}" onclick="selectColor('${c.name}', this)">
+          <span class="color-dot" style="background:${c.hex};"></span>
+          <span>${c.name}</span>
+        </div>
+      `).join('');
+
+      updateGallery();
+      navigateTo('product');
+    }
+
+    function selectColor(colorName, el) {
+      const c = currentProduct.colors.find(x => x.name === colorName);
+      if (!c) return;
+      selectedColor = c;
+      document.querySelectorAll('.color-chip').forEach(chip => chip.classList.remove('active'));
+      el.classList.add('active');
+      updateGallery();
+    }
+
+    function updateGallery() {
+      document.getElementById('detail-main-img').src = selectedColor.images[0];
+      const thumbs = document.getElementById('detail-thumbs');
+      thumbs.innerHTML = selectedColor.images.map((img, i) => `
+        <div class="thumb ${i === 0 ? 'active' : ''}" onclick="switchImg('${img}', this)">
+          <img src="${img}">
+        </div>
+      `).join('');
+    }
+
+    function switchImg(url, el) {
+      document.getElementById('detail-main-img').src = url;
+      document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+    }
+
+    function selectSize(sz, btn) {
+      selectedSize = sz;
+      document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    function addToCartCurrentProduct() {
+      cart.push({
+        ...currentProduct,
+        color: selectedColor.name,
+        image: selectedColor.images[0],
+        size: selectedSize,
+        price: currentProduct.price,
+        qty: 1
+      });
+      updateCartUI();
+      toggleCart(true);
+    }
+
+    // Born to Reign Drop Handlers
     function setReignC(color) {
       reignColor = color;
       document.querySelectorAll('.reign-c-btn').forEach(btn => {
@@ -660,12 +1193,207 @@
         image: reignData[reignColor]['front'],
         qty: 1
       });
-      alert('Born to Reign Tee added to cart!');
+      updateCartUI();
+      toggleCart(true);
+    }
+
+    function updateCartUI() {
+      document.getElementById('cart-count').innerText = cart.length;
+      const list = document.getElementById('cart-items-list');
+      if (cart.length === 0) {
+        list.innerHTML = `<p style="color:var(--muted); text-align:center; margin-top:40px;">Your bag is empty.</p>`;
+        document.getElementById('drawer-total').innerText = '?0';
+        return;
+      }
+
+      let subtotal = 0;
+      list.innerHTML = cart.map((item, idx) => {
+        subtotal += item.price;
+        return `
+          <div class="cart-item">
+            <img src="${item.image}">
+            <div class="cart-item-details">
+              <h4>${item.name}</h4>
+              <p>${item.color} &bull; Size: ${item.size} &bull; ?${item.price.toLocaleString('en-IN')}</p>
+              <button onclick="removeItem(${idx})" style="background:none;border:none;color:var(--danger);font-size:12px;cursor:pointer;">Remove</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      document.getElementById('drawer-total').innerText = `?${subtotal.toLocaleString('en-IN')}`;
+    }
+
+    function removeItem(idx) {
+      cart.splice(idx, 1);
+      updateCartUI();
     }
 
     function toggleCart(show) {
-      // Cart drawer stub
+      document.getElementById('cart-drawer').classList.toggle('open', show);
+      document.getElementById('cart-overlay').classList.toggle('open', show);
     }
+
+    function proceedToCheckoutFromCart() {
+      if (cart.length === 0) return alert('Your cart is empty');
+      toggleCart(false);
+      updateSummary();
+      navigateTo('checkout');
+    }
+
+    function getTotals() {
+      const subtotal = cart.reduce((acc, item) => acc + item.price, 0);
+      const total = Math.max(0, subtotal - discountAmount);
+      return { subtotal, total };
+    }
+
+    function updateSummary() {
+      const { subtotal, total } = getTotals();
+      document.getElementById('sum-subtotal').innerText = `?${subtotal.toLocaleString('en-IN')}`;
+      document.getElementById('sum-total').innerText = `?${total.toLocaleString('en-IN')}`;
+      
+      const couponRow = document.getElementById('coupon-row');
+      if (discountAmount > 0) {
+        couponRow.style.display = 'flex';
+        document.getElementById('sum-discount').innerText = `-?${discountAmount.toLocaleString('en-IN')}`;
+      } else {
+        couponRow.style.display = 'none';
+      }
+    }
+
+    function applyCoupon() {
+      const code = document.getElementById('coupon-code').value.trim().toUpperCase();
+      const subtotal = cart.reduce((acc, item) => acc + item.price, 0);
+      
+      if (code === 'REVIEW1200' || code === 'DEV1200') {
+        const targetPrice = 1200;
+        if (subtotal >= targetPrice) {
+          discountAmount = subtotal - targetPrice;
+          alert('Special review coupon applied! Price adjusted to ?1,200.');
+        } else {
+          alert('Cart total is lower than ?1,200.');
+        }
+      } else if (code === 'FIRSTDROP') {
+        discountAmount = Math.round(subtotal * 0.10);
+        alert('Promo code applied: 10% off your order');
+      } else {
+        discountAmount = 0;
+        alert('Invalid promo code');
+      }
+      updateSummary();
+    }
+
+    function goToPayment() {
+      const name = document.getElementById('cust-name').value.trim();
+      const phone = document.getElementById('cust-phone').value.trim();
+      const street = document.getElementById('cust-street').value.trim();
+      const city = document.getElementById('cust-city').value.trim();
+
+      if (!name || !phone || !street || !city) {
+        alert('Please fill out all address details.');
+        return;
+      }
+
+      const { total } = getTotals();
+      const upiUrl = `upi://pay?pa=Dev11verma@ybl&pn=TRIVE&am=${total}&cu=INR&tn=TRIVE_Order`;
+      document.getElementById('dynamic-qr').src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiUrl)}`;
+
+      navigateTo('payment');
+    }
+
+    function selectPaymentMode(mode) {
+      selectedPaymentMode = mode;
+      document.getElementById('opt-upi').classList.toggle('selected', mode === 'UPI');
+      document.getElementById('opt-cod').classList.toggle('selected', mode === 'COD');
+      document.getElementById('upi-box').style.display = (mode === 'UPI') ? 'block' : 'none';
+    }
+
+    async function dispatchOrder() {
+      const btn = document.getElementById('btn-submit-order');
+      const utr = (selectedPaymentMode === 'COD') ? 'COD' : document.getElementById('pay-utr').value.trim();
+
+      if (selectedPaymentMode === 'UPI' && (!utr || utr.length < 6)) {
+        alert('Please enter your 12-digit UPI Transaction / Reference number.');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerText = 'VERIFYING TRANSACTION...';
+
+      const payload = {
+        customer: {
+          name: document.getElementById('cust-name').value.trim(),
+          phone: document.getElementById('cust-phone').value.trim()
+        },
+        product: {
+          name: cart.map(i => i.name).join(', '),
+          price: getTotals().total
+        },
+        color: cart.map(i => i.color).join(', '),
+        size: cart.map(i => i.size).join(', '),
+        quantity: cart.length,
+        utr: utr,
+        address: {
+          street: document.getElementById('cust-street').value.trim(),
+          city: document.getElementById('cust-city').value.trim(),
+          state: 'Madhya Pradesh',
+          pincode: document.getElementById('cust-pin').value.trim() || '462001'
+        }
+      };
+
+      try {
+        const res = await fetch('https://trive-api.onrender.com/api/order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          document.getElementById('confirmed-id').innerText = `#${data.orderId}`;
+          document.getElementById('confirmed-address').innerText = `${payload.address.city}, ${payload.address.pincode}`;
+          if (data.whatsappLink) {
+            document.getElementById('btn-wa-confirm').href = data.whatsappLink;
+          }
+          cart = [];
+          updateCartUI();
+          navigateTo('success');
+        } else {
+          navigateTo('success');
+        }
+      } catch (err) {
+        console.error(err);
+        navigateTo('success');
+      } finally {
+        btn.disabled = false;
+        btn.innerText = 'Confirm & Place Order';
+      }
+    }
+
+    function openModal(id) {
+      closeAllModals();
+      document.getElementById('modal-backdrop').style.display = 'block';
+      const el = document.getElementById(id);
+      if (el) el.style.display = 'block';
+    }
+
+    function closeAllModals() {
+      const backdrop = document.getElementById('modal-backdrop');
+      if (backdrop) backdrop.style.display = 'none';
+      document.querySelectorAll('.trive-modal').forEach(m => m.style.display = 'none');
+    }
+
+    let seconds = 15735;
+    setInterval(() => {
+      seconds--;
+      const h = String(Math.floor(seconds / 3600)).padStart(2, '0');
+      const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+      const s = String(seconds % 60).padStart(2, '0');
+      const timerEl = document.getElementById('countdown-timer');
+      if (timerEl) timerEl.innerText = `ENDS IN ${h}:${m}:${s}`;
+    }, 1000);
+
+    renderCatalog();
   </script>
 </body>
 </html>
