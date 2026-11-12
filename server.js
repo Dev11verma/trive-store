@@ -19,19 +19,19 @@ app.post('/api/order', async (req, res) => {
     const orderId = 'TV-' + Math.floor(1000 + Math.random() * 9000);
 
     // Format message for Telegram
-    const message = *TRIVÉ // ORDER CONFIRMED []*\n\n +
-      Hey Dev Verma,\n +
-      Your order for ** has been received:\n\n +
-      - *Colorway:* \n +
-      - *Size:* \n +
-      - *Quantity:* \n\n +
-      📍 *Delivery Destination:* , \n +
-      💰 *Total Amount:* ₹\n +
-      📋 *Status:* Reviewing order in TRIVÉ Command Center.\n\n +
-      _TRIVÉ Heavywear — BORN TO RULE._;
+    const message = `*TRIVÉ // ORDER CONFIRMED [${orderId}]*\n\n` +
+      `Hey Dev Verma,\n` +
+      `Your order for *${orderData.product.name}* has been received:\n\n` +
+      `- *Colorway:* ${orderData.color}\n` +
+      `- *Size:* ${orderData.size}\n` +
+      `- *Quantity:* ${orderData.quantity}\n\n` +
+      `📍 *Delivery Destination:* ${orderData.address.city}, ${orderData.address.pincode}\n` +
+      `💰 *Total Amount:* ₹${orderData.product.price}\n` +
+      `📋 *Status:* Reviewing order in TRIVÉ Command Center.\n\n` +
+      `_TRIVÉ Heavywear — BORN TO RULE._`;
 
     // Send Telegram Notification
-    await fetch(https://api.telegram.org/bot/sendMessage, {
+    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -41,9 +41,10 @@ app.post('/api/order', async (req, res) => {
       })
     });
 
-    // Qikink Payload Structure with Correct Product SKU 65053748
+    // Qikink Payload Structure with SKU 65053748 and orderwise
     const qikinkPayload = {
       order_number: 'TRV' + Math.floor(10000000 + Math.random() * 90000000),
+      orderwise: '1',
       qikink_shipping: '1',
       gateway: orderData.utr === 'COD' ? 'COD' : 'Prepaid',
       total_order_value: String(orderData.product.price),
@@ -72,7 +73,7 @@ app.post('/api/order', async (req, res) => {
     res.json({
       success: true,
       orderId: orderId,
-      whatsappLink: https://wa.me/91?text=Hi%20,%20your%20TRIVÉ%20order%20%23%20has%20been%20dispatched!,
+      whatsappLink: `https://wa.me/91${orderData.customer.phone}?text=Hi%20${encodeURIComponent(orderData.customer.name)},%20your%20TRIVÉ%20order%20%23${orderId}%20has%20been%20dispatched!`,
       qikinkPayload: qikinkPayload
     });
 
@@ -84,5 +85,5 @@ app.post('/api/order', async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(Server running on port );
+  console.log(`Server running on port ${PORT}`);
 });
