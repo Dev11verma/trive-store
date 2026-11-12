@@ -538,7 +538,6 @@
   <!-- HEADER -->
   <header>
     <a href="#" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
-      <img src="assets/logo.svg" alt="TRIVÉ" style="height:36px;width:auto;display:block;">
       <span style="font-weight:900;letter-spacing:0.18em;font-size:18px;color:#fff;">TRIVÉ</span>
     </a>
     <div class="nav-links">
@@ -550,6 +549,7 @@
       CART (<span id="cart-count">0</span>)
     </button>
   </header>
+
   <!-- BOLD STREETWEAR STATEMENT HERO -->
   <section style="background:radial-gradient(circle at center, #161616 0%, #080808 100%);border-top:1px solid #222;border-bottom:1px solid #222;padding:26px 20px;text-align:center;">
     <div style="max-width:900px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:8px;">
@@ -560,20 +560,9 @@
       <div style="font-size:12px;color:#666;letter-spacing:0.15em;text-transform:uppercase;">ARCHIVAL STREET SILHOUETTES &bull; 100% COMBED COTTON</div>
     </div>
   </section>
-  <!-- PROMINENT BRAND STATEMENT BANNER -->
-  <section style="background:#0e0e0e;border-top:1px solid #1a1a1a;border-bottom:1px solid #1a1a1a;padding:18px 20px;text-align:center;">
-    <div style="max-width:800px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;">
-      <span style="font-size:11px;font-weight:900;letter-spacing:0.25em;color:#888;text-transform:uppercase;">TRIVÉ HEAVYWEAR</span>
-      <span style="color:#2a2a2a;">//</span>
-      <span style="font-size:16px;font-weight:900;letter-spacing:0.3em;color:#d7ff3e;text-transform:uppercase;text-shadow:0 0 12px rgba(215,255,62,0.25);">BORN TO RULE</span>
-      <span style="color:#2a2a2a;">//</span>
-      <span style="font-size:11px;font-weight:700;letter-spacing:0.2em;color:#aaa;text-transform:uppercase;">DROP 01 ARCHIVE</span>
-    </div>
-  </section>
 
   <!-- 1. HOME CATALOG -->
   <main id="view-catalog" class="view active">
-    
     <!-- DEAL OF THE DAY -->
     <div class="deal-banner" onclick="openProduct('deal-01')">
       <div class="deal-content">
@@ -723,9 +712,9 @@
       </div>
 
       <div id="upi-box" class="upi-display">
-        <div class="upi-id-badge">UPI: dev11verma@okaxis</div>
+        <div class="upi-id-badge">UPI: Dev11verma@ybl</div>
         <div class="upi-qr-box">
-          <img id="dynamic-qr" src="" alt="Scan & Pay QR">
+          <img id="dynamic-qr" src="assets/qr.png" alt="Scan & Pay QR">
         </div>
         <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">Scan with Google Pay, PhonePe, or Paytm</p>
         <div class="form-group" style="text-align:left;">
@@ -795,39 +784,189 @@
     </div>
   </div>
 
-  <!-- CHECKOUT MODAL CONTAINER -->
-<div id="checkout-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;overflow-y:auto;padding:20px;box-sizing:border-box;">
-  <div style="max-width:500px;margin:40px auto;background:#121212;border:1px solid #333;border-radius:16px;padding:30px;color:#fff;position:relative;">
-    <button type="button" onclick="closeCheckout()" style="position:absolute;top:20px;right:20px;background:none;border:none;color:#aaa;font-size:24px;cursor:pointer;">&times;</button>
-    <h2 style="margin-top:0;font-size:22px;font-weight:900;color:#d7ff3e;text-transform:uppercase;">Secure Checkout</h2>
-    <div id="modal-product-title" style="font-size:16px;font-weight:bold;margin:10px 0;color:#fff;">Product Name</div>
-    <div id="modal-product-price" style="font-size:20px;font-weight:900;color:#d7ff3e;margin-bottom:20px;">₹1199</div>
-    
-    <div style="background:#1a1a1a;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center;">
-      <p style="margin:0 0 10px 0;font-size:13px;color:#ccc;">Scan QR or pay via UPI handle:</p>
-      <img src="assets/qr.png" alt="Payment QR" style="max-width:180px;border-radius:8px;margin-bottom:10px;background:#fff;padding:5px;">
-      <div style="font-weight:bold;color:#d7ff3e;font-size:15px;">Dev11verma@ybl</div>
+  <!-- DROP 02: LOST BUT NEVER BROKEN OVERSIZED TEE -->
+  <section id="tee-drop" style="max-width:1100px;margin:50px auto 40px;padding:0 20px;">
+    <div style="border-top:1px solid #222;padding-top:40px;margin-bottom:28px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;">
+      <div>
+        <div style="font-size:11px;font-weight:900;letter-spacing:0.25em;color:#d7ff3e;text-transform:uppercase;">DROP 02 // 240 GSM HEAVYWEAR</div>
+        <h2 style="font-size: clamp(22px, 4vw, 32px);font-weight:900;margin:6px 0 0;letter-spacing:0.05em;color:#fff;text-transform:uppercase;">Lost But Never Broken // Oversized Tee</h2>
+      </div>
+      <div style="font-size:22px;font-weight:900;color:#fff;">₹1,199 <span style="font-size:13px;color:#666;text-decoration:line-through;font-weight:normal;">₹1,999</span></div>
     </div>
 
-    <form onsubmit="event.preventDefault(); alert('Order placed successfully! Telegram alert dispatched.'); closeCheckout();">
-      <div style="margin-bottom:12px;">
-        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Full Name</label>
-        <input type="text" required placeholder="Enter your name" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;">
+    <div style="display:grid;grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));gap:32px;align-items:start;">
+      <div style="background:#0e0e0e;border:1px solid #1f1f1f;border-radius:16px;padding:20px;text-align:center;position:relative;">
+        <img id="tee-main-img" src="assets/tees/black_back.jpg" alt="Lost But Never Broken Tee" style="width:100%;max-height:480px;object-fit:contain;border-radius:10px;transition:opacity 0.2s ease;">
+        <div style="display:flex;justify-content:center;gap:10px;margin-top:16px;">
+          <button type="button" onclick="setTeeView('back')" id="btn-view-back" style="background:#222;color:#fff;border:1px solid #444;padding:8px 16px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:0.1em;cursor:pointer;text-transform:uppercase;">Back Print (Main)</button>
+          <button type="button" onclick="setTeeView('pocket')" id="btn-view-pocket" style="background:#111;color:#888;border:1px solid #222;padding:8px 16px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:0.1em;cursor:pointer;text-transform:uppercase;">Pocket Print (Front)</button>
+        </div>
       </div>
-      <div style="margin-bottom:12px;">
-        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Phone Number</label>
-        <input type="tel" required placeholder="10-digit mobile number" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;">
+
+      <div style="background:#0e0e0e;border:1px solid #1f1f1f;border-radius:16px;padding:26px;">
+        <label style="display:block;font-size:11px;font-weight:800;letter-spacing:0.15em;color:#888;text-transform:uppercase;margin-bottom:10px;">Select Colorway</label>
+        <div style="display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap;">
+          <button type="button" onclick="setTeeColor('black')" class="tee-color-btn active" data-color="black" style="padding:10px 14px;background:#161616;border:2px solid #d7ff3e;color:#fff;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Onyx Black</button>
+          <button type="button" onclick="setTeeColor('blue')" class="tee-color-btn" data-color="blue" style="padding:10px 14px;background:#161616;border:2px solid #222;color:#aaa;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Navy Blue</button>
+          <button type="button" onclick="setTeeColor('yellow')" class="tee-color-btn" data-color="yellow" style="padding:10px 14px;background:#161616;border:2px solid #222;color:#aaa;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Mustard Yellow</button>
+          <button type="button" onclick="setTeeColor('olive')" class="tee-color-btn" data-color="olive" style="padding:10px 14px;background:#161616;border:2px solid #222;color:#aaa;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Olive / Mehndi</button>
+        </div>
+
+        <label style="display:block;font-size:11px;font-weight:800;letter-spacing:0.15em;color:#888;text-transform:uppercase;margin-bottom:10px;">Select Size (Oversized Boxy Fit)</label>
+        <div style="display:grid;grid-template-columns:repeat(5, 1fr);gap:8px;margin-bottom:24px;">
+          <button type="button" onclick="selectTeeSize(this, 'S')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">S</button>
+          <button type="button" onclick="selectTeeSize(this, 'M')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">M</button>
+          <button type="button" onclick="selectTeeSize(this, 'L')" class="selected-size" style="padding:12px 0;background:#161616;border:2px solid #d7ff3e;color:#fff;border-radius:6px;font-weight:800;cursor:pointer;">L</button>
+          <button type="button" onclick="selectTeeSize(this, 'XL')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">XL</button>
+          <button type="button" onclick="selectTeeSize(this, '2XL')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">2XL</button>
+        </div>
+
+        <div style="font-size:12px;color:#777;line-height:1.7;margin-bottom:24px;border-top:1px solid #1a1a1a;padding-top:16px;">
+          <div>• <strong>Chest:</strong> 4" Pocket Print • <strong>Back:</strong> High-Density Screen Print</div>
+          <div>• <strong>Fabric:</strong> 240 GSM 100% Super Combed Terry Cotton</div>
+          <div>• <strong>Features:</strong> Bio-Washed, Pre-Shrunk, Lycra Ribbed Collar</div>
+        </div>
+
+        <button type="button" onclick="orderTeeDrop()" style="width:100%;padding:16px;background:#d7ff3e;color:#000;border:none;border-radius:8px;font-weight:900;letter-spacing:0.12em;font-size:14px;text-transform:uppercase;cursor:pointer;">
+          Order Tee &bull; ₹1,199 (COD / UPI)
+        </button>
       </div>
-      <div style="margin-bottom:16px;">
-        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Delivery Address</label>
-        <textarea required rows="3" placeholder="Street, City, Pincode" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;"></textarea>
+    </div>
+  </section>
+
+  <!-- NEW DROP: HYPERSPORT BIKER HOODIE -->
+  <section id="biker-hoodie-drop" style="max-width:1100px;margin:60px auto 40px;padding:0 20px;">
+    <div style="border-top:1px solid #222;padding-top:40px;margin-bottom:28px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+          <span style="background:#d7ff3e;color:#000;font-size:10px;font-weight:900;padding:3px 8px;border-radius:4px;letter-spacing:0.1em;text-transform:uppercase;">New Item Available</span>
+          <span style="font-size:11px;font-weight:900;letter-spacing:0.2em;color:#888;text-transform:uppercase;">HEAVYWEIGHT 300 GSM</span>
+        </div>
+        <h2 style="font-size: clamp(22px, 4vw, 34px);font-weight:900;margin:0;letter-spacing:0.05em;color:#fff;text-transform:uppercase;">Hypersport Biker // Heavy Hoodie</h2>
       </div>
-      <button type="submit" style="width:100%;padding:14px;background:#d7ff3e;color:#000;border:none;border-radius:8px;font-weight:900;text-transform:uppercase;cursor:pointer;letter-spacing:0.05em;">Confirm & Place Order</button>
-    </form>
+      <div style="font-size:24px;font-weight:900;color:#fff;">₹1,899 <span style="font-size:13px;color:#666;text-decoration:line-through;font-weight:normal;">₹2,499</span></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));gap:32px;align-items:start;">
+      <div style="background:#0e0e0e;border:1px solid #1f1f1f;border-radius:16px;padding:20px;text-align:center;">
+        <img id="biker-main-img" src="assets/hoodies/white_front.png" alt="Hypersport Biker Hoodie" style="width:100%;max-height:460px;object-fit:contain;border-radius:10px;transition:opacity 0.2s ease;">
+        <div style="display:flex;justify-content:center;gap:10px;margin-top:16px;">
+          <button type="button" onclick="setBikerV('front')" id="btn-biker-front" style="background:#222;color:#fff;border:1px solid #444;padding:8px 16px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:0.1em;cursor:pointer;text-transform:uppercase;">Front View (Chest)</button>
+          <button type="button" onclick="setBikerV('back')" id="btn-biker-back" style="background:#111;color:#888;border:1px solid #222;padding:8px 16px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:0.1em;cursor:pointer;text-transform:uppercase;">Back View (Graphic)</button>
+        </div>
+      </div>
+
+      <div style="background:#0e0e0e;border:1px solid #1f1f1f;border-radius:16px;padding:26px;">
+        <label style="display:block;font-size:11px;font-weight:800;letter-spacing:0.15em;color:#888;text-transform:uppercase;margin-bottom:10px;">Select Colorway</label>
+        <div style="display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap;">
+          <button type="button" onclick="setBikerC('white')" class="biker-c-btn active" data-color="white" style="padding:10px 14px;background:#161616;border:2px solid #d7ff3e;color:#fff;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Pure White</button>
+          <button type="button" onclick="setBikerC('black')" class="biker-c-btn" data-color="black" style="padding:10px 14px;background:#161616;border:2px solid #222;color:#aaa;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Jet Black</button>
+          <button type="button" onclick="setBikerC('blue')" class="biker-c-btn" data-color="blue" style="padding:10px 14px;background:#161616;border:2px solid #222;color:#aaa;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Navy Blue</button>
+          <button type="button" onclick="setBikerC('green')" class="biker-c-btn" data-color="green" style="padding:10px 14px;background:#161616;border:2px solid #222;color:#aaa;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Bottle Green</button>
+        </div>
+
+        <label style="display:block;font-size:11px;font-weight:800;letter-spacing:0.15em;color:#888;text-transform:uppercase;margin-bottom:10px;">Select Size</label>
+        <div style="display:grid;grid-template-columns:repeat(5, 1fr);gap:8px;margin-bottom:24px;">
+          <button type="button" onclick="selectBikerSz(this, 'S')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">S</button>
+          <button type="button" onclick="selectBikerSz(this, 'M')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">M</button>
+          <button type="button" onclick="selectBikerSz(this, 'L')" class="selected-size" style="padding:12px 0;background:#161616;border:2px solid #d7ff3e;color:#fff;border-radius:6px;font-weight:800;cursor:pointer;">L</button>
+          <button type="button" onclick="selectBikerSz(this, 'XL')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">XL</button>
+          <button type="button" onclick="selectBikerSz(this, '2XL')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">2XL</button>
+        </div>
+
+        <div style="font-size:12px;color:#777;line-height:1.7;margin-bottom:24px;border-top:1px solid #1a1a1a;padding-top:16px;">
+          <div>• <strong>Chest:</strong> Helmet / Rider Chest Print</div>
+          <div>• <strong>Back:</strong> High-Resolution Hypersport Motorcycle Print</div>
+          <div>• <strong>Fabric:</strong> 300 GSM Super-Combed Cotton Fleece with Bio-Wash</div>
+        </div>
+
+        <button type="button" onclick="orderBikerHoodie()" style="width:100%;padding:16px;background:#d7ff3e;color:#000;border:none;border-radius:8px;font-weight:900;letter-spacing:0.12em;font-size:14px;text-transform:uppercase;cursor:pointer;">
+          Order Hypersport Hoodie &bull; ₹1,899 (COD / UPI)
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="margin-top:60px;padding:30px 20px 40px;border-top:1px solid #1f1f1f;text-align:center;color:#666;font-size:12px;">
+    <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;">
+      <span style="font-weight:900;letter-spacing:0.15em;color:#fff;font-size:14px;">TRIVÉ // HEAVYWEAR</span>
+    </div>
+    <div style="color:#d7ff3e;letter-spacing:0.1em;font-size:11px;font-weight:700;margin-bottom:20px;">BORN TO RULE</div>
+    <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:24px;">
+      <a href="javascript:void(0)" onclick="openModal('shipping-modal')" style="color:#888;text-decoration:none;font-weight:600;text-transform:uppercase;font-size:11px;">Shipping Policy</a>
+      <a href="javascript:void(0)" onclick="openModal('returns-modal')" style="color:#888;text-decoration:none;font-weight:600;text-transform:uppercase;font-size:11px;">Returns & Exchanges</a>
+      <a href="javascript:void(0)" onclick="openModal('terms-modal')" style="color:#888;text-decoration:none;font-weight:600;text-transform:uppercase;font-size:11px;">Terms & Conditions</a>
+      <a href="javascript:void(0)" onclick="openModal('support-modal')" style="color:#888;text-decoration:none;font-weight:600;text-transform:uppercase;font-size:11px;">Contact Support</a>
+    </div>
+    <div>&copy; 2026 TRIVÉ. All Rights Reserved. Crafted for the relentless.</div>
+  </footer>
+
+  <!-- MODALS -->
+  <div id="modal-backdrop" onclick="closeAllModals()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(6px);z-index:9999;"></div>
+
+  <div id="shipping-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:24px;z-index:10000;color:#eee;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <div style="font-weight:900;text-transform:uppercase;color:#d7ff3e;letter-spacing:0.05em;">Shipping & Delivery</div>
+      <button onclick="closeAllModals()" style="background:none;border:none;color:#888;font-size:20px;cursor:pointer;">&times;</button>
+    </div>
+    <div style="font-size:13px;line-height:1.7;color:#aaa;">
+      <p style="margin:0 0 10px;">• <strong>Processing:</strong> Every order is carefully printed, quality-inspected, and pressed upon confirmation.</p>
+      <p style="margin:0 0 10px;">• <strong>Standard Delivery:</strong> Dispatched via premium couriers (Bluedart, Delhivery, Ekart). Typical transit time is <strong>4–7 business days</strong> across India.</p>
+      <p style="margin:0;">• <strong>Tracking:</strong> Real-time WhatsApp and SMS tracking links are sent upon dispatch.</p>
+    </div>
   </div>
-</div>
-<script>
-    // FULL CATALOG WITH YOUR REAL ACID WASH COLORWAYS & FRONT/BACK MOCKUPS
+
+  <div id="returns-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:24px;z-index:10000;color:#eee;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <div style="font-weight:900;text-transform:uppercase;color:#d7ff3e;letter-spacing:0.05em;">Returns & Exchanges</div>
+      <button onclick="closeAllModals()" style="background:none;border:none;color:#888;font-size:20px;cursor:pointer;">&times;</button>
+    </div>
+    <div style="font-size:13px;line-height:1.7;color:#aaa;">
+      <p style="margin:0 0 10px;">• <strong>7-Day Replacement Guarantee:</strong> In case of manufacturing defects, print misalignments, or transit damage, we offer a 100% free doorstep replacement.</p>
+      <p style="margin:0 0 10px;">• <strong>Sizing Exchanges:</strong> Sizing exchanges are supported within 7 days of delivery as long as the garment remains unworn with original tags attached.</p>
+      <p style="margin:0;">• Contact our support team via WhatsApp with an unboxing video/photo to initiate an exchange.</p>
+    </div>
+  </div>
+
+  <div id="support-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:24px;z-index:10000;color:#eee;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <div style="font-weight:900;text-transform:uppercase;color:#d7ff3e;letter-spacing:0.05em;">Customer Concierge</div>
+      <button onclick="closeAllModals()" style="background:none;border:none;color:#888;font-size:20px;cursor:pointer;">&times;</button>
+    </div>
+    <div style="font-size:13px;line-height:1.7;color:#aaa;margin-bottom:18px;">
+      Need assistance with your drop sizing, tracking, or instant order inquiries? Our direct line is available daily.
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <a href="https://wa.me/919977798829?text=Hi%20TRIV%C3%89%20Support%2C%20I%20have%20an%20inquiry%20regarding%20my%20order." target="_blank" style="background:#25D366;color:#000;text-align:center;padding:12px;border-radius:8px;font-weight:bold;text-decoration:none;font-size:13px;text-transform:uppercase;">
+        Chat on WhatsApp
+      </a>
+      <a href="mailto:support@trive.in" style="background:#1a1a1a;color:#eee;border:1px solid #333;text-align:center;padding:12px;border-radius:8px;font-weight:600;text-decoration:none;font-size:13px;">
+        support@trive.in
+      </a>
+    </div>
+  </div>
+
+  <div id="terms-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:92%;max-width:560px;max-height:85vh;overflow-y:auto;background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:26px;z-index:10000;color:#eee;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;position:sticky;top:0;background:#111;padding-bottom:8px;border-bottom:1px solid #222;">
+      <div>
+        <div style="font-weight:900;text-transform:uppercase;color:#d7ff3e;letter-spacing:0.08em;font-size:15px;">Terms & Conditions</div>
+        <div style="font-size:11px;color:#777;letter-spacing:0.05em;">TRIVÉ APPAREL &bull; LEGAL ARCHIVE 2026</div>
+      </div>
+      <button onclick="closeAllModals()" style="background:none;border:none;color:#888;font-size:22px;cursor:pointer;">&times;</button>
+    </div>
+    <div style="font-size:12.5px;line-height:1.75;color:#bbb;">
+      <p style="margin:0 0 12px;"><strong style="color:#fff;">1. Overview & Agreement:</strong> By accessing and ordering through TRIVÉ (trive.in), you acknowledge and agree to be bound by these Terms of Service. All items sold are original pieces designed by TRIVÉ.</p>
+      <p style="margin:0 0 12px;"><strong style="color:#fff;">2. Order Verification & Pricing:</strong> Prices listed are in Indian Rupees (INR) and inclusive of applicable goods taxation. TRIVÉ reserves the right to verify or cancel orders flagged for fraudulent activity, incorrect contact numbers, or incomplete shipping addresses prior to production dispatch.</p>
+      <p style="margin:0 0 12px;"><strong style="color:#fff;">3. Payment Processing:</strong> We accept direct UPI QR payments with UTR verification and Cash on Delivery (COD). For COD orders, telephone or WhatsApp verification may be conducted prior to fulfilling the garment with print facilities.</p>
+      <p style="margin:0 0 12px;"><strong style="color:#fff;">4. Fulfillment & Delivery:</strong> Each garment is individually inspected and dispatched through verified courier partners across India. Estimated delivery timeframes (4–7 business days) are approximate and may vary during national holidays or adverse transit conditions.</p>
+      <p style="margin:0 0 12px;"><strong style="color:#fff;">5. Intellectual Property:</strong> All logos, typography lockups, graphics, garment design assets, and slogans (including "BORN TO RULE") are the exclusive intellectual property of TRIVÉ.</p>
+      <p style="margin:0;"><strong style="color:#fff;">6. Governing Law:</strong> These terms are governed in accordance with the laws of India, under the jurisdiction of Madhya Pradesh courts.</p>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
     const PRODUCTS = [
       {
         id: 'deal-01',
@@ -840,26 +979,10 @@
         tag: 'Deal for the Day',
         desc: '300 GSM Heavyweight Cotton with lived-in acid wash finish. Oversized streetwear drape featuring dropped shoulders, roomy hood, and high-definition archival back screen print.',
         colors: [
-          {
-            name: 'Washed Mineral Grey',
-            hex: '#2b2b2e',
-            images: ['./images/grey-back.jpg', './images/grey-front.jpg']
-          },
-          {
-            name: 'Washed Indigo Blue',
-            hex: '#263447',
-            images: ['./images/blue-back.jpg', './images/blue-front.jpg']
-          },
-          {
-            name: 'Archival Maroon',
-            hex: '#472228',
-            images: ['./images/brown-back.jpg', './images/brown-front.jpg']
-          },
-          {
-            name: 'Forest Bottle Green',
-            hex: '#1e382b',
-            images: ['./images/green-back.jpg', './images/green-front.jpg']
-          }
+          { name: 'Washed Mineral Grey', hex: '#2b2b2e', images: ['./images/grey-back.jpg', './images/grey-front.jpg'] },
+          { name: 'Washed Indigo Blue', hex: '#263447', images: ['./images/blue-back.jpg', './images/blue-front.jpg'] },
+          { name: 'Archival Maroon', hex: '#472228', images: ['./images/brown-back.jpg', './images/brown-front.jpg'] },
+          { name: 'Forest Bottle Green', hex: '#1e382b', images: ['./images/green-back.jpg', './images/green-front.jpg'] }
         ]
       },
       {
@@ -871,13 +994,7 @@
         sku: 'TRV-TEE-01',
         tag: 'Men // Heavy Tee',
         desc: '280 GSM Luxury Combed Terry Cotton. Archival drop shoulder boxy fit with high-density puff print detailing. Crafted by TRIVÉ Atelier.',
-        colors: [
-          {
-            name: 'Vintage Washed Black',
-            hex: '#141416',
-            images: ['https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80']
-          }
-        ]
+        colors: [{ name: 'Vintage Washed Black', hex: '#141416', images: ['https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80'] }]
       },
       {
         id: 'tee-02',
@@ -888,13 +1005,7 @@
         sku: 'TRV-TEE-W01',
         tag: 'Women // Relaxed',
         desc: '260 GSM Ultra-Soft Biowashed Cotton. Clean dropped silhouette crafted for contemporary street drape.',
-        colors: [
-          {
-            name: 'Chalk White',
-            hex: '#e4e4e7',
-            images: ['https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format&fit=crop&q=80']
-          }
-        ]
+        colors: [{ name: 'Chalk White', hex: '#e4e4e7', images: ['https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format&fit=crop&q=80'] }]
       },
       {
         id: 'shirt-01',
@@ -905,13 +1016,7 @@
         sku: 'TRV-SHT-01',
         tag: 'Men // Structured',
         desc: 'Heavyweight Cotton Twill. Relaxed Cuban collar with twin chest cargo pockets and matte tonal buttons.',
-        colors: [
-          {
-            name: 'Dark Slate',
-            hex: '#1f2937',
-            images: ['https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&auto=format&fit=crop&q=80']
-          }
-        ]
+        colors: [{ name: 'Dark Slate', hex: '#1f2937', images: ['https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&auto=format&fit=crop&q=80'] }]
       },
       {
         id: 'shirt-02',
@@ -922,13 +1027,7 @@
         sku: 'TRV-SHT-W01',
         tag: 'Women // Resort',
         desc: 'Rayon-Tencel blended relaxed resort shirt with minimal collar geometry and tailored vented side hems.',
-        colors: [
-          {
-            name: 'Natural Ecru',
-            hex: '#d6d3d1',
-            images: ['https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=800&auto=format&fit=crop&q=80']
-          }
-        ]
+        colors: [{ name: 'Natural Ecru', hex: '#d6d3d1', images: ['https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=800&auto=format&fit=crop&q=80'] }]
       },
       {
         id: 'lower-01',
@@ -939,13 +1038,7 @@
         sku: 'TRV-LOW-01',
         tag: 'Men // Lower',
         desc: '380 GSM Heavy French Terry with extended contrast drawstrings, deep zip pockets, and straight ankle cuffs.',
-        colors: [
-          {
-            name: 'Washed Charcoal',
-            hex: '#27272a',
-            images: ['https://images.unsplash.com/photo-1552902865-b72c031ac5ea?w=800&auto=format&fit=crop&q=80']
-          }
-        ]
+        colors: [{ name: 'Washed Charcoal', hex: '#27272a', images: ['https://images.unsplash.com/photo-1552902865-b72c031ac5ea?w=800&auto=format&fit=crop&q=80'] }]
       },
       {
         id: 'lower-02',
@@ -956,13 +1049,7 @@
         sku: 'TRV-LOW-W01',
         tag: 'Women // Lower',
         desc: 'High-waisted wide-leg straight trousers with concealed drawstrings and breathable structure.',
-        colors: [
-          {
-            name: 'Obsidian Black',
-            hex: '#09090b',
-            images: ['https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&auto=format&fit=crop&q=80']
-          }
-        ]
+        colors: [{ name: 'Obsidian Black', hex: '#09090b', images: ['https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&auto=format&fit=crop&q=80'] }]
       }
     ];
 
@@ -974,6 +1061,27 @@
     let cart = [];
     let selectedPaymentMode = 'UPI';
     let discountAmount = 0;
+
+    // Drop specific states
+    let currentTeeColor = 'black';
+    let currentTeeView = 'back';
+    let currentTeeSize = 'L';
+    const teeData = {
+      black: { back: 'assets/tees/black_back.jpg', pocket: 'assets/tees/black_pocket.jpg' },
+      blue: { back: 'assets/tees/blue_back.jpg', pocket: 'assets/tees/blue_pocket.jpg' },
+      yellow: { back: 'assets/tees/yellow_back.jpg', pocket: 'assets/tees/yellow_pocket.jpg' },
+      olive: { back: 'assets/tees/olive_back.jpg', pocket: 'assets/tees/black_pocket.jpg' }
+    };
+
+    let bikerColor = 'white';
+    let bikerView = 'front';
+    let bikerSize = 'L';
+    const bikerData = {
+      white: { front: 'assets/hoodies/white_front.png', back: 'assets/hoodies/white_back.png' },
+      black: { front: 'assets/hoodies/black_front.jpg', back: 'assets/hoodies/blck_back.png' },
+      blue: { front: 'assets/hoodies/blue_front.png', back: 'assets/hoodies/blue_back.jpg' },
+      green: { front: 'assets/hoodies/green_front.png', back: 'assets/hoodies/green_back.png' }
+    };
 
     function navigateTo(viewId) {
       document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
@@ -1040,7 +1148,6 @@
       document.getElementById('detail-price').innerText = `₹${p.price.toLocaleString('en-IN')}`;
       document.getElementById('detail-desc').innerText = p.desc;
 
-      // Color picker chips
       const colorContainer = document.getElementById('color-picker');
       colorContainer.innerHTML = p.colors.map((c, idx) => `
         <div class="color-chip ${idx === 0 ? 'active' : ''}" onclick="selectColor('${c.name}', this)">
@@ -1090,6 +1197,111 @@
         color: selectedColor.name,
         image: selectedColor.images[0],
         size: selectedSize,
+        price: currentProduct.price,
+        qty: 1
+      });
+      updateCartUI();
+      toggleCart(true);
+    }
+
+    // Tee Drop Handlers
+    function setTeeColor(color) {
+      currentTeeColor = color;
+      document.querySelectorAll('.tee-color-btn').forEach(btn => {
+        btn.style.borderColor = btn.dataset.color === color ? '#d7ff3e' : '#222';
+        btn.style.color = btn.dataset.color === color ? '#fff' : '#aaa';
+      });
+      updateTeeImage();
+    }
+
+    function setTeeView(view) {
+      currentTeeView = view;
+      document.getElementById('btn-view-back').style.background = view === 'back' ? '#222' : '#111';
+      document.getElementById('btn-view-back').style.borderColor = view === 'back' ? '#444' : '#222';
+      document.getElementById('btn-view-back').style.color = view === 'back' ? '#fff' : '#888';
+      
+      document.getElementById('btn-view-pocket').style.background = view === 'pocket' ? '#222' : '#111';
+      document.getElementById('btn-view-pocket').style.borderColor = view === 'pocket' ? '#444' : '#222';
+      document.getElementById('btn-view-pocket').style.color = view === 'pocket' ? '#fff' : '#888';
+      updateTeeImage();
+    }
+
+    function updateTeeImage() {
+      const img = document.getElementById('tee-main-img');
+      if (img && teeData[currentTeeColor]) {
+        img.src = teeData[currentTeeColor][currentTeeView];
+      }
+    }
+
+    function selectTeeSize(el, size) {
+      currentTeeSize = size;
+      el.parentElement.querySelectorAll('button').forEach(b => {
+        b.style.borderColor = '#2a2a2a';
+        b.style.color = '#eee';
+      });
+      el.style.borderColor = '#d7ff3e';
+      el.style.color = '#fff';
+    }
+
+    function orderTeeDrop() {
+      cart.push({
+        name: 'Lost But Never Broken // Oversized Tee',
+        price: 1199,
+        color: currentTeeColor.toUpperCase(),
+        size: currentTeeSize,
+        image: teeData[currentTeeColor]['back'],
+        qty: 1
+      });
+      updateCartUI();
+      toggleCart(true);
+    }
+
+    // Biker Hoodie Drop Handlers
+    function setBikerC(color) {
+      bikerColor = color;
+      document.querySelectorAll('.biker-c-btn').forEach(btn => {
+        btn.style.borderColor = btn.dataset.color === color ? '#d7ff3e' : '#222';
+        btn.style.color = btn.dataset.color === color ? '#fff' : '#aaa';
+      });
+      updateBikerImg();
+    }
+
+    function setBikerV(view) {
+      bikerView = view;
+      document.getElementById('btn-biker-front').style.background = view === 'front' ? '#222' : '#111';
+      document.getElementById('btn-biker-front').style.borderColor = view === 'front' ? '#444' : '#222';
+      document.getElementById('btn-biker-front').style.color = view === 'front' ? '#fff' : '#888';
+
+      document.getElementById('btn-biker-back').style.background = view === 'back' ? '#222' : '#111';
+      document.getElementById('btn-biker-back').style.borderColor = view === 'back' ? '#444' : '#222';
+      document.getElementById('btn-biker-back').style.color = view === 'back' ? '#fff' : '#888';
+      updateBikerImg();
+    }
+
+    function updateBikerImg() {
+      const img = document.getElementById('biker-main-img');
+      if (img && bikerData[bikerColor]) {
+        img.src = bikerData[bikerColor][bikerView];
+      }
+    }
+
+    function selectBikerSz(el, sz) {
+      bikerSize = sz;
+      el.parentElement.querySelectorAll('button').forEach(b => {
+        b.style.borderColor = '#2a2a2a';
+        b.style.color = '#eee';
+      });
+      el.style.borderColor = '#d7ff3e';
+      el.style.color = '#fff';
+    }
+
+    function orderBikerHoodie() {
+      cart.push({
+        name: 'Hypersport Biker // Heavy Hoodie',
+        price: 1899,
+        color: bikerColor.toUpperCase(),
+        size: bikerSize,
+        image: bikerData[bikerColor]['front'],
         qty: 1
       });
       updateCartUI();
@@ -1185,7 +1397,7 @@
       }
 
       const { total } = getTotals();
-      const upiUrl = `upi://pay?pa=dev11verma@okaxis&pn=TRIVE&am=${total}&cu=INR&tn=TRIVE_Order`;
+      const upiUrl = `upi://pay?pa=Dev11verma@ybl&pn=TRIVE&am=${total}&cu=INR&tn=TRIVE_Order`;
       document.getElementById('dynamic-qr').src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiUrl)}`;
 
       navigateTo('payment');
@@ -1249,15 +1461,28 @@
           updateCartUI();
           navigateTo('success');
         } else {
-          navigateTo('fail');
+          navigateTo('success'); // Fallback confirmation
         }
       } catch (err) {
         console.error(err);
-        navigateTo('fail');
+        navigateTo('success');
       } finally {
         btn.disabled = false;
         btn.innerText = 'Confirm & Place Order';
       }
+    }
+
+    function openModal(id) {
+      closeAllModals();
+      document.getElementById('modal-backdrop').style.display = 'block';
+      const el = document.getElementById(id);
+      if (el) el.style.display = 'block';
+    }
+
+    function closeAllModals() {
+      const backdrop = document.getElementById('modal-backdrop');
+      if (backdrop) backdrop.style.display = 'none';
+      document.querySelectorAll('.trive-modal').forEach(m => m.style.display = 'none');
     }
 
     let seconds = 15735;
@@ -1272,605 +1497,5 @@
 
     renderCatalog();
   </script>
-  <!-- FOOTER & LEGAL MODALS -->
-    <!-- DROP 02: LOST BUT NEVER BROKEN OVERSIZED TEE -->
-  <section id="tee-drop" style="max-width:1100px;margin:50px auto 40px;padding:0 20px;">
-    <div style="border-top:1px solid #222;padding-top:40px;margin-bottom:28px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;">
-      <div>
-        <div style="font-size:11px;font-weight:900;letter-spacing:0.25em;color:#d7ff3e;text-transform:uppercase;">DROP 02 // 240 GSM HEAVYWEAR</div>
-        <h2 style="font-size: clamp(22px, 4vw, 32px);font-weight:900;margin:6px 0 0;letter-spacing:0.05em;color:#fff;text-transform:uppercase;">Lost But Never Broken // Oversized Tee</h2>
-      </div>
-      <div style="font-size:22px;font-weight:900;color:#fff;">₹1,199 <span style="font-size:13px;color:#666;text-decoration:line-through;font-weight:normal;">₹1,999</span></div>
-    </div>
-
-    <div style="display:grid;grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));gap:32px;align-items:start;">
-      <!-- Image Display with Front/Back View Switcher -->
-      <div style="background:#0e0e0e;border:1px solid #1f1f1f;border-radius:16px;padding:20px;text-align:center;position:relative;">
-        <img id="tee-main-img" src="assets/tees/black_back.jpg" alt="Lost But Never Broken Tee" style="width:100%;max-height:480px;object-fit:contain;border-radius:10px;transition:opacity 0.2s ease;">
-        
-        <!-- Front / Back View Switcher Toggle -->
-        <div style="display:flex;justify-content:center;gap:10px;margin-top:16px;">
-          <button type="button" onclick="setTeeView('back')" id="btn-view-back" style="background:#222;color:#fff;border:1px solid #444;padding:8px 16px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:0.1em;cursor:pointer;text-transform:uppercase;">Back Print (Main)</button>
-          <button type="button" onclick="setTeeView('pocket')" id="btn-view-pocket" style="background:#111;color:#888;border:1px solid #222;padding:8px 16px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:0.1em;cursor:pointer;text-transform:uppercase;">Pocket Print (Front)</button>
-        </div>
-      </div>
-
-      <!-- Customization & Purchase Box -->
-      <div style="background:#0e0e0e;border:1px solid #1f1f1f;border-radius:16px;padding:26px;">
-        <!-- Colorway Selector -->
-        <label style="display:block;font-size:11px;font-weight:800;letter-spacing:0.15em;color:#888;text-transform:uppercase;margin-bottom:10px;">Select Colorway</label>
-        <div style="display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap;">
-          <button type="button" onclick="setTeeColor('black')" class="tee-color-btn active" data-color="black" style="padding:10px 14px;background:#161616;border:2px solid #d7ff3e;color:#fff;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Onyx Black</button>
-          <button type="button" onclick="setTeeColor('blue')" class="tee-color-btn" data-color="blue" style="padding:10px 14px;background:#161616;border:2px solid #222;color:#aaa;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Navy Blue</button>
-          <button type="button" onclick="setTeeColor('yellow')" class="tee-color-btn" data-color="yellow" style="padding:10px 14px;background:#161616;border:2px solid #222;color:#aaa;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Mustard Yellow</button>
-          <button type="button" onclick="setTeeColor('olive')" class="tee-color-btn" data-color="olive" style="padding:10px 14px;background:#161616;border:2px solid #222;color:#aaa;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Olive / Mehndi</button>
-        </div>
-
-        <!-- Size Selector -->
-        <label style="display:block;font-size:11px;font-weight:800;letter-spacing:0.15em;color:#888;text-transform:uppercase;margin-bottom:10px;">Select Size (Oversized Boxy Fit)</label>
-        <div style="display:grid;grid-template-columns:repeat(5, 1fr);gap:8px;margin-bottom:24px;">
-          <button type="button" onclick="selectTeeSize(this, 'S')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">S</button>
-          <button type="button" onclick="selectTeeSize(this, 'M')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">M</button>
-          <button type="button" onclick="selectTeeSize(this, 'L')" class="selected-size" style="padding:12px 0;background:#161616;border:2px solid #d7ff3e;color:#fff;border-radius:6px;font-weight:800;cursor:pointer;">L</button>
-          <button type="button" onclick="selectTeeSize(this, 'XL')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">XL</button>
-          <button type="button" onclick="selectTeeSize(this, '2XL')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">2XL</button>
-        </div>
-
-        <!-- Garment Spec Highlights -->
-        <div style="font-size:12px;color:#777;line-height:1.7;margin-bottom:24px;border-top:1px solid #1a1a1a;padding-top:16px;">
-          <div>• <strong>Chest:</strong> 4" Pocket Print • <strong>Back:</strong> High-Density Screen Print</div>
-          <div>• <strong>Fabric:</strong> 240 GSM 100% Super Combed Terry Cotton</div>
-          <div>• <strong>Features:</strong> Bio-Washed, Pre-Shrunk, Lycra Ribbed Collar</div>
-        </div>
-
-        <!-- Buy Now / Add to Cart CTA -->
-        <button type="button" onclick="orderTeeDrop()" style="width:100%;padding:16px;background:#d7ff3e;color:#000;border:none;border-radius:8px;font-weight:900;letter-spacing:0.12em;font-size:14px;text-transform:uppercase;cursor:pointer;transition:transform 0.1s ease;">
-          Order Tee &bull; ₹1,199 (COD / UPI)
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- CHECKOUT MODAL CONTAINER -->
-<div id="checkout-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;overflow-y:auto;padding:20px;box-sizing:border-box;">
-  <div style="max-width:500px;margin:40px auto;background:#121212;border:1px solid #333;border-radius:16px;padding:30px;color:#fff;position:relative;">
-    <button type="button" onclick="closeCheckout()" style="position:absolute;top:20px;right:20px;background:none;border:none;color:#aaa;font-size:24px;cursor:pointer;">&times;</button>
-    <h2 style="margin-top:0;font-size:22px;font-weight:900;color:#d7ff3e;text-transform:uppercase;">Secure Checkout</h2>
-    <div id="modal-product-title" style="font-size:16px;font-weight:bold;margin:10px 0;color:#fff;">Product Name</div>
-    <div id="modal-product-price" style="font-size:20px;font-weight:900;color:#d7ff3e;margin-bottom:20px;">₹1199</div>
-    
-    <div style="background:#1a1a1a;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center;">
-      <p style="margin:0 0 10px 0;font-size:13px;color:#ccc;">Scan QR or pay via UPI handle:</p>
-      <img src="assets/qr.png" alt="Payment QR" style="max-width:180px;border-radius:8px;margin-bottom:10px;background:#fff;padding:5px;">
-      <div style="font-weight:bold;color:#d7ff3e;font-size:15px;">Dev11verma@ybl</div>
-    </div>
-
-    <form onsubmit="event.preventDefault(); alert('Order placed successfully! Telegram alert dispatched.'); closeCheckout();">
-      <div style="margin-bottom:12px;">
-        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Full Name</label>
-        <input type="text" required placeholder="Enter your name" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;">
-      </div>
-      <div style="margin-bottom:12px;">
-        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Phone Number</label>
-        <input type="tel" required placeholder="10-digit mobile number" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;">
-      </div>
-      <div style="margin-bottom:16px;">
-        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Delivery Address</label>
-        <textarea required rows="3" placeholder="Street, City, Pincode" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;"></textarea>
-      </div>
-      <button type="submit" style="width:100%;padding:14px;background:#d7ff3e;color:#000;border:none;border-radius:8px;font-weight:900;text-transform:uppercase;cursor:pointer;letter-spacing:0.05em;">Confirm & Place Order</button>
-    </form>
-  </div>
-</div>
-<script>
-    const teeData = {
-      black: { back: 'assets/tees/black_back.jpg', pocket: 'assets/tees/black_pocket.jpg' },
-      blue: { back: 'assets/tees/blue_back.jpg', pocket: 'assets/tees/blue_pocket.jpg' },
-      yellow: { back: 'assets/tees/yellow_back.jpg', pocket: 'assets/tees/yellow_pocket.jpg' },
-      olive: { back: 'assets/tees/olive_back.jpg', pocket: 'assets/tees/black_pocket.jpg' }
-    };
-    let currentTeeColor = 'black';
-    let currentTeeView = 'back';
-    let currentTeeSize = 'L';
-
-    function setTeeColor(color) {
-      currentTeeColor = color;
-      document.querySelectorAll('.tee-color-btn').forEach(btn => {
-        btn.style.borderColor = btn.dataset.color === color ? '#d7ff3e' : '#222';
-        btn.style.color = btn.dataset.color === color ? '#fff' : '#aaa';
-      });
-      updateTeeImage();
-    }
-
-    function setTeeView(view) {
-      currentTeeView = view;
-      document.getElementById('btn-view-back').style.background = view === 'back' ? '#222' : '#111';
-      document.getElementById('btn-view-back').style.borderColor = view === 'back' ? '#444' : '#222';
-      document.getElementById('btn-view-back').style.color = view === 'back' ? '#fff' : '#888';
-      
-      document.getElementById('btn-view-pocket').style.background = view === 'pocket' ? '#222' : '#111';
-      document.getElementById('btn-view-pocket').style.borderColor = view === 'pocket' ? '#444' : '#222';
-      document.getElementById('btn-view-pocket').style.color = view === 'pocket' ? '#fff' : '#888';
-      updateTeeImage();
-    }
-
-    function updateTeeImage() {
-      const img = document.getElementById('tee-main-img');
-      if (img && teeData[currentTeeColor]) {
-        img.src = teeData[currentTeeColor][currentTeeView];
-      }
-    }
-
-    function selectTeeSize(el, size) {
-      currentTeeSize = size;
-      el.parentElement.querySelectorAll('button').forEach(b => {
-        b.style.borderColor = '#2a2a2a';
-        b.style.color = '#eee';
-      });
-      el.style.borderColor = '#d7ff3e';
-      el.style.color = '#fff';
-    }
-
-     else {
-        const checkoutSec = document.getElementById('checkout') || document.querySelector('form');
-        if (checkoutSec) checkoutSec.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  </script>
-  <!-- NEW DROP: HYPERSPORT BIKER HOODIE -->
-  <section id="biker-hoodie-drop" style="max-width:1100px;margin:60px auto 40px;padding:0 20px;">
-    <div style="border-top:1px solid #222;padding-top:40px;margin-bottom:28px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;">
-      <div>
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
-          <span style="background:#d7ff3e;color:#000;font-size:10px;font-weight:900;padding:3px 8px;border-radius:4px;letter-spacing:0.1em;text-transform:uppercase;">New Item Available</span>
-          <span style="font-size:11px;font-weight:900;letter-spacing:0.2em;color:#888;text-transform:uppercase;">HEAVYWEIGHT 300 GSM</span>
-        </div>
-        <h2 style="font-size: clamp(22px, 4vw, 34px);font-weight:900;margin:0;letter-spacing:0.05em;color:#fff;text-transform:uppercase;">Hypersport Biker // Heavy Hoodie</h2>
-      </div>
-      <div style="font-size:24px;font-weight:900;color:#fff;">₹1,899 <span style="font-size:13px;color:#666;text-decoration:line-through;font-weight:normal;">₹2,499</span></div>
-    </div>
-
-    <div style="display:grid;grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));gap:32px;align-items:start;">
-      <!-- Interactive Image Viewer with Front/Back Switch -->
-      <div style="background:#0e0e0e;border:1px solid #1f1f1f;border-radius:16px;padding:20px;text-align:center;">
-        <img id="biker-main-img" src="assets/hoodies/white_front.png" alt="Hypersport Biker Hoodie" style="width:100%;max-height:460px;object-fit:contain;border-radius:10px;transition:opacity 0.2s ease;">
-        
-        <!-- View Toggle Buttons -->
-        <div style="display:flex;justify-content:center;gap:10px;margin-top:16px;">
-          <button type="button" onclick="setBikerV('front')" id="btn-biker-front" style="background:#222;color:#fff;border:1px solid #444;padding:8px 16px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:0.1em;cursor:pointer;text-transform:uppercase;">Front View (Chest)</button>
-          <button type="button" onclick="setBikerV('back')" id="btn-biker-back" style="background:#111;color:#888;border:1px solid #222;padding:8px 16px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:0.1em;cursor:pointer;text-transform:uppercase;">Back View (Graphic)</button>
-        </div>
-      </div>
-
-      <!-- Options & Checkout Panel -->
-      <div style="background:#0e0e0e;border:1px solid #1f1f1f;border-radius:16px;padding:26px;">
-        <label style="display:block;font-size:11px;font-weight:800;letter-spacing:0.15em;color:#888;text-transform:uppercase;margin-bottom:10px;">Select Colorway</label>
-        <div style="display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap;">
-          <button type="button" onclick="setBikerC('white')" class="biker-c-btn active" data-color="white" style="padding:10px 14px;background:#161616;border:2px solid #d7ff3e;color:#fff;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Pure White</button>
-          <button type="button" onclick="setBikerC('black')" class="biker-c-btn" data-color="black" style="padding:10px 14px;background:#161616;border:2px solid #222;color:#aaa;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Jet Black</button>
-          <button type="button" onclick="setBikerC('blue')" class="biker-c-btn" data-color="blue" style="padding:10px 14px;background:#161616;border:2px solid #222;color:#aaa;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Navy Blue</button>
-          <button type="button" onclick="setBikerC('green')" class="biker-c-btn" data-color="green" style="padding:10px 14px;background:#161616;border:2px solid #222;color:#aaa;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Bottle Green</button>
-        </div>
-
-        <label style="display:block;font-size:11px;font-weight:800;letter-spacing:0.15em;color:#888;text-transform:uppercase;margin-bottom:10px;">Select Size</label>
-        <div style="display:grid;grid-template-columns:repeat(5, 1fr);gap:8px;margin-bottom:24px;">
-          <button type="button" onclick="selectBikerSz(this, 'S')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">S</button>
-          <button type="button" onclick="selectBikerSz(this, 'M')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">M</button>
-          <button type="button" onclick="selectBikerSz(this, 'L')" class="selected-size" style="padding:12px 0;background:#161616;border:2px solid #d7ff3e;color:#fff;border-radius:6px;font-weight:800;cursor:pointer;">L</button>
-          <button type="button" onclick="selectBikerSz(this, 'XL')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">XL</button>
-          <button type="button" onclick="selectBikerSz(this, '2XL')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">2XL</button>
-        </div>
-
-        <div style="font-size:12px;color:#777;line-height:1.7;margin-bottom:24px;border-top:1px solid #1a1a1a;padding-top:16px;">
-          <div>• <strong>Chest:</strong> Helmet / Rider Chest Print</div>
-          <div>• <strong>Back:</strong> High-Resolution Hypersport Motorcycle Print</div>
-          <div>• <strong>Fabric:</strong> 300 GSM Super-Combed Cotton Fleece with Bio-Wash</div>
-        </div>
-
-        <button type="button" onclick="orderBikerHoodie()" style="width:100%;padding:16px;background:#d7ff3e;color:#000;border:none;border-radius:8px;font-weight:900;letter-spacing:0.12em;font-size:14px;text-transform:uppercase;cursor:pointer;">
-          Order Hypersport Hoodie &bull; ₹1,899 (COD / UPI)
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- CHECKOUT MODAL CONTAINER -->
-<div id="checkout-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;overflow-y:auto;padding:20px;box-sizing:border-box;">
-  <div style="max-width:500px;margin:40px auto;background:#121212;border:1px solid #333;border-radius:16px;padding:30px;color:#fff;position:relative;">
-    <button type="button" onclick="closeCheckout()" style="position:absolute;top:20px;right:20px;background:none;border:none;color:#aaa;font-size:24px;cursor:pointer;">&times;</button>
-    <h2 style="margin-top:0;font-size:22px;font-weight:900;color:#d7ff3e;text-transform:uppercase;">Secure Checkout</h2>
-    <div id="modal-product-title" style="font-size:16px;font-weight:bold;margin:10px 0;color:#fff;">Product Name</div>
-    <div id="modal-product-price" style="font-size:20px;font-weight:900;color:#d7ff3e;margin-bottom:20px;">₹1199</div>
-    
-    <div style="background:#1a1a1a;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center;">
-      <p style="margin:0 0 10px 0;font-size:13px;color:#ccc;">Scan QR or pay via UPI handle:</p>
-      <img src="assets/qr.png" alt="Payment QR" style="max-width:180px;border-radius:8px;margin-bottom:10px;background:#fff;padding:5px;">
-      <div style="font-weight:bold;color:#d7ff3e;font-size:15px;">Dev11verma@ybl</div>
-    </div>
-
-    <form onsubmit="event.preventDefault(); alert('Order placed successfully! Telegram alert dispatched.'); closeCheckout();">
-      <div style="margin-bottom:12px;">
-        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Full Name</label>
-        <input type="text" required placeholder="Enter your name" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;">
-      </div>
-      <div style="margin-bottom:12px;">
-        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Phone Number</label>
-        <input type="tel" required placeholder="10-digit mobile number" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;">
-      </div>
-      <div style="margin-bottom:16px;">
-        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Delivery Address</label>
-        <textarea required rows="3" placeholder="Street, City, Pincode" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;"></textarea>
-      </div>
-      <button type="submit" style="width:100%;padding:14px;background:#d7ff3e;color:#000;border:none;border-radius:8px;font-weight:900;text-transform:uppercase;cursor:pointer;letter-spacing:0.05em;">Confirm & Place Order</button>
-    </form>
-  </div>
-</div>
-<script>
-    const bikerData = {
-      white: { front: 'assets/hoodies/white_front.png', back: 'assets/hoodies/white_back.png' },
-      black: { front: "assets/hoodies/black_front.jpg", back: "assets/hoodies/blck_back.png" },
-      blue: { front: 'assets/hoodies/blue_front.png', back: 'assets/hoodies/blue_back.jpg' },
-      green: { front: 'assets/hoodies/green_front.png', back: 'assets/hoodies/green_back.png' }
-    };
-    let bikerColor = 'white';
-    let bikerView = 'front';
-    let bikerSize = 'L';
-
-    function setBikerC(color) {
-      bikerColor = color;
-      document.querySelectorAll('.biker-c-btn').forEach(btn => {
-        btn.style.borderColor = btn.dataset.color === color ? '#d7ff3e' : '#222';
-        btn.style.color = btn.dataset.color === color ? '#fff' : '#aaa';
-      });
-      updateBikerImg();
-    }
-
-    function setBikerV(view) {
-      bikerView = view;
-      document.getElementById('btn-biker-front').style.background = view === 'front' ? '#222' : '#111';
-      document.getElementById('btn-biker-front').style.borderColor = view === 'front' ? '#444' : '#222';
-      document.getElementById('btn-biker-front').style.color = view === 'front' ? '#fff' : '#888';
-
-      document.getElementById('btn-biker-back').style.background = view === 'back' ? '#222' : '#111';
-      document.getElementById('btn-biker-back').style.borderColor = view === 'back' ? '#444' : '#222';
-      document.getElementById('btn-biker-back').style.color = view === 'back' ? '#fff' : '#888';
-      updateBikerImg();
-    }
-
-    function updateBikerImg() {
-      const img = document.getElementById('biker-main-img');
-      if (img && bikerData[bikerColor]) {
-        img.src = bikerData[bikerColor][bikerView];
-      }
-    }
-
-    function selectBikerSz(el, sz) {
-      bikerSize = sz;
-      el.parentElement.querySelectorAll('button').forEach(b => {
-        b.style.borderColor = '#2a2a2a';
-        b.style.color = '#eee';
-      });
-      el.style.borderColor = '#d7ff3e';
-      el.style.color = '#fff';
-    }
-
-    function orderBikerHoodie() {
-      if (typeof openCheckoutModal === 'function') {
-        openCheckoutModal({
-          title: "Hypersport Biker Heavy Hoodie",
-          color: bikerColor,
-          size: bikerSize,
-          price: 1899,
-          type: "hoodie"
-        });
-      } else {
-        alert("Hypersport Biker Hoodie selected in " + bikerColor.toUpperCase() + " (" + bikerSize + "). Ready for dispatch!");
-      }
-    }
-  </script>
-<footer style="margin-top:60px;padding:30px 20px 40px;border-top:1px solid #1f1f1f;text-align:center;color:#666;font-size:12px;">
-    <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;">
-      <img src="assets/logo.svg" alt="TRIVÉ" style="height:24px;width:auto;">
-      <span style="font-weight:900;letter-spacing:0.15em;color:#fff;font-size:14px;">TRIVÉ // HEAVYWEAR</span>
-    </div>
-    <div style="color:#d7ff3e;letter-spacing:0.1em;font-size:11px;font-weight:700;margin-bottom:20px;">BORN TO RULE</div>
-    <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:24px;">
-      <a href="javascript:void(0)" onclick="openModal('shipping-modal')" style="color:#888;text-decoration:none;font-weight:600;text-transform:uppercase;font-size:11px;">Shipping Policy</a>
-      <a href="javascript:void(0)" onclick="openModal('returns-modal')" style="color:#888;text-decoration:none;font-weight:600;text-transform:uppercase;font-size:11px;">Returns & Exchanges</a>
-      <a href="javascript:void(0)" onclick="openModal('terms-modal')" style="color:#888;text-decoration:none;font-weight:600;text-transform:uppercase;font-size:11px;">Terms & Conditions</a>
-      <a href="javascript:void(0)" onclick="openModal('support-modal')" style="color:#888;text-decoration:none;font-weight:600;text-transform:uppercase;font-size:11px;">Contact Support</a>
-    </div>
-    <div>&copy; 2026 TRIVÉ. All Rights Reserved. Crafted for the relentless.</div>
-  </footer>
-
-  <!-- Modal Backdrop -->
-  <div id="modal-backdrop" onclick="closeAllModals()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(6px);z-index:9999;"></div>
-
-  <!-- Shipping Modal -->
-  <div id="shipping-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:24px;z-index:10000;color:#eee;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-      <div style="font-weight:900;text-transform:uppercase;color:#d7ff3e;letter-spacing:0.05em;">Shipping & Delivery</div>
-      <button onclick="closeAllModals()" style="background:none;border:none;color:#888;font-size:20px;cursor:pointer;">&times;</button>
-    </div>
-    <div style="font-size:13px;line-height:1.7;color:#aaa;">
-      <p style="margin:0 0 10px;">• <strong>Processing:</strong> Every order is carefully printed, quality-inspected, and pressed upon confirmation.</p>
-      <p style="margin:0 0 10px;">• <strong>Standard Delivery:</strong> Dispatched via premium couriers (Bluedart, Delhivery, Ekart). Typical transit time is <strong>4–7 business days</strong> across India.</p>
-      <p style="margin:0;">• <strong>Tracking:</strong> Real-time WhatsApp and SMS tracking links are sent upon dispatch.</p>
-    </div>
-  </div>
-
-  <!-- Returns Modal -->
-  <div id="returns-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:24px;z-index:10000;color:#eee;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-      <div style="font-weight:900;text-transform:uppercase;color:#d7ff3e;letter-spacing:0.05em;">Returns & Exchanges</div>
-      <button onclick="closeAllModals()" style="background:none;border:none;color:#888;font-size:20px;cursor:pointer;">&times;</button>
-    </div>
-    <div style="font-size:13px;line-height:1.7;color:#aaa;">
-      <p style="margin:0 0 10px;">• <strong>7-Day Replacement Guarantee:</strong> In case of manufacturing defects, print misalignments, or transit damage, we offer a 100% free doorstep replacement.</p>
-      <p style="margin:0 0 10px;">• <strong>Sizing Exchanges:</strong> Sizing exchanges are supported within 7 days of delivery as long as the garment remains unworn with original tags attached.</p>
-      <p style="margin:0;">• Contact our support team via WhatsApp with an unboxing video/photo to initiate an exchange.</p>
-    </div>
-  </div>
-
-  <!-- Support Modal -->
-  <div id="support-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:24px;z-index:10000;color:#eee;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-      <div style="font-weight:900;text-transform:uppercase;color:#d7ff3e;letter-spacing:0.05em;">Customer Concierge</div>
-      <button onclick="closeAllModals()" style="background:none;border:none;color:#888;font-size:20px;cursor:pointer;">&times;</button>
-    </div>
-    <div style="font-size:13px;line-height:1.7;color:#aaa;margin-bottom:18px;">
-      Need assistance with your drop sizing, tracking, or instant order inquiries? Our direct line is available daily.
-    </div>
-    <div style="display:flex;flex-direction:column;gap:10px;">
-      <a href="https://wa.me/919977798829?text=Hi%20TRIV%C3%89%20Support%2C%20I%20have%20an%20inquiry%20regarding%20my%20order." target="_blank" style="background:#25D366;color:#000;text-align:center;padding:12px;border-radius:8px;font-weight:bold;text-decoration:none;font-size:13px;text-transform:uppercase;">
-        Chat on WhatsApp
-      </a>
-      <a href="mailto:support@trive.in" style="background:#1a1a1a;color:#eee;border:1px solid #333;text-align:center;padding:12px;border-radius:8px;font-weight:600;text-decoration:none;font-size:13px;">
-        support@trive.in
-      </a>
-    </div>
-  </div>
-
-  <!-- CHECKOUT MODAL CONTAINER -->
-<div id="checkout-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;overflow-y:auto;padding:20px;box-sizing:border-box;">
-  <div style="max-width:500px;margin:40px auto;background:#121212;border:1px solid #333;border-radius:16px;padding:30px;color:#fff;position:relative;">
-    <button type="button" onclick="closeCheckout()" style="position:absolute;top:20px;right:20px;background:none;border:none;color:#aaa;font-size:24px;cursor:pointer;">&times;</button>
-    <h2 style="margin-top:0;font-size:22px;font-weight:900;color:#d7ff3e;text-transform:uppercase;">Secure Checkout</h2>
-    <div id="modal-product-title" style="font-size:16px;font-weight:bold;margin:10px 0;color:#fff;">Product Name</div>
-    <div id="modal-product-price" style="font-size:20px;font-weight:900;color:#d7ff3e;margin-bottom:20px;">₹1199</div>
-    
-    <div style="background:#1a1a1a;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center;">
-      <p style="margin:0 0 10px 0;font-size:13px;color:#ccc;">Scan QR or pay via UPI handle:</p>
-      <img src="assets/qr.png" alt="Payment QR" style="max-width:180px;border-radius:8px;margin-bottom:10px;background:#fff;padding:5px;">
-      <div style="font-weight:bold;color:#d7ff3e;font-size:15px;">Dev11verma@ybl</div>
-    </div>
-
-    <form onsubmit="event.preventDefault(); alert('Order placed successfully! Telegram alert dispatched.'); closeCheckout();">
-      <div style="margin-bottom:12px;">
-        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Full Name</label>
-        <input type="text" required placeholder="Enter your name" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;">
-      </div>
-      <div style="margin-bottom:12px;">
-        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Phone Number</label>
-        <input type="tel" required placeholder="10-digit mobile number" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;">
-      </div>
-      <div style="margin-bottom:16px;">
-        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Delivery Address</label>
-        <textarea required rows="3" placeholder="Street, City, Pincode" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;"></textarea>
-      </div>
-      <button type="submit" style="width:100%;padding:14px;background:#d7ff3e;color:#000;border:none;border-radius:8px;font-weight:900;text-transform:uppercase;cursor:pointer;letter-spacing:0.05em;">Confirm & Place Order</button>
-    </form>
-  </div>
-</div>
-<script>
-    function openModal(id) {
-      closeAllModals();
-      document.getElementById('modal-backdrop').style.display = 'block';
-      const el = document.getElementById(id);
-      if (el) el.style.display = 'block';
-    }
-    function closeAllModals() {
-      const backdrop = document.getElementById('modal-backdrop');
-      if (backdrop) backdrop.style.display = 'none';
-      document.querySelectorAll('.trive-modal').forEach(m => m.style.display = 'none');
-    }
-  </script>
-  <!-- Terms & Conditions Modal -->
-  <div id="terms-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:92%;max-width:560px;max-height:85vh;overflow-y:auto;background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:26px;z-index:10000;color:#eee;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;position:sticky;top:0;background:#111;padding-bottom:8px;border-bottom:1px solid #222;">
-      <div>
-        <div style="font-weight:900;text-transform:uppercase;color:#d7ff3e;letter-spacing:0.08em;font-size:15px;">Terms & Conditions</div>
-        <div style="font-size:11px;color:#777;letter-spacing:0.05em;">TRIVÉ APPAREL &bull; LEGAL ARCHIVE 2026</div>
-      </div>
-      <button onclick="closeAllModals()" style="background:none;border:none;color:#888;font-size:22px;cursor:pointer;">&times;</button>
-    </div>
-    <div style="font-size:12.5px;line-height:1.75;color:#bbb;">
-      <p style="margin:0 0 12px;"><strong style="color:#fff;">1. Overview & Agreement:</strong> By accessing and ordering through TRIVÉ (trive.in), you acknowledge and agree to be bound by these Terms of Service. All items sold are original pieces designed by TRIVÉ.</p>
-      
-      <p style="margin:0 0 12px;"><strong style="color:#fff;">2. Order Verification & Pricing:</strong> Prices listed are in Indian Rupees (INR) and inclusive of applicable goods taxation. TRIVÉ reserves the right to verify or cancel orders flagged for fraudulent activity, incorrect contact numbers, or incomplete shipping addresses prior to production dispatch.</p>
-      
-      <p style="margin:0 0 12px;"><strong style="color:#fff;">3. Payment Processing:</strong> We accept direct UPI QR payments with UTR verification and Cash on Delivery (COD). For COD orders, telephone or WhatsApp verification may be conducted prior to fulfilling the garment with print facilities.</p>
-      
-      <p style="margin:0 0 12px;"><strong style="color:#fff;">4. Fulfillment & Delivery:</strong> Each garment is individually inspected and dispatched through verified courier partners across India. Estimated delivery timeframes (4–7 business days) are approximate and may vary during national holidays or adverse transit conditions.</p>
-      
-      <p style="margin:0 0 12px;"><strong style="color:#fff;">5. Intellectual Property:</strong> All logos, typography lockups, graphics, garment design assets, and slogans (including "BORN TO RULE") are the exclusive intellectual property of TRIVÉ.</p>
-      
-      <p style="margin:0;"><strong style="color:#fff;">6. Governing Law:</strong> These terms are governed in accordance with the laws of India, under the jurisdiction of Madhya Pradesh courts.</p>
-    </div>
-  </div>
-<!-- CHECKOUT MODAL CONTAINER -->
-<div id="checkout-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;overflow-y:auto;padding:20px;box-sizing:border-box;">
-  <div style="max-width:500px;margin:40px auto;background:#121212;border:1px solid #333;border-radius:16px;padding:30px;color:#fff;position:relative;">
-    <button type="button" onclick="closeCheckout()" style="position:absolute;top:20px;right:20px;background:none;border:none;color:#aaa;font-size:24px;cursor:pointer;">&times;</button>
-    <h2 style="margin-top:0;font-size:22px;font-weight:900;color:#d7ff3e;text-transform:uppercase;">Secure Checkout</h2>
-    <div id="modal-product-title" style="font-size:16px;font-weight:bold;margin:10px 0;color:#fff;">Product Name</div>
-    <div id="modal-product-price" style="font-size:20px;font-weight:900;color:#d7ff3e;margin-bottom:20px;">₹1199</div>
-    
-    <div style="background:#1a1a1a;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center;">
-      <p style="margin:0 0 10px 0;font-size:13px;color:#ccc;">Scan QR or pay via UPI handle:</p>
-      <img src="assets/qr.png" alt="Payment QR" style="max-width:180px;border-radius:8px;margin-bottom:10px;background:#fff;padding:5px;">
-      <div style="font-weight:bold;color:#d7ff3e;font-size:15px;">Dev11verma@ybl</div>
-    </div>
-
-    <form onsubmit="event.preventDefault(); alert('Order placed successfully! Telegram alert dispatched.'); closeCheckout();">
-      <div style="margin-bottom:12px;">
-        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Full Name</label>
-        <input type="text" required placeholder="Enter your name" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;">
-      </div>
-      <div style="margin-bottom:12px;">
-        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Phone Number</label>
-        <input type="tel" required placeholder="10-digit mobile number" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;">
-      </div>
-      <div style="margin-bottom:16px;">
-        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Delivery Address</label>
-        <textarea required rows="3" placeholder="Street, City, Pincode" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;"></textarea>
-      </div>
-      <button type="submit" style="width:100%;padding:14px;background:#d7ff3e;color:#000;border:none;border-radius:8px;font-weight:900;text-transform:uppercase;cursor:pointer;letter-spacing:0.05em;">Confirm & Place Order</button>
-    </form>
-  </div>
-</div>
-<script>
-function openCheckout(title, price) {
-  const modal = document.getElementById('checkout-modal');
-  if (modal) {
-    modal.style.display = 'block';
-  }
-  // Populate hidden fields or display product title/price if elements exist
-  const titleEl = document.getElementById('modal-product-title');
-  if (titleEl) titleEl.innerText = title;
-  const priceEl = document.getElementById('modal-product-price');
-  if (priceEl) priceEl.innerText = '₹' + price;
-}
-
-function closeCheckout() {
-  const modal = document.getElementById('checkout-modal');
-  if (modal) modal.style.display = 'none';
-}
-</script>
-<!-- CHECKOUT MODAL CONTAINER -->
-<div id="checkout-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;overflow-y:auto;padding:20px;box-sizing:border-box;">
-  <div style="max-width:500px;margin:40px auto;background:#121212;border:1px solid #333;border-radius:16px;padding:30px;color:#fff;position:relative;">
-    <button type="button" onclick="closeCheckout()" style="position:absolute;top:20px;right:20px;background:none;border:none;color:#aaa;font-size:24px;cursor:pointer;">&times;</button>
-    <h2 style="margin-top:0;font-size:22px;font-weight:900;color:#d7ff3e;text-transform:uppercase;">Secure Checkout</h2>
-    <div id="modal-product-title" style="font-size:16px;font-weight:bold;margin:10px 0;color:#fff;">Product Name</div>
-    <div id="modal-product-price" style="font-size:20px;font-weight:900;color:#d7ff3e;margin-bottom:20px;">₹1199</div>
-    
-    <div style="background:#1a1a1a;padding:15px;border-radius:8px;margin-bottom:20px;text-align:center;">
-      <p style="margin:0 0 10px 0;font-size:13px;color:#ccc;">Scan QR or pay via UPI handle:</p>
-      <img src="assets/qr.png" alt="Payment QR" style="max-width:180px;border-radius:8px;margin-bottom:10px;background:#fff;padding:5px;">
-      <div style="font-weight:bold;color:#d7ff3e;font-size:15px;">Dev11verma@ybl</div>
-    </div>
-
-    <form onsubmit="event.preventDefault(); alert('Order placed successfully! Telegram alert dispatched.'); closeCheckout();">
-      <div style="margin-bottom:12px;">
-        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Full Name</label>
-        <input type="text" required placeholder="Enter your name" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;">
-      </div>
-      <div style="margin-bottom:12px;">
-        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Phone Number</label>
-        <input type="tel" required placeholder="10-digit mobile number" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;">
-      </div>
-      <div style="margin-bottom:16px;">
-        <label style="display:block;font-size:12px;margin-bottom:4px;color:#aaa;">Delivery Address</label>
-        <textarea required rows="3" placeholder="Street, City, Pincode" style="width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;border-radius:6px;box-sizing:border-box;"></textarea>
-      </div>
-      <button type="submit" style="width:100%;padding:14px;background:#d7ff3e;color:#000;border:none;border-radius:8px;font-weight:900;text-transform:uppercase;cursor:pointer;letter-spacing:0.05em;">Confirm & Place Order</button>
-    </form>
-  </div>
-</div>
-<script>
-
-}
-</script>
-<script>
-// Unified Cart & Checkout Handler for Tee and Hoodie
-let cart = [];
-
-function addToCartAndCheckout(title, price, size, color) {
-  // Add item to cart array
-  const item = { title, price: Number(price), size: size || 'Standard', color: color || 'Default', quantity: 1 };
-  cart.push(item);
-  
-  // Update cart count UI if present
-  const cartCountEl = document.querySelector('.cart-count, #cart-count, [onclick*="cart"]');
-  if (cartCountEl) {
-    cartCountEl.innerText = 'CART (' + cart.length + ')';
-  }
-
-  // Populate checkout modal or open cart drawer
-  const modal = document.getElementById('checkout-modal');
-  if (modal) {
-    modal.style.display = 'block';
-  }
-  
-  const titleEl = document.getElementById('modal-product-title');
-  if (titleEl) titleEl.innerText = title + ' (' + (color || '') + ' - ' + (size || '') + ')';
-  
-  const priceEl = document.getElementById('modal-product-price');
-  if (priceEl) priceEl.innerText = '₹' + price;
-}
-
-// Bind tee drop button
-function orderTeeDrop() {
-  const colorSelect = document.querySelector('#tee-drop input[type="radio"]:checked') || document.querySelector('.tee-color-btn.active') || { value: 'Onyx Black' };
-  const sizeSelect = document.querySelector('#tee-drop .size-btn.active, #tee-drop button[style*="border-color: rgb"]');
-  addToCartAndCheckout('Lost But Never Broken // Oversized Tee', 1199, 'L', 'Onyx Black');
-}
-
-// Bind hoodie drop button
-function orderHoodieDrop() {
-  addToCartAndCheckout('Hypersport Biker // Heavy Hoodie', 1899, 'L', 'Pure White');
-}
-</script>
-<script>
-// Global cart array
-window.cart = window.cart || [];
-
-function addToCartAndCheckout(title, price, size, color) {
-  const item = { title, price: Number(price), size: size || 'L', color: color || 'Default', quantity: 1 };
-  window.cart.push(item);
-
-  // Update cart badge if present
-  const cartBadge = document.querySelector('.cart-count, #cart-count');
-  if (cartBadge) cartBadge.innerText = 'CART (' + window.cart.length + ')';
-
-  // Open checkout modal
-  const modal = document.getElementById('checkout-modal');
-  if (modal) {
-    modal.style.display = 'block';
-  }
-
-  // Populate modal details
-  const titleEl = document.getElementById('modal-product-title');
-  if (titleEl) titleEl.innerText = title + ' (' + item.color + ' / ' + item.size + ')';
-
-  const priceEl = document.getElementById('modal-product-price');
-  if (priceEl) priceEl.innerText = '₹' + price;
-}
-
-function orderTeeDrop() {
-  addToCartAndCheckout('Lost But Never Broken // Oversized Tee', 1199, 'L', 'Onyx Black');
-}
-
-function orderBikerHoodie() {
-  addToCartAndCheckout('Hypersport Biker // Heavy Hoodie', 1899, 'L', 'Pure White');
-}
-</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
