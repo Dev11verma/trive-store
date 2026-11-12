@@ -1,1 +1,671 @@
-ï»¿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="assets/Logo.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRIVÉ // ARCHIVAL HEAVYWEAR</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #09090b;
+      --card-bg: #121215;
+      --border: #232328;
+      --text: #f4f4f5;
+      --muted: #a1a1aa;
+      --accent: #d7ff3e;
+      --accent-hover: #bde628;
+      --danger: #ef4444;
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'Space Grotesk', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 5%;
+      background: rgba(9, 9, 11, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-links { display: flex; gap: 20px; }
+    .nav-link {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .nav-link.active, .nav-link:hover { color: #fff; }
+    .cart-btn {
+      position: relative;
+      background: none;
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 8px 18px;
+      border-radius: 99px;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .cart-btn:hover { border-color: var(--text); }
+    .cart-badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      background: var(--accent);
+      color: #000;
+      font-size: 11px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+    }
+
+    .view { display: none; padding: 32px 5%; min-height: 85vh; }
+    .view.active { display: block; }
+
+    .deal-banner {
+      background: linear-gradient(135deg, #18181b 0%, #121215 100%);
+      border: 1px solid #3f3f46;
+      border-radius: 12px;
+      padding: 24px 32px;
+      margin-bottom: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .deal-banner:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .deal-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #000;
+      font-size: 11px;
+      font-weight: 900;
+      padding: 4px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .deal-content h2 {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 4vw, 26px);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 6px;
+    }
+    .deal-price-row { display: flex; align-items: center; gap: 12px; font-size: 18px; font-weight: 700; }
+    .deal-price-strike { color: var(--muted); text-decoration: line-through; font-size: 14px; }
+    .deal-timer {
+      background: #09090b;
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+    }
+
+    .filter-section { margin-bottom: 32px; display: flex; flex-direction: column; gap: 16px; }
+    .gender-tabs { display: flex; gap: 12px; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+    .gender-tab {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 6px 14px;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .gender-tab.active { color: #fff; background: #1e1e24; }
+    .category-pills { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; }
+    .pill {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 8px 18px;
+      border-radius: 99px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .pill.active, .pill:hover { border-color: #fff; color: #fff; background: #1c1c21; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 28px; }
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.25s, border-color 0.25s;
+      position: relative;
+    }
+    .product-card:hover { transform: translateY(-4px); border-color: #3f3f46; }
+    .product-card img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; background: #18181b; }
+    .card-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(9, 9, 11, 0.85);
+      border: 1px solid var(--border);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .product-card .info { padding: 16px; display: flex; justify-content: space-between; align-items: baseline; }
+    .product-card h3 { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; }
+    .product-card .price { font-size: 14px; color: var(--muted); font-weight: 500; }
+
+    .breadcrumb {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 24px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .breadcrumb:hover { color: #fff; }
+    .product-view-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; max-width: 1100px; margin: 0 auto; }
+    @media (max-width: 768px) {
+      .product-view-layout { grid-template-columns: 1fr; gap: 28px; }
+      .deal-banner { flex-direction: column; align-items: flex-start; }
+      .nav-links { display: none; }
+    }
+    .gallery { display: flex; flex-direction: column; gap: 16px; }
+    .main-img-box {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: #18181b;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .main-img-box img { width: 100%; height: 100%; object-fit: cover; }
+    .thumbs { display: flex; gap: 12px; }
+    .thumb {
+      width: 68px;
+      height: 85px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      overflow: hidden;
+      opacity: 0.6;
+      transition: all 0.2s;
+    }
+    .thumb.active, .thumb:hover { opacity: 1; border-color: #fff; }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+    .product-meta h2 {
+      font-family: var(--font-display);
+      font-size: 30px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 8px;
+    }
+    .product-meta .meta-price { font-size: 22px; font-weight: 700; color: var(--accent); margin-bottom: 20px; }
+    .product-desc {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+    }
+    .option-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .color-picker { display: flex; gap: 12px; margin-bottom: 24px; }
+    .color-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .color-chip.active, .color-chip:hover { border-color: #fff; background: #1c1c21; }
+    .color-dot { width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); }
+
+    .size-picker { display: flex; gap: 10px; margin-bottom: 28px; }
+    .size-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 6px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: #fff;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .size-btn.active, .size-btn:hover { background: #fff; color: #000; border-color: #fff; }
+
+    .btn-primary {
+      width: 100%;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      padding: 16px;
+      border-radius: 6px;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--accent-hover); }
+
+    .checkout-container {
+      max-width: 580px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+    }
+    .checkout-container h2 { font-family: var(--font-display); font-size: 24px; font-weight: 900; text-transform: uppercase; margin-bottom: 24px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .form-group input {
+      width: 100%;
+      background: #09090b;
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 12px 14px;
+      border-radius: 6px;
+      font-family: var(--font-body);
+      font-size: 14px;
+    }
+    .form-group input:focus { outline: none; border-color: #fff; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    .coupon-box {
+      display: flex;
+      gap: 10px;
+      margin: 20px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+    }
+    .coupon-box input {
+      flex: 1;
+      background: #09090b;
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-family: var(--font-body);
+      text-transform: uppercase;
+    }
+    .coupon-box button {
+      background: #27272a;
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 0 16px;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .order-summary-box {
+      background: #09090b;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+    }
+    .summary-row { display: flex; justify-content: space-between; margin-bottom: 8px; color: var(--muted); }
+    .summary-row.total {
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+      margin-top: 10px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .payment-options { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
+    .pay-card {
+      background: #09090b;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.2s;
+    }
+    .pay-card.selected { border-color: var(--accent); background: #121204; }
+    .pay-card input[type="radio"] { accent-color: var(--accent); }
+    .pay-card-info h4 { font-size: 14px; font-weight: 700; }
+    .pay-card-info p { font-size: 12px; color: var(--muted); }
+
+    .upi-display {
+      background: #09090b;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .upi-qr-box {
+      background: #fff;
+      padding: 12px;
+      display: inline-block;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+    .upi-qr-box img { width: 140px; height: 140px; display: block; }
+    .upi-id-badge {
+      display: inline-block;
+      background: #18181b;
+      padding: 6px 14px;
+      border-radius: 99px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .status-card {
+      max-width: 540px;
+      margin: 40px auto;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px 32px;
+      text-align: center;
+    }
+    .status-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin: 0 auto 20px;
+    }
+    .status-icon.success { background: rgba(34, 197, 94, 0.1); color: #22c55e; border: 1px solid #22c55e; }
+    .status-icon.fail { background: rgba(239, 68, 68, 0.1); color: var(--danger); border: 1px solid var(--danger); }
+    .status-card h2 { font-family: var(--font-display); font-size: 28px; font-weight: 900; margin-bottom: 8px; }
+    .status-card p { color: var(--muted); font-size: 14px; line-height: 1.5; margin-bottom: 24px; }
+    .track-box {
+      background: #09090b;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: left;
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+    .track-step { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .track-step:last-child { margin-bottom: 0; }
+    .track-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; }
+
+    .cart-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .cart-drawer-overlay.open { opacity: 1; pointer-events: auto; }
+    .cart-drawer {
+      position: fixed;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 400px;
+      background: var(--card-bg);
+      border-left: 1px solid var(--border);
+      z-index: 201;
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+    }
+    .cart-drawer.open { transform: translateX(0); }
+    .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .cart-header h3 { font-family: var(--font-display); font-size: 18px; font-weight: 900; }
+    .close-btn { background: none; border: none; color: #fff; font-size: 20px; cursor: pointer; }
+    .cart-items { flex: 1; overflow-y: auto; }
+    .cart-item { display: flex; gap: 14px; border-bottom: 1px solid var(--border); padding: 14px 0; }
+    .cart-item img { width: 64px; height: 80px; object-fit: cover; border-radius: 4px; }
+    .cart-item-details { flex: 1; }
+    .cart-item-details h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .cart-item-details p { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="#" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+      <span style="font-weight:900;letter-spacing:0.18em;font-size:18px;color:#fff;">TRIVÉ</span>
+    </a>
+    <div class="nav-links">
+      <button class="nav-link active" onclick="setGenderFilter('all', this)">All</button>
+      <button class="nav-link" onclick="setGenderFilter('men', this)">Men</button>
+      <button class="nav-link" onclick="setGenderFilter('women', this)">Women</button>
+    </div>
+    <button class="cart-btn" onclick="toggleCart(true)">
+      CART (<span id="cart-count">0</span>)
+    </button>
+  </header>
+
+  <section style="background:radial-gradient(circle at center, #161616 0%, #080808 100%);border-top:1px solid #222;border-bottom:1px solid #222;padding:26px 20px;text-align:center;">
+    <div style="max-width:900px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:8px;">
+      <div style="font-size:11px;font-weight:900;letter-spacing:0.35em;color:#888;text-transform:uppercase;">TRIVÉ HEAVYWEAR // DROP 01</div>
+      <div style="font-size: clamp(24px, 5vw, 42px);font-weight:900;letter-spacing:0.22em;color:#ffffff;text-transform:uppercase;margin:4px 0;">
+        BORN TO <span style="color:#d7ff3e;text-shadow: 0 0 20px rgba(215,255,62,0.4);">RULE</span>
+      </div>
+      <div style="font-size:12px;color:#666;letter-spacing:0.15em;text-transform:uppercase;">ARCHIVAL STREET SILHOUETTES &bull; 100% COMBED COTTON</div>
+    </div>
+  </section>
+
+  <!-- NEW DROP: BORN TO REIGN // LEGACY EDITION TEE -->
+  <section id="born-to-reign-drop" style="max-width:1100px;margin:60px auto 40px;padding:0 20px;">
+    <div style="border-top:1px solid #222;padding-top:40px;margin-bottom:28px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+          <span style="background:#d7ff3e;color:#000;font-size:10px;font-weight:900;padding:3px 8px;border-radius:4px;letter-spacing:0.1em;text-transform:uppercase;">Legacy Edition</span>
+          <span style="font-size:11px;font-weight:900;letter-spacing:0.2em;color:#888;text-transform:uppercase;">240 GSM HEAVYWEAR</span>
+        </div>
+        <h2 style="font-size: clamp(22px, 4vw, 34px);font-weight:900;margin:0;letter-spacing:0.05em;color:#fff;text-transform:uppercase;">Born to Reign // Legacy Edition Tee</h2>
+      </div>
+      <div style="font-size:24px;font-weight:900;color:#fff;">?1,299 <span style="font-size:13px;color:#666;text-decoration:line-through;font-weight:normal;">?1,999</span></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));gap:32px;align-items:start;">
+      <div style="background:#0e0e0e;border:1px solid #1f1f1f;border-radius:16px;padding:20px;text-align:center;">
+        <img id="reign-main-img" src="public/images/products/born-to-reign/Front_1_c_2.jpg" alt="Born to Reign Tee" style="width:100%;max-height:460px;object-fit:contain;border-radius:10px;transition:opacity 0.2s ease;">
+        <div style="display:flex;justify-content:center;gap:10px;margin-top:16px;">
+          <button type="button" onclick="setReignV('front')" id="btn-reign-front" style="background:#222;color:#fff;border:1px solid #444;padding:8px 16px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:0.1em;cursor:pointer;text-transform:uppercase;">Front View</button>
+          <button type="button" onclick="setReignV('back')" id="btn-reign-back" style="background:#111;color:#888;border:1px solid #222;padding:8px 16px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:0.1em;cursor:pointer;text-transform:uppercase;">Back View (Graphic)</button>
+        </div>
+      </div>
+
+      <div style="background:#0e0e0e;border:1px solid #1f1f1f;border-radius:16px;padding:26px;">
+        <label style="display:block;font-size:11px;font-weight:800;letter-spacing:0.15em;color:#888;text-transform:uppercase;margin-bottom:10px;">Select Colorway</label>
+        <div style="display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap;">
+          <button type="button" onclick="setReignC('black')" class="reign-c-btn active" data-color="black" style="padding:10px 14px;background:#161616;border:2px solid #d7ff3e;color:#fff;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Charcoal / Washed Black</button>
+          <button type="button" onclick="setReignC('olive')" class="reign-c-btn" data-color="olive" style="padding:10px 14px;background:#161616;border:2px solid #222;color:#aaa;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Vintage Olive</button>
+          <button type="button" onclick="setReignC('burgundy')" class="reign-c-btn" data-color="burgundy" style="padding:10px 14px;background:#161616;border:2px solid #222;color:#aaa;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Deep Burgundy</button>
+          <button type="button" onclick="setReignC('navy')" class="reign-c-btn" data-color="navy" style="padding:10px 14px;background:#161616;border:2px solid #222;color:#aaa;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Washed Indigo</button>
+          <button type="button" onclick="setReignC('slate')" class="reign-c-btn" data-color="slate" style="padding:10px 14px;background:#161616;border:2px solid #222;color:#aaa;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Dark Slate</button>
+        </div>
+
+        <label style="display:block;font-size:11px;font-weight:800;letter-spacing:0.15em;color:#888;text-transform:uppercase;margin-bottom:10px;">Select Size</label>
+        <div style="display:grid;grid-template-columns:repeat(5, 1fr);gap:8px;margin-bottom:24px;">
+          <button type="button" onclick="selectReignSz(this, 'S')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">S</button>
+          <button type="button" onclick="selectReignSz(this, 'M')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">M</button>
+          <button type="button" onclick="selectReignSz(this, 'L')" class="selected-reign-sz" style="padding:12px 0;background:#161616;border:2px solid #d7ff3e;color:#fff;border-radius:6px;font-weight:800;cursor:pointer;">L</button>
+          <button type="button" onclick="selectReignSz(this, 'XL')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">XL</button>
+          <button type="button" onclick="selectReignSz(this, '2XL')" style="padding:12px 0;background:#161616;border:1px solid #2a2a2a;color:#eee;border-radius:6px;font-weight:800;cursor:pointer;">2XL</button>
+        </div>
+
+        <div style="font-size:12px;color:#777;line-height:1.7;margin-bottom:24px;border-top:1px solid #1a1a1a;padding-top:16px;">
+          <div>• <strong>Graphic:</strong> Iconic Skeleton King 'Born to Reign' Back Print</div>
+          <div>• <strong>Fabric:</strong> 240 GSM Super Combed Cotton with Bio-Wash</div>
+        </div>
+
+        <button type="button" onclick="orderReignTee()" style="width:100%;padding:16px;background:#d7ff3e;color:#000;border:none;border-radius:8px;font-weight:900;letter-spacing:0.12em;font-size:14px;text-transform:uppercase;cursor:pointer;">
+          Order Born to Reign Tee &bull; ?1,299 (COD / UPI)
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <footer style="margin-top:60px;padding:30px 20px 40px;border-top:1px solid #1f1f1f;text-align:center;color:#666;font-size:12px;">
+    <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;">
+      <span style="font-weight:900;letter-spacing:0.15em;color:#fff;font-size:14px;">TRIVÉ // HEAVYWEAR</span>
+    </div>
+    <div style="color:#d7ff3e;letter-spacing:0.1em;font-size:11px;font-weight:700;margin-bottom:20px;">BORN TO RULE</div>
+    <div>&copy; 2026 TRIVÉ. All Rights Reserved.</div>
+  </footer>
+
+  <script>
+    let cart = [];
+    let reignColor = 'black';
+    let reignView = 'front';
+    let reignSize = 'L';
+    const reignData = {
+      black: { front: 'public/images/products/born-to-reign/Front_1_c_2.jpg', back: 'public/images/products/born-to-reign/Back_2_c_2.jpg' },
+      olive: { front: 'public/images/products/born-to-reign/Front_1_c_8.jpg', back: 'public/images/products/born-to-reign/Back_2_c_8.jpg' },
+      burgundy: { front: 'public/images/products/born-to-reign/Front_1_c_25.jpg', back: 'public/images/products/born-to-reign/Back_2_c_25.jpg' },
+      navy: { front: 'public/images/products/born-to-reign/Front_1_c_3.jpg', back: 'public/images/products/born-to-reign/Back_2_c_3.jpg' },
+      slate: { front: 'public/images/products/born-to-reign/Front_1_c_41.jpg', back: 'public/images/products/born-to-reign/Back_2_c_41.jpg' }
+    };
+
+    function setReignC(color) {
+      reignColor = color;
+      document.querySelectorAll('.reign-c-btn').forEach(btn => {
+        btn.style.borderColor = btn.dataset.color === color ? '#d7ff3e' : '#222';
+        btn.style.color = btn.dataset.color === color ? '#fff' : '#aaa';
+      });
+      updateReignImg();
+    }
+
+    function setReignV(view) {
+      reignView = view;
+      document.getElementById('btn-reign-front').style.background = view === 'front' ? '#222' : '#111';
+      document.getElementById('btn-reign-front').style.borderColor = view === 'front' ? '#444' : '#222';
+      document.getElementById('btn-reign-front').style.color = view === 'front' ? '#fff' : '#888';
+
+      document.getElementById('btn-reign-back').style.background = view === 'back' ? '#222' : '#111';
+      document.getElementById('btn-reign-back').style.borderColor = view === 'back' ? '#444' : '#222';
+      document.getElementById('btn-reign-back').style.color = view === 'back' ? '#fff' : '#888';
+      updateReignImg();
+    }
+
+    function updateReignImg() {
+      const img = document.getElementById('reign-main-img');
+      if (img && reignData[reignColor]) {
+        img.src = reignData[reignColor][reignView];
+      }
+    }
+
+    function selectReignSz(el, sz) {
+      reignSize = sz;
+      el.parentElement.querySelectorAll('button').forEach(b => {
+        b.style.borderColor = '#2a2a2a';
+        b.style.color = '#eee';
+      });
+      el.style.borderColor = '#d7ff3e';
+      el.style.color = '#fff';
+    }
+
+    function orderReignTee() {
+      cart.push({
+        name: 'Born to Reign // Legacy Edition Tee',
+        price: 1299,
+        color: reignColor.toUpperCase(),
+        size: reignSize,
+        image: reignData[reignColor]['front'],
+        qty: 1
+      });
+      alert('Born to Reign Tee added to cart!');
+    }
+
+    function toggleCart(show) {
+      // Cart drawer stub
+    }
+  </script>
+</body>
+</html>
