@@ -16,7 +16,33 @@ app.get('/', (req, res) => {
   res.status(200).json({ status: 'online', service: 'TRIVÉ Atelier API Backend' });
 });
 
-// Order Processing & WhatsApp Workflow Endpoint
+// Unified Order Endpoint for Web & Telegram Bot
+app.post('/api/orders', (req, res) => {
+  try {
+    const orderData = req.body;
+    
+    // Validate basic payload fields
+    if (!orderData || !orderData.item || !orderData.phone) {
+      return res.status(400).json({ success: false, message: 'Invalid order payload.' });
+    }
+
+    const trackingId = `TV-TG-${Math.floor(1000 + Math.random() * 9000)}`;
+    
+    console.log(`[UNIFIED STORE ORDER RECEIVED] ID: ${trackingId} | Source: ${orderData.source || 'Telegram'} | User: ${orderData.user} | Item: ${orderData.item} (${orderData.size}) | Phone: ${orderData.phone}`);
+
+    return res.status(200).json({
+      success: true,
+      orderId: trackingId,
+      message: 'Telegram order successfully synced to Render backend.'
+    });
+
+  } catch (error) {
+    console.error('[UNIFIED ORDER ERROR]:', error);
+    return res.status(500).json({ success: false, message: 'Server error processing order.' });
+  }
+});
+
+// Original Web Order & WhatsApp Workflow Endpoint
 app.post('/api/order', (req, res) => {
   try {
     const { customer, product, color, size, quantity, utr, address } = req.body;
@@ -38,12 +64,12 @@ app.post('/api/order', (req, res) => {
       `*Color/Size:* ${color} / Size ${size} (Qty: ${quantity})\n` +
       `*Total Amount:* ₹${product.price}\n` +
       `*Payment Ref (UTR):* ${utr}\n` +
-      `*Shipping Address:* ${address.street}, ${address.city} - ${address.pincode} (${address.state})`;
+      `*Shipping Address:* ${address.street}, ${address.city} ${address.pincode} (${address.state})`;
 
     const encodedMessage = encodeURIComponent(waText);
     const whatsappLink = `https://wa.me/919977798829?text=${encodedMessage}`;
 
-    console.log(`[ORDER SUCCESS] Logged order #${trackingId} for ${customer.name}`);
+    console.log(`[ORDER SUCCESS] Logged web order #${trackingId} for ${customer.name}`);
 
     return res.status(200).json({
       success: true,
