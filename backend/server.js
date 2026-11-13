@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import fs from 'fs';
 import path from 'path';
+import nodemailer from 'nodemailer';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -10,6 +11,29 @@ const DB_FILE = path.resolve('orders.json');
 
 const QIKINK_CLIENT_ID = process.env.QIKINK_CLIENT_ID || '979710787663166';
 const QIKINK_CLIENT_SECRET = process.env.QIKINK_CLIENT_SECRET || 'c4900bae62de3396bc32a9d367293592996dd80fabe80f26a258d3bcf8455d39';
+
+// Configure your Nodemailer transporter for Gmail notifications
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'abhayvermasoni604@gmail.com',
+    pass: process.env.EMAIL_APP_PASSWORD || '' // Set this in your Render environment variables (Gmail App Password)
+  }
+});
+
+async function sendOrderEmail(orderData, fullOrderText) {
+  try {
+    await transporter.sendMail({
+      from: '"TRIVÉ Storefront" <abhayvermasoni604@gmail.com>',
+      to: 'abhayvermasoni604@gmail.com',
+      subject: `🚨 New Order Confirmed [${orderData.orderId}] - ₹${orderData.total}`,
+      text: `A new order has been placed on TRIVÉ!\n\nOrder ID: ${orderData.orderId}\nCustomer: ${orderData.customer} (${orderData.phone})\nAddress: ${orderData.address}\nPayment Status: ${orderData.paymentStatus}\nQikink Status: ${orderData.qikinkStatus}\n\n${fullOrderText}`
+    });
+    console.log(`Email notification sent successfully for ${orderData.orderId}`);
+  } catch (err) {
+    console.error('Failed to send email notification:', err.message);
+  }
+}
 
 app.use(cors());
 app.use(express.json());
@@ -246,10 +270,12 @@ app.post('/api/order', async (req, res) => {
   const variantKey = `${colorPrefix}-${garmentSize}`;
   const resolvedStoreSku = QIKINK_STORE_SKUS[variantKey] || QIKINK_STORE_SKUS['Bk-L'];
 
+  const productName = product?.name || "You Can't Please Everyone // Acid Wash Hoodie";
+
   const waMsg = encodeURIComponent(
     `*TRIVÉ // ORDER CONFIRMED [${orderId}]*\n\n` +
     `Hey ${customer.name},\n` +
-    `Your order for *${product?.name || "You Can't Please Everyone // Acid Wash Hoodie"}* has been received:\n\n` +
+    `Your order for *${productName}* has been received:\n\n` +
     `• *Colorway:* ${garmentColor}\n` +
     `• *Size:* ${garmentSize}\n` +
     `• *Quantity:* ${qty}\n\n` +
@@ -319,10 +345,12 @@ app.post('/api/order', async (req, res) => {
     qikinkLiveStatus = 'Dispatch Timeout (Manual Payload Available)';
   }
 
+  const fullFormattedAddress = `${address.street}, ${address.city}, ${address.state || 'Madhya Pradesh'} ${address.pincode}`;
+
   const newOrder = {
     orderId,
     brand: 'TRIVÉ',
-    product: product?.name || "You Can't Please Everyone // Acid Wash Hoodie",
+    product: productName,
     color: garmentColor,
     size: garmentSize,
     quantity: qty,
@@ -330,7 +358,7 @@ app.post('/api/order', async (req, res) => {
     paymentStatus: isCod ? 'Pending (COD)' : `Prepaid (UTR: ${utr})`,
     customer: customer.name,
     phone: customer.phone,
-    address: `${address.street}, ${address.city}, ${address.state || 'Madhya Pradesh'} - ${address.pincode}`,
+    address: fullFormattedAddress,
     whatsappLink,
     qikinkPayload,
     qikinkStatus: qikinkLiveStatus,
@@ -340,6 +368,10 @@ app.post('/api/order', async (req, res) => {
 
   orders.push(newOrder);
   saveOrders(orders);
+
+  // Trigger silent email notification to abhayvermasoni604@gmail.com
+  const emailTextSummary = `Product: ${productName}\nColor: ${garmentColor}\nSize: ${garmentSize}\nQuantity: ${qty}\nPayment: ${newOrder.paymentStatus}`;
+  sendOrderEmail(newOrder, emailTextSummary);
 
   res.json({
     success: true,
@@ -356,4 +388,3 @@ app.get('/api/orders', (req, res) => res.json({ brand: 'TRIVÉ', total: orders.l
 app.listen(PORT, () => {
   console.log(`TRIVÉ Engine running on http://localhost:${PORT}`);
 });
-

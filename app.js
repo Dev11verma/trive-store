@@ -565,7 +565,8 @@ async function dispatchOrder() {
   };
 
   try {
-    const res = await fetch('https://trive-api.onrender.com/api/order', {
+    // Send order data to your local backend server where Nodemailer is configured
+    const res = await fetch('http://localhost:8080/api/order', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
@@ -583,7 +584,7 @@ async function dispatchOrder() {
       navigateTo('success');
     }
   } catch (err) {
-    console.error(err);
+    console.error("Order submission error:", err);
     navigateTo('success');
   } finally {
     btn.disabled = false;
