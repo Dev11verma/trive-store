@@ -7,7 +7,7 @@ const bot = new Telegraf('9234651103:AAGBmV8-rDbKecvvFXB8Pr0pRX-qFMxSESI');
 const userSessions = {};
 
 // Backend API URL (Change to your Render URL once deployed, e.g., 'https://trive-store.onrender.com/api/orders')
-const BACKEND_API_URL = 'http://localhost:8080/api/orders';
+const BACKEND_API_URL = 'https://trive-api.onrender.com/api/orders';
 
 // Full TRIVÉ Active Catalog & Coming Soon Drops
 const PRODUCTS = [

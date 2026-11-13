@@ -551,32 +551,51 @@ async function dispatchOrder() {
     return;
   }
 
-  btn.disabled = true;
-  btn.innerText = 'VERIFYING TRANSACTION...';
-
-  const payload = {
-    customer: { name: document.getElementById('cust-name').value.trim(), phone: document.getElementById('cust-phone').value.trim() },
-    product: { name: cart.map(i => i.name).join(', '), price: getTotals().total },
-    color: cart.map(i => i.color).join(', '),
-    size: cart.map(i => i.size).join(', '),
-    quantity: cart.length,
-    utr: utr,
-    address: { street: document.getElementById('cust-street').value.trim(), city: document.getElementById('cust-city').value.trim(), state: 'Madhya Pradesh', pincode: document.getElementById('cust-pin').value.trim() || '462001' }
-  };
-
   try {
-    // Send order data to your local backend server where Nodemailer is configured
-    const res = await fetch('http://localhost:8080/api/order', {
+    btn.disabled = true;
+    btn.innerText = 'VERIFYING TRANSACTION...';
+
+    const payload = {
+      customer: { 
+        name: document.getElementById('cust-name').value.trim(), 
+        phone: document.getElementById('cust-phone').value.trim() 
+      },
+      product: { 
+        name: cart.map(i => i.name).join(', '), 
+        price: getTotals().total 
+      },
+      color: cart.map(i => i.color).join(', '),
+      size: cart.map(i => i.size).join(', '),
+      quantity: cart.length,
+      utr: utr,
+      address: { 
+        street: document.getElementById('cust-street').value.trim(), 
+        city: document.getElementById('cust-city').value.trim(), 
+        state: 'Madhya Pradesh', 
+        pincode: document.getElementById('cust-pin').value.trim() || '462001' 
+      }
+    };
+
+    const API_URL = window.location.hostname === 'localhost' 
+      ? 'http://localhost:8080/api/order' 
+      : 'https://trive-api.onrender.com/api/order';
+
+    const res = await fetch(API_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(payload)
     });
+
     const data = await res.json();
 
     if (data.success) {
       document.getElementById('confirmed-id').innerText = `#${data.orderId}`;
       document.getElementById('confirmed-address').innerText = `${payload.address.city}, ${payload.address.pincode}`;
-      if (data.whatsappLink) { document.getElementById('btn-wa-confirm').href = data.whatsappLink; }
+      if (data.whatsappLink) { 
+        document.getElementById('btn-wa-confirm').href = data.whatsappLink; 
+      }
       cart = [];
       updateCartUI();
       navigateTo('success');
