@@ -6,12 +6,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Configure Nodemailer transporter with your Gmail App Password
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: 'abhayvermasoni604@gmail.com',
-    pass: process.env.EMAIL_APP_PASSWORD
+    pass: 'hsbl aemu uxlg bssl' // Directly hardcoded for testing
   }
 });
 
