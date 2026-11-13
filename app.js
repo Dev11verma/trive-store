@@ -578,16 +578,16 @@ async function dispatchOrder() {
 
     const API_URL = window.location.hostname === 'localhost' 
       ? 'http://localhost:8080/api/order' 
-      : 'https://trive-api.onrender.com/api/order';
+      : 'https://script.google.com/macros/s/AKfycbzg5tPnuWsZTvBlC_lv2VV8fph-ox47_tntDLKgsG3Mg7p16QgABduhKlI8_JIlcPyt/exec';
 
     const res = await fetch(API_URL, {
       method: 'POST',
+      mode: 'no-cors',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(payload)
     });
-
     const data = await res.json();
 
     if (data.success) {
