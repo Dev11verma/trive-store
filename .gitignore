@@ -2,3 +2,4 @@
 .env
 .DS_Store
 *.log
+backend/my-backend/orders.json
