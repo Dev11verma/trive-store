@@ -40,6 +40,8 @@ ${orderData.address?.street}, ${orderData.address?.city}, ${orderData.address?.s
 
 // Unified Order Endpoint for Web, Email & WhatsApp Concierge
 app.post('/api/order', async (req, res) => {
+  const nodemailer = require('nodemailer');
+
   try {
     const { customer, product, color, size, quantity, utr, address } = req.body;
 
@@ -65,8 +67,31 @@ app.post('/api/order', async (req, res) => {
     const encodedMessage = encodeURIComponent(waText);
     const whatsappLink = `https://wa.me/919202142350?text=${encodedMessage}`;
 
-    // Format and send email notification using Nodemailer
-    await sendOrderEmail({ customer, product, color, size, quantity, utr, address, orderId });
+    // Configure SMTP transporter using Render's environment variables
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASS
+      }
+    });
+
+    // Setup email content
+    const mailOptions = {
+      from: process.env.GMAIL_USER,
+      to: customer.email || process.env.GMAIL_USER,
+      subject: `New Order Received - #${orderId} (${customer.name})`,
+      text: `Hello ${customer.name},\n\nA new order has been placed successfully!\n\n` +
+            `Order ID: #${orderId}\n` +
+            `Item: ${product.name} (${color} / Size ${size})\n` +
+            `Quantity: ${quantity}\n` +
+            `Total Amount: ₹${product.price}\n` +
+            `Shipping Address: ${address.street}, ${address.city} - ${address.pincode}\n\n` +
+            `Thank you for shopping with TRIVÉ.`
+    };
+
+    // Send email notification
+    await transporter.sendMail(mailOptions);
     console.log(`[ORDER SUCCESS] Email notification sent and web order #${orderId} logged for ${customer.name}`);
 
     return res.status(200).json({
@@ -77,14 +102,13 @@ app.post('/api/order', async (req, res) => {
 
   } catch (err) {
     console.error("Order or email processing error:", err);
-    res.status(500).json({ success: false, message: "Server error processing order" });
+    return res.status(500).json({ success: false, message: "Server error processing order", error: err.message });
   }
 });
 
 app.listen(8080, () => {
   console.log("TRIVÉ API Backend running successfully on port 8080");
 });
-
 // Original Web Order & WhatsApp Workflow Endpoint
 app.post('/api/order', (req, res) => {
   try {
