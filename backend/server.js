@@ -40,13 +40,22 @@ app.use(express.json());
 
 function loadOrders() {
   try {
-    if (fs.existsSync(DB_FILE)) {
-      return JSON.parse(fs.readFileSync(DB_FILE, 'utf-8'));
+    if (!fs.existsSync(ORDERS_FILE)) {
+      fs.writeFileSync(ORDERS_FILE, JSON.stringify([]));
+      return [];
     }
-  } catch (e) {
-    console.error('Failed reading orders.json', e);
+    let data = fs.readFileSync(ORDERS_FILE, 'utf8');
+    
+    // Automatically strip UTF-8 BOM character if present
+    if (data.charCodeAt(0) === 0xFEFF) {
+      data = data.slice(1);
+    }
+    
+    return JSON.parse(data);
+  } catch (err) {
+    console.error("Failed reading orders.json", err);
+    return [];
   }
-  return [];
 }
 
 function saveOrders(ordersList) {
