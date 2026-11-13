@@ -258,7 +258,7 @@ app.post('/api/order', async (req, res) => {
     `⚡ *Status:* Reviewing order in TRIVÉ Command Center.\n\n` +
     `_TRIVÉ Heavywear — BORN TO RULE._`
   );
-  const whatsappLink = `https://wa.me/91${cleanPhone}?text=${waMsg}`;
+  const whatsappLink = `https://wa.me/919202142350${cleanPhone}?text=${waMsg}`;
   const isCod = utr?.toUpperCase() === 'COD';
 
   const qikinkPayload = {
@@ -356,4 +356,6 @@ app.get('/api/orders', (req, res) => res.json({ brand: 'TRIVÉ', total: orders.l
 app.listen(PORT, () => {
   console.log(`TRIVÉ Engine running on http://localhost:${PORT}`);
 });
+
+
 

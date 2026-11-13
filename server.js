@@ -63,7 +63,7 @@ app.post('/api/order', async (req, res) => {
       `*Shipping Address:* ${address.street}, ${address.city} ${address.pincode} (${address.state})`;
 
     const encodedMessage = encodeURIComponent(waText);
-    const whatsappLink = `https://wa.me/919977798829?text=${encodedMessage}`;
+    const whatsappLink = `https://wa.me/919202142350?text=${encodedMessage}`;
 
     // Format and send email notification using Nodemailer
     await sendOrderEmail({ customer, product, color, size, quantity, utr, address, orderId });
@@ -110,7 +110,7 @@ app.post('/api/order', (req, res) => {
       `*Shipping Address:* ${address.street}, ${address.city} ${address.pincode} (${address.state})`;
 
     const encodedMessage = encodeURIComponent(waText);
-    const whatsappLink = `https://wa.me/919977798829?text=${encodedMessage}`;
+    const whatsappLink = `https://wa.me/919202142350?text=${encodedMessage}`;
 
     console.log(`[ORDER SUCCESS] Logged web order #${trackingId} for ${customer.name}`);
 
@@ -135,3 +135,4 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`TRIVÉ API Backend running successfully on port ${PORT}`);
 });
+
