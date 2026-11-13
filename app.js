@@ -21,6 +21,7 @@ const PRODUCTS = [
     name: 'Karan Arjun // Heavy Hoodie',
     price: 1799,
     category: 'Hoodie',
+    tag: 'Karan Arjun // Heavywear', // <-- Added tag
     image: 'assets/karan Arjun/Screenshot 2026-11-13 163020.png',
     colors: [
       { name: 'White/Cream', hex: '#ffffff', images: ['assets/karan Arjun/Screenshot 2026-11-13 163020.png', 'assets/karan Arjun/Screenshot 2026-11-13 163032.png'] },
@@ -32,6 +33,7 @@ const PRODUCTS = [
     name: 'Parth Collection // Archival Hoodie',
     price: 2199,
     category: 'Hoodie',
+    tag: 'Parth Collection // Archival Hoodie', // <-- Added tag
     image: 'assets/Parth/Screenshot 2026-11-13 162855.png',
     colors: [
       { name: 'White', hex: '#f4f4f5', images: ['assets/Parth/Screenshot 2026-11-13 162855.png', 'assets/Parth/Screenshot 2026-11-13 162937.png'] },
@@ -48,6 +50,7 @@ const PRODUCTS = [
     name: 'Mohmaya // Oversized Tee',
     price: 1199,
     category: 'T-Shirt',
+    tag: 'Mohmaya // Oversized', // <-- Added tag
     image: 'assets/mohmaya/Screenshot 2026-11-13 163104.png',
     colors: [
       { name: 'Charcoal', hex: '#27272a', images: ['assets/mohmaya/Screenshot 2026-11-13 163122.png','assets/mohmaya/Screenshot 2026-11-13 163104.png'] },
@@ -60,6 +63,7 @@ const PRODUCTS = [
     name: 'Spiritual Gangster // Graphic Tee',
     price: 1299,
     category: 'T-Shirt',
+    tag: 'Spiritual Gangster // Graphic Tee', // <-- Added tag
     image: 'assets/Spiritual-Gangster/Screenshot 2026-11-13 162609.png',
     colors: [
       { name: 'Charcoal', hex: '#27272a', images: ['assets/Spiritual-Gangster/Screenshot 2026-11-13 162609.png','assets/Spiritual-Gangster/Screenshot 2026-11-13 162631.png'] },
@@ -72,6 +76,7 @@ const PRODUCTS = [
     name: 'Calm-A-Sutra // Heavy Tee',
     price: 1199,
     category: 'T-Shirt',
+    tag: 'Calm-A-Sutra // Heavy Tee', // <-- Added tag
     image: 'assets/Calm-A-Sutra/Screenshot 2026-11-13 163159.png',
     colors: [
       { name: 'Charcoal', hex: '#27272a', images: ['assets/Calm-A-Sutra/Screenshot 2026-11-13 163159.png', 'assets/Calm-A-Sutra/Screenshot 2026-11-13 163146.png'] },
