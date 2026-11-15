@@ -578,7 +578,7 @@ async function dispatchOrder() {
 
     const API_URL = window.location.hostname === 'localhost' 
       ? 'http://localhost:8080/api/order' 
-      : 'https://script.google.com/macros/s/AKfycbzYjBlgBq6E0j06iKFMp-oHdyyY_-7uhxA-905ewmYP4drIViHfJEtnQPWjvi5lFxkP/exec';
+      : 'https://script.google.com/macros/s/AKfycbzYjBlgBq6E0j06iKFMp-oHdyyY_-7uhxA-905ewmYP4drIViHfJEtnQPWjvi5lFxkP/exect';
 
     const res = await fetch(API_URL, {
       method: 'POST',

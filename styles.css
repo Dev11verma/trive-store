@@ -1,0 +1,22 @@
+/* Navbar Brand Logo Styling */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+.navbar-brand img {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+.navbar-brand span {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  color: #fff;
+}
