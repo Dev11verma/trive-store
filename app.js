@@ -595,7 +595,8 @@ async function dispatchOrder() {
     
     // Setup WhatsApp confirmation link
     const waText = encodeURIComponent(`Hello TRIVÉ! Order Placed: ${randomOrderId}\nName: ${payload.customer.name}\nTotal: ₹${payload.product.price}\nPayment: ${utr}`);
-    document.getElementById('btn-wa-confirm').href = `https://wa.me/919977798829?text=${waText}`;
+    document.getElementById('btn-wa-confirm').href = `https://wa.me/919202142350?text=${waText}`;
+
 
     cart = [];
     if (typeof updateCartUI === 'function') updateCartUI();
