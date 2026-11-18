@@ -1879,15 +1879,15 @@
 
     <div style="display:flex;flex-direction:column;gap:10px;">
 
-      <a href="https://wa.me/919977798829?text=Hi%20TRIV%C3%89%20Support%2C%20I%20have%20an%20inquiry%20regarding%20my%20order." target="_blank" style="background:#25D366;color:#000;text-align:center;padding:12px;border-radius:8px;font-weight:bold;text-decoration:none;font-size:13px;text-transform:uppercase;">
+      <a href="https://wa.me/919202142350?text=Hi%20TRIV%C3%89%20Support%2C%20I%20have%20an%20inquiry%20regarding%20my%20order." target="_blank" style="background:#25D366;color:#000;text-align:center;padding:12px;border-radius:8px;font-weight:bold;text-decoration:none;font-size:13px;text-transform:uppercase;">
 
         Chat on WhatsApp
 
       </a>
 
-      <a href="mailto:support@TRIVÉ.in" style="background:#1a1a1a;color:#eee;border:1px solid #333;text-align:center;padding:12px;border-radius:8px;font-weight:600;text-decoration:none;font-size:13px;">
+      <a href="mailto:support.trive@gmail.com" style="background:#1a1a1a;color:#eee;border:1px solid #333;text-align:center;padding:12px;border-radius:8px;font-weight:600;text-decoration:none;font-size:13px;">
 
-        support@TRIVÉ.in
+        support.trive@gmail.com
 
       </a>
 

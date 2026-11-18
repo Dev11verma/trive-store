@@ -270,6 +270,14 @@ const reignData = {
   }
 };
 
+function openProductView(productId) {
+    // 1. Push state to browser history so native back button captures it
+    history.pushState({ view: 'product', id: productId }, '', `#product-${productId}`);
+    
+    // 2. Render your product view normally
+    showProductDetails(productId);
+}
+
 function setReignC(color, el) {
   reignColor = color;
   document.querySelectorAll('.reign-c-btn').forEach(b => {
@@ -635,3 +643,14 @@ setInterval(() => {
 }, 1000);
 
 renderCatalog();
+
+// Register this ONCE globally when your app loads
+window.addEventListener('popstate', (event) => {
+    if (event.state && event.state.view === 'product') {
+        // If they hit native back and it was a product, show that product
+        showProductDetails(event.state.id);
+    } else {
+        // Otherwise, default back to your home/catalog view
+        showMainCatalog();
+    }
+});

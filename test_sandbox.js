@@ -11,8 +11,8 @@ const data = JSON.stringify({
     province: "Madhya Pradesh",
     zip: "462044",
     country: "India",
-    phone: "9977798829",
-    email: "support@TRIVÉ.in"
+    phone: "9202142350",
+    email: "support.trive@gmail.com"
   },
   line_items: [
     {

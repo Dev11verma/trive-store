@@ -515,8 +515,10 @@
 </head>
 <body>
 
-  <header>
+<header>
     <a href="#" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+      <!-- Logo image added with asset path -->
+      <img src="assets/Main/fevicon.png" alt="TRIVÉ Logo" style="width: 32px; height: 32px; object-fit: contain; border-radius: 4px;">
       <span style="font-weight:900;letter-spacing:0.18em;font-size:18px;color:#fff;">TRIVÉ</span>
     </a>
     <div class="nav-links">
@@ -848,17 +850,20 @@
           <li><a href="javascript:void(0)" onclick="openModal('support-modal')" style="color:var(--muted);text-decoration:none;">Contact Us</a></li>
         </ul>
       </div>
-      <div>
-        <h4 style="color:#fff;font-size:12px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:16px;">Connect</h4>
-    <p style="color:#777;font-size:12px;margin-bottom:14px;">Direct concierge support via WhatsApp for drop releases and sizing inquiries.</p>
+     <div>
+    <h4 style="color:#fff;font-size:12px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:16px;">Connect & Support</h4>
+    <p style="color:#777;font-size:12px;margin-bottom:14px;">Direct concierge support via WhatsApp or email for drop releases and sizing inquiries.</p>
     
     <!-- Dev Verma (Founder) -->
-    <a href="https://wa.me/919202142350" target="_blank" style="display:inline-block;background:#161619;border:1px solid #333;color:#fff;padding:10px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;text-transform:uppercase;margin-right:8px;margin-bottom:8px;">WhatsApp The Founder</a>
+    <a href="https://wa.me/919202142350" target="_blank" style="display:inline-block;background:#161619;border:1px solid #333;color:#fff;padding:10px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;text-transform:uppercase;margin-right:8px;margin-bottom:8px;">WhatsApp Dev</a>
     
     <!-- Pranay Navle (Co-Founder) -->
-    <a href="https://wa.me/918223009117" target="_blank" style="display:inline-block;background:#161619;border:1px solid #333;color:#fff;padding:10px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;text-transform:uppercase;margin-bottom:8px;">WhatsApp The CO-Founder</a>
-      </div>
-    </div>
+    <a href="https://wa.me/918223009117" target="_blank" style="display:inline-block;background:#161619;border:1px solid #333;color:#fff;padding:10px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;text-transform:uppercase;margin-bottom:8px;">WhatsApp Pranay</a>
+<!-- Official Support Email (Opens Gmail Web Compose Directly) -->
+<div style="margin-top: 10px;">
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=support.trive@gmail.com" target="_blank" style="color:#aaa;font-size:12px;text-decoration:none;border-bottom:1px solid #444;">support.trive@gmail.com</a>
+</div>
+
     <div style="max-width:1200px;margin:0 auto;border-top:1px solid #161619;padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;font-size:12px;color:#666;">
       <div>&copy; 2026 TRIVÉ. All Rights Reserved. Crafted for the relentless.</div>
       <div style="color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;font-weight:700;">Shipping Globally with Love ⚡</div>
@@ -877,7 +882,7 @@
   </div>
   <div id="support-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid var(--border);border-radius:14px;padding:24px;z-index:10000;color:#eee;">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><div style="font-weight:900;text-transform:uppercase;color:var(--accent);">Customer Support</div><button onclick="closeAllModals()" style="background:none;border:none;color:#888;font-size:20px;cursor:pointer;">&times;</button></div>
-    <div style="font-size:13px;line-height:1.7;color:var(--muted);margin-bottom:14px;"><p>Contact us anytime at support@trive.in or via WhatsApp concierge.</p></div>
+    <div style="font-size:13px;line-height:1.7;color:var(--muted);margin-bottom:14px;"><p>Contact us anytime at support.trive@gmail.com or via WhatsApp concierge.</p></div>
   </div>
   <div id="terms-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid var(--border);border-radius:14px;padding:24px;z-index:10000;color:#eee;">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><div style="font-weight:900;text-transform:uppercase;color:var(--accent);">Terms & Conditions</div><button onclick="closeAllModals()" style="background:none;border:none;color:#888;font-size:20px;cursor:pointer;">&times;</button></div>

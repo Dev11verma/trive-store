@@ -307,7 +307,7 @@ app.post('/api/order', async (req, res) => {
       address1: address.street,
       address2: "",
       phone: cleanPhone,
-      email: customer.email || "support@TRIVÉ.in",
+      email: customer.email || "support.trive@gmail.com",
       city: address.city,
       zip: String(address.pincode),
       province: address.state || "Madhya Pradesh",

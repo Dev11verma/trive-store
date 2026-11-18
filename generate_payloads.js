@@ -9,8 +9,8 @@
       province: "Madhya Pradesh",
       zip: "462044",
       country_code: "IN",
-      phone: "9977798829",
-      email: "support@TRIVÉ.in"
+      phone: "9202142350",
+      email: "support.trive@gmail.com"
     },
     line_items: [
       { sku: "MRnHs-Bk-L", quantity: 1, price: "999" }
@@ -28,8 +28,8 @@
       province: "Madhya Pradesh",
       zip: "462044",
       country_code: "IN",
-      phone: "9977798829",
-      email: "support@TRIVÉ.in"
+      phone: "9202142350",
+      email: "support.trive@gmail.com"
     },
     line_items: [
       { sku: "MVnHs-Bk-M", quantity: 1, price: "999" }
@@ -47,8 +47,8 @@
       province: "Madhya Pradesh",
       zip: "462044",
       country_code: "IN",
-      phone: "9977798829",
-      email: "support@TRIVÉ.in"
+      phone: "9202142350",
+      email: "support.trive@gmail.com"
     },
     line_items: [
       { sku: "MRnHs-Nb-S", quantity: 1, price: "999" }
