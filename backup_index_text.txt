@@ -1813,7 +1813,7 @@
 
 
 
-  <div id="shipping-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:24px;z-index:10000;color:#eee;">
+  <div id="shipping-modal" class="TRIVÉ-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:24px;z-index:10000;color:#eee;">
 
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
 
@@ -1837,7 +1837,7 @@
 
 
 
-  <div id="returns-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:24px;z-index:10000;color:#eee;">
+  <div id="returns-modal" class="TRIVÉ-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:24px;z-index:10000;color:#eee;">
 
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
 
@@ -1861,7 +1861,7 @@
 
 
 
-  <div id="support-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:24px;z-index:10000;color:#eee;">
+  <div id="support-modal" class="TRIVÉ-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:24px;z-index:10000;color:#eee;">
 
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
 
@@ -1885,9 +1885,9 @@
 
       </a>
 
-      <a href="mailto:support@trive.in" style="background:#1a1a1a;color:#eee;border:1px solid #333;text-align:center;padding:12px;border-radius:8px;font-weight:600;text-decoration:none;font-size:13px;">
+      <a href="mailto:support@TRIVÉ.in" style="background:#1a1a1a;color:#eee;border:1px solid #333;text-align:center;padding:12px;border-radius:8px;font-weight:600;text-decoration:none;font-size:13px;">
 
-        support@trive.in
+        support@TRIVÉ.in
 
       </a>
 
@@ -1897,7 +1897,7 @@
 
 
 
-  <div id="terms-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:92%;max-width:560px;max-height:85vh;overflow-y:auto;background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:26px;z-index:10000;color:#eee;">
+  <div id="terms-modal" class="TRIVÉ-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:92%;max-width:560px;max-height:85vh;overflow-y:auto;background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:26px;z-index:10000;color:#eee;">
 
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;position:sticky;top:0;background:#111;padding-bottom:8px;border-bottom:1px solid #222;">
 
@@ -1915,7 +1915,7 @@
 
     <div style="font-size:12.5px;line-height:1.75;color:#bbb;">
 
-      <p style="margin:0 0 12px;"><strong style="color:#fff;">1. Overview & Agreement:</strong> By accessing and ordering through TRIVÉ (trive.in), you acknowledge and agree to be bound by these Terms of Service. All items sold are original pieces designed by TRIVÉ.</p>
+      <p style="margin:0 0 12px;"><strong style="color:#fff;">1. Overview & Agreement:</strong> By accessing and ordering through TRIVÉ (TRIVÉ.in), you acknowledge and agree to be bound by these Terms of Service. All items sold are original pieces designed by TRIVÉ.</p>
 
       <p style="margin:0 0 12px;"><strong style="color:#fff;">2. Order Verification & Pricing:</strong> Prices listed are in Indian Rupees (INR) and inclusive of applicable goods taxation. TRIVÉ reserves the right to verify or cancel orders flagged for fraudulent activity, incorrect contact numbers, or incomplete shipping addresses prior to production dispatch.</p>
 
@@ -2815,7 +2815,7 @@
 
       const { total } = getTotals();
 
-      const upiUrl = `upi://pay?pa=Dev11verma@ybl&pn=TRIVE&am=${total}&cu=INR&tn=TRIVE_Order`;
+      const upiUrl = `upi://pay?pa=Dev11verma@ybl&pn=TRIVÉ&am=${total}&cu=INR&tn=TRIVÉ_Order`;
 
       document.getElementById('dynamic-qr').src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiUrl)}`;
 
@@ -2909,7 +2909,7 @@
 
       try {
 
-        const res = await fetch('https://trive-api.onrender.com/api/order', {
+        const res = await fetch('https://TRIVÉ-api.onrender.com/api/order', {
 
           method: 'POST',
 
@@ -2985,7 +2985,7 @@
 
       if (backdrop) backdrop.style.display = 'none';
 
-      document.querySelectorAll('.trive-modal').forEach(m => m.style.display = 'none');
+      document.querySelectorAll('.TRIVÉ-modal').forEach(m => m.style.display = 'none');
 
     }
 
@@ -3077,7 +3077,7 @@ number.');
 
       try {
 
-        const res = await fetch('https://trive-api.onrender.com/api/order', {
+        const res = await fetch('https://TRIVÉ-api.onrender.com/api/order', {
 
           method: 'POST',
 
@@ -3153,7 +3153,7 @@ number.');
 
       if (backdrop) backdrop.style.display = 'none';
 
-      document.querySelectorAll('.trive-modal').forEach(m => m.style.display = 'none');
+      document.querySelectorAll('.TRIVÉ-modal').forEach(m => m.style.display = 'none');
 
     }
 

@@ -6,8 +6,8 @@ const bot = new Telegraf('9234651103:AAGBmV8-rDbKecvvFXB8Pr0pRX-qFMxSESI');
 // In-memory session store for active user orders
 const userSessions = {};
 
-// Backend API URL (Change to your Render URL once deployed, e.g., 'https://trive-store.onrender.com/api/orders')
-const BACKEND_API_URL = 'https://trive-api.onrender.com/api/orders';
+// Backend API URL (Change to your Render URL once deployed, e.g., 'https://TRIVÉ-store.onrender.com/api/orders')
+const BACKEND_API_URL = 'https://TRIVÉ-api.onrender.com/api/orders';
 
 // Full TRIVÉ Active Catalog & Coming Soon Drops
 const PRODUCTS = [
@@ -31,7 +31,7 @@ bot.start((ctx) => {
     {
       parse_mode: 'Markdown',
       ...Markup.inlineKeyboard([
-        [Markup.button.url('🌐 Visit Live Store', 'https://dev11verma.github.io/trive-store/')],
+        [Markup.button.url('🌐 Visit Live Store', 'https://dev11verma.github.io/TRIVÉ-store/')],
         [Markup.button.callback('🛍️ View Catalog & Order', 'view_catalog')],
         [Markup.button.callback('📦 Track My Order', 'track_order')]
       ])
@@ -180,7 +180,7 @@ bot.on('text', async (ctx) => {
     await ctx.reply(orderSummary, {
       parse_mode: 'Markdown',
       ...Markup.inlineKeyboard([
-        [Markup.button.url('🌐 Visit Store', 'https://dev11verma.github.io/trive-store/')],
+        [Markup.button.url('🌐 Visit Store', 'https://dev11verma.github.io/TRIVÉ-store/')],
         [Markup.button.callback('🛍️ Place Another Order', 'view_catalog')]
       ])
     });
@@ -199,7 +199,7 @@ bot.action('main_menu', async (ctx) => {
       {
         parse_mode: 'Markdown',
         ...Markup.inlineKeyboard([
-          [Markup.button.url('🌐 Visit Live Store', 'https://dev11verma.github.io/trive-store/')],
+          [Markup.button.url('🌐 Visit Live Store', 'https://dev11verma.github.io/TRIVÉ-store/')],
           [Markup.button.callback('🛍️ View Catalog & Order', 'view_catalog')],
           [Markup.button.callback('📦 Track My Order', 'track_order')]
         ])

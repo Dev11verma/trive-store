@@ -15,7 +15,7 @@ https.get(url, (res) => {
         console.log(" YOUR TELEGRAM CHAT ID IS: " + chatId);
         console.log("================================\n");
       } else {
-        console.log("\n[!] No messages found yet. Make sure you sent 'Test' or '/start' to t.me/triveorderbot on Telegram first!");
+        console.log("\n[!] No messages found yet. Make sure you sent 'Test' or '/start' to t.me/TRIVÉorderbot on Telegram first!");
       }
     } catch(e) {
       console.log("Error parsing JSON");

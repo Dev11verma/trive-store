@@ -9,16 +9,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Dev11verma/trive-store.git"
+    "url": "git+https://github.com/Dev11verma/TRIVÉ-store.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/Dev11verma/trive-store/issues"
+    "url": "https://github.com/Dev11verma/TRIVÉ-store/issues"
   },
-  "homepage": "https://github.com/Dev11verma/trive-store#readme",
+  "homepage": "https://github.com/Dev11verma/TRIVÉ-store#readme",
   "dependencies": {
     "cors": "^2.8.6",
     "express": "^5.3.0",

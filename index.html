@@ -1,17 +1,14 @@
 ﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <link type="image/png" href="./assets/Main/fevicon.png">
-  <link type="image/png" href="./assets/Main/fevicon.png">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TRIVÉ // ARCHIVAL HEAVYWEAR</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
-  
-  <style>
+<link rel="icon" type="image/png" href="assets/Main/fevicon.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRIVÉ // ARCHIVAL HEAVYWEAR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
     :root {
       --bg: #09090b;
       --card-bg: #121215;
@@ -518,18 +515,19 @@
 </head>
 <body>
 
-<header>
- <div style="display: flex; align-items: center; gap: 10px;">
-   <img src="./assets/Main/fevicon.png?v=3" alt="TRIVÉ Logo" style="height: 28px; width: auto; display: block;">
-   <span style="font-family: var(--font-display); font-weight: 900; font-size: 18px; letter-spacing: 0.05em;">TRIVÉ</span>
- </div>
-  
-  <nav class="nav-links">
-    <!-- your nav links here -->
-  </nav>
-  
-  <button class="cart-btn">CART (0)</button>
-</header>
+  <header>
+    <a href="#" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+      <span style="font-weight:900;letter-spacing:0.18em;font-size:18px;color:#fff;">TRIVÉ</span>
+    </a>
+    <div class="nav-links">
+      <button class="nav-link active" onclick="setGenderFilter('all', this)">All</button>
+      <button class="nav-link" onclick="setGenderFilter('men', this)">Men</button>
+      <button class="nav-link" onclick="setGenderFilter('women', this)">Women</button>
+    </div>
+    <button class="cart-btn" onclick="toggleCart(true)">
+      CART (<span id="cart-count">0</span>)
+    </button>
+  </header>
 
   <section style="background:radial-gradient(circle at center, #161616 0%, #080808 100%);border-top:1px solid #222;border-bottom:1px solid #222;padding:26px 20px;text-align:center;">
     <div style="max-width:900px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:8px;">
@@ -771,7 +769,7 @@
       <div class="status-icon success">&#10003;</div>
       <h2>Order Placed Successfully</h2>
       <p>Your garment has been logged into the TRIVÉ Printing & Packaging queue.</p>
-      
+
       <div class="track-box">
         <div class="track-step">
           <div class="track-dot"></div>
@@ -884,4 +882,3 @@
   <!-- EXTERNAL SCRIPT -->
   <script src="app.js"></script>
 </body>
-</html>

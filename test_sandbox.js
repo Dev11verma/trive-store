@@ -2,7 +2,7 @@
 
 // Qikink Sandbox API Endpoint & Test Payload
 const data = JSON.stringify({
-  order_number: "TRIVE-SANDBOX-01",
+  order_number: "TRIVÉ-SANDBOX-01",
   shipping_address: {
     first_name: "Dev",
     last_name: "Verma",
@@ -12,7 +12,7 @@ const data = JSON.stringify({
     zip: "462044",
     country: "India",
     phone: "9977798829",
-    email: "support@trive.in"
+    email: "support@TRIVÉ.in"
   },
   line_items: [
     {
