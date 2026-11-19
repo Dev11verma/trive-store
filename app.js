@@ -14,14 +14,10 @@ try {
 } catch (e) {
   cart = [];
 }
-let selectedPaymentMode = 'UPI';
-let discountAmount = 0;
-
-let API_URL = '/api/order';
-if (window.location.hostname === 'localhost') {
-  API_URL = 'http://localhost:8080/api/order';
-} else if (window.location.hostname === '127.0.0.1') {
-  API_URL = 'http://localhost:8080/api/order';
+const RENDER_BACKEND_URL = 'https://trive-store.onrender.com'; // <-- Paste your exact Render URL here
+let API_URL = `${RENDER_BACKEND_URL}/api/order`;
+if (window.location.hostname.includes('onrender.com') || window.location.hostname === 'trivestore.in') {
+  API_URL = '/api/order';
 }
 
 // ==========================================

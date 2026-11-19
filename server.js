@@ -1,146 +1,168 @@
-﻿const express = require('express');
+const express = require('express');
 const cors = require('cors');
+const fs = require('fs');
+const path = require('path');
 const nodemailer = require('nodemailer');
 
 const app = express();
+const PORT = process.env.PORT || 8080;
+
+// Middleware
 app.use(cors());
 app.use(express.json());
+app.use(express.static(__dirname));
 
-// Google Sheets Apps Script Webhook URL
-const GOOGLE_SHEET_WEBHOOK = 'https://script.google.com/macros/s/AKfycbzYjBlgBq6E0j06iKFMp-oHdyyY_-7uhxA-905ewmYP4drIViHfJEtnQPWjvi5lFxkP/exec';
-
-// Qikink Sandbox API Configuration
-const QIKINK_SANDBOX_URL = 'https://api-sandbox.qikink.com/api/v1/orders'; // Update if your sandbox endpoint differs
-const QIKINK_API_KEY = process.env.QIKINK_API_KEY || 'YOUR_QIKINK_SANDBOX_KEY';
-
-// Unified Order Endpoint for Web, Google Sheets, Email, WhatsApp & Qikink Sandbox
-app.post('/api/order', async (req, res) => {
-  try {
-    const { customer, product, color, size, quantity, utr, address, items, paymentMode } = req.body;
-
-    // Validate required fields
-    if (!customer || !customer.name || !customer.phone || !product) {
-      return res.status(400).json({ success: false, message: 'Missing required customer or product details.' });
-    }
-
-    // Generate unique order ID
-    const randomNum = Math.floor(1000 + Math.random() * 9000);
-    const orderId = `TV-${randomNum}`;
-
-    // 1. FORWARD TO GOOGLE SHEETS
-    try {
-      await fetch(GOOGLE_SHEET_WEBHOOK, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...req.body, orderId })
-      });
-      console.log(`[SHEETS SYNC] Order #${orderId} successfully logged to Google Sheets.`);
-    } catch (sheetErr) {
-      console.error("[SHEETS ERROR] Failed to log to Google Sheet:", sheetErr.message);
-    }
-
-    // 2. FORWARD TO QIKINK SANDBOX
-    try {
-      const qikinkPayload = {
-        order_id: orderId,
-        shipping_address: {
-          name: customer.name,
-          address_line1: address.street,
-          city: address.city,
-          state: address.state || 'Madhya Pradesh',
-          pincode: address.pincode || '462001',
-          phone: customer.phone,
-          country: 'India'
-        },
-        payment_mode: paymentMode || 'Prepaid',
-        items: items && items.length > 0 ? items.map(item => ({
-          sku: item.sku || 'TRIVE-SKU-01',
-          name: item.name,
-          quantity: item.quantity || quantity || 1,
-          size: item.size || size,
-          color: item.color || color
-        })) : [{
-          sku: 'TRIVE-SKU-01',
-          name: product.name,
-          quantity: quantity || 1,
-          size: size || 'L',
-          color: color || 'Black'
-        }]
-      };
-
-      const qikinkResponse = await fetch(QIKINK_SANDBOX_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${QIKINK_API_KEY}`
-        },
-        body: JSON.stringify(qikinkPayload)
-      });
-      
-      console.log(`[QIKINK SANDBOX] Order #${orderId} pushed to Qikink sandbox pipeline. Status: ${qikinkResponse.status}`);
-    } catch (qikErr) {
-      console.error("[QIKINK ERROR] Sandbox dispatch failed:", qikErr.message);
-    }
-
-    // Format WhatsApp concierge dispatch message
-    const waText = `⚡ *NEW TRIVÉ ARCHIVAL ORDER* ⚡\n\n` +
-      `*Order ID:* #${orderId}\n` +
-      `*Customer:* ${customer.name} (${customer.phone})\n` +
-      `*Item(s):* ${product.name}\n` +
-      `*Color/Size:* ${color} / Size ${size} (Qty: ${quantity})\n` +
-      `*Total Amount:* ₹${product.price}\n` +
-      `*Payment Mode/Ref:* ${paymentMode || 'UPI'} (${utr})\n` +
-      `*Shipping Address:* ${address.street}, ${address.city} ${address.pincode} (${address.state})`;
-
-    const encodedMessage = encodeURIComponent(waText);
-    const whatsappLink = `https://wa.me/919202142350?text=${encodedMessage}`;
-
-    // 3. SEND EMAIL NOTIFICATION VIA NODEMAILER
-  const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'support.trive@gmail.com',
-        pass: 'alzjxgxrcenvielm' // Remove the spaces so it's continuous
-      }
-    });
-
-    const mailOptions = {
-      from: process.env.GMAIL_USER || 'support.trive@gmail.com',
-      to: customer.email || 'support.trive@gmail.com',
-      subject: `🚨 New Order Confirmed: #${orderId} (${customer.name})`,
-      text: `New order received on TRIVÉ!\n\n` +
-            `Order ID: #${orderId}\n` +
-            `Customer Name: ${customer.name}\n` +
-            `Phone: ${customer.phone}\n` +
-            `Items: ${product.name}\n` +
-            `Color: ${color}\n` +
-            `Size: ${size}\n` +
-            `Quantity: ${quantity}\n` +
-            `Total Amount: ₹${product.price}\n` +
-            `Payment: ${paymentMode || 'UPI'} (UTR: ${utr})\n\n` +
-            `Delivery Address:\n` +
-            `- ${address.street}, ${address.city}, ${address.state} - ${address.pincode}\n\n` +
-            `Thank you for shopping with TRIVÉ.`
-    };
-
-    await transporter.sendMail(mailOptions);
-    console.log(`[ORDER SUCCESS] Email notification sent, Google Sheet logged, Qikink sandboxed, and order #${orderId} confirmed for ${customer.name}`);
-
-    return res.status(200).json({
-      success: true,
-      orderId: orderId,
-      whatsappLink: whatsappLink,
-      message: 'Order successfully processed, logged to Sheet, sent via Mail, and forwarded to Qikink sandbox.'
-    });
-
-  } catch (err) {
-    console.error("Order or background sync processing error:", err);
-    return res.status(500).json({ success: false, message: "Server error processing order", error: err.message });
+// Gmail SMTP Transporter (TRIVÉ Support)
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'support.trive@gmail.com',
+    pass: 'alzj xglx cenv ielm'
   }
 });
 
-// Bind to Render PORT or default local 8080
-const PORT = process.env.PORT || 8080;
+// Local Persistent Order Log File
+const ORDERS_FILE = path.join(__dirname, 'orders.json');
+if (!fs.existsSync(ORDERS_FILE)) {
+  fs.writeFileSync(ORDERS_FILE, JSON.stringify([], null, 2));
+}
+
+// Health Check Endpoint
+app.get('/api/health', (req, res) => {
+  res.json({
+    status: 'ONLINE',
+    brand: 'TRIVÉ // HEAVYWEAR',
+    port: PORT,
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Main Order Dispatch Endpoint
+app.post('/api/order', async (req, res) => {
+  try {
+    const {
+      customer = {},
+      product = {},
+      items = [],
+      color = 'Standard',
+      size = 'L',
+      quantity = 1,
+      utr = 'COD_ORDER',
+      paymentMode = 'UPI',
+      address = {}
+    } = req.body;
+
+    if (!customer.name || !customer.phone || !address.street || !address.city) {
+      return res.status(400).json({
+        success: false,
+        message: 'Missing required customer or shipping fields.'
+      });
+    }
+
+    const orderId = `TV-${Date.now().toString().slice(-6)}`;
+    const timestamp = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+
+    const orderRecord = {
+      orderId,
+      timestamp,
+      customer: {
+        name: customer.name,
+        phone: customer.phone,
+        email: customer.email || 'support.trive@gmail.com'
+      },
+      items:
+        items.length > 0
+          ? items
+          : [{ name: product.name, sku: product.sku, color, size, quantity, price: product.price }],
+      totalAmount: product.price || 0,
+      paymentMode,
+      utr,
+      address: {
+        street: address.street,
+        city: address.city,
+        state: address.state || 'Madhya Pradesh',
+        pincode: address.pincode || ''
+      },
+      fulfillmentStatus: 'QUEUED_FOR_QIKINK'
+    };
+
+    // 1. Save Order to Local Ledger (orders.json)
+    const existingOrders = JSON.parse(fs.readFileSync(ORDERS_FILE, 'utf8'));
+    existingOrders.unshift(orderRecord);
+    fs.writeFileSync(ORDERS_FILE, JSON.stringify(existingOrders, null, 2));
+
+    // 2. Build Itemized Summary for Email & Dispatch
+    const itemsHtml = orderRecord.items
+      .map(
+        (item) =>
+          `<li><strong>${item.name}</strong> (SKU: ${item.sku || 'TRV'}) — ${item.color} / Size ${item.size} × ${item.quantity} — ₹${item.price}</li>`
+      )
+      .join('');
+
+    const mailOptions = {
+      from: '"TRIVÉ // ARCHIVAL ORDERS" <support.trive@gmail.com>',
+      to: 'support.trive@gmail.com',
+      subject: `[NEW ORDER #${orderId}] ₹${orderRecord.totalAmount} • ${customer.name} (${paymentMode})`,
+      html: `
+        <div style="font-family:Arial,sans-serif;background:#0a0a0c;color:#f4f4f5;padding:24px;border-radius:10px;border:1px solid #27272a;">
+          <h2 style="color:#d7ff3e;margin-top:0;">NEW TRIVÉ ARCHIVAL ORDER // #${orderId}</h2>
+          <p style="color:#a1a1aa;font-size:13px;">Placed on ${timestamp} IST</p>
+          <hr style="border-color:#27272a;" />
+          <h3 style="color:#fff;">Customer & Shipping</h3>
+          <p>
+            <strong>Name:</strong> ${customer.name}<br/>
+            <strong>Phone / WhatsApp:</strong> ${customer.phone}<br/>
+            <strong>Address:</strong> ${orderRecord.address.street}, ${orderRecord.address.city}, ${orderRecord.address.state} - ${orderRecord.address.pincode}
+          </p>
+          <h3 style="color:#fff;">Payment Verification</h3>
+          <p>
+            <strong>Mode:</strong> ${paymentMode}<br/>
+            <strong>UTR / Ref:</strong> <span style="color:#d7ff3e;font-weight:bold;">${utr}</span><br/>
+            <strong>Total Paid / Payable:</strong> ₹${orderRecord.totalAmount}
+          </p>
+          <h3 style="color:#fff;">Garments to Print & Dispatch</h3>
+          <ul>${itemsHtml}</ul>
+        </div>
+      `
+    };
+
+    // 3. Send Email Notification
+    transporter.sendMail(mailOptions, (err, info) => {
+      if (err) {
+        console.error('[TRIVÉ Mailer Warning]:', err.message);
+      } else {
+        console.log(`[TRIVÉ Mailer Sent]: Order #${orderId} -> ${info.response}`);
+      }
+    });
+
+    console.log(`[TRIVÉ ORDER LOGGED] #${orderId} | ${customer.name} | ₹${orderRecord.totalAmount} | ${paymentMode}`);
+
+    return res.status(200).json({
+      success: true,
+      orderId,
+      message: 'Order logged and queued for dispatch.',
+      order: orderRecord
+    });
+  } catch (error) {
+    console.error('[TRIVÉ Order API Error]:', error);
+    return res.status(500).json({
+      success: false,
+      message: error.message || 'Internal server error while saving order.'
+    });
+  }
+});
+
+// Admin Endpoint to View All Logged Orders
+app.get('/api/orders', (req, res) => {
+  const orders = JSON.parse(fs.readFileSync(ORDERS_FILE, 'utf8'));
+  res.json({ count: orders.length, orders });
+});
+
 app.listen(PORT, () => {
-  console.log(`TRIVÉ API Backend running successfully on port ${PORT}`);
+  console.log(`⚡ TRIVÉ Backend Server running on port ${PORT}`);
+  try {
+    require('./bot.js');
+  } catch (err) {
+    console.error('[TRIVÉ Bot Launch Warning]:', err.message);
+  }
 });
