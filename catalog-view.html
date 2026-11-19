@@ -1,0 +1,39 @@
+<section style="background:radial-gradient(circle at center, #161616 0%, #080808 100%);border-top:1px solid #222;border-bottom:1px solid #222;padding:26px 20px;text-align:center;">
+    <div style="max-width:900px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:8px;">
+      <div style="font-size:11px;font-weight:900;letter-spacing:0.35em;color:#888;text-transform:uppercase;">TRIVÉ HEAVYWEAR // DROP 01 & 02</div>
+      <div style="font-size: clamp(24px, 5vw, 42px);font-weight:900;letter-spacing:0.22em;color:#ffffff;text-transform:uppercase;margin:4px 0;">
+        BORN TO <span style="color:#d7ff3e;text-shadow: 0 0 20px rgba(215,255,62,0.4);">RULE</span>
+      </div>
+      <div style="font-size:12px;color:#666;letter-spacing:0.15em;text-transform:uppercase;">ARCHIVAL STREET SILHOUETTES &bull; 240-380 GSM COMBED COTTON</div>
+    </div>
+</section>
+
+<!-- HOME CATALOG -->
+<main id="view-catalog" class="view active">
+    <div class="filter-section">
+      <div class="category-pills">
+        <button type="button" class="pill active" onclick="setCategoryFilter('all', this)">All Silhouettes</button>
+        <button type="button" class="pill" onclick="setCategoryFilter('hoodie', this)">Hoodies</button>
+        <button type="button" class="pill" onclick="setCategoryFilter('t-shirt', this)">T-Shirts</button>
+        <button type="button" class="pill" onclick="setCategoryFilter('shirt', this)">Shirts</button>
+        <button type="button" class="pill" onclick="setCategoryFilter('lower', this)">Lower Wear</button>
+      </div>
+    </div>
+
+    <div class="grid" id="products-grid"></div>
+
+    <!-- EDITORIAL LOOKBOOK GALLERY -->
+    <div style="margin-top:80px;border-top:1px solid var(--border);padding-top:40px;">
+      <div style="margin-bottom:24px;">
+        <div style="font-size:10px;font-weight:900;letter-spacing:0.3em;color:var(--accent);text-transform:uppercase;">TRIVÉ ARCHIVE // LOOKBOOK 2026</div>
+        <h2 style="font-size:clamp(22px, 4vw, 32px);font-weight:900;color:#fff;text-transform:uppercase;margin-top:4px;">The Street Editorial</h2>
+      </div>
+      <div style="display:grid;grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));gap:20px;">
+        <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;"><img src="assets/lookbook/160955.jpeg" alt="Lookbook 1" style="width:100%;height:380px;object-fit:cover;"></div>
+        <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;"><img src="assets/lookbook/160954.jpeg" alt="Lookbook 2" style="width:100%;height:380px;object-fit:cover;"></div>
+        <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;"><img src="assets/lookbook/160951.jpeg" alt="Lookbook 3" style="width:100%;height:380px;object-fit:cover;"></div>
+        <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;"><img src="assets/lookbook/160950.jpeg" alt="Lookbook 4" style="width:100%;height:380px;object-fit:cover;"></div>
+        <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;"><img src="assets/lookbook/160956.png" alt="Lookbook 5" style="width:100%;height:380px;object-fit:cover;"></div>
+      </div>
+    </div>
+</main>

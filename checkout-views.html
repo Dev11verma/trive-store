@@ -1,0 +1,157 @@
+<!-- PRODUCT DETAIL -->
+<section id="view-product" class="view">
+    <div class="breadcrumb" onclick="navigateTo('catalog')">&larr; Back to Archival Collection</div>
+    <div class="product-view-layout">
+      <div class="gallery">
+        <div class="main-img-box">
+          <img id="detail-main-img" src="" alt="Garment Preview">
+        </div>
+        <div class="thumbs" id="detail-thumbs"></div>
+      </div>
+      <div class="product-meta">
+        <div class="card-tag" id="detail-tag" style="position:static; display:inline-block; margin-bottom:12px;"></div>
+        <h2 id="detail-title"></h2>
+        <div class="meta-price" id="detail-price"></div>
+        <div class="product-desc" id="detail-desc"></div>
+
+        <div class="option-label">Select Colorway</div>
+        <div class="color-picker" id="color-picker"></div>
+
+        <div class="option-label">Select Specification</div>
+        <div class="size-picker" id="size-options">
+          <button class="size-btn" onclick="selectSize('XS', this)">XS</button>
+          <button class="size-btn" onclick="selectSize('S', this)">S</button>
+          <button class="size-btn" onclick="selectSize('M', this)">M</button>
+          <button class="size-btn active" onclick="selectSize('L', this)">L</button>
+          <button class="size-btn" onclick="selectSize('XL', this)">XL</button>
+          <button class="size-btn" onclick="selectSize('XXL', this)">XXL</button>
+        </div>
+        <button class="btn-primary" onclick="addToCartCurrentProduct()">Add to Bag</button>
+      </div>
+    </div>
+</section>
+
+<!-- SHIPPING & CHECKOUT -->
+<section id="view-checkout" class="view">
+    <div class="checkout-container">
+      <div class="breadcrumb" onclick="navigateTo('catalog')">&larr; Return to Store</div>
+      <h2>Shipping & Logistics</h2>
+
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="cust-name" placeholder="User Name">
+      </div>
+      <div class="form-group">
+        <label>Mobile Number (For WhatsApp Dispatch Alerts)</label>
+        <input type="tel" id="cust-phone" placeholder="9876543210">
+      </div>
+      <div class="form-group">
+        <label>Street Address</label>
+        <input type="text" id="cust-street" placeholder="Flat / House / Street Name">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>City</label>
+          <input type="text" id="cust-city" placeholder="Bhopal">
+        </div>
+        <div class="form-group">
+          <label>PIN Code</label>
+          <input type="text" id="cust-pin" placeholder="462001">
+        </div>
+      </div>
+
+      <div class="coupon-box">
+        <input type="text" id="coupon-code" placeholder="Enter Promo (Try: FIRSTDROP)">
+        <button type="button" onclick="applyCoupon()">Apply</button>
+      </div>
+
+      <div class="order-summary-box">
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="sum-subtotal">₹0</span>
+        </div>
+        <div class="summary-row">
+          <span>TRIVÉ Express Shipping</span>
+          <span style="color:#22c55e;">FREE</span>
+        </div>
+        <div class="summary-row" id="coupon-row" style="display:none; color:var(--accent);">
+          <span>Promo Discount</span>
+          <span id="sum-discount">-₹0</span>
+        </div>
+        <div class="summary-row total">
+          <span>Total Payable</span>
+          <span id="sum-total">₹0</span>
+        </div>
+      </div>
+
+      <button class="btn-primary" onclick="goToPayment()">Continue to Payment &rarr;</button>
+    </div>
+</section>
+
+<!-- PAYMENT -->
+<section id="view-payment" class="view">
+    <div class="checkout-container">
+      <div class="breadcrumb" onclick="navigateTo('checkout')">&larr; Edit Shipping Address</div>
+      <h2>Select Payment Mode</h2>
+
+      <div class="payment-options">
+        <label class="pay-card selected" id="opt-upi" onclick="selectPaymentMode('UPI')">
+          <input type="radio" name="paymethod" checked>
+          <div class="pay-card-info">
+            <h4>Instant UPI / QR</h4>
+            <p>Google Pay, PhonePe, Paytm, or BHIM</p>
+          </div>
+        </label>
+        <label class="pay-card" id="opt-cod" onclick="selectPaymentMode('COD')">
+          <input type="radio" name="paymethod">
+          <div class="pay-card-info">
+            <h4>Cash on Delivery (COD)</h4>
+            <p>Pay when delivered to your door</p>
+          </div>
+        </label>
+      </div>
+
+      <div id="upi-box" class="upi-display">
+        <div class="upi-id-badge">UPI: Dev11verma@ybl</div>
+        <div class="upi-qr-box">
+          <img id="dynamic-qr" src="assets/Main/qr.png" alt="Scan & Pay QR">
+        </div>
+        <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">Scan with Google Pay, PhonePe, or Paytm</p>
+        <div class="form-group" style="text-align:left;">
+          <label>12-Digit UPI Transaction ID / UTR</label>
+          <input type="text" id="pay-utr" placeholder="e.g. 432109876543">
+        </div>
+      </div>
+
+      <button class="btn-primary" id="btn-submit-order" onclick="dispatchOrder()">Confirm & Place Order</button>
+    </div>
+</section>
+
+<!-- SUCCESS VIEW -->
+<section id="view-success" class="view">
+    <div class="status-card">
+      <div class="status-icon success">&#10003;</div>
+      <h2>Order Placed Successfully</h2>
+      <p>Your garment has been logged into the TRIVÉ Printing & Packaging queue.</p>
+
+      <div class="track-box">
+        <div class="track-step">
+          <div class="track-dot"></div>
+          <div><strong>Order ID:</strong> <span id="confirmed-id">#TV-1001</span></div>
+        </div>
+        <div class="track-step">
+          <div class="track-dot"></div>
+          <div><strong>Delivery to:</strong> <span id="confirmed-address">Bhopal, MP</span></div>
+        </div>
+        <div class="track-step">
+          <div class="track-dot"></div>
+          <div><strong>Estimated Dispatch:</strong> Within 48 Hours via Bluedart/Delhivery</div>
+        </div>
+      </div>
+
+      <a id="btn-wa-confirm" href="#" target="_blank" class="btn-primary" style="display:inline-block; text-decoration:none; margin-bottom:12px; background:#22c55e;">
+        📲 Open WhatsApp Tracking
+      </a>
+      <button class="cart-btn" style="width:100%; border-radius:6px;" onclick="navigateTo('catalog')">Return to Catalog</button>
+    </div>
+</section>

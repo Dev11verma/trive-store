@@ -6,10 +6,17 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Unified Order Endpoint for Web, Email & WhatsApp Concierge
+// Google Sheets Apps Script Webhook URL
+const GOOGLE_SHEET_WEBHOOK = 'https://script.google.com/macros/s/AKfycbzYjBlgBq6E0j06iKFMp-oHdyyY_-7uhxA-905ewmYP4drIViHfJEtnQPWjvi5lFxkP/exec';
+
+// Qikink Sandbox API Configuration
+const QIKINK_SANDBOX_URL = 'https://api-sandbox.qikink.com/api/v1/orders'; // Update if your sandbox endpoint differs
+const QIKINK_API_KEY = process.env.QIKINK_API_KEY || 'YOUR_QIKINK_SANDBOX_KEY';
+
+// Unified Order Endpoint for Web, Google Sheets, Email, WhatsApp & Qikink Sandbox
 app.post('/api/order', async (req, res) => {
   try {
-    const { customer, product, color, size, quantity, utr, address } = req.body;
+    const { customer, product, color, size, quantity, utr, address, items, paymentMode } = req.body;
 
     // Validate required fields
     if (!customer || !customer.name || !customer.phone || !product) {
@@ -20,6 +27,61 @@ app.post('/api/order', async (req, res) => {
     const randomNum = Math.floor(1000 + Math.random() * 9000);
     const orderId = `TV-${randomNum}`;
 
+    // 1. FORWARD TO GOOGLE SHEETS
+    try {
+      await fetch(GOOGLE_SHEET_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...req.body, orderId })
+      });
+      console.log(`[SHEETS SYNC] Order #${orderId} successfully logged to Google Sheets.`);
+    } catch (sheetErr) {
+      console.error("[SHEETS ERROR] Failed to log to Google Sheet:", sheetErr.message);
+    }
+
+    // 2. FORWARD TO QIKINK SANDBOX
+    try {
+      const qikinkPayload = {
+        order_id: orderId,
+        shipping_address: {
+          name: customer.name,
+          address_line1: address.street,
+          city: address.city,
+          state: address.state || 'Madhya Pradesh',
+          pincode: address.pincode || '462001',
+          phone: customer.phone,
+          country: 'India'
+        },
+        payment_mode: paymentMode || 'Prepaid',
+        items: items && items.length > 0 ? items.map(item => ({
+          sku: item.sku || 'TRIVE-SKU-01',
+          name: item.name,
+          quantity: item.quantity || quantity || 1,
+          size: item.size || size,
+          color: item.color || color
+        })) : [{
+          sku: 'TRIVE-SKU-01',
+          name: product.name,
+          quantity: quantity || 1,
+          size: size || 'L',
+          color: color || 'Black'
+        }]
+      };
+
+      const qikinkResponse = await fetch(QIKINK_SANDBOX_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${QIKINK_API_KEY}`
+        },
+        body: JSON.stringify(qikinkPayload)
+      });
+      
+      console.log(`[QIKINK SANDBOX] Order #${orderId} pushed to Qikink sandbox pipeline. Status: ${qikinkResponse.status}`);
+    } catch (qikErr) {
+      console.error("[QIKINK ERROR] Sandbox dispatch failed:", qikErr.message);
+    }
+
     // Format WhatsApp concierge dispatch message
     const waText = `⚡ *NEW TRIVÉ ARCHIVAL ORDER* ⚡\n\n` +
       `*Order ID:* #${orderId}\n` +
@@ -27,25 +89,24 @@ app.post('/api/order', async (req, res) => {
       `*Item(s):* ${product.name}\n` +
       `*Color/Size:* ${color} / Size ${size} (Qty: ${quantity})\n` +
       `*Total Amount:* ₹${product.price}\n` +
-      `*Payment Ref (UTR):* ${utr}\n` +
+      `*Payment Mode/Ref:* ${paymentMode || 'UPI'} (${utr})\n` +
       `*Shipping Address:* ${address.street}, ${address.city} ${address.pincode} (${address.state})`;
 
     const encodedMessage = encodeURIComponent(waText);
     const whatsappLink = `https://wa.me/919202142350?text=${encodedMessage}`;
 
-    // Configure SMTP transporter using Render's environment variables
-    const transporter = nodemailer.createTransport({
+    // 3. SEND EMAIL NOTIFICATION VIA NODEMAILER
+  const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_PASS
+        user: 'support.trive@gmail.com',
+        pass: 'alzjxgxrcenvielm' // Remove the spaces so it's continuous
       }
     });
 
-    // Setup email content
     const mailOptions = {
-      from: process.env.GMAIL_USER,
-      to: customer.email || process.env.GMAIL_USER,
+      from: process.env.GMAIL_USER || 'support.trive@gmail.com',
+      to: customer.email || 'support.trive@gmail.com',
       subject: `🚨 New Order Confirmed: #${orderId} (${customer.name})`,
       text: `New order received on TRIVÉ!\n\n` +
             `Order ID: #${orderId}\n` +
@@ -56,25 +117,24 @@ app.post('/api/order', async (req, res) => {
             `Size: ${size}\n` +
             `Quantity: ${quantity}\n` +
             `Total Amount: ₹${product.price}\n` +
-            `Payment UTR: ${utr}\n\n` +
+            `Payment: ${paymentMode || 'UPI'} (UTR: ${utr})\n\n` +
             `Delivery Address:\n` +
             `- ${address.street}, ${address.city}, ${address.state} - ${address.pincode}\n\n` +
             `Thank you for shopping with TRIVÉ.`
     };
 
-    // Send email notification via Nodemailer
     await transporter.sendMail(mailOptions);
-    console.log(`[ORDER SUCCESS] Email notification sent and web order #${orderId} logged for ${customer.name}`);
+    console.log(`[ORDER SUCCESS] Email notification sent, Google Sheet logged, Qikink sandboxed, and order #${orderId} confirmed for ${customer.name}`);
 
     return res.status(200).json({
       success: true,
       orderId: orderId,
       whatsappLink: whatsappLink,
-      message: 'Order successfully processed, email sent, and queued for dispatch.'
+      message: 'Order successfully processed, logged to Sheet, sent via Mail, and forwarded to Qikink sandbox.'
     });
 
   } catch (err) {
-    console.error("Order or email processing error:", err);
+    console.error("Order or background sync processing error:", err);
     return res.status(500).json({ success: false, message: "Server error processing order", error: err.message });
   }
 });

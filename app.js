@@ -1,656 +1,662 @@
-const PRODUCTS = [
-  {
-    id: 'deal-01',
-    name: "You Can't Please Everyone // Acid Wash Hoodie",
-    price: 1799,
-    originalPrice: 2499,
-    gender: 'unisex',
-    category: 'hoodie',
-    sku: 'UH62',
-    tag: 'Deal for the Day',
-    desc: '300 GSM Heavyweight Cotton with lived-in acid wash finish. Oversized streetwear drape featuring dropped shoulders, roomy hood, and high-definition archival back screen print.',
-    colors: [
-      { name: 'Washed Mineral Grey', hex: '#2b2b2e', images: ['assets/Hoodie acid/grey b.jpg', 'assets/Hoodie acid/Grey.jpg'] },
-      { name: 'Washed Indigo Blue', hex: '#263447', images: ['assets/Hoodie acid/blue b.jpg', 'assets/Hoodie acid/blue.jpg'] },
-      { name: 'Archival Maroon', hex: '#472228', images: ['assets/Hoodie acid/brown b.jpg', 'assets/Hoodie acid/brown.jpg'] },
-      { name: 'Forest Bottle Green', hex: '#1e382b', images: ['assets/Hoodie acid/green b.jpg', 'assets/Hoodie acid/green.jpg'] }
-    ]
-  },
-  {
-    id: 'karan-arjun-01',
-    name: 'Karan Arjun // Heavy Hoodie',
-    price: 1799,
-    category: 'Hoodie',
-    tag: 'Karan Arjun // Heavywear', // <-- Added tag
-    image: 'assets/karan Arjun/Screenshot 2026-11-13 163020.png',
-    colors: [
-      { name: 'White/Cream', hex: '#ffffff', images: ['assets/karan Arjun/Screenshot 2026-11-13 163020.png', 'assets/karan Arjun/Screenshot 2026-11-13 163032.png'] },
-      { name: 'Graphic Off-White', hex: '#f4f4f5', images: ['assets/karan Arjun/Screenshot 2026-11-13 163032.png', 'assets/karan Arjun/Screenshot 2026-11-13 163020.png'] }
-    ]
-  },
-  {
-    id: 'parth-hoodie-01',
-    name: 'Parth Collection // Archival Hoodie',
-    price: 2199,
-    category: 'Hoodie',
-    tag: 'Parth Collection // Archival Hoodie', // <-- Added tag
-    image: 'assets/Parth/Screenshot 2026-11-13 162855.png',
-    colors: [
-      { name: 'White', hex: '#f4f4f5', images: ['assets/Parth/Screenshot 2026-11-13 162855.png', 'assets/Parth/Screenshot 2026-11-13 162937.png'] },
-      { name: 'Ice Blue', hex: '#7dd3fc', images: ['assets/Parth/Screenshot 2026-11-13 162933.png', 'assets/Parth/Screenshot 2026-11-13 163004.png'] },
-      { name: 'Mint Green', hex: '#43d692', images: ['assets/Parth/Screenshot 2026-11-13 162929.png', 'assets/Parth/Screenshot 2026-11-13 163000.png'] },
-      { name: 'Dusty Rose / Coral', hex: '#d97706', images: ['assets/Parth/Screenshot 2026-11-13 162925.png', 'assets/Parth/Screenshot 2026-11-13 162956.png'] },
-      { name: 'Lavender / Lilac', hex: '#a78bfa', images: ['assets/Parth/Screenshot 2026-11-13 162921.png', 'assets/Parth/Screenshot 2026-11-13 162952.png'] },
-      { name: 'Soft Pink', hex: '#f472b6', images: ['assets/Parth/Screenshot 2026-11-13 162915.png', 'assets/Parth/Screenshot 2026-11-13 162948.png'] },
-      { name: 'Grey', hex: '#38393a', images: ['assets/Parth/Screenshot 2026-11-13 162907.png', 'assets/Parth/Screenshot 2026-11-13 162944.png'] }
-    ]
-  },
-  {
-    id: 'mohmaya-tee-01',
-    name: 'Mohmaya // Oversized Tee',
-    price: 1199,
-    category: 'T-Shirt',
-    tag: 'Mohmaya // Oversized', // <-- Added tag
-    image: 'assets/mohmaya/Screenshot 2026-11-13 163104.png',
-    colors: [
-      { name: 'Charcoal', hex: '#27272a', images: ['assets/mohmaya/Screenshot 2026-11-13 163122.png','assets/mohmaya/Screenshot 2026-11-13 163104.png'] },
-      { name: 'Off-White', hex: '#f4f4f5', images: ['assets/mohmaya/Screenshot 2026-11-13 163134.png','assets/mohmaya/Screenshot 2026-11-13 163115.png'] },
-      { name: 'Navy Blue', hex: '#263447', images: ['assets/mohmaya/Screenshot 2026-11-13 163128.png','assets/mohmaya/Screenshot 2026-11-13 163107.png'] },
-    ]
-  },
-  {
-    id: 'spiritual-gangster-01',
-    name: 'Spiritual Gangster // Graphic Tee',
-    price: 1299,
-    category: 'T-Shirt',
-    tag: 'Spiritual Gangster // Graphic Tee', // <-- Added tag
-    image: 'assets/Spiritual-Gangster/Screenshot 2026-11-13 162609.png',
-    colors: [
-      { name: 'Charcoal', hex: '#27272a', images: ['assets/Spiritual-Gangster/Screenshot 2026-11-13 162609.png','assets/Spiritual-Gangster/Screenshot 2026-11-13 162631.png'] },
-      { name: 'Navy Blue', hex: '#263447', images: ['assets/Spiritual-Gangster/Screenshot 2026-11-13 162619.png','assets/Spiritual-Gangster/Screenshot 2026-11-13 162652.png'] },
-      { name: 'Light Grey', hex: '#d4d4d8', images: ['assets/Spiritual-Gangster/Screenshot 2026-11-13 162627.png','assets/Spiritual-Gangster/Screenshot 2026-11-13 162711.png'] },
-    ]
-  },
-{
-    id: 'calm-a-sutra-01',
-    name: 'Calm-A-Sutra // Heavy Tee',
-    price: 1199,
-    category: 'T-Shirt',
-    tag: 'Calm-A-Sutra // Heavy Tee', // <-- Added tag
-    image: 'assets/Calm-A-Sutra/Screenshot 2026-11-13 163159.png',
-    colors: [
-      { name: 'Charcoal', hex: '#27272a', images: ['assets/Calm-A-Sutra/Screenshot 2026-11-13 163159.png', 'assets/Calm-A-Sutra/Screenshot 2026-11-13 163146.png'] },
-      { name: 'Navy Blue', hex: '#263447', images: ['assets/Calm-A-Sutra/Screenshot 2026-11-13 163205.png', 'assets/Calm-A-Sutra/Screenshot 2026-11-13 163153.png'] }
-    ]
-  },
-  {
-    id: 'biker-hoodie-01',
-    name: 'Hypersport Biker Riding Hoodie',
-    price: 2199,
-    originalPrice: 2899,
-    gender: 'men',
-    category: 'hoodie',
-    sku: 'TRV-BIKE-01',
-    tag: 'Riding Armor // Heavy Fleece',
-    desc: '380 GSM Heavy Thermal Fleece built for long-distance motorcycle touring. Features reinforced elbow panels, high-wind structured hood, and reflective archival back graphics.',
-    colors: [
-      { name: 'Onyx Black', hex: '#141416', images: ['assets/hoodies/black front.png', 'assets/hoodies/black back.png'] },
-      { name: 'Kawasaki Green', hex: '#1e382b', images: ['assets/hoodies/green front.png', 'assets/hoodies/green back.png'] },
-      { name: 'Touring Blue', hex: '#263447', images: ['assets/hoodies/blue front.png', 'assets/hoodies/blue back.png'] },
-      { name: 'Chalk White', hex: '#e4e4e7', images: ['assets/hoodies/white front.png', 'assets/hoodies/white back.png'] }
-    ]
-  },
-  {
-    id: 'tee-drop-02',
-    name: 'Lost But Never Broken // Oversized Tee',
-    price: 1199,
-    originalPrice: 1999,
-    gender: 'unisex',
-    category: 't-shirt',
-    sku: 'TRV-TEE-02',
-    tag: 'Drop 02 // 240 GSM',
-    desc: '240 GSM 100% Super Combed Terry Cotton. Features a 4" chest pocket print and high-definition archival compass rose back screen print. Bio-washed and pre-shrunk.',
-    colors: [
-      { name: 'Onyx Black', hex: '#141416', images: ['assets/broken/black pocket.jpg', 'assets/broken/black f.jpg'] },
-      { name: 'Navy Blue', hex: '#263447', images: ['assets/broken/blue pocket.jpg', 'assets/broken/blue f.jpg'] },
-      { name: 'Mustard Yellow', hex: '#d97706', images: ['assets/broken/yellow pocket.jpg', 'assets/broken/Yellow f.jpg'] },
-      { name: 'Olive / Mehndi', hex: '#3b4d3c', images: ['assets/broken/mehndi.jpg', 'assets/broken/default.jpg'] }
-    ]
-  },
-  {
-    id: 'tee-01',
-    name: 'BORN TO RULE Tee',
-    price: 1299,
-    originalPrice: 1899,
-    gender: 'men',
-    category: 't-shirt',
-    sku: 'TRV-TEE-01',
-    tag: 'Men // Heavy Tee',
-    desc: '280 GSM Luxury Combed Terry Cotton. Archival drop shoulder boxy fit with high-density puff print detailing. Crafted by TRIVÉ Atelier.',
-    colors: [{ name: 'Vintage Washed Black', hex: '#141416', images: ['assets/LEGENCY%20EDITION/Screenshot%202026-11-12%20162307.png', 'assets/LEGENCY%20EDITION/Screenshot%202026-11-12%20162035.png'] }]
-  },
-  {
-    id: 'tee-02',
-    name: 'Sub-Zero Oversized Tee',
-    price: 1399,
-    originalPrice: 1999,
-    gender: 'women',
-    category: 't-shirt',
-    sku: 'TRV-TEE-W01',
-    tag: 'Coming Soon // Drop 03',
-    desc: '260 GSM Ultra-Soft Biowashed Cotton. Clean dropped silhouette crafted for contemporary street drape.',
-    colors: [{ name: 'Chalk White', hex: '#e4e4e7', images: ['assets/soonnn.png', 'assets/soonnn.png'] }]
-  },
-  {
-    id: 'shirt-01',
-    name: 'Tactical Boxy Overshirt',
-    price: 1899,
-    originalPrice: 2499,
-    gender: 'men',
-    category: 'shirt',
-    sku: 'TRV-SHT-01',
-    tag: 'Coming Soon // Drop 03',
-    desc: 'Heavyweight Cotton Twill. Relaxed Cuban collar with twin chest cargo pockets and matte tonal buttons.',
-    colors: [{ name: 'Dark Slate', hex: '#1f2937', images: ['assets/soonnn.png', 'assets/soonnn.png'] }]
-  },
-  {
-    id: 'shirt-02',
-    name: 'Archival Drape Resort Shirt',
-    price: 1799,
-    originalPrice: 2399,
-    gender: 'women',
-    category: 'shirt',
-    sku: 'TRV-SHT-W01',
-    tag: 'Coming Soon // Drop 03',
-    desc: 'Rayon-Tencel blended relaxed resort shirt with minimal collar geometry and tailored vented side hems.',
-    colors: [{ name: 'Natural Ecru', hex: '#d6d3d1', images: ['assets/soonnn.png', 'assets/soonnn.png'] }]
-  },
-  {
-    id: 'lower-01',
-    name: 'Heavy Terry Archival Sweatpants',
-    price: 1699,
-    originalPrice: 2299,
-    gender: 'men',
-    category: 'lower',
-    sku: 'TRV-LOW-01',
-    tag: 'Coming Soon // Drop 03',
-    desc: '380 GSM Heavy French Terry with extended contrast drawstrings, deep zip pockets, and straight ankle cuffs.',
-    colors: [{ name: 'Washed Charcoal', hex: '#27272a', images: ['assets/soonnn.png', 'assets/soonnn.png'] }]
-  },
-  {
-    id: 'lower-02',
-    name: 'Wide-Leg Minimalist Track Pant',
-    price: 1699,
-    originalPrice: 2299,
-    gender: 'women',
-    category: 'lower',
-    sku: 'TRV-LOW-W01',
-    tag: 'Coming Soon // Drop 03',
-    desc: 'High-waisted wide-leg straight trousers with concealed drawstrings and breathable structure.',
-    colors: [{ name: 'Obsidian Black', hex: '#09090b', images: ['assets/soonnn.png', 'assets/soonnn.png'] }]
-  },
-  {
-    id: 'drop-porsche-01',
-    name: 'Need Money For Porsche // Heavy Hoodie',
-    price: 2299,
-    originalPrice: 2999,
-    gender: 'unisex',
-    category: 'hoodie',
-    sku: 'TRV-DRP-01',
-    tag: 'Coming Soon // Drop 03',
-    desc: '380 GSM Heavy Thermal Fleece. Features minimalist chest crest branding and high-definition "Need Money For Porsche" archival back graphics.',
-    colors: [{ name: 'Chalk White', hex: '#e4e4e7', images: ['assets/soonnn.png', 'assets/soonnn.png'] }]
-  },
-  {
-    id: 'drop-boss-02',
-    name: 'Success & Power // Heavyweight Hoodie',
-    price: 2299,
-    originalPrice: 2999,
-    gender: 'unisex',
-    category: 'hoodie',
-    sku: 'TRV-DRP-02',
-    tag: 'Coming Soon // Drop 03',
-    desc: '380 GSM Jet Black French Terry. Detailed gold-ring hand graphic on the chest and high-contrast expressive portrait back print.',
-    colors: [{ name: 'Onyx Black', hex: '#141416', images: ['assets/soonnn.png', 'assets/soonnn.png'] }]
-  },
-  {
-    id: 'drop-spider-03',
-    name: 'Miles Morales Archival // Hoodie',
-    price: 2399,
-    originalPrice: 3099,
-    gender: 'unisex',
-    category: 'hoodie',
-    sku: 'TRV-DRP-03',
-    tag: 'Coming Soon // Drop 03',
-    desc: 'Heavyweight biowashed fleece with custom spider web chest embroidery and archival Spider-Man comic layout back print.',
-    colors: [{ name: 'Off-White', hex: '#f4f4f5', images: ['assets/soonnn.png', 'assets/soonnn.png'] }]
-  },
-  {
-    id: 'drop-crosshair-04',
-    name: 'Crosshair Underground // Heavy Hoodie',
-    price: 2199,
-    originalPrice: 2899,
-    gender: 'unisex',
-    category: 'hoodie',
-    sku: 'TRV-DRP-04',
-    tag: 'Coming Soon // Drop 03',
-    desc: '380 GSM premium fleece featuring a precise red target chest hit and distressed collage back graphic.',
-    colors: [{ name: 'Chalk White', hex: '#e4e4e7', images: ['assets/soonnn.png', 'assets/soonnn.png'] }]
-  }
-];
+// ==========================================
+// TRIVE // ARCHIVAL HEAVYWEAR - CORE STORE ENGINE
+// ==========================================
 
 let activeGender = 'all';
 let activeCategory = 'all';
-let currentProduct = PRODUCTS[0];
-let selectedColor = currentProduct.colors[0];
+let currentProduct = typeof PRODUCTS !== 'undefined' ? PRODUCTS[0] : null;
+let selectedColor = currentProduct ? currentProduct.colors[0] : null;
 let selectedSize = 'L';
 let cart = [];
+try {
+  const savedCart = localStorage.getItem('trive_cart');
+  if (savedCart) cart = JSON.parse(savedCart);
+} catch (e) {
+  cart = [];
+}
 let selectedPaymentMode = 'UPI';
 let discountAmount = 0;
 
-let reignColor = 'black';
-let reignView = 'front';
-let reignSize = 'L';
-const reignData = {
-  black: { 
-    front: 'assets/LEGENCY%20EDITION/Screenshot%202026-11-12%20161951.png', 
-    back: 'assets/LEGENCY%20EDITION/Screenshot%202026-11-12%20162035.png' 
-  },
-  olive: { 
-    front: 'assets/LEGENCY%20EDITION/Screenshot%202026-11-12%20162026.png', 
-    back: 'assets/LEGENCY%20EDITION/Screenshot%202026-11-12%20162104.png' 
-  },
-  burgundy: { 
-    front: 'assets/LEGENCY%20EDITION/Screenshot%202026-11-12%20162006.png', 
-    back: 'assets/LEGENCY%20EDITION/Screenshot%202026-11-12%20162044.png' 
-  },
-  navy: { 
-    front: 'assets/LEGENCY%20EDITION/Screenshot%202026-11-12%20162307.png', 
-    back: 'assets/LEGENCY%20EDITION/Screenshot%202026-11-12%20162057.png' 
-  }
-};
-
-function openProductView(productId) {
-    // 1. Push state to browser history so native back button captures it
-    history.pushState({ view: 'product', id: productId }, '', `#product-${productId}`);
-    
-    // 2. Render your product view normally
-    showProductDetails(productId);
+let API_URL = '/api/order';
+if (window.location.hostname === 'localhost') {
+  API_URL = 'http://localhost:8080/api/order';
+} else if (window.location.hostname === '127.0.0.1') {
+  API_URL = 'http://localhost:8080/api/order';
 }
 
-function setReignC(color, el) {
-  reignColor = color;
-  document.querySelectorAll('.reign-c-btn').forEach(b => {
-    b.classList.remove('active');
-    b.style.borderColor = 'var(--border)';
-  });
-  el.classList.add('active');
-  el.style.borderColor = 'var(--accent)';
-  updateReignImg();
-}
-
-function setReignV(view) {
-  reignView = view;
-  document.getElementById('btn-reign-front').style.background = view === 'front' ? '#222' : '#111';
-  document.getElementById('btn-reign-front').style.color = view === 'front' ? '#fff' : '#888';
-  document.getElementById('btn-reign-back').style.background = view === 'back' ? '#222' : '#111';
-  document.getElementById('btn-reign-back').style.color = view === 'back' ? '#fff' : '#888';
-  updateReignImg();
-}
-
-function updateReignImg() {
-  const img = document.getElementById('reign-main-img');
-  if (img && reignData[reignColor]) {
-    img.src = reignData[reignColor][reignView];
-  }
-}
-
-function selectReignSz(sz, el) {
-  reignSize = sz;
-  document.querySelectorAll('#born-to-reign-drop .size-btn').forEach(b => {
-    b.classList.remove('active');
-  });
-  el.classList.add('active');
-}
-
-function orderReignTee() {
-  cart.push({
-    name: 'Born to Reign // Legacy Edition Tee',
-    price: 1299,
-    color: reignColor.toUpperCase(),
-    size: reignSize,
-    image: reignData[reignColor]['front'],
-    qty: 1
-  });
-  updateCartUI();
-  toggleCart(true);
-}
-
-function navigateTo(viewId) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  const target = document.getElementById(`view-${viewId}`);
-  if (target) {
-    target.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-  toggleCart(false);
-}
-
-function setGenderFilter(gender, btn) {
-  activeGender = gender;
-  document.querySelectorAll('.gender-tab, .nav-link').forEach(b => {
-    if (b.innerText.toLowerCase().includes(gender) || (gender === 'all' && (b.innerText.includes('All') || b.innerText.includes('Archival')))) {
-      b.classList.add('active');
-    } else {
-      b.classList.remove('active');
-    }
-  });
-  renderCatalog();
-}
-
-function setCategoryFilter(category, btn) {
-  activeCategory = category;
-  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-  btn.classList.add('active');
-  renderCatalog();
-}
+// ==========================================
+// 1. CATALOG RENDERING & FILTERING
+// ==========================================
 
 function renderCatalog() {
-  const grid = document.getElementById('products-grid');
-  const filtered = PRODUCTS.filter(p => {
-    const matchesGender = (activeGender === 'all') || (p.gender === activeGender) || (p.gender === 'unisex');
-    const matchesCategory = (activeCategory === 'all') || (p.category === activeCategory);
-    return matchesGender && matchesCategory;
+  let grid = document.getElementById('products-grid');
+  if (!grid) grid = document.getElementById('product-grid');
+  if (!grid) return;
+  if (typeof PRODUCTS === 'undefined') return;
+
+  const filtered = PRODUCTS.filter((p) => {
+    const pGender = (p.gender ? p.gender : 'unisex').toLowerCase();
+    const pCat = (p.category ? p.category : 'hoodie').toLowerCase();
+
+    const genderMatch =
+      activeGender === 'all' ? true : (pGender === activeGender ? true : pGender === 'unisex');
+
+    const categoryMatch =
+      activeCategory === 'all' ? true : pCat === activeCategory;
+
+    return genderMatch && categoryMatch;
   });
 
   if (filtered.length === 0) {
-    grid.innerHTML = `<p style="grid-column: 1/-1; text-align:center; color:var(--muted); padding:40px 0;">No items found in this section.</p>`;
+    grid.innerHTML = `
+      <div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:#888;border:1px dashed #222;border-radius:12px;">
+        No archival pieces match this filter yet.
+      </div>`;
     return;
   }
 
-  grid.innerHTML = filtered.map(p => `
-    <div class="product-card" onclick="openProduct('${p.id}')">
-      <span class="card-tag">${p.tag}</span>
-      <img src="${p.colors[0].images[0]}" alt="${p.name}">
-      <div class="info">
-        <h3>${p.name}</h3>
-        <span class="price">₹${p.price.toLocaleString('en-IN')}</span>
-      </div>
-    </div>
-  `).join('');
+  grid.innerHTML = filtered
+    .map((product) => {
+      const primaryColor = product.colors[0];
+      const frontImg = primaryColor.images[0];
+      const backImg = primaryColor.images[1] ? primaryColor.images[1] : frontImg;
+      const tagText = product.tag ? product.tag : '';
+      const isComingSoon = tagText.toLowerCase().includes('coming soon');
+      const discountPct = product.originalPrice
+        ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
+        : 0;
+
+      const swatchesHtml = product.colors
+        .map(
+          (c, idx) => `
+          <span 
+            title="${c.name}" 
+            onclick="event.stopPropagation(); swapCardColor('${product.id}', ${idx})"
+            style="display:inline-block;width:14px;height:14px;border-radius:50%;background:${c.hex};border:1px solid #444;cursor:pointer;">
+          </span>`
+        )
+        .join('');
+
+      const btnAction = isComingSoon
+        ? `openProduct('${product.id}')`
+        : `quickAddToCart('${product.id}')`;
+
+      return `
+        <div class="product-card" onclick="openProduct('${product.id}')" style="background:#0c0c0e;border:1px solid #1e1e22;border-radius:12px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between;transition:transform 0.2s ease, border-color 0.2s ease;">
+          <div>
+            <div style="position:relative;background:#08080a;aspect-ratio:4/5;overflow:hidden;">
+              <img 
+                id="card-img-${product.id}" 
+                src="${frontImg}" 
+                data-front="${frontImg}" 
+                data-back="${backImg}"
+                onmouseover="this.src=this.dataset.back"
+                onmouseout="this.src=this.dataset.front"
+                alt="${product.name}" 
+                style="width:100%;height:100%;object-fit:cover;transition:transform 0.3s ease;"
+              />
+              ${
+                tagText
+                  ? `<span style="position:absolute;top:12px;left:12px;background:${
+                      isComingSoon ? '#18181b' : '#d7ff3e'
+                    };color:${
+                      isComingSoon ? '#a1a1aa' : '#050505'
+                    };font-size:10px;font-weight:900;padding:4px 8px;border-radius:4px;letter-spacing:0.08em;text-transform:uppercase;">${tagText}</span>`
+                  : ''
+              }
+            </div>
+            <div style="padding:16px;">
+              <div style="display:flex;gap:6px;margin-bottom:10px;">${swatchesHtml}</div>
+              <h3 style="font-size:15px;font-weight:800;color:#fff;margin:0 0 8px;line-height:1.3;">${product.name}</h3>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span style="font-size:16px;font-weight:900;color:#fff;">₹${product.price.toLocaleString('en-IN')}</span>
+                ${
+                  product.originalPrice
+                    ? `<span style="font-size:13px;color:#666;text-decoration:line-through;">₹${product.originalPrice.toLocaleString('en-IN')}</span>`
+                    : ''
+                }
+                ${
+                  discountPct > 0
+                    ? `<span style="font-size:11px;font-weight:800;color:#22c55e;">${discountPct}% OFF</span>`
+                    : ''
+                }
+              </div>
+            </div>
+          </div>
+          <div style="padding:0 16px 16px;">
+            <button 
+              type="button"
+              onclick="event.stopPropagation(); ${btnAction}"
+              style="width:100%;padding:10px;background:${
+                isComingSoon ? '#18181b' : '#ffffff'
+              };color:${
+                isComingSoon ? '#71717a' : '#050505'
+              };border:1px solid ${
+                isComingSoon ? '#27272a' : '#ffffff'
+              };border-radius:6px;font-size:11px;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;">
+              ${isComingSoon ? 'NOTIFY // DROP 03' : '+ ADD TO BAG'}
+            </button>
+          </div>
+        </div>
+      `;
+    })
+    .join('');
 }
 
-function openProduct(id) {
-  const p = PRODUCTS.find(x => x.id === id);
-  if (!p) return;
-  currentProduct = p;
-  selectedColor = p.colors[0];
+function swapCardColor(productId, colorIdx) {
+  const product = PRODUCTS.find((p) => p.id === productId);
+  const imgEl = document.getElementById(`card-img-${productId}`);
+  if (!product) return;
+  if (!imgEl) return;
 
-  document.getElementById('detail-tag').innerText = p.tag;
-  document.getElementById('detail-title').innerText = p.name;
-  document.getElementById('detail-price').innerText = `₹${p.price.toLocaleString('en-IN')}`;
-  document.getElementById('detail-desc').innerText = p.desc;
-
-  const colorContainer = document.getElementById('color-picker');
-  colorContainer.innerHTML = p.colors.map((c, idx) => `
-    <div class="color-chip ${idx === 0 ? 'active' : ''}" onclick="selectColor('${c.name}', this)">
-      <span class="color-dot" style="background:${c.hex || '#333'};"></span>
-      <span>${c.name}</span>
-    </div>
-  `).join('');
-
-  updateGallery();
-  navigateTo('product');
+  const chosen = product.colors[colorIdx];
+  imgEl.src = chosen.images[0];
+  imgEl.dataset.front = chosen.images[0];
+  imgEl.dataset.back = chosen.images[1] ? chosen.images[1] : chosen.images[0];
 }
 
-function selectColor(colorName, el) {
-  const c = currentProduct.colors.find(x => x.name === colorName);
-  if (!c) return;
-  selectedColor = c;
-  document.querySelectorAll('.color-chip').forEach(chip => chip.classList.remove('active'));
-  el.classList.add('active');
-  updateGallery();
+function setGenderFilter(gender, btnEl) {
+  activeGender = gender;
+  document.querySelectorAll('.gender-tab').forEach((b) => b.classList.remove('active'));
+  if (btnEl) btnEl.classList.add('active');
+  renderCatalog();
 }
 
-function updateGallery() {
-  document.getElementById('detail-main-img').src = selectedColor.images[0];
-  const thumbs = document.getElementById('detail-thumbs');
-  thumbs.innerHTML = selectedColor.images.map((img, i) => `
-    <div class="thumb ${i === 0 ? 'active' : ''}" onclick="switchImg('${img}', this)">
-      <img src="${img}">
-    </div>
-  `).join('');
+function setCategoryFilter(category, btnEl) {
+  activeCategory = category;
+  document.querySelectorAll('.pill').forEach((b) => b.classList.remove('active'));
+  if (btnEl) btnEl.classList.add('active');
+  renderCatalog();
 }
 
-function switchImg(url, el) {
-  document.getElementById('detail-main-img').src = url;
-  document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
+// ==========================================
+// 2. PRODUCT DETAIL VIEW (#view-product)
+// ==========================================
+
+function openProduct(productId) {
+  const product = PRODUCTS.find((p) => p.id === productId);
+  if (!product) return;
+
+  currentProduct = product;
+  selectedColor = product.colors[0];
+  selectedSize = 'L';
+
+  const tagEl = document.getElementById('detail-tag');
+  const titleEl = document.getElementById('detail-title');
+  const priceEl = document.getElementById('detail-price');
+  const descEl = document.getElementById('detail-desc');
+  const mainImgEl = document.getElementById('detail-main-img');
+
+  if (tagEl) tagEl.textContent = product.tag ? product.tag : 'ARCHIVAL DROP';
+  if (titleEl) titleEl.textContent = product.name;
+  if (priceEl) priceEl.textContent = `₹${product.price.toLocaleString('en-IN')}`;
+  if (descEl) descEl.textContent = product.desc ? product.desc : '';
+  if (mainImgEl && selectedColor && selectedColor.images[0]) {
+    mainImgEl.src = selectedColor.images[0];
+  }
+
+  renderDetailThumbnails();
+  renderColorPicker();
+  syncSizeButtons();
+  switchView('view-product');
 }
 
-function selectSize(sz, btn) {
+function renderDetailThumbnails() {
+  const thumbsEl = document.getElementById('detail-thumbs');
+  if (!thumbsEl) return;
+  if (!selectedColor) return;
+
+  thumbsEl.innerHTML = selectedColor.images
+    .map(
+      (imgSrc, idx) => `
+      <img 
+        src="${imgSrc}" 
+        alt="View ${idx + 1}" 
+        onclick="selectDetailThumb('${imgSrc}', this)"
+        style="width:72px;height:86px;object-fit:cover;border-radius:6px;cursor:pointer;border:1px solid ${idx === 0 ? '#d7ff3e' : '#26262b'};"
+      />`
+    )
+    .join('');
+}
+
+function selectDetailThumb(imgSrc, el) {
+  const mainImgEl = document.getElementById('detail-main-img');
+  if (mainImgEl) mainImgEl.src = imgSrc;
+  document.querySelectorAll('#detail-thumbs img').forEach((img) => {
+    img.style.borderColor = '#26262b';
+  });
+  if (el) el.style.borderColor = '#d7ff3e';
+}
+
+function renderColorPicker() {
+  const pickerEl = document.getElementById('color-picker');
+  if (!pickerEl) return;
+  if (!currentProduct) return;
+
+  pickerEl.innerHTML = currentProduct.colors
+    .map((c, idx) => {
+      const isActive = selectedColor && selectedColor.name === c.name;
+      return `
+        <button 
+          type="button" 
+          class="color-chip ${isActive ? 'active' : ''}" 
+          onclick="selectProductColor(${idx}, this)">
+          <span class="color-dot" style="background:${c.hex};"></span>${c.name}
+        </button>`;
+    })
+    .join('');
+}
+
+function selectProductColor(idx, el) {
+  if (!currentProduct) return;
+  selectedColor = currentProduct.colors[idx];
+  document.querySelectorAll('#color-picker .color-chip').forEach((chip) => chip.classList.remove('active'));
+  if (el) el.classList.add('active');
+
+  const mainImgEl = document.getElementById('detail-main-img');
+  if (mainImgEl && selectedColor && selectedColor.images[0]) {
+    mainImgEl.src = selectedColor.images[0];
+  }
+  renderDetailThumbnails();
+}
+
+function selectSize(sz, el) {
   selectedSize = sz;
-  document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+  document.querySelectorAll('#size-options .size-btn').forEach((btn) => btn.classList.remove('active'));
+  if (el) el.classList.add('active');
+}
+
+function syncSizeButtons() {
+  document.querySelectorAll('#size-options .size-btn').forEach((btn) => {
+    if (btn.textContent.trim() === selectedSize) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
 }
 
 function addToCartCurrentProduct() {
-  cart.push({
-    ...currentProduct,
-    color: selectedColor.name,
-    image: selectedColor.images[0],
-    size: selectedSize,
+  if (!currentProduct) return;
+  const colorObj = selectedColor ? selectedColor : currentProduct.colors[0];
+  addItemToCart({
+    id: currentProduct.id,
+    sku: currentProduct.sku ? currentProduct.sku : currentProduct.id.toUpperCase(),
+    name: currentProduct.name,
     price: currentProduct.price,
-    qty: 1
+    color: colorObj.name,
+    size: selectedSize,
+    image: colorObj.images[0],
+    quantity: 1
   });
-  updateCartUI();
   toggleCart(true);
 }
 
-function updateCartUI() {
-  document.getElementById('cart-count').innerText = cart.length;
-  const list = document.getElementById('cart-items-list');
-  if (cart.length === 0) {
-    list.innerHTML = `<p style="color:var(--muted); text-align:center; margin-top:40px;">Your bag is empty.</p>`;
-    document.getElementById('drawer-total').innerText = '₹0';
-    return;
-  }
+// ==========================================
+// 3. CART DRAWER & ITEM MANAGEMENT
+// ==========================================
 
-  let subtotal = 0;
-  list.innerHTML = cart.map((item, idx) => {
-    subtotal += item.price;
-    return `
-      <div class="cart-item">
-        <img src="${item.image}">
-        <div class="cart-item-details">
-          <h4>${item.name}</h4>
-          <p>${item.color} &bull; Size: ${item.size} &bull; ₹${item.price.toLocaleString('en-IN')}</p>
-          <button onclick="removeItem(${idx})" style="background:none;border:none;color:var(--danger);font-size:12px;cursor:pointer;">Remove</button>
-        </div>
-      </div>
-    `;
-  }).join('');
-
-  document.getElementById('drawer-total').innerText = `₹${subtotal.toLocaleString('en-IN')}`;
+function quickAddToCart(productId) {
+  const p = PRODUCTS.find((item) => item.id === productId);
+  if (!p) return;
+  addItemToCart({
+    id: p.id,
+    sku: p.sku ? p.sku : p.id.toUpperCase(),
+    name: p.name,
+    price: p.price,
+    color: p.colors[0].name,
+    size: 'L',
+    image: p.colors[0].images[0],
+    quantity: 1
+  });
+  toggleCart(true);
 }
 
-function removeItem(idx) {
-  cart.splice(idx, 1);
+function addItemToCart(item) {
+  const existing = cart.find(
+    (c) => c.id === item.id && c.color === item.color && c.size === item.size
+  );
+  if (existing) {
+    existing.quantity += item.quantity ? item.quantity : 1;
+  } else {
+    cart.push(item);
+  }
+  saveAndRenderCart();
+}
+
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  saveAndRenderCart();
+}
+
+function updateItemQty(index, delta) {
+  if (!cart[index]) return;
+  cart[index].quantity += delta;
+  if (cart[index].quantity <= 0) {
+    cart.splice(index, 1);
+  }
+  saveAndRenderCart();
+}
+
+function saveAndRenderCart() {
+  localStorage.setItem('trive_cart', JSON.stringify(cart));
   updateCartUI();
 }
 
-function toggleCart(show) {
-  document.getElementById('cart-drawer').classList.toggle('open', show);
-  document.getElementById('cart-overlay').classList.toggle('open', show);
+function updateCartUI() {
+  const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  const badge = document.getElementById('cart-count');
+  if (badge) badge.textContent = totalCount;
+  document.querySelectorAll('.cart-count').forEach((el) => (el.textContent = totalCount));
+
+  let itemsContainer = document.getElementById('cart-items-list');
+  if (!itemsContainer) itemsContainer = document.getElementById('cart-items');
+
+  if (itemsContainer) {
+    if (cart.length === 0) {
+      itemsContainer.innerHTML = `<div style="text-align:center;color:#666;padding:40px 10px;font-size:13px;">Your archival bag is empty.</div>`;
+    } else {
+      itemsContainer.innerHTML = cart
+        .map(
+          (item, i) => `
+          <div style="display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid #1f1f23;">
+            <img src="${item.image}" alt="${item.name}" style="width:56px;height:68px;object-fit:cover;border-radius:6px;background:#111;">
+            <div style="flex:1;">
+              <div style="font-size:13px;font-weight:800;color:#fff;">${item.name}</div>
+              <div style="font-size:11px;color:#888;margin:2px 0 6px;">${item.color} • Size ${item.size}</div>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <button type="button" onclick="updateItemQty(${i}, -1)" style="width:22px;height:22px;background:#18181b;color:#fff;border:1px solid #333;border-radius:4px;cursor:pointer;">-</button>
+                <span style="font-size:12px;font-weight:700;color:#fff;">${item.quantity}</span>
+                <button type="button" onclick="updateItemQty(${i}, 1)" style="width:22px;height:22px;background:#18181b;color:#fff;border:1px solid #333;border-radius:4px;cursor:pointer;">+</button>
+              </div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:13px;font-weight:800;color:#fff;">₹${(item.price * item.quantity).toLocaleString('en-IN')}</div>
+              <button type="button" onclick="removeFromCart(${i})" style="background:none;border:none;color:#ef4444;font-size:11px;cursor:pointer;margin-top:6px;">Remove</button>
+            </div>
+          </div>`
+        )
+        .join('');
+    }
+  }
+
+  let totalEl = document.getElementById('drawer-total');
+  if (!totalEl) totalEl = document.getElementById('cart-total');
+  if (totalEl) totalEl.textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+
+  updateCheckoutSummary();
+}
+
+function toggleCart(forceOpen) {
+  const drawer = document.getElementById('cart-drawer');
+  const overlay = document.getElementById('cart-overlay');
+  if (!drawer) return;
+
+  const shouldOpen = typeof forceOpen === 'boolean' ? forceOpen : !drawer.classList.contains('open');
+  if (shouldOpen) {
+    updateCartUI();
+    drawer.classList.add('open');
+    drawer.style.right = '0';
+    if (overlay) overlay.classList.add('active');
+  } else {
+    drawer.classList.remove('open');
+    drawer.style.right = '-420px';
+    if (overlay) overlay.classList.remove('active');
+  }
+}
+
+// ==========================================
+// 4. VIEW SWITCHING, CHECKOUT & PAYMENT FLOW
+// ==========================================
+
+function switchView(viewId) {
+  document.querySelectorAll('.view').forEach((v) => {
+    v.classList.remove('active');
+    v.style.display = 'none';
+  });
+  const target = document.getElementById(viewId);
+  if (target) {
+    target.classList.add('active');
+    target.style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+function navigateTo(viewName) {
+  if (viewName === 'catalog') switchView('view-catalog');
+  else if (viewName === 'checkout') proceedToCheckoutFromCart();
+  else if (viewName === 'payment') goToPayment();
+  else if (viewName === 'success') switchView('view-success');
+  else switchView(`view-${viewName}`);
+}
+
+function showCatalog() {
+  switchView('view-catalog');
 }
 
 function proceedToCheckoutFromCart() {
-  if (cart.length === 0) return alert('Your bag is empty');
-  toggleCart(false);
-  updateSummary();
-  navigateTo('checkout');
-}
-
-function getTotals() {
-  const subtotal = cart.reduce((acc, item) => acc + item.price, 0);
-  const total = Math.max(0, subtotal - discountAmount);
-  return { subtotal, total };
-}
-
-function updateSummary() {
-  const { subtotal, total } = getTotals();
-  document.getElementById('sum-subtotal').innerText = `₹${subtotal.toLocaleString('en-IN')}`;
-  document.getElementById('sum-total').innerText = `₹${total.toLocaleString('en-IN')}`;
-  
-  const couponRow = document.getElementById('coupon-row');
-  if (discountAmount > 0) {
-    couponRow.style.display = 'flex';
-    document.getElementById('sum-discount').innerText = `-₹${discountAmount.toLocaleString('en-IN')}`;
-  } else {
-    couponRow.style.display = 'none';
+  if (cart.length === 0) {
+    alert('Your bag is empty. Add an archival piece first!');
+    return;
   }
+  toggleCart(false);
+  updateCheckoutSummary();
+  switchView('view-checkout');
+}
+
+function proceedToCheckout() {
+  proceedToCheckoutFromCart();
 }
 
 function applyCoupon() {
-  const code = document.getElementById('coupon-code').value.trim().toUpperCase();
-  const subtotal = cart.reduce((acc, item) => acc + item.price, 0);
-  
+  const input = document.getElementById('coupon-code');
+  const couponRow = document.getElementById('coupon-row');
+  const discEl = document.getElementById('sum-discount');
+  if (!input) return;
+
+  const code = input.value.trim().toUpperCase();
+  const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
   if (code === 'FIRSTDROP') {
-    discountAmount = Math.round(subtotal * 0.10);
-    alert('Promo code applied: 10% off your order');
+    discountAmount = Math.round(subtotal * 0.15);
+  } else if (code === 'TRIVE10') {
+    discountAmount = Math.round(subtotal * 0.1);
+  } else if (code === 'VIP200') {
+    discountAmount = 200;
   } else {
     discountAmount = 0;
-    alert('Invalid promo code');
+    alert('Invalid promo code. Try FIRSTDROP or TRIVE10.');
   }
-  updateSummary();
+
+  if (couponRow) {
+    couponRow.style.display = discountAmount > 0 ? 'flex' : 'none';
+  }
+  if (discEl) {
+    discEl.textContent = `-₹${discountAmount.toLocaleString('en-IN')}`;
+  }
+  updateCheckoutSummary();
+}
+
+function updateCheckoutSummary() {
+  const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const codFee = selectedPaymentMode === 'COD' ? 99 : 0;
+  const finalTotal = Math.max(0, subtotal - discountAmount + codFee);
+
+  const subEl = document.getElementById('sum-subtotal');
+  const discEl = document.getElementById('sum-discount');
+  const couponRow = document.getElementById('coupon-row');
+  const totEl = document.getElementById('sum-total');
+
+  if (subEl) subEl.textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+  if (discEl) discEl.textContent = `-₹${discountAmount.toLocaleString('en-IN')}`;
+  if (couponRow) couponRow.style.display = discountAmount > 0 ? 'flex' : 'none';
+  if (totEl) totEl.textContent = `₹${finalTotal.toLocaleString('en-IN')}`;
 }
 
 function goToPayment() {
-  const name = document.getElementById('cust-name').value.trim();
-  const phone = document.getElementById('cust-phone').value.trim();
-  const street = document.getElementById('cust-street').value.trim();
-  const city = document.getElementById('cust-city').value.trim();
+  const name = (document.getElementById('cust-name')?.value || '').trim();
+  const phone = (document.getElementById('cust-phone')?.value || '').trim();
+  const street = (document.getElementById('cust-street')?.value || '').trim();
+  const city = (document.getElementById('cust-city')?.value || '').trim();
+  const pin = (document.getElementById('cust-pin')?.value || '').trim();
 
-  if (!name || !phone || !street || !city) {
-    alert('Please fill out all address details.');
+  if (!name || !phone || !street || !city || !pin) {
+    alert('Please fill in Name, Mobile Number, Street Address, City, and PIN Code first.');
     return;
   }
 
-  const { total } = getTotals();
-  const upiUrl = `upi://pay?pa=Dev11verma@ybl&pn=TRIVÉ&am=${total}&cu=INR&tn=TRIVÉ_Order`;
-  document.getElementById('dynamic-qr').src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiUrl)}`;
-
-  navigateTo('payment');
+  updateCheckoutSummary();
+  switchView('view-payment');
 }
 
 function selectPaymentMode(mode) {
   selectedPaymentMode = mode;
-  document.getElementById('opt-upi').classList.toggle('selected', mode === 'UPI');
-  document.getElementById('opt-cod').classList.toggle('selected', mode === 'COD');
-  document.getElementById('upi-box').style.display = (mode === 'UPI') ? 'block' : 'none';
+
+  const optUpi = document.getElementById('opt-upi');
+  const optCod = document.getElementById('opt-cod');
+  const upiBox = document.getElementById('upi-box');
+
+  if (optUpi) {
+    if (mode === 'UPI') optUpi.classList.add('selected');
+    else optUpi.classList.remove('selected');
+  }
+  if (optCod) {
+    if (mode === 'COD') optCod.classList.add('selected');
+    else optCod.classList.remove('selected');
+  }
+  if (upiBox) {
+    upiBox.style.display = mode === 'UPI' ? 'block' : 'none';
+  }
+  updateCheckoutSummary();
 }
 
-async function dispatchOrder() {
-  const btn = document.getElementById('btn-submit-order');
-  const utr = (selectedPaymentMode === 'COD') ? 'COD' : document.getElementById('pay-utr').value.trim();
-
-  if (selectedPaymentMode === 'UPI' && (!utr || utr.length < 6)) {
-    alert('Please enter your 12-digit UPI Transaction / Reference number.');
-    return;
-  }
-
-  try {
-    btn.disabled = true;
-    btn.innerText = 'VERIFYING TRANSACTION...';
-
-    const payload = {
-      customer: { 
-        name: document.getElementById('cust-name').value.trim(), 
-        phone: document.getElementById('cust-phone').value.trim() 
-      },
-      product: { 
-        name: cart.map(i => i.name).join(', '), 
-        price: getTotals().total 
-      },
-      color: cart.map(i => i.color).join(', '),
-      size: cart.map(i => i.size).join(', '),
-      quantity: cart.length,
-      utr: utr,
-      address: { 
-        street: document.getElementById('cust-street').value.trim(), 
-        city: document.getElementById('cust-city').value.trim(), 
-        state: 'Madhya Pradesh', 
-        pincode: document.getElementById('cust-pin').value.trim() || '462001' 
-      }
-    };
-
-    const API_URL = window.location.hostname === 'localhost' 
-      ? 'http://localhost:8080/api/order' 
-      : 'https://script.google.com/macros/s/AKfycbzYjBlgBq6E0j06iKFMp-oHdyyY_-7uhxA-905ewmYP4drIViHfJEtnQPWjvi5lFxkP/exec'; // Fixed trailing 't' typo in exec
-
-    // Send payload without expecting readable json if no-cors is enforced
-    await fetch(API_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-
-    // Successfully processed dispatch flow
-    const randomOrderId = 'TV-' + Math.floor(1000 + Math.random() * 9000);
-    document.getElementById('confirmed-id').innerText = `#${randomOrderId}`;
-    document.getElementById('confirmed-address').innerText = `${payload.address.city}, ${payload.address.pincode}`;
-    
-    // Setup WhatsApp confirmation link
-    const waText = encodeURIComponent(`Hello TRIVÉ! Order Placed: ${randomOrderId}\nName: ${payload.customer.name}\nTotal: ₹${payload.product.price}\nPayment: ${utr}`);
-    document.getElementById('btn-wa-confirm').href = `https://wa.me/919202142350?text=${waText}`;
-
-
-    cart = [];
-    if (typeof updateCartUI === 'function') updateCartUI();
-    navigateTo('success');
-
-  } catch (err) {
-    console.error("Order submission error:", err);
-    navigateTo('success'); // Fallback to success view so customer isn't trapped
-  } finally {
-    btn.disabled = false;
-    btn.innerText = 'Confirm & Place Order';
-  }
-}
-
-function openModal(id) {
-  closeAllModals();
-  document.getElementById('modal-backdrop').style.display = 'block';
-  const el = document.getElementById(id);
-  if (el) el.style.display = 'block';
+function openModal(modalId) {
+  const backdrop = document.getElementById('modal-backdrop');
+  const modal = document.getElementById(modalId);
+  if (backdrop) backdrop.style.display = 'block';
+  if (modal) modal.style.display = 'block';
 }
 
 function closeAllModals() {
   const backdrop = document.getElementById('modal-backdrop');
   if (backdrop) backdrop.style.display = 'none';
-  document.querySelectorAll('.TRIVÉ-modal').forEach(m => m.style.display = 'none');
+  document.querySelectorAll('.trive-modal').forEach((m) => (m.style.display = 'none'));
 }
 
-let seconds = 15735;
-setInterval(() => {
-  seconds--;
-  const h = String(Math.floor(seconds / 3600)).padStart(2, '0');
-  const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
-  const s = String(seconds % 60).padStart(2, '0');
-  const timerEl = document.getElementById('countdown-timer');
-  if (timerEl) timerEl.innerText = `ENDS IN ${h}:${m}:${s}`;
-}, 1000);
+// ==========================================
+// 5. ORDER DISPATCH TO EXPRESS BACKEND (PORT 8080)
+// ==========================================
 
-renderCatalog();
+async function dispatchOrder() {
+  const name = (document.getElementById('cust-name')?.value || '').trim();
+  const phone = (document.getElementById('cust-phone')?.value || '').trim();
+  const street = (document.getElementById('cust-street')?.value || '').trim();
+  const city = (document.getElementById('cust-city')?.value || '').trim();
+  const pin = (document.getElementById('cust-pin')?.value || '').trim();
+  const utr = (document.getElementById('pay-utr')?.value || '').trim();
 
-// Register this ONCE globally when your app loads
-window.addEventListener('popstate', (event) => {
-    if (event.state && event.state.view === 'product') {
-        // If they hit native back and it was a product, show that product
-        showProductDetails(event.state.id);
+  if (!name || !phone || !street || !city || !pin) {
+    alert('Please complete your shipping details before placing the order.');
+    switchView('view-checkout');
+    return;
+  }
+
+  if (selectedPaymentMode === 'UPI' && utr.length < 10) {
+    alert('Please enter your valid 12-digit UPI Transaction ID / UTR.');
+    return;
+  }
+
+  const submitBtn = document.getElementById('btn-submit-order');
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'DISPATCHING ARCHIVAL ORDER...';
+  }
+
+  const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const codFee = selectedPaymentMode === 'COD' ? 99 : 0;
+  const totalAmount = Math.max(0, subtotal - discountAmount + codFee);
+  const primaryItem = cart[0] || {
+    sku: 'TRV-ARCHIVAL',
+    color: 'Standard',
+    size: 'L'
+  };
+
+  const orderPayload = {
+    customer: { name, phone, email: 'support.trive@gmail.com' },
+    product: {
+      name: cart.map((i) => `${i.name} (${i.color}/${i.size}) x${i.quantity}`).join(', '),
+      sku: primaryItem.sku,
+      price: totalAmount
+    },
+    items: cart,
+    color: primaryItem.color,
+    size: primaryItem.size,
+    quantity: cart.reduce((s, i) => s + i.quantity, 0),
+    utr: selectedPaymentMode === 'UPI' ? utr : 'COD_ORDER',
+    paymentMode: selectedPaymentMode,
+    address: { street, city, state: 'Madhya Pradesh', pincode: pin }
+  };
+
+  try {
+    const res = await fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(orderPayload)
+    });
+
+    const data = await res.json();
+
+    if (res.ok && data.success) {
+      const orderId = data.orderId ? data.orderId : `TRV-${Date.now().toString().slice(-6)}`;
+
+      const confirmedIdEl = document.getElementById('confirmed-id');
+      const confirmedAddrEl = document.getElementById('confirmed-address');
+      const waBtn = document.getElementById('btn-wa-confirm');
+
+      if (confirmedIdEl) confirmedIdEl.textContent = `#${orderId}`;
+      if (confirmedAddrEl) confirmedAddrEl.textContent = `${street}, ${city} - ${pin}`;
+      if (waBtn) {
+        const waText = encodeURIComponent(
+          `TRIVÉ Order Confirmed! ID: #${orderId} | Name: ${name} | Total: ₹${totalAmount} | Mode: ${selectedPaymentMode}`
+        );
+        waBtn.href = `https://wa.me/919202142350?text=${waText}`;
+      }
+
+      cart = [];
+      discountAmount = 0;
+      saveAndRenderCart();
+      switchView('view-success');
     } else {
-        // Otherwise, default back to your home/catalog view
-        showMainCatalog();
+      throw new Error(data.message ? data.message : 'Server error while processing order.');
     }
-});
+  } catch (err) {
+    console.error('[TRIVE Order Dispatch Error]:', err);
+    alert(`Order dispatch failed: ${err.message}. Check that the Node backend is running on port 8080.`);
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Confirm & Place Order';
+    }
+  }
+}
+
+// ==========================================
+// 6. DEAL OF THE DAY COUNTDOWN TIMER
+// ==========================================
+
+function startDealTimer() {
+  const timerEl = document.getElementById('countdown-timer');
+  if (!timerEl) return;
+
+  let secondsLeft = 4 * 3600 + 22 * 60 + 15;
+  setInterval(() => {
+    if (secondsLeft <= 0) secondsLeft = 4 * 3600;
+    secondsLeft--;
+    const hrs = String(Math.floor(secondsLeft / 3600)).padStart(2, '0');
+    const mins = String(Math.floor((secondsLeft % 3600) / 60)).padStart(2, '0');
+    const secs = String(secondsLeft % 60).padStart(2, '0');
+    timerEl.textContent = `ENDS IN ${hrs}:${mins}:${secs}`;
+  }, 1000);
+}

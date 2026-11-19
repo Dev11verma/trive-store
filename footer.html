@@ -1,0 +1,90 @@
+<!-- RUNNING BRAND TICKER -->
+<div style="background:#111;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:16px 0;overflow:hidden;white-space:nowrap;margin-top:60px;">
+    <div style="display:inline-block;animation: marquee 25s linear infinite;font-family:var(--font-display);font-weight:900;font-size:13px;letter-spacing:0.25em;color:var(--accent);text-transform:uppercase;">
+      SHIPPING GLOBALLY WITH LOVE &bull; CRAFTED FOR THE RELENTLESS &bull; 240+ GSM HEAVYWEAR &bull; BORN TO RULE &bull; SHIPPING GLOBALLY WITH LOVE &bull; 
+    </div>
+</div>
+<style>
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+</style>
+
+<!-- PREMIUM FOOTER -->
+<footer style="background:#070709;border-top:1px solid var(--border);padding:60px 5% 40px;color:var(--muted);font-size:13px;">
+    <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:40px;margin-bottom:50px;">
+      <div>
+        <h3 style="font-family:var(--font-display);font-size:18px;font-weight:900;color:#fff;letter-spacing:0.15em;margin-bottom:14px;text-transform:uppercase;">TRIVÉ // HEAVYWEAR</h3>
+        <p style="color:#777;font-size:12px;line-height:1.6;margin-bottom:16px;">Architectural streetwear designed with heavy-grade combed cotton, structured boxy drapes, and uncompromising attitude.</p>
+        <div style="color:var(--accent);font-weight:800;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;">BORN TO RULE</div>
+      </div>
+      <div>
+        <h4 style="color:#fff;font-size:12px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:16px;">Help & Orders</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
+          <li><a href="javascript:void(0)" onclick="openModal('shipping-modal')" style="color:var(--muted);text-decoration:none;">Shipping Policy</a></li>
+          <li><a href="javascript:void(0)" onclick="openModal('returns-modal')" style="color:var(--muted);text-decoration:none;">Exchange, Returns & Cancellation</a></li>
+          <li><a href="javascript:void(0)" onclick="openModal('support-modal')" style="color:var(--muted);text-decoration:none;">Get Help With Order</a></li>
+          <li><a href="javascript:void(0)" onclick="navigateTo('success')" style="color:var(--muted);text-decoration:none;">Track Your Order</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#fff;font-size:12px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:16px;">Company & Legal</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
+          <li><a href="javascript:void(0)" onclick="openModal('terms-modal')" style="color:var(--muted);text-decoration:none;">Terms & Conditions</a></li>
+          <li><a href="javascript:void(0)" onclick="openModal('terms-modal')" style="color:var(--muted);text-decoration:none;">Privacy Policy</a></li>
+          <li><a href="javascript:void(0)" onclick="openModal('support-modal')" style="color:var(--muted);text-decoration:none;">About Us</a></li>
+          <li><a href="javascript:void(0)" onclick="openModal('support-modal')" style="color:var(--muted);text-decoration:none;">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#fff;font-size:12px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:16px;">Connect & Support</h4>
+        <p style="color:#777;font-size:12px;margin-bottom:14px;">Direct concierge support via WhatsApp or email for drop releases and sizing inquiries.</p>
+        <a href="https://wa.me/919202142350" target="_blank" style="display:inline-block;background:#161619;border:1px solid #333;color:#fff;padding:10px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;text-transform:uppercase;margin-right:8px;margin-bottom:8px;">WhatsApp Dev</a>
+        <a href="https://wa.me/918223009117" target="_blank" style="display:inline-block;background:#161619;border:1px solid #333;color:#fff;padding:10px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;text-transform:uppercase;margin-bottom:8px;">WhatsApp Pranay</a>
+        <div style="margin-top: 10px;">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=support.trive@gmail.com" target="_blank" style="color:#aaa;font-size:12px;text-decoration:none;border-bottom:1px solid #444;">support.trive@gmail.com</a>
+        </div>
+      </div>
+    </div>
+    <div style="max-width:1200px;margin:0 auto;border-top:1px solid #161619;padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;font-size:12px;color:#666;">
+      <div>&copy; 2026 TRIVÉ. All Rights Reserved. Crafted for the relentless.</div>
+      <div style="color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;font-weight:700;">Shipping Globally with Love ⚡</div>
+    </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cart-drawer-overlay" id="cart-overlay" onclick="toggleCart(false)"></div>
+<div class="cart-drawer" id="cart-drawer">
+    <div class="cart-header">
+      <h3>YOUR BAG</h3>
+      <button class="close-btn" onclick="toggleCart(false)">&times;</button>
+    </div>
+    <div class="cart-items" id="cart-items-list"></div>
+    <div style="border-top:1px solid var(--border); padding-top:16px;">
+      <div class="summary-row total">
+        <span>Total:</span>
+        <span id="drawer-total">₹0</span>
+      </div>
+      <button class="btn-primary" style="margin-top:14px;" onclick="proceedToCheckoutFromCart()">Proceed to Checkout</button>
+    </div>
+</div>
+
+<!-- MODALS -->
+<div id="modal-backdrop" onclick="closeAllModals()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(6px);z-index:9999;"></div>
+<div id="shipping-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid var(--border);border-radius:14px;padding:24px;z-index:10000;color:#eee;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><div style="font-weight:900;text-transform:uppercase;color:var(--accent);">Shipping Policy</div><button onclick="closeAllModals()" style="background:none;border:none;color:#888;font-size:20px;cursor:pointer;">&times;</button></div>
+    <div style="font-size:13px;line-height:1.7;color:var(--muted);"><p>Standard delivery takes 4-7 business days across India via trusted partners like Bluedart and Delhivery.</p></div>
+</div>
+<div id="returns-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid var(--border);border-radius:14px;padding:24px;z-index:10000;color:#eee;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><div style="font-weight:900;text-transform:uppercase;color:var(--accent);">Returns & Exchanges</div><button onclick="closeAllModals()" style="background:none;border:none;color:#888;font-size:20px;cursor:pointer;">&times;</button></div>
+    <div style="font-size:13px;line-height:1.7;color:var(--muted);"><p>7-day hassle-free replacement guarantee for sizing adjustments or manufacturing defects.</p></div>
+</div>
+<div id="support-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid var(--border);border-radius:14px;padding:24px;z-index:10000;color:#eee;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><div style="font-weight:900;text-transform:uppercase;color:var(--accent);">Customer Support</div><button onclick="closeAllModals()" style="background:none;border:none;color:#888;font-size:20px;cursor:pointer;">&times;</button></div>
+    <div style="font-size:13px;line-height:1.7;color:var(--muted);margin-bottom:14px;"><p>Contact us anytime at support.trive@gmail.com or via WhatsApp concierge.</p></div>
+</div>
+<div id="terms-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid var(--border);border-radius:14px;padding:24px;z-index:10000;color:#eee;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><div style="font-weight:900;text-transform:uppercase;color:var(--accent);">Terms & Conditions</div><button onclick="closeAllModals()" style="background:none;border:none;color:#888;font-size:20px;cursor:pointer;">&times;</button></div>
+    <div style="font-size:13px;line-height:1.7;color:var(--muted);"><p>All products are intellectual property of TRIVÉ Atelier. Governed by Indian jurisdiction.</p></div>
+</div>
