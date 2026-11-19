@@ -2,7 +2,6 @@
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
-const nodemailer = require('nodemailer');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -10,19 +9,6 @@ const PORT = process.env.PORT || 8080;
 app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname));
-
-const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 465,
-  secure: true,
-  connectionTimeout: 5000,
-  greetingTimeout: 5000,
-  socketTimeout: 5000,
-  auth: {
-    user: process.env.GMAIL_USER || 'support.trive@gmail.com',
-    pass: process.env.GMAIL_PASS || process.env.GMAIL_APP_PASS || 'alzj xglx cenv ielm'
-  }
-});
 
 const ORDERS_FILE = path.join(__dirname, 'orders.json');
 if (!fs.existsSync(ORDERS_FILE)) {
@@ -43,6 +29,7 @@ app.get('/api/health', (req, res) => {
     status: 'ONLINE',
     brand: 'TRIVÉ // HEAVYWEAR',
     port: PORT,
+    brevoConfigured: Boolean(process.env.BREVO_API_KEY),
     timestamp: new Date().toISOString()
   });
 });
@@ -100,11 +87,7 @@ app.post('/api/order', async (req, res) => {
     existingOrders.unshift(orderRecord);
     fs.writeFileSync(ORDERS_FILE, JSON.stringify(existingOrders, null, 2), 'utf8');
 
-    // 2. Build Email Payload
-    const itemsText = orderRecord.items
-      .map((i) => `${i.name} (${i.color} / ${i.size}) x${i.quantity} - ₹${i.price}`)
-      .join(' | ');
-
+    // 2. Build HTML Email
     const itemsHtml = orderRecord.items
       .map(
         (item) =>
@@ -113,74 +96,63 @@ app.post('/api/order', async (req, res) => {
       .join('');
 
     const senderEmail = process.env.GMAIL_USER || 'support.trive@gmail.com';
-    const mailOptions = {
-      from: `"TRIVÉ // ARCHIVAL ORDERS" <${senderEmail}>`,
-      to: 'support.trive@gmail.com',
-      subject: `[NEW ORDER #${orderId}] ₹${orderRecord.totalAmount} • ${customer.name} (${paymentMode})`,
-      html: `
-        <div style="font-family:Arial,sans-serif;background:#0a0a0c;color:#f4f4f5;padding:24px;border-radius:10px;border:1px solid #27272a;">
-          <h2 style="color:#d7ff3e;margin-top:0;">NEW TRIVÉ ARCHIVAL ORDER // #${orderId}</h2>
-          <p style="color:#a1a1aa;font-size:13px;">Placed on ${timestamp} IST</p>
-          <hr style="border-color:#27272a;" />
-          <h3 style="color:#fff;">Customer & Shipping</h3>
-          <p>
-            <strong>Name:</strong> ${customer.name}<br/>
-            <strong>Phone / WhatsApp:</strong> ${customer.phone}<br/>
-            <strong>Address:</strong> ${orderRecord.address.street}, ${orderRecord.address.city}, ${orderRecord.address.state} - ${orderRecord.address.pincode}
-          </p>
-          <h3 style="color:#fff;">Payment Verification</h3>
-          <p>
-            <strong>Mode:</strong> ${paymentMode}<br/>
-            <strong>UTR / Ref:</strong> <span style="color:#d7ff3e;font-weight:bold;">${utr}</span><br/>
-            <strong>Total Paid / Payable:</strong> ₹${orderRecord.totalAmount}
-          </p>
-          <h3 style="color:#fff;">Garments to Print & Dispatch</h3>
-          <ul>${itemsHtml}</ul>
-        </div>
-      `
-    };
+    const subject = `[NEW ORDER #${orderId}] ₹${orderRecord.totalAmount} • ${customer.name} (${paymentMode})`;
+    const htmlContent = `
+      <div style="font-family:Arial,sans-serif;background:#0a0a0c;color:#f4f4f5;padding:24px;border-radius:10px;border:1px solid #27272a;">
+        <h2 style="color:#d7ff3e;margin-top:0;">NEW TRIVÉ ARCHIVAL ORDER // #${orderId}</h2>
+        <p style="color:#a1a1aa;font-size:13px;">Placed on ${timestamp} IST</p>
+        <hr style="border-color:#27272a;" />
+        <h3 style="color:#fff;">Customer & Shipping</h3>
+        <p>
+          <strong>Name:</strong> ${customer.name}<br/>
+          <strong>Phone / WhatsApp:</strong> ${customer.phone}<br/>
+          <strong>Address:</strong> ${orderRecord.address.street}, ${orderRecord.address.city}, ${orderRecord.address.state} - ${orderRecord.address.pincode}
+        </p>
+        <h3 style="color:#fff;">Payment Verification</h3>
+        <p>
+          <strong>Mode:</strong> ${paymentMode}<br/>
+          <strong>UTR / Ref:</strong> <span style="color:#d7ff3e;font-weight:bold;">${utr}</span><br/>
+          <strong>Total Paid / Payable:</strong> ₹${orderRecord.totalAmount}
+        </p>
+        <h3 style="color:#fff;">Garments to Print & Dispatch</h3>
+        <ul>${itemsHtml}</ul>
+      </div>
+    `;
 
-    // 3. Try SMTP with 5s timeout, fallback to HTTPS FormSubmit relay (never blocked on Render)
+    // 3. Send via Brevo HTTPS API (Port 443 - never blocked on Render Free Tier)
     let emailSent = false;
     let emailError = null;
-    try {
-      await Promise.race([
-        transporter.sendMail(mailOptions),
-        new Promise((_, reject) => setTimeout(() => reject(new Error('SMTP_TIMEOUT_5S')), 5000))
-      ]);
-      emailSent = true;
-      console.log(`[TRIVÉ SMTP Sent]: #${orderId}`);
-    } catch (smtpErr) {
-      emailError = smtpErr.message;
-      console.warn(`[TRIVÉ SMTP Fallback (${smtpErr.message})]: Sending via HTTPS relay...`);
+    if (process.env.BREVO_API_KEY) {
       try {
-        const relayRes = await fetch('https://formsubmit.co/ajax/support.trive@gmail.com', {
+        const brevoRes = await fetch('https://api.brevo.com/v3/smtp/email', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          headers: {
+            'accept': 'application/json',
+            'api-key': process.env.BREVO_API_KEY,
+            'content-type': 'application/json'
+          },
           body: JSON.stringify({
-            _subject: `[NEW ORDER #${orderId}] ₹${orderRecord.totalAmount} • ${customer.name} (${paymentMode})`,
-            Order_ID: orderId,
-            Timestamp: `${timestamp} IST`,
-            Customer_Name: customer.name,
-            Phone: customer.phone,
-            Address: `${orderRecord.address.street}, ${orderRecord.address.city}, ${orderRecord.address.state} - ${orderRecord.address.pincode}`,
-            Payment_Mode: paymentMode,
-            UTR: utr,
-            Total_Amount: `₹${orderRecord.totalAmount}`,
-            Items: itemsText
+            sender: { name: 'TRIVÉ // ARCHIVAL ORDERS', email: senderEmail },
+            to: [{ email: 'support.trive@gmail.com', name: 'TRIVÉ Dispatch' }],
+            subject,
+            htmlContent
           })
         });
-        const relayData = await relayRes.json();
-        if (relayRes.ok && (relayData.success === 'true' || relayData.success === true)) {
+        const brevoData = await brevoRes.json();
+        if (brevoRes.ok) {
           emailSent = true;
-          emailError = null;
-          console.log(`[TRIVÉ HTTPS Relay Sent]: #${orderId}`);
+          console.log(`[TRIVÉ Brevo Email Sent]: #${orderId} -> messageId=${brevoData.messageId}`);
         } else {
-          emailError = relayData.message || 'HTTPS relay activation required';
+          emailError = brevoData.message || JSON.stringify(brevoData);
+          console.error('[TRIVÉ Brevo Error]:', emailError);
         }
-      } catch (relayErr) {
-        emailError = relayErr.message;
+      } catch (err) {
+        emailError = err.message;
+        console.error('[TRIVÉ Brevo Fetch Error]:', err.message);
       }
+    } else {
+      emailError = 'BREVO_API_KEY not set in Render Environment';
+      console.warn('[TRIVÉ Email Warning]:', emailError);
     }
 
     console.log(`[TRIVÉ ORDER LOGGED] #${orderId} | ${customer.name} | ₹${orderRecord.totalAmount} | emailSent=${emailSent}`);
@@ -216,6 +188,9 @@ app.listen(PORT, () => {
   }
 });
 
-process.on('uncaughtException', (err) => { console.error('[TRIVÉ Uncaught Guard]:', err.message || err); });
-process.on('unhandledRejection', (err) => { console.error('[TRIVÉ Rejection Guard]:', err && err.message ? err.message : err); });
-
+process.on('uncaughtException', (err) => {
+  console.error('[TRIVÉ Uncaught Guard]:', err.message || err);
+});
+process.on('unhandledRejection', (err) => {
+  console.error('[TRIVÉ Rejection Guard]:', err && err.message ? err.message : err);
+});
