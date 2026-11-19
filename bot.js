@@ -233,6 +233,18 @@ bot.action('main_menu', async (ctx) => {
   }
 });
 
+bot.catch((err) => {
+  console.error('[TRIVÉ Bot Runtime Error]:', err.message || err);
+});
+
+bot.launch()
+  .then(() => {
+    console.log('🤖 TRIVÉ Platinum Telegram Ordering Bot is live and running!');
+  })
+  .catch((err) => {
+    console.error('[TRIVÉ Bot Launch Conflict/Error]:', err.message || err);
+  });
+
 bot.action('track_order', async (ctx) => {
   await ctx.answerCbQuery();
   await ctx.reply(`📦 All recent drops are shipped via express courier within 48 hours. Drop your Order ID (#TV-XXXXXX) here for status inquiries.`);
