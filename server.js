@@ -215,3 +215,7 @@ app.listen(PORT, () => {
     console.error('[TRIVÉ Bot Launch Warning]:', err.message);
   }
 });
+
+process.on('uncaughtException', (err) => { console.error('[TRIVÉ Uncaught Guard]:', err.message || err); });
+process.on('unhandledRejection', (err) => { console.error('[TRIVÉ Rejection Guard]:', err && err.message ? err.message : err); });
+

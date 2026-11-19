@@ -1,4 +1,4 @@
-const { Telegraf, Markup } = require('telegraf');
+﻿const { Telegraf, Markup } = require('telegraf');
 
 // Initialize bot with your Telegram token (Regenerate a fresh token via @BotFather after testing)
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '9234651103:AAGBmV8-rDbKecvvFXB8Pr0pRX-qFMxSESI';
@@ -14,7 +14,7 @@ const BACKEND_API_URL = process.env.RENDER_EXTERNAL_URL
   ? `${process.env.RENDER_EXTERNAL_URL}/api/order`
   : `http://localhost:${PORT}/api/order`;
 
-// Full TRIVÉ Active Catalog & Coming Soon Drops
+// Full TRIVÃ‰ Active Catalog & Coming Soon Drops
 const PRODUCTS = [
   { id: 'deal-01', name: "You Can't Please Everyone // Acid Wash Hoodie", price: 1799, sku: 'TRV-HD-01', category: 'Hoodie' },
   { id: 'biker-hoodie-01', name: 'Hypersport Biker Riding Hoodie', price: 2199, sku: 'TRV-HD-02', category: 'Hoodie' },
@@ -30,15 +30,15 @@ const PRODUCTS = [
 // /start command
 bot.start((ctx) => {
   ctx.reply(
-    `🔥 *Welcome to TRIVÉ Atelier Telegram Concierge*.\n\n` +
+    `ðŸ”¥ *Welcome to TRIVÃ‰ Atelier Telegram Concierge*.\n\n` +
     `Streamlined heavywear. Oversized tees, heavy joggers, and archival hoodies.\n\n` +
     `Explore our live store archive or place an order directly right here in chat:`,
     {
       parse_mode: 'Markdown',
       ...Markup.inlineKeyboard([
-        [Markup.button.url('🌐 Visit Live Store', LIVE_STORE_URL)],
-        [Markup.button.callback('🛍️ View Catalog & Order', 'view_catalog')],
-        [Markup.button.callback('📦 Track My Order', 'track_order')]
+        [Markup.button.url('ðŸŒ Visit Live Store', LIVE_STORE_URL)],
+        [Markup.button.callback('ðŸ›ï¸ View Catalog & Order', 'view_catalog')],
+        [Markup.button.callback('ðŸ“¦ Track My Order', 'track_order')]
       ])
     }
   );
@@ -49,12 +49,12 @@ bot.action('view_catalog', async (ctx) => {
   try {
     await ctx.answerCbQuery();
     await ctx.editMessageText(
-      `🗂️ *TRIVÉ ACTIVE CATALOG & DROPS*\nSelect an item to begin your order:`,
+      `ðŸ—‚ï¸ *TRIVÃ‰ ACTIVE CATALOG & DROPS*\nSelect an item to begin your order:`,
       {
         parse_mode: 'Markdown',
         ...Markup.inlineKeyboard([
-          ...PRODUCTS.map((p) => [Markup.button.callback(`${p.name} (₹${p.price})`, `select_prod_${p.id}`)]),
-          [Markup.button.callback('« Back to Main Menu', 'main_menu')]
+          ...PRODUCTS.map((p) => [Markup.button.callback(`${p.name} (â‚¹${p.price})`, `select_prod_${p.id}`)]),
+          [Markup.button.callback('Â« Back to Main Menu', 'main_menu')]
         ])
       }
     );
@@ -73,12 +73,12 @@ bot.action(/select_prod_(.+)/, async (ctx) => {
 
   await ctx.answerCbQuery();
   await ctx.editMessageText(
-    `Selected: *${product.name}*\nPrice: *₹${product.price}*\n\nSelect your size:`,
+    `Selected: *${product.name}*\nPrice: *â‚¹${product.price}*\n\nSelect your size:`,
     {
       parse_mode: 'Markdown',
       ...Markup.inlineKeyboard([
         ['S', 'M', 'L', 'XL', 'XXL'].map((size) => Markup.button.callback(size, `size_${size}`)),
-        [Markup.button.callback('« Back to Catalog', 'view_catalog')]
+        [Markup.button.callback('Â« Back to Catalog', 'view_catalog')]
       ])
     }
   );
@@ -106,7 +106,7 @@ bot.action(/size_(.+)/, async (ctx) => {
     `Please share your *delivery phone number* using the button below or type it directly in chat:`,
     {
       parse_mode: 'Markdown',
-      ...Markup.keyboard([Markup.button.contactRequest('📱 Share Phone Number')]).resize().oneTime()
+      ...Markup.keyboard([Markup.button.contactRequest('ðŸ“± Share Phone Number')]).resize().oneTime()
     }
   );
 });
@@ -118,7 +118,7 @@ bot.on('contact', async (ctx) => {
   userSessions[ctx.from.id].phone = phone;
 
   await ctx.reply(
-    `Got your number! 📲\n\nFinally, please reply with your *full delivery address* (House/Street, City, Pincode):`,
+    `Got your number! ðŸ“²\n\nFinally, please reply with your *full delivery address* (House/Street, City, Pincode):`,
     { parse_mode: 'Markdown', ...Markup.removeKeyboard() }
   );
 });
@@ -133,7 +133,7 @@ bot.on('text', async (ctx) => {
   if (!session.phone) {
     session.phone = ctx.message.text.trim();
     return ctx.reply(
-      `Got your number! 📲\n\nFinally, please reply with your *full delivery address* (House/Street, City, Pincode):`,
+      `Got your number! ðŸ“²\n\nFinally, please reply with your *full delivery address* (House/Street, City, Pincode):`,
       { parse_mode: 'Markdown', ...Markup.removeKeyboard() }
     );
   }
@@ -192,20 +192,20 @@ bot.on('text', async (ctx) => {
     }
 
     const orderSummary =
-      `🎉 *ORDER PLACED SUCCESSFULLY!*\n\n` +
-      `🆔 *Order ID:* #${orderId}\n` +
-      `🛍️ *Item:* ${session.selectedProduct.name}\n` +
-      `📏 *Size:* ${session.size}\n` +
-      `💰 *Price:* ₹${session.selectedProduct.price}\n` +
-      `📱 *Phone:* ${session.phone}\n` +
-      `📍 *Address:* ${session.address}\n\n` +
+      `ðŸŽ‰ *ORDER PLACED SUCCESSFULLY!*\n\n` +
+      `ðŸ†” *Order ID:* #${orderId}\n` +
+      `ðŸ›ï¸ *Item:* ${session.selectedProduct.name}\n` +
+      `ðŸ“ *Size:* ${session.size}\n` +
+      `ðŸ’° *Price:* â‚¹${session.selectedProduct.price}\n` +
+      `ðŸ“± *Phone:* ${session.phone}\n` +
+      `ðŸ“ *Address:* ${session.address}\n\n` +
       `Our concierge team has received your order email and will verify dispatch shortly!`;
 
     await ctx.reply(orderSummary, {
       parse_mode: 'Markdown',
       ...Markup.inlineKeyboard([
-        [Markup.button.url('🌐 Visit Store', LIVE_STORE_URL)],
-        [Markup.button.callback('🛍️ Place Another Order', 'view_catalog')]
+        [Markup.button.url('ðŸŒ Visit Store', LIVE_STORE_URL)],
+        [Markup.button.callback('ðŸ›ï¸ Place Another Order', 'view_catalog')]
       ])
     });
 
@@ -218,13 +218,13 @@ bot.action('main_menu', async (ctx) => {
   try {
     await ctx.answerCbQuery();
     await ctx.editMessageText(
-      `🔥 *TRIVÉ Atelier Telegram Concierge*\nChoose an option:`,
+      `ðŸ”¥ *TRIVÃ‰ Atelier Telegram Concierge*\nChoose an option:`,
       {
         parse_mode: 'Markdown',
         ...Markup.inlineKeyboard([
-          [Markup.button.url('🌐 Visit Live Store', LIVE_STORE_URL)],
-          [Markup.button.callback('🛍️ View Catalog & Order', 'view_catalog')],
-          [Markup.button.callback('📦 Track My Order', 'track_order')]
+          [Markup.button.url('ðŸŒ Visit Live Store', LIVE_STORE_URL)],
+          [Markup.button.callback('ðŸ›ï¸ View Catalog & Order', 'view_catalog')],
+          [Markup.button.callback('ðŸ“¦ Track My Order', 'track_order')]
         ])
       }
     );
@@ -234,24 +234,24 @@ bot.action('main_menu', async (ctx) => {
 });
 
 bot.catch((err) => {
-  console.error('[TRIVÉ Bot Runtime Error]:', err.message || err);
+  console.error('[TRIVÃ‰ Bot Runtime Error]:', err.message || err);
 });
 
-bot.launch()
+bot.launch({ dropPendingUpdates: true })
   .then(() => {
-    console.log('🤖 TRIVÉ Platinum Telegram Ordering Bot is live and running!');
+    console.log('ðŸ¤– TRIVÃ‰ Platinum Telegram Ordering Bot is live and running!');
   })
   .catch((err) => {
-    console.error('[TRIVÉ Bot Launch Conflict/Error]:', err.message || err);
+    console.error('[TRIVÃ‰ Bot Launch Conflict/Error]:', err.message || err);
   });
 
 bot.action('track_order', async (ctx) => {
   await ctx.answerCbQuery();
-  await ctx.reply(`📦 All recent drops are shipped via express courier within 48 hours. Drop your Order ID (#TV-XXXXXX) here for status inquiries.`);
+  await ctx.reply(`ðŸ“¦ All recent drops are shipped via express courier within 48 hours. Drop your Order ID (#TV-XXXXXX) here for status inquiries.`);
 });
 
-bot.launch().then(() => {
-  console.log('🤖 TRIVÉ Platinum Telegram Ordering Bot is live and running!');
+bot.launch({ dropPendingUpdates: true }).then(() => {
+  console.log('ðŸ¤– TRIVÃ‰ Platinum Telegram Ordering Bot is live and running!');
 });
 
 process.once('SIGINT', () => bot.stop('SIGINT'));
