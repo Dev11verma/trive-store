@@ -29,7 +29,7 @@ app.get('/api/health', (req, res) => {
     status: 'ONLINE',
     brand: 'TRIVÉ // HEAVYWEAR',
     port: PORT,
-    brevoConfigured: Boolean(process.env.BREVO_API_KEY),
+    sheetWebhookConfigured: Boolean(process.env.GOOGLE_SHEET_WEBHOOK),
     timestamp: new Date().toISOString()
   });
 });
@@ -87,82 +87,52 @@ app.post('/api/order', async (req, res) => {
     existingOrders.unshift(orderRecord);
     fs.writeFileSync(ORDERS_FILE, JSON.stringify(existingOrders, null, 2), 'utf8');
 
-    // 2. Build HTML Email
-    const itemsHtml = orderRecord.items
-      .map(
-        (item) =>
-          `<li><strong>${item.name}</strong> (SKU: ${item.sku || 'TRV'}) — ${item.color} / Size ${item.size} × ${item.quantity} — ₹${item.price}</li>`
-      )
-      .join('');
-
-    const senderEmail = process.env.GMAIL_USER || 'support.trive@gmail.com';
-    const subject = `[NEW ORDER #${orderId}] ₹${orderRecord.totalAmount} • ${customer.name} (${paymentMode})`;
-    const htmlContent = `
-      <div style="font-family:Arial,sans-serif;background:#0a0a0c;color:#f4f4f5;padding:24px;border-radius:10px;border:1px solid #27272a;">
-        <h2 style="color:#d7ff3e;margin-top:0;">NEW TRIVÉ ARCHIVAL ORDER // #${orderId}</h2>
-        <p style="color:#a1a1aa;font-size:13px;">Placed on ${timestamp} IST</p>
-        <hr style="border-color:#27272a;" />
-        <h3 style="color:#fff;">Customer & Shipping</h3>
-        <p>
-          <strong>Name:</strong> ${customer.name}<br/>
-          <strong>Phone / WhatsApp:</strong> ${customer.phone}<br/>
-          <strong>Address:</strong> ${orderRecord.address.street}, ${orderRecord.address.city}, ${orderRecord.address.state} - ${orderRecord.address.pincode}
-        </p>
-        <h3 style="color:#fff;">Payment Verification</h3>
-        <p>
-          <strong>Mode:</strong> ${paymentMode}<br/>
-          <strong>UTR / Ref:</strong> <span style="color:#d7ff3e;font-weight:bold;">${utr}</span><br/>
-          <strong>Total Paid / Payable:</strong> ₹${orderRecord.totalAmount}
-        </p>
-        <h3 style="color:#fff;">Garments to Print & Dispatch</h3>
-        <ul>${itemsHtml}</ul>
-      </div>
-    `;
-
-    // 3. Send via Brevo HTTPS API (Port 443 - never blocked on Render Free Tier)
-    let emailSent = false;
-    let emailError = null;
-    if (process.env.BREVO_API_KEY) {
+    // 2. Forward to Google Apps Script (Logs to Sheet + Sends Gmail via GmailApp + Pushes to Qikink)
+    let sheetSynced = false;
+    let sheetError = null;
+    if (process.env.GOOGLE_SHEET_WEBHOOK) {
       try {
-        const brevoRes = await fetch('https://api.brevo.com/v3/smtp/email', {
-          method: 'POST',
-          headers: {
-            'accept': 'application/json',
-            'api-key': process.env.BREVO_API_KEY,
-            'content-type': 'application/json'
+        const primaryItem = orderRecord.items[0] || {};
+        const scriptPayload = {
+          orderId,
+          paymentMode,
+          utr,
+          items: orderRecord.items,
+          customer: orderRecord.customer,
+          product: {
+            name: orderRecord.items.map((i) => `${i.name} (${i.color}/${i.size} x${i.quantity})`).join(', ') || primaryItem.name,
+            price: String(orderRecord.totalAmount)
           },
-          body: JSON.stringify({
-            sender: { name: 'TRIVÉ // ARCHIVAL ORDERS', email: senderEmail },
-            to: [{ email: 'support.trive@gmail.com', name: 'TRIVÉ Dispatch' }],
-            subject,
-            htmlContent
-          })
+          payment: {
+            paymentId: `${paymentMode} // ${utr}`
+          },
+          address: orderRecord.address
+        };
+        const gsRes = await fetch(process.env.GOOGLE_SHEET_WEBHOOK, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          redirect: 'follow',
+          body: JSON.stringify(scriptPayload)
         });
-        const brevoData = await brevoRes.json();
-        if (brevoRes.ok) {
-          emailSent = true;
-          console.log(`[TRIVÉ Brevo Email Sent]: #${orderId} -> messageId=${brevoData.messageId}`);
-        } else {
-          emailError = brevoData.message || JSON.stringify(brevoData);
-          console.error('[TRIVÉ Brevo Error]:', emailError);
-        }
-      } catch (err) {
-        emailError = err.message;
-        console.error('[TRIVÉ Brevo Fetch Error]:', err.message);
+        const gsText = await gsRes.text();
+        sheetSynced = gsRes.ok;
+        console.log(`[TRIVÉ Apps Script Sync]: #${orderId} -> status=${gsRes.status} body=${gsText.slice(0, 150)}`);
+      } catch (gsErr) {
+        sheetError = gsErr.message;
+        console.error('[TRIVÉ Apps Script Webhook Error]:', gsErr.message);
       }
     } else {
-      emailError = 'BREVO_API_KEY not set in Render Environment';
-      console.warn('[TRIVÉ Email Warning]:', emailError);
+      sheetError = 'GOOGLE_SHEET_WEBHOOK not set in Render Environment';
     }
 
-    console.log(`[TRIVÉ ORDER LOGGED] #${orderId} | ${customer.name} | ₹${orderRecord.totalAmount} | emailSent=${emailSent}`);
+    console.log(`[TRIVÉ ORDER LOGGED] #${orderId} | sheetSynced=${sheetSynced}`);
 
     return res.status(200).json({
       success: true,
       orderId,
-      emailSent,
-      emailError,
-      message: 'Order logged and queued for dispatch.',
+      sheetSynced,
+      sheetError,
+      message: 'Order logged and synced to Google Sheet & Gmail.',
       order: orderRecord
     });
   } catch (error) {
@@ -181,11 +151,6 @@ app.get('/api/orders', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`⚡ TRIVÉ Backend Server running on port ${PORT}`);
-  try {
-    require('./bot.js');
-  } catch (err) {
-    console.error('[TRIVÉ Bot Launch Warning]:', err.message);
-  }
 });
 
 process.on('uncaughtException', (err) => {
