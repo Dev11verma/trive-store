@@ -12,12 +12,14 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname));
 
-// Gmail SMTP Transporter (TRIVÉ Support)
+// Explicit Gmail SMTP Transporter (Port 465 SSL)
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
   auth: {
-    user: 'support.trive@gmail.com',
-    pass: 'alzj xglx cenv ielm'
+    user: process.env.GMAIL_USER || 'support.trive@gmail.com',
+    pass: process.env.GMAIL_PASS || process.env.GMAIL_APP_PASS || 'alzj xglx cenv ielm'
   }
 });
 
@@ -99,8 +101,9 @@ app.post('/api/order', async (req, res) => {
       )
       .join('');
 
+    const senderEmail = process.env.GMAIL_USER || 'support.trive@gmail.com';
     const mailOptions = {
-      from: '"TRIVÉ // ARCHIVAL ORDERS" <support.trive@gmail.com>',
+      from: `"TRIVÉ // ARCHIVAL ORDERS" <${senderEmail}>`,
       to: 'support.trive@gmail.com',
       subject: `[NEW ORDER #${orderId}] ₹${orderRecord.totalAmount} • ${customer.name} (${paymentMode})`,
       html: `
@@ -126,20 +129,25 @@ app.post('/api/order', async (req, res) => {
       `
     };
 
-    // 3. Send Email Notification
-    transporter.sendMail(mailOptions, (err, info) => {
-      if (err) {
-        console.error('[TRIVÉ Mailer Warning]:', err.message);
-      } else {
-        console.log(`[TRIVÉ Mailer Sent]: Order #${orderId} -> ${info.response}`);
-      }
-    });
+    // 3. Send Email Notification (Awaited so Render completes SMTP before responding)
+    let emailSent = false;
+    let emailError = null;
+    try {
+      const info = await transporter.sendMail(mailOptions);
+      emailSent = true;
+      console.log(`[TRIVÉ Mailer Sent]: Order #${orderId} -> ${info.response}`);
+    } catch (mailErr) {
+      emailError = mailErr.message;
+      console.error('[TRIVÉ Mailer Error]:', mailErr);
+    }
 
     console.log(`[TRIVÉ ORDER LOGGED] #${orderId} | ${customer.name} | ₹${orderRecord.totalAmount} | ${paymentMode}`);
 
     return res.status(200).json({
       success: true,
       orderId,
+      emailSent,
+      emailError,
       message: 'Order logged and queued for dispatch.',
       order: orderRecord
     });
