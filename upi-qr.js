@@ -3,6 +3,15 @@
   const TRIVE_MERCHANT_NAME = window.TRIVE_MERCHANT_NAME || 'TRIVE';
   const FALLBACK_STATIC_QR = '/assets/Main/qr.jpeg';
 
+  let pollTimer = null;
+
+  function stopPolling() {
+    if (pollTimer) {
+      clearInterval(pollTimer);
+      pollTimer = null;
+    }
+  }
+
   function loadQrLib(callback, onError) {
     if (window.QRCode) return callback();
     const existing = document.querySelector('script[data-trive-qr="1"]');
@@ -25,12 +34,43 @@
     return document.querySelector('#upi-box .upi-qr-box') || document.querySelector('.upi-qr-box');
   }
 
+  async function pollPaymentUntilSuccess(paymentRef, onPaid) {
+    stopPolling();
+    window.__TRIVE_ACTIVE_UPI_REF__ = paymentRef;
+
+    pollTimer = setInterval(async () => {
+      try {
+        const res = await fetch(`/api/payment-status/${encodeURIComponent(paymentRef)}`, {
+          cache: 'no-store'
+        });
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data && (data.paid === true || String(data.status).toUpperCase() === 'PAID')) {
+          stopPolling();
+          const statusEl = document.getElementById('trive-upi-auto-status');
+          if (statusEl) {
+            statusEl.textContent = 'Payment confirmed! Proceeding automatically...';
+            statusEl.style.color = '#4ade80';
+          }
+          if (typeof onPaid === 'function') {
+            onPaid(data);
+          }
+        }
+      } catch (_) {
+        // Keep polling quietly while waiting for gateway/webhook confirmation
+      }
+    }, 3000);
+  }
+
   window.renderInstantUpiQr = function (opts) {
     const {
       containerId = 'trive-upi-qr-box',
       amount = 0,
-      orderNote = 'TRIVE Order'
+      orderNote = 'TRIVE Order',
+      onPaymentSuccess = null
     } = opts || {};
+
+    stopPolling();
 
     const cleanAmount = Number(String(amount).replace(/[^0-9.]/g, '')) || 0;
     const formattedAmount = cleanAmount.toFixed(2);
@@ -42,9 +82,11 @@
       return;
     }
 
+    const paymentRef = `TRV${Date.now().toString().slice(-8)}`;
     const upiUrl =
       `upi://pay?pa=${encodeURIComponent(TRIVE_UPI_ID)}` +
       `&pn=${encodeURIComponent(TRIVE_MERCHANT_NAME)}` +
+      `&tr=${encodeURIComponent(paymentRef)}` +
       `&am=${encodeURIComponent(formattedAmount)}` +
       `&cu=INR` +
       `&tn=${encodeURIComponent(orderNote)}`;
@@ -64,9 +106,12 @@
           Scan with GPay, PhonePe, Paytm or any UPI App<br/>
           <span style="color:#e4e4e7;font-family:monospace;">${TRIVE_UPI_ID}</span>
         </div>
-        <a href="${upiUrl}" style="display:inline-block;background:#d7ff3e;color:#09090b;font-weight:700;font-size:12px;padding:9px 16px;border-radius:6px;text-decoration:none;letter-spacing:0.5px;">
+        <a href="${upiUrl}" style="display:inline-block;background:#d7ff3e;color:#09090b;font-weight:700;font-size:12px;padding:9px 16px;border-radius:6px;text-decoration:none;letter-spacing:0.5px;margin-bottom:10px;">
           PAY ₹${cleanAmount.toLocaleString('en-IN')} IN UPI APP
         </a>
+        <div id="trive-upi-auto-status" style="font-size:12px;color:#a1a1aa;margin-top:4px;">
+          Waiting for UPI payment confirmation... Page will proceed automatically.
+        </div>
       </div>
     `;
 
@@ -91,5 +136,13 @@
         }
       }
     );
+
+    pollPaymentUntilSuccess(paymentRef, function (paymentData) {
+      if (typeof onPaymentSuccess === 'function') {
+        onPaymentSuccess(paymentData);
+      } else if (typeof window.dispatchOrder === 'function') {
+        window.dispatchOrder();
+      }
+    });
   };
 })();

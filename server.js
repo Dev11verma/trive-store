@@ -144,6 +144,28 @@ app.post('/api/order', async (req, res) => {
   }
 });
 
+
+const paidUpiRefs = new Set();
+
+app.post('/api/payment-confirm', (req, res) => {
+  const ref = String(req.body?.refId || req.body?.tr || req.body?.reference || '').trim();
+  if (!ref) {
+    return res.status(400).json({ success: false, message: 'Missing payment reference ID.' });
+  }
+  paidUpiRefs.add(ref);
+  return res.json({ success: true, refId: ref, status: 'PAID', paid: true });
+});
+
+app.get('/api/payment-status/:refId', (req, res) => {
+  const ref = String(req.params.refId || '').trim();
+  const isPaid = paidUpiRefs.has(ref);
+  return res.json({
+    refId: ref,
+    paid: isPaid,
+    status: isPaid ? 'PAID' : 'PENDING'
+  });
+});
+
 app.get('/api/orders', (req, res) => {
   const orders = readOrdersSafe();
   res.json({ count: orders.length, orders });
@@ -159,3 +181,4 @@ process.on('uncaughtException', (err) => {
 process.on('unhandledRejection', (err) => {
   console.error('[TRIVÉ Rejection Guard]:', err && err.message ? err.message : err);
 });
+

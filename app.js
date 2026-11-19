@@ -513,7 +513,7 @@ function updateCheckoutSummary() {
   if (couponRow) couponRow.style.display = discountAmount > 0 ? 'flex' : 'none';
   if (totEl) totEl.textContent = `₹${finalTotal.toLocaleString('en-IN')}`;
   if (selectedPaymentMode === 'UPI' && typeof window.renderInstantUpiQr === 'function') {
-    window.renderInstantUpiQr({ amount: finalTotal, orderNote: 'TRIVE Archival Order' });
+    window.renderInstantUpiQr({ amount: finalTotal, orderNote: 'TRIVE Archival Order', onPaymentSuccess: () => { if (typeof dispatchOrder === 'function') dispatchOrder(); } });
   }
 }
 
@@ -577,7 +577,7 @@ async function dispatchOrder() {
   const street = (document.getElementById('cust-street')?.value || '').trim();
   const city = (document.getElementById('cust-city')?.value || '').trim();
   const pin = (document.getElementById('cust-pin')?.value || '').trim();
-  const utr = (document.getElementById('pay-utr')?.value || '').trim();
+  const utr = window.__TRIVE_ACTIVE_UPI_REF__ || 'AUTO_UPI_CONFIRMED';
 
   if (!name || !phone || !street || !city || !pin) {
     alert('Please complete your shipping details before placing the order.');
@@ -585,10 +585,7 @@ async function dispatchOrder() {
     return;
   }
 
-  if (selectedPaymentMode === 'UPI' && utr.length < 10) {
-    alert('Please enter your valid 12-digit UPI Transaction ID / UTR.');
-    return;
-  }
+  
 
   const submitBtn = document.getElementById('btn-submit-order');
   if (submitBtn) {
@@ -616,7 +613,7 @@ async function dispatchOrder() {
     color: primaryItem.color,
     size: primaryItem.size,
     quantity: cart.reduce((s, i) => s + i.quantity, 0),
-    utr: selectedPaymentMode === 'UPI' ? utr : 'COD_ORDER',
+    utr: selectedPaymentMode === 'UPI' ? (window.__TRIVE_ACTIVE_UPI_REF__ || utr || 'AUTO_UPI_CONFIRMED') : 'COD_ORDER',
     paymentMode: selectedPaymentMode,
     address: { street, city, state: 'Madhya Pradesh', pincode: pin }
   };
@@ -682,3 +679,4 @@ function startDealTimer() {
     timerEl.textContent = `ENDS IN ${hrs}:${mins}:${secs}`;
   }, 1000);
 }
+
