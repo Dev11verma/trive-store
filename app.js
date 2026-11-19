@@ -14,7 +14,10 @@ try {
 } catch (e) {
   cart = [];
 }
-const RENDER_BACKEND_URL = 'https://trive-store.onrender.com'; // <-- Paste your exact Render URL here
+let selectedPaymentMode = 'UPI';
+let discountAmount = 0;
+
+const RENDER_BACKEND_URL = 'https://trive-api.onrender.com';
 let API_URL = `${RENDER_BACKEND_URL}/api/order`;
 if (window.location.hostname.includes('onrender.com') || window.location.hostname === 'trivestore.in') {
   API_URL = '/api/order';
@@ -385,21 +388,41 @@ function updateCartUI() {
   updateCheckoutSummary();
 }
 
+function openCart() {
+  toggleCart(true);
+}
+
+function closeCart() {
+  toggleCart(false);
+}
+
 function toggleCart(forceOpen) {
   const drawer = document.getElementById('cart-drawer');
   const overlay = document.getElementById('cart-overlay');
   if (!drawer) return;
 
-  const shouldOpen = typeof forceOpen === 'boolean' ? forceOpen : !drawer.classList.contains('open');
+  const isCurrentlyOpen =
+    drawer.classList.contains('open') || drawer.classList.contains('active');
+  const shouldOpen = typeof forceOpen === 'boolean' ? forceOpen : !isCurrentlyOpen;
+
   if (shouldOpen) {
     updateCartUI();
-    drawer.classList.add('open');
-    drawer.style.right = '0';
-    if (overlay) overlay.classList.add('active');
+    drawer.classList.add('open', 'active');
+    drawer.style.display = 'flex';
+    drawer.style.right = '0px';
+    drawer.style.transform = 'translateX(0)';
+    if (overlay) {
+      overlay.classList.add('open', 'active');
+      overlay.style.display = 'block';
+    }
   } else {
-    drawer.classList.remove('open');
+    drawer.classList.remove('open', 'active');
     drawer.style.right = '-420px';
-    if (overlay) overlay.classList.remove('active');
+    drawer.style.transform = 'translateX(100%)';
+    if (overlay) {
+      overlay.classList.remove('open', 'active');
+      overlay.style.display = 'none';
+    }
   }
 }
 
@@ -542,7 +565,7 @@ function closeAllModals() {
 }
 
 // ==========================================
-// 5. ORDER DISPATCH TO EXPRESS BACKEND (PORT 8080)
+// 5. ORDER DISPATCH TO EXPRESS BACKEND
 // ==========================================
 
 async function dispatchOrder() {
@@ -629,7 +652,7 @@ async function dispatchOrder() {
     }
   } catch (err) {
     console.error('[TRIVE Order Dispatch Error]:', err);
-    alert(`Order dispatch failed: ${err.message}. Check that the Node backend is running on port 8080.`);
+    alert(`Order dispatch failed: ${err.message}`);
   } finally {
     if (submitBtn) {
       submitBtn.disabled = false;
