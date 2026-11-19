@@ -1,4 +1,4 @@
-// ==========================================
+﻿// ==========================================
 // TRIVE // ARCHIVAL HEAVYWEAR - CORE STORE ENGINE
 // ==========================================
 
@@ -512,6 +512,9 @@ function updateCheckoutSummary() {
   if (discEl) discEl.textContent = `-₹${discountAmount.toLocaleString('en-IN')}`;
   if (couponRow) couponRow.style.display = discountAmount > 0 ? 'flex' : 'none';
   if (totEl) totEl.textContent = `₹${finalTotal.toLocaleString('en-IN')}`;
+  if (selectedPaymentMode === 'UPI' && typeof window.renderInstantUpiQr === 'function') {
+    window.renderInstantUpiQr({ amount: finalTotal, orderNote: 'TRIVE Archival Order' });
+  }
 }
 
 function goToPayment() {
