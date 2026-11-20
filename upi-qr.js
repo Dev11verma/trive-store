@@ -94,7 +94,7 @@
     const canvasId = `trive-qr-canvas-${Date.now()}`;
 
     container.innerHTML = `
-      <div style="background:#111114;border:1px solid #27272a;border-radius:12px;padding:16px;text-align:center;max-width:290px;margin:10px auto;">
+      <div style="background:#111114;border:1px solid #27272a;border-radius:12px;padding:16px;text-align:center;width:100%;max-width:340px;box-sizing:border-box;margin:10px auto;">
         <div style="font-size:11px;letter-spacing:1.4px;color:#d7ff3e;font-weight:700;margin-bottom:4px;">
           INSTANT UPI QR // EXACT AMOUNT
         </div>
@@ -106,7 +106,7 @@
           Scan with GPay, PhonePe, Paytm or any UPI App<br/>
           <span style="color:#e4e4e7;font-family:monospace;">${TRIVE_UPI_ID}</span>
         </div>
-        <a href="${upiUrl}" style="display:inline-block;background:#d7ff3e;color:#09090b;font-weight:700;font-size:12px;padding:9px 16px;border-radius:6px;text-decoration:none;letter-spacing:0.5px;margin-bottom:10px;">
+        <a href="${upiUrl}" style="display:block;width:100%;box-sizing:border-box;padding:12px 16px;background:#d7ff3e;color:#09090b;font-weight:700;font-size:12px;padding:9px 16px;border-radius:6px;text-decoration:none;letter-spacing:0.5px;margin-bottom:10px;">
           PAY ₹${cleanAmount.toLocaleString('en-IN')} IN UPI APP
         </a>
         <div id="trive-upi-auto-status" style="font-size:12px;color:#a1a1aa;margin-top:4px;">
@@ -146,3 +146,4 @@
     });
   };
 })();
+
