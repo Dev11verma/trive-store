@@ -1,0 +1,29 @@
+﻿[
+  {
+    "id": "REV-001",
+    "name": "Aarav S.",
+    "orderId": "TV-104218",
+    "rating": 5,
+    "item": "TRIVÉ Heavyweight Hoodie (L)",
+    "fitNote": "Boxy oversized fit — thick fleece",
+    "comment": "Fabric feels solid and structured right out of the pack. Easily my go-to winter hoodie."
+  },
+  {
+    "id": "REV-002",
+    "name": "Rohan M.",
+    "orderId": "TV-104390",
+    "rating": 5,
+    "item": "TRIVÉ Heavy Tee (XL)",
+    "fitNote": "True to oversized — strong collar rib",
+    "comment": "Collar holds its shape and the drape sits clean without looking sloppy. Worth every rupee."
+  },
+  {
+    "id": "REV-003",
+    "name": "Kabir D.",
+    "orderId": "TV-104512",
+    "rating": 5,
+    "item": "TRIVÉ Bundle Order",
+    "fitNote": "Relaxed street silhouette",
+    "comment": "Fast UPI checkout and clean heavywear finish. Already planning to grab another drop piece."
+  }
+]
