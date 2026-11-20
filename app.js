@@ -447,7 +447,8 @@ function navigateTo(viewName) {
   if (viewName === 'catalog') switchView('view-catalog');
   else if (viewName === 'checkout') proceedToCheckoutFromCart();
   else if (viewName === 'payment') goToPayment();
-  else if (viewName === 'success') switchView('view-success');
+  else if (viewName === 'success') if (typeof gtag === 'function') gtag('event', 'purchase', { transaction_id: data.orderId || ('TV-' + Date.now()), value: totalAmount, currency: 'INR' });
+      switchView('view-success');
   else switchView(`view-${viewName}`);
 }
 
@@ -680,6 +681,7 @@ async function dispatchOrder() {
       cart = [];
       discountAmount = 0;
       saveAndRenderCart();
+      if (typeof gtag === 'function') gtag('event', 'purchase', { transaction_id: data.orderId || ('TV-' + Date.now()), value: totalAmount, currency: 'INR' });
       switchView('view-success');
     } else {
       throw new Error(data.message ? data.message : 'Server error while processing order.');
@@ -713,6 +715,7 @@ function startDealTimer() {
     timerEl.textContent = `ENDS IN ${hrs}:${mins}:${secs}`;
   }, 1000);
 }
+
 
 
 
