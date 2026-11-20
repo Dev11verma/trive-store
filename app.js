@@ -1,4 +1,22 @@
-﻿// ==========================================
+const UPI_SHIPPING_FEE = 0;
+const UPI_PACKING_FEE = 0;
+const COD_SHIPPING_FEE = 0;
+const COD_PACKING_FEE = 0;
+const COD_SURCHARGE = 149;
+
+function calculateOrderCharges(subtotal, discount, paymentMode) {
+  if (!cart || cart.length === 0 || subtotal <= 0) {
+    return { shippingFee: 0, packingFee: 0, codFee: 0, totalAmount: 0 };
+  }
+  const discountedSubtotal = Math.max(0, subtotal - discount);
+  const isCod = paymentMode === 'COD';
+  const shippingFee = isCod ? COD_SHIPPING_FEE : UPI_SHIPPING_FEE;
+  const packingFee = isCod ? COD_PACKING_FEE : UPI_PACKING_FEE;
+  const codFee = isCod ? COD_SURCHARGE : 0;
+  const totalAmount = Math.max(0, discountedSubtotal + shippingFee + packingFee + codFee);
+  return { shippingFee, packingFee, codFee, totalAmount };
+}
+// ==========================================
 // TRIVE // ARCHIVAL HEAVYWEAR - CORE STORE ENGINE
 // ==========================================
 
