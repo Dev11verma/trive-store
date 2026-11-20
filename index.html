@@ -49,12 +49,13 @@ async function submitTriveVipLead(e) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        orderId: 'VIP_' + Date.now(),
-        customerName: 'VIP Lead (' + contact + ')',
-        phone: contact,
-        sku: 'VIP-DROP01-WAITLIST',
+        customer: { name: 'VIP Lead (' + contact + ')', phone: contact, email: 'support.trive@gmail.com' },
+        address: { street: 'VIP Drop 01 Waitlist', city: 'Bhopal', state: 'Madhya Pradesh', pincode: '462001' },
+        product: { name: 'VIP Drop 01 Early Access', sku: 'VIP-DROP01-WAITLIST', price: 0 },
+        items: [{ name: 'VIP Drop 01 Early Access', sku: 'VIP-DROP01-WAITLIST', price: 0, quantity: 1 }],
         totalAmount: 0,
-        paymentMode: 'VIP_LEAD'
+        paymentMode: 'VIP_LEAD',
+        utr: 'VIP_WAITLIST'
       })
     });
   } catch (err) {}
@@ -104,5 +105,6 @@ async function submitTriveVipLead(e) {
     </script>
 </body>
 </html>
+
 
 

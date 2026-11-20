@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 5000;
 const DB_FILE = path.resolve('orders.json');
 
 const QIKINK_CLIENT_ID = process.env.QIKINK_CLIENT_ID || '979710787663166';
-const QIKINK_CLIENT_SECRET = process.env.QIKINK_CLIENT_SECRET || 'c4900bae62de3396bc32a9d367293592996dd80fabe80f26a258d3bcf8455d39';
+const QIKINK_CLIENT_SECRET = process.env.QIKINK_CLIENT_SECRET || '';
 
 // Configure your Nodemailer transporter for Gmail notifications
 const transporter = nodemailer.createTransport({
@@ -397,4 +397,5 @@ app.get('/api/orders', (req, res) => res.json({ brand: 'TRIVÉ', total: orders.l
 app.listen(PORT, () => {
   console.log(`TRIVÉ Engine running on http://localhost:${PORT}`);
 });
+
 
