@@ -447,8 +447,7 @@ function navigateTo(viewName) {
   if (viewName === 'catalog') switchView('view-catalog');
   else if (viewName === 'checkout') proceedToCheckoutFromCart();
   else if (viewName === 'payment') goToPayment();
-  else if (viewName === 'success') if (typeof gtag === 'function') gtag('event', 'purchase', { transaction_id: data.orderId || ('TV-' + Date.now()), value: totalAmount, currency: 'INR' });
-      switchView('view-success');
+  else if (viewName === 'success') switchView('view-success');
   else switchView(`view-${viewName}`);
 }
 
@@ -715,6 +714,7 @@ function startDealTimer() {
     timerEl.textContent = `ENDS IN ${hrs}:${mins}:${secs}`;
   }, 1000);
 }
+
 
 
 
