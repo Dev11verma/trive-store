@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TRIVÉ // Story Generator</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: #090909; color: #fff; font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; padding: 24px 16px; gap: 20px; }
+    .toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; background: #121212; border: 1px solid #262626; border-radius: 14px; padding: 14px 18px; max-width: 900px; width: 100%; }
+    .toolbar button, .toolbar select, .toolbar label { background: #1b1b1b; color: #fff; border: 1px solid #333; border-radius: 8px; padding: 10px 14px; font-size: 13px; font-weight: 700; cursor: pointer; }
+    .toolbar button.active, .toolbar button.download { background: #d7ff3e; color: #0a0a0a; border-color: #d7ff3e; }
+    canvas { width: 360px; height: 640px; display: block; border-radius: 16px; background: #0a0a0a; border: 1px solid #242424; }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="slide-btn active" data-slide="0">01 // DROP TEASER</button>
+    <button class="slide-btn" data-slide="1">02 // GSM &amp; SILHOUETTE</button>
+    <button class="slide-btn" data-slide="2">03 // FIRST50 VIP</button>
+    <select id="bg-picker"></select>
+    <label for="file-picker">Upload Photo</label>
+    <input id="file-picker" type="file" accept="image/*" style="display:none;" />
+    <button class="download" id="download-btn">Download 1080×1920 PNG</button>
+  </div>
+  <canvas id="teaser-canvas" width="1080" height="1920"></canvas>
+  <script>
+    const canvas = document.getElementById('teaser-canvas');
+    const ctx = canvas.getContext('2d');
+    const bgPicker = document.getElementById('bg-picker');
+    const filePicker = document.getElementById('file-picker');
+    const slideBtns = document.querySelectorAll('.slide-btn');
+    const photoPaths = ['./assets/lookbook/160950.jpeg', './assets/lookbook/160951.jpeg', './assets/lookbook/160952.jpeg', './assets/lookbook/160954.jpeg', './assets/lookbook/160955.jpeg', './assets/lookbook/160956.png', './assets/lookbook/160957.jpeg', './assets/lookbook/160958.jpeg', './assets/lookbook/160959.jpeg'];
+    let currentSlide = 0, loadedImages = [], selectedIdx = 0;
+
+    const slides = [
+      { badge: 'TRIVE HEAVYWEAR // DROP 01', t1: 'BORN', t2: 'TO RULE', sub: 'ARCHIVAL STREET SILHOUETTES • 240–380 GSM COMBED COTTON', pill: 'DROPPING DECEMBER 1', cta: 'VIP EARLY ACCESS → TRIVESTORE.IN' },
+      { badge: '240–380 GSM // HEAVY FLEECE & COTTON', t1: 'BUILT', t2: 'HEAVY.', sub: 'BOXY DROP-SHOULDER CUTS • REINFORCED RIB COLLARS', pill: 'BUNDLE300: 2+ HOODIES = 1 FREE TEE', cta: 'EXPLORE SILHOUETTES → TRIVESTORE.IN' },
+      { badge: 'LIMITED LAUNCH ALLOCATION', t1: 'FIRST', t2: 'FIFTY.', sub: '38% OFF FOR THE FIRST 50 ORDERS ONLY • CODE: FIRST50', pill: '50 / 50 SLOTS REMAINING', cta: 'JOIN VIP LIST → TRIVESTORE.IN' }
+    ];
+
+    function roundRect(x, y, w, h, r) {
+      ctx.beginPath(); ctx.moveTo(x + r, y);
+      ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
+      ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+    }
+
+    function render() {
+      const s = slides[currentSlide], w = canvas.width, h = canvas.height;
+      ctx.fillStyle = '#080808'; ctx.fillRect(0, 0, w, h);
+      const img = loadedImages[selectedIdx];
+      if (img && img.complete && img.naturalWidth) {
+        const sc = Math.max(w / img.naturalWidth, h / img.naturalHeight);
+        const nw = img.naturalWidth * sc, nh = img.naturalHeight * sc;
+        ctx.save(); ctx.globalAlpha = 0.72;
+        ctx.drawImage(img, (w - nw) / 2, (h - nh) / 2, nw, nh);
+        ctx.restore();
+      }
+      const g = ctx.createLinearGradient(0, 0, 0, h);
+      g.addColorStop(0, 'rgba(8,8,8,0.65)'); g.addColorStop(0.35, 'rgba(8,8,8,0.18)');
+      g.addColorStop(0.62, 'rgba(8,8,8,0.78)'); g.addColorStop(1, 'rgba(8,8,8,0.97)');
+      ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+
+      ctx.fillStyle = '#fff'; ctx.font = '900 44px Arial'; ctx.fillText('TRIVÉ', 76, 128);
+      ctx.fillStyle = '#d7ff3e'; ctx.font = '700 22px Arial'; ctx.textAlign = 'right'; ctx.fillText('ARCHIVE // 01', w - 76, 124); ctx.textAlign = 'left';
+
+      ctx.strokeStyle = '#d7ff3e'; ctx.lineWidth = 2; ctx.fillStyle = 'rgba(215,255,62,0.12)';
+      roundRect(76, 1140, 560, 48, 24); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = '#d7ff3e'; ctx.font = '800 21px Arial'; ctx.fillText(s.badge, 102, 1171);
+
+      ctx.fillStyle = '#fff'; ctx.font = '900 132px Arial'; ctx.fillText(s.t1, 74, 1325);
+      ctx.fillStyle = '#d7ff3e'; ctx.fillText(s.t2, 74, 1455);
+      ctx.fillStyle = '#e5e5e5'; ctx.font = '700 24px Arial'; ctx.fillText(s.sub, 76, 1525);
+
+      ctx.fillStyle = '#141414'; ctx.strokeStyle = '#333'; ctx.lineWidth = 2;
+      roundRect(76, 1585, w - 152, 74, 14); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = '#fff'; ctx.font = '800 25px Arial'; ctx.textAlign = 'center'; ctx.fillText(s.pill, w / 2, 1631);
+
+      ctx.fillStyle = '#d7ff3e'; roundRect(76, 1682, w - 152, 84, 14); ctx.fill();
+      ctx.fillStyle = '#080808'; ctx.font = '900 27px Arial'; ctx.fillText(s.cta, w / 2, 1734);
+
+      ctx.textAlign = 'left'; ctx.fillStyle = '#8a8a8a'; ctx.font = '700 21px Arial'; ctx.fillText('@THE_TRIVESTORE', 76, 1835);
+      ctx.textAlign = 'right'; ctx.fillText('EST. 2026 // INDIA', w - 76, 1835); ctx.textAlign = 'left';
+    }
+
+    photoPaths.forEach((src, i) => {
+      const opt = document.createElement('option');
+      opt.value = i; opt.textContent = src.split('/').pop();
+      bgPicker.appendChild(opt);
+      const img = new Image();
+      img.onload = () => { if (i === selectedIdx) render(); };
+      img.src = src;
+      loadedImages[i] = img;
+    });
+
+    filePicker.addEventListener('change', (e) => {
+      const f = e.target.files[0]; if (!f) return;
+      const r = new FileReader();
+      r.onload = (ev) => {
+        const img = new Image();
+        img.onload = () => {
+          const idx = loadedImages.push(img) - 1;
+          selectedIdx = idx;
+          const opt = document.createElement('option');
+          opt.value = idx; opt.textContent = f.name;
+          bgPicker.appendChild(opt); bgPicker.value = idx;
+          render();
+        };
+        img.src = ev.target.result;
+      };
+      r.readAsDataURL(f);
+    });
+
+    slideBtns.forEach(b => b.addEventListener('click', () => {
+      slideBtns.forEach(x => x.classList.remove('active')); b.classList.add('active');
+      currentSlide = Number(b.dataset.slide); render();
+    }));
+    bgPicker.addEventListener('change', () => { selectedIdx = Number(bgPicker.value) || 0; render(); });
+    document.getElementById('download-btn').addEventListener('click', () => {
+      const btn = document.getElementById('download-btn');
+      const filename = `TRIVE-Drop01-Story-0${currentSlide + 1}-1080x1920.png`;
+      try {
+        canvas.toBlob((blob) => {
+          if (!blob) return alert('Open via http://localhost:8080 so canvas export is permitted.');
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.download = filename;
+          a.href = url;
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          setTimeout(() => URL.revokeObjectURL(url), 1500);
+          btn.textContent = 'Downloaded ✓';
+          setTimeout(() => { btn.textContent = 'Download 1080×1920 PNG'; }, 1500);
+        }, 'image/png');
+      } catch (err) {
+        alert('Canvas export blocked on file://. Run via http://localhost:8080/instagram-teaser.html or use Upload Photo.');
+      }
+    });
+    render();
+  </script>
+</body>
+</html>
+
