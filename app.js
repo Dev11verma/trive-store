@@ -469,7 +469,7 @@ function proceedToCheckout() {
   proceedToCheckoutFromCart();
 }
 
-function applyCoupon() {
+async function applyCoupon() {
   const input = document.getElementById('coupon-code');
   const couponRow = document.getElementById('coupon-row');
   const discEl = document.getElementById('sum-discount');
@@ -478,15 +478,49 @@ function applyCoupon() {
   const code = input.value.trim().toUpperCase();
   const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-  if (code === 'FIRSTDROP') {
-    discountAmount = Math.round(subtotal * 0.15);
+  if (code === 'FIRST50') {
+    if (subtotal <= 1) {
+      discountAmount = 0;
+      alert('FIRST50 is valid on orders over ₹1.');
+    } else {
+      try {
+        const baseApi = API_URL.replace(/\/api\/order$/, '');
+        const res = await fetch(`${baseApi}/api/promo-status/FIRST50`);
+        const info = await res.json();
+        if (info && info.available === false) {
+          discountAmount = 0;
+          alert('FIRST50 limit (first 50 orders) has been reached! Use TRIVE10 for 10% off.');
+        } else {
+          discountAmount = Math.round(subtotal * 0.38);
+        }
+      } catch (e) {
+        discountAmount = Math.round(subtotal * 0.38);
+      }
+    }
   } else if (code === 'TRIVE10') {
-    discountAmount = Math.round(subtotal * 0.1);
-  } else if (code === 'VIP200') {
-    discountAmount = 200;
+    discountAmount = Math.round(subtotal * 0.10);
+  } else if (code === 'BUNDLE300') {
+    const hoodieCount = cart
+      .filter(i => `${i.name} ${i.sku} ${i.category || ''}`.toLowerCase().includes('hoodie'))
+      .reduce((sum, i) => sum + i.quantity, 0);
+    const teeItems = cart.filter(i => {
+      const label = `${i.name} ${i.sku} ${i.category || ''}`.toLowerCase();
+      return label.includes('tee') || label.includes('t-shirt') || label.includes('tshirt');
+    });
+
+    if (hoodieCount < 2) {
+      discountAmount = 0;
+      alert('BUNDLE300 requires 2 or more hoodies in your cart to get 1 T-Shirt FREE.');
+    } else if (teeItems.length === 0) {
+      discountAmount = 0;
+      alert('2+ hoodies detected! Add any T-Shirt to your cart and tap Apply again to make it FREE.');
+    } else {
+      const freeTeePrice = Math.min(...teeItems.map(t => Number(t.price) || 0));
+      discountAmount = freeTeePrice;
+    }
   } else {
     discountAmount = 0;
-    alert('Invalid promo code. Try FIRSTDROP or TRIVE10.');
+    alert('Invalid promo code. Try FIRST50, TRIVE10, or BUNDLE300.');
   }
 
   if (couponRow) {
@@ -679,4 +713,5 @@ function startDealTimer() {
     timerEl.textContent = `ENDS IN ${hrs}:${mins}:${secs}`;
   }, 1000);
 }
+
 

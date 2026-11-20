@@ -24,6 +24,17 @@ function readOrdersSafe() {
   }
 }
 
+const FIRST50_LIMIT = 50;
+let first50UsedCount = 0;
+
+app.get('/api/promo-status/:code', (req, res) => {
+  const code = String(req.params.code || '').trim().toUpperCase();
+  if (code === 'FIRST50') {
+    const remaining = Math.max(0, FIRST50_LIMIT - first50UsedCount);
+    return res.json({ code: 'FIRST50', available: remaining > 0, remaining, limit: FIRST50_LIMIT });
+  }
+  return res.json({ code, available: true });
+});
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'ONLINE',
@@ -35,6 +46,11 @@ app.get('/api/health', (req, res) => {
 });
 
 app.post('/api/order', async (req, res) => {
+  const appliedPromo = String(req.body?.promoCode || req.body?.couponCode || '').trim().toUpperCase();
+  if (appliedPromo === 'FIRST50') {
+    if (first50UsedCount >= FIRST50_LIMIT) return res.status(400).json({ success: false, message: 'FIRST50 limit (50 orders) reached.' });
+    first50UsedCount += 1;
+  }
   try {
     const {
       customer = {},
@@ -181,4 +197,5 @@ process.on('uncaughtException', (err) => {
 process.on('unhandledRejection', (err) => {
   console.error('[TRIVÉ Rejection Guard]:', err && err.message ? err.message : err);
 });
+
 
