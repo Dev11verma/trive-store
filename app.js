@@ -552,8 +552,7 @@ async function applyCoupon() {
 
 function updateCheckoutSummary() {
   const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const codFee = selectedPaymentMode === 'COD' ? 99 : 0;
-  const finalTotal = Math.max(0, subtotal - discountAmount + codFee);
+  const { shippingFee, packingFee, codFee, totalAmount: finalTotal } = calculateOrderCharges(subtotal, discountAmount, selectedPaymentMode);
 
   const subEl = document.getElementById('sum-subtotal');
   const discEl = document.getElementById('sum-discount');
@@ -646,8 +645,7 @@ async function dispatchOrder() {
   }
 
   const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const codFee = selectedPaymentMode === 'COD' ? 99 : 0;
-  const totalAmount = Math.max(0, subtotal - discountAmount + codFee);
+  const { shippingFee, packingFee, codFee, totalAmount } = calculateOrderCharges(subtotal, discountAmount, selectedPaymentMode);
   const primaryItem = cart[0] || {
     sku: 'TRV-ARCHIVAL',
     color: 'Standard',
