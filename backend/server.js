@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 5000;
 const DB_FILE = path.resolve('orders.json');
 
 const QIKINK_CLIENT_ID = process.env.QIKINK_CLIENT_ID || '979710787663166';
-const QIKINK_CLIENT_SECRET = process.env.QIKINK_CLIENT_SECRET || '';
+const QIKINK_CLIENT_SECRET = process.env.QIKINK_CLIENT_SECRET || '748049b9438fb541618c6b7bd2a43f4574ee1917b591ae8c51f69b98a50c39f3';
 
 // Configure your Nodemailer transporter for Gmail notifications
 const transporter = nodemailer.createTransport({

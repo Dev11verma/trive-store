@@ -1,7 +1,7 @@
 ﻿const { Telegraf, Markup } = require('telegraf');
 
 // Initialize bot with your Telegram token (Regenerate a fresh token via @BotFather after testing)
-const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '9234651103:AAGBmV8-rDbKecvvFXB8Pr0pRX-qFMxSESI';
+const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '9234651103:AAEA7KkknVNOPi4XLfAaw8tjMGdzxfabTmw';
 const bot = new Telegraf(BOT_TOKEN);
 
 // In-memory session store for active user orders
