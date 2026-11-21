@@ -288,9 +288,9 @@ const PRODUCTS = [
     tag: 'Drop 01 // Archival Heavywear',
     desc: 'Heavyweight oversized streetwear hoodie featuring bold graphic typography and archival front/back artwork across three colorways.',
     colors: [
-      { name: 'White', hex: '#f8fafc', images: ['assets/MARVEL%20DOOMSDAY/Front_1_c_1.png', 'assets/MARVEL%20DOOMSDAY/Back_2_c_1.png'] },
-      { name: 'Black', hex: '#18181b', images: ['assets/MARVEL%20DOOMSDAY/Front_1_c_2.png', 'assets/MARVEL%20DOOMSDAY/Back_2_c_2.png'] },
-      { name: 'Navy Blue', hex: '#1e293b', images: ['assets/MARVEL%20DOOMSDAY/Front_1_c_3.jpg', 'assets/MARVEL%20DOOMSDAY/Back_2_c_3.jpg'] }
+      { name: 'White', hex: '#f8fafc', images: ['assets/DOOMSDAY/Front_1_c_1.png', 'assets/DOOMSDAY/Back_2_c_1.png'] },
+      { name: 'Black', hex: '#18181b', images: ['assets/DOOMSDAY/Front_1_c_2.png', 'assets/DOOMSDAY/Back_2_c_2.png'] },
+      { name: 'Navy Blue', hex: '#1e293b', images: ['assets/DOOMSDAY/Front_1_c_3.jpg', 'assets/DOOMSDAY/Back_2_c_3.jpg'] }
     ]
   },
   {
