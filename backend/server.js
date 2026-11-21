@@ -1,4 +1,4 @@
-﻿import 'dotenv/config';
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import fs from 'fs';
@@ -23,13 +23,36 @@ const transporter = nodemailer.createTransport({
 
 async function sendOrderEmail(orderData, fullOrderText) {
   try {
+    const custEmail = orderData?.email || orderData?.customerEmail || orderData?.customer?.email || 'N/A';
+    const deliveryWay = orderData?.deliveryWay || (orderData?.paymentMode === 'COD' ? 'Cash on Delivery (COD - ₹149 Fee)' : 'UPI Prepaid');
+    const payRef = orderData?.utr || orderData?.paymentId || orderData?.paymentStatus || 'N/A';
+    const productLine = orderData?.productName || orderData?.product?.name || orderData?.product || 'N/A';
+    const amountLine = orderData?.total ?? orderData?.amount ?? orderData?.product?.price ?? 'N/A';
+
+    const bodyText = [
+      'New Paid Order on TRIVÉ via Razorpay!',
+      '',
+      `Order ID: ${orderData?.orderId || 'N/A'}`,
+      `Razorpay Payment ID: ${payRef}`,
+      `Customer Name: ${orderData?.customer || orderData?.customerName || 'N/A'}`,
+      `Phone No: ${orderData?.phone || 'N/A'}`,
+      `Customer Email: ${custEmail}`,
+      `Delivery Way: ${deliveryWay}`,
+      `Product: ${productLine}`,
+      `Amount Paid: ₹${amountLine}`,
+      `Delivery Address: ${orderData?.address || 'N/A'}`,
+      `Payment Status: ${orderData?.paymentStatus || deliveryWay}`,
+      `Qikink Status: ${orderData?.qikinkStatus || 'PENDING'}`,
+      fullOrderText ? `\n${fullOrderText}` : ''
+    ].filter(Boolean).join('\n');
+
     await transporter.sendMail({
       from: '"TRIVÉ Storefront" <abhayvermasoni604@gmail.com>',
       to: 'abhayvermasoni604@gmail.com',
-      subject: `🚨 New Order Confirmed [${orderData.orderId}] - ₹${orderData.total}`,
-      text: `A new order has been placed on TRIVÉ!\n\nOrder ID: ${orderData.orderId}\nCustomer: ${orderData.customer} (${orderData.phone})\nAddress: ${orderData.address}\nPayment Status: ${orderData.paymentStatus}\nQikink Status: ${orderData.qikinkStatus}\n\n${fullOrderText}`
+      subject: `🚨 New Order Confirmed [${orderData?.orderId || 'ORDER'}] - ₹${amountLine}`,
+      text: bodyText
     });
-    console.log(`Email notification sent successfully for ${orderData.orderId}`);
+    console.log(`Email notification sent successfully for ${orderData?.orderId}`);
   } catch (err) {
     console.error('Failed to send email notification:', err.message);
   }
@@ -40,11 +63,11 @@ app.use(express.json());
 
 function loadOrders() {
   try {
-    if (!fs.existsSync(ORDERS_FILE)) {
-      fs.writeFileSync(ORDERS_FILE, JSON.stringify([]));
+    if (!fs.existsSync(DB_FILE)) {
+      fs.writeFileSync(DB_FILE, JSON.stringify([]));
       return [];
     }
-    let data = fs.readFileSync(ORDERS_FILE, 'utf8');
+    let data = fs.readFileSync(DB_FILE, 'utf8');
     
     // Automatically strip UTF-8 BOM character if present
     if (data.charCodeAt(0) === 0xFEFF) {
@@ -367,6 +390,8 @@ app.post('/api/order', async (req, res) => {
     paymentStatus: isCod ? 'Pending (COD)' : `Prepaid (UTR: ${utr})`,
     customer: customer.name,
     phone: customer.phone,
+    email: customer?.email || req.body?.email || 'N/A',
+    deliveryWay: req.body?.deliveryWay || (isCod ? 'Cash on Delivery (COD - ₹149 Fee)' : 'UPI Prepaid'),
     address: fullFormattedAddress,
     whatsappLink,
     qikinkPayload,

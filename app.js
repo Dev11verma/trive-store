@@ -571,6 +571,7 @@ function updateCheckoutSummary() {
 function goToPayment() {
   const name = (document.getElementById('cust-name')?.value || '').trim();
   const phone = (document.getElementById('cust-phone')?.value || '').trim();
+  const email = (document.getElementById('cust-email')?.value || '').trim() || 'support.trive@gmail.com';
   const street = (document.getElementById('cust-street')?.value || '').trim();
   const city = (document.getElementById('cust-city')?.value || '').trim();
   const pin = (document.getElementById('cust-pin')?.value || '').trim();
@@ -625,6 +626,7 @@ function closeAllModals() {
 async function dispatchOrder() {
   const name = (document.getElementById('cust-name')?.value || '').trim();
   const phone = (document.getElementById('cust-phone')?.value || '').trim();
+  const email = (document.getElementById('cust-email')?.value || '').trim() || 'support.trive@gmail.com';
   const street = (document.getElementById('cust-street')?.value || '').trim();
   const city = (document.getElementById('cust-city')?.value || '').trim();
   const pin = (document.getElementById('cust-pin')?.value || '').trim();
@@ -653,7 +655,7 @@ async function dispatchOrder() {
   };
 
   const orderPayload = {
-    customer: { name, phone, email: 'support.trive@gmail.com' },
+    customer: { name, phone, email },
     product: {
       name: cart.map((i) => `${i.name} (${i.color}/${i.size}) x${i.quantity}`).join(', '),
       sku: primaryItem.sku,
@@ -665,6 +667,7 @@ async function dispatchOrder() {
     quantity: cart.reduce((s, i) => s + i.quantity, 0),
     utr: selectedPaymentMode === 'UPI' ? (window.__TRIVE_ACTIVE_UPI_REF__ || utr || 'AUTO_UPI_CONFIRMED') : 'COD_ORDER',
     paymentMode: selectedPaymentMode,
+    deliveryWay: selectedPaymentMode === 'UPI' ? 'UPI Prepaid' : 'Cash on Delivery (COD - ₹149 Fee)',
     address: { street, city, state: 'Madhya Pradesh', pincode: pin }
   };
 

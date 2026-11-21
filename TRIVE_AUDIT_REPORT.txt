@@ -1,0 +1,1262 @@
+﻿
+========== PROJECT DETAILS ==========
+Date: 11/21/2026 17:26:26
+Path: C:\Users\abhay\Downloads\triox-site
+
+========== GIT STATUS ==========
+## main...origin/main
+?? TRIVE_AUDIT_REPORT.txt
+
+
+========== LATEST COMMITS ==========
+14c140f Configure zero-fee UPI prepaid and Rs 149 COD surcharge at checkout
+4d6944e Write robots.txt and sitemap.xml as clean UTF-8 without BOM
+9b3da34 Add SEO/OpenGraph tags, sitemap, oversized fit guide modal, and audit fix
+b6ee6b1 Sync all local storefront, review, and teaser updates
+9b34e6c Add updated lookbook shots and catalog view changes
+
+
+========== ROOT FILES ==========
+
+Mode   Name                   Length
+----   ----                   ------
+d--h-- .git                         
+d----- .vscode                      
+d----- assets                       
+d----- backend                      
+d----- data                         
+d----- images                       
+d----- node_modules                 
+d----- public                       
+d----- triox-site                   
+-a---- .gitignore             35    
+-a---- app.js                 27367 
+-a---- apps-script.gs         6661  
+-a---- backup_index_text.txt  75925 
+-a---- bot.js                 9597  
+-a---- cart.js                34    
+-a---- catalog-view.html      3870  
+-a---- checkout-views.html    6410  
+-a---- CNAME                  13    
+-a---- fit-guide.js           3652  
+-a---- footer.html            9087  
+-a---- generate_payloads.js   1510  
+-a---- get_chat_id.js         943   
+-a---- header.html            777   
+-a---- index.html             6892  
+-a---- instagram-teaser.html  7793  
+-a---- order.js               6195  
+-a---- orders.json            2     
+-a---- package-lock.json      36997 
+-a---- package.json           704   
+-a---- products.js            14037 
+-a---- README.md              427   
+-a---- reviews.js             7422  
+-a---- reviews.json           898   
+-a---- robots.txt             66    
+-a---- SECURITY.md            640   
+-a---- server.js              6195  
+-a---- sitemap.xml            262   
+-a---- styles.css             16080 
+-a---- test_sandbox.js        1398  
+-a---- test_tg.js             797   
+-a---- TRIVE_AUDIT_REPORT.txt 21132 
+-a---- update.ps1             8931  
+-a---- upi-qr.js              5566  
+
+
+
+
+========== PROJECT FILE TREE ==========
+.gitignore
+app.js
+apps-script.gs
+backup_index_text.txt
+bot.js
+cart.js
+catalog-view.html
+checkout-views.html
+CNAME
+fit-guide.js
+footer.html
+generate_payloads.js
+get_chat_id.js
+header.html
+index.html
+instagram-teaser.html
+order.js
+orders.json
+package-lock.json
+package.json
+products.js
+README.md
+reviews.js
+reviews.json
+robots.txt
+SECURITY.md
+server.js
+sitemap.xml
+styles.css
+test_sandbox.js
+test_tg.js
+TRIVE_AUDIT_REPORT.txt
+update.ps1
+upi-qr.js
+.vscode\launch.json
+assets\logo.svg
+assets\soonnn.png
+assets\Bharav collection\Back_2_c_1.jpg
+assets\Bharav collection\Back_2_c_2.jpg
+assets\Bharav collection\Back_2_c_3.jpg
+assets\Bharav collection\Back_2_c_61.jpg
+assets\Bharav collection\default.jpg
+assets\Bharav collection\Front_1_c_1.jpg
+assets\Bharav collection\Front_1_c_2.jpg
+assets\Bharav collection\Front_1_c_3.jpg
+assets\Bharav collection\Front_1_c_61.jpg
+assets\broken\black f.jpg
+assets\broken\black pocket.jpg
+assets\broken\blue f.jpg
+assets\broken\blue pocket.jpg
+assets\broken\default.jpg
+assets\broken\mehndi.jpg
+assets\broken\Yellow f.jpg
+assets\broken\yellow pocket.jpg
+assets\Calm-A-Sutra\Screenshot 2026-11-13 163146.png
+assets\Calm-A-Sutra\Screenshot 2026-11-13 163153.png
+assets\Calm-A-Sutra\Screenshot 2026-11-13 163159.png
+assets\Calm-A-Sutra\Screenshot 2026-11-13 163205.png
+assets\Hoodie acid\blue b.jpg
+assets\Hoodie acid\blue.jpg
+assets\Hoodie acid\brown b.jpg
+assets\Hoodie acid\brown.jpg
+assets\Hoodie acid\green b.jpg
+assets\Hoodie acid\green.jpg
+assets\Hoodie acid\grey b.jpg
+assets\Hoodie acid\Grey.jpg
+assets\hoodies\black back.png
+assets\hoodies\black front.png
+assets\hoodies\blue back.png
+assets\hoodies\blue front.png
+assets\hoodies\green back.png
+assets\hoodies\green front.png
+assets\hoodies\white back.png
+assets\hoodies\white front.png
+assets\karan Arjun\Screenshot 2026-11-13 163020.png
+assets\karan Arjun\Screenshot 2026-11-13 163032.png
+assets\karan Arjun\Screenshot 2026-11-13 163039.png
+assets\karan Arjun\Screenshot 2026-11-13 163045.png
+assets\LEGENCY EDITION\Screenshot 2026-11-12 161951.png
+assets\LEGENCY EDITION\Screenshot 2026-11-12 162006.png
+assets\LEGENCY EDITION\Screenshot 2026-11-12 162017.png
+assets\LEGENCY EDITION\Screenshot 2026-11-12 162026.png
+assets\LEGENCY EDITION\Screenshot 2026-11-12 162035.png
+assets\LEGENCY EDITION\Screenshot 2026-11-12 162044.png
+assets\LEGENCY EDITION\Screenshot 2026-11-12 162057.png
+assets\LEGENCY EDITION\Screenshot 2026-11-12 162104.png
+assets\LEGENCY EDITION\Screenshot 2026-11-12 162112.png
+assets\LEGENCY EDITION\Screenshot 2026-11-12 162307.png
+assets\lookbook\160950.jpeg
+assets\lookbook\160951.jpeg
+assets\lookbook\160952.jpeg
+assets\lookbook\160954.jpeg
+assets\lookbook\160955.jpeg
+assets\lookbook\160956.png
+assets\lookbook\160957.jpeg
+assets\lookbook\160958.jpeg
+assets\lookbook\160959.jpeg
+assets\Main\fevicon.png
+assets\Main\hero_brand.png
+assets\Main\Neck Tag.png
+assets\Main\qr.jpeg
+assets\Main\Tag neck.png
+assets\Main\Tag.png
+assets\Main\Wash.png
+assets\mohmaya\Screenshot 2026-11-13 163104.png
+assets\mohmaya\Screenshot 2026-11-13 163107.png
+assets\mohmaya\Screenshot 2026-11-13 163115.png
+assets\mohmaya\Screenshot 2026-11-13 163122.png
+assets\mohmaya\Screenshot 2026-11-13 163128.png
+assets\mohmaya\Screenshot 2026-11-13 163134.png
+assets\Parth\Screenshot 2026-11-13 162855.png
+assets\Parth\Screenshot 2026-11-13 162907.png
+assets\Parth\Screenshot 2026-11-13 162915.png
+assets\Parth\Screenshot 2026-11-13 162921.png
+assets\Parth\Screenshot 2026-11-13 162925.png
+assets\Parth\Screenshot 2026-11-13 162929.png
+assets\Parth\Screenshot 2026-11-13 162933.png
+assets\Parth\Screenshot 2026-11-13 162937.png
+assets\Parth\Screenshot 2026-11-13 162944.png
+assets\Parth\Screenshot 2026-11-13 162948.png
+assets\Parth\Screenshot 2026-11-13 162952.png
+assets\Parth\Screenshot 2026-11-13 162956.png
+assets\Parth\Screenshot 2026-11-13 163000.png
+assets\Parth\Screenshot 2026-11-13 163004.png
+assets\Spiritual-Gangster\Screenshot 2026-11-13 162609.png
+assets\Spiritual-Gangster\Screenshot 2026-11-13 162619.png
+assets\Spiritual-Gangster\Screenshot 2026-11-13 162627.png
+assets\Spiritual-Gangster\Screenshot 2026-11-13 162631.png
+assets\Spiritual-Gangster\Screenshot 2026-11-13 162652.png
+assets\Spiritual-Gangster\Screenshot 2026-11-13 162711.png
+assets\tees\black_back.jpg
+assets\tees\black_pocket.jpg
+assets\tees\blue_back.jpg
+assets\tees\blue_pocket.jpg
+assets\tees\default.jpg
+assets\tees\olive_back.jpg
+assets\tees\olive_pocket.jpg
+assets\tees\yellow_back.jpg
+assets\tees\yellow_pocket.jpg
+backend\orders.json
+backend\package-lock.json
+backend\package.json
+backend\server.js
+backend\my-backend\.gitignore
+backend\my-backend\orders.json
+backend\my-backend\package-lock.json
+backend\my-backend\package.json
+backend\my-backend\server.js
+data\new-arrivals.json
+images\blue-back.jpg
+images\blue-front.jpg
+images\brown-back.jpg
+images\brown-front.jpg
+images\green-back.jpg
+images\green-front.jpg
+images\grey-back.jpg
+images\grey-front.jpg
+triox-site\index.html
+triox-site\README.md
+triox-site\script.js
+triox-site\styles.css
+
+========== PACKAGE JSON ==========
+{
+  "name": "triox-site",
+  "version": "1.0.0",
+  "description": "TRIVÃ‰ is a limited-drop oversized streetwear brand.",
+  "main": "order.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node order.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dev11verma/trive-store.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Dev11verma/trive-store/issues"
+  },
+  "homepage": "https://github.com/Dev11verma/trive-store#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.3.0",
+    "nodemailer": "^10.6.0",
+    "telegraf": "^4.16.3"
+  }
+}
+
+========== SEO AND DEPLOYMENT FILES ==========
+--- robots.txt ---
+User-agent: *
+Allow: /
+Sitemap: https://trivestore.in/sitemap.xml
+
+--- sitemap.xml ---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://trivestore.in/</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>
+--- index.html ---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) - TRIVE Live Storefront (G-272VM2K95T) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-272VM2K95T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-272VM2K95T');
+</script>
+    <link rel="icon" type="image/png" href="assets/Main/fevicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRIVÉ // ARCHIVAL HEAVYWEAR</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+<style id="trive-mobile-polish">
+  html, body { max-width: 100%; overflow-x: hidden; -webkit-text-size-adjust: 100%; }
+  @media (max-width: 640px) {
+    input, select, textarea { font-size: 16px !important; }
+    button, .btn, a[href^="upi://"] { min-height: 44px; }
+    .checkout-container, .modal-content, .cart-drawer {
+      width: 100% !important;
+      max-width: 100vw !important;
+      padding-left: 14px !important;
+      padding-right: 14px !important;
+      box-sizing: border-box !important;
+    }
+  }
+</style>
+  <meta name="description" content="TRIVÉ Heavywear — Archival Indian streetwear crafted in 240–380 GSM combed cotton. Drop 01 & 02 launching December 1. Use code FIRST50 for 38% off the first 50 orders." />
+  <meta name="keywords" content="TRIVE, TRIVE Heavywear, Indian streetwear, oversized hoodies India, heavyweight t-shirts India, streetwear drop" />
+  <link rel="canonical" href="https://trivestore.in/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="TRIVÉ Heavywear" />
+  <meta property="og:title" content="TRIVÉ // BORN TO RULE — Drop 01 Launching Dec 1" />
+  <meta property="og:description" content="Archival street silhouettes in 240–380 GSM combed cotton. Join Drop 01 VIP Early Access before FIRST50 (38% OFF) goes live." />
+  <meta property="og:url" content="https://trivestore.in/" />
+  <meta property="og:image" content="https://trivestore.in/assets/lookbook/160957.jpeg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="TRIVÉ // BORN TO RULE — Drop 01 Launching Dec 1" />
+  <meta name="twitter:description" content="240–380 GSM heavyweight Indian streetwear. Limited FIRST50 launch allocation." />
+  <meta name="twitter:image" content="https://trivestore.in/assets/lookbook/160957.jpeg" />
+</head>
+<body>
+<div id="trive-vip-bar" style="background:#0d0d0d;border-bottom:1px solid #262626;color:#f5f5f5;padding:10px 14px;text-align:center;font-family:inherit;font-size:13px;">
+  <div style="max-width:960px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;">
+    <span style="font-weight:700;letter-spacing:0.06em;color:#d7ff3e;">DROP 01 // DEC 1</span>
+    <span>Get VIP Early Access + <strong>FIRST50 (38% OFF)</strong> alert:</span>
+    <form id="trive-vip-form" onsubmit="submitTriveVipLead(event)" style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:0;">
+      <input id="vip-contact" type="text" required placeholder="WhatsApp or @instagram" style="padding:7px 10px;border-radius:6px;border:1px solid #333;background:#171717;color:#fff;font-size:14px;min-width:190px;" />
+      <button type="submit" style="padding:7px 14px;border-radius:6px;border:none;background:#d7ff3e;color:#0a0a0a;font-weight:800;cursor:pointer;">Join VIP</button>
+    </form>
+    <span id="vip-msg" style="font-size:12px;color:#22c55e;display:none;">You're on the Drop 01 VIP list!</span>
+  </div>
+</div>
+<script>
+async function submitTriveVipLead(e) {
+  e.preventDefault();
+  const input = document.getElementById('vip-contact');
+  const msg = document.getElementById('vip-msg');
+  const contact = (input?.value || '').trim();
+  if (!contact) return;
+  try {
+    const endpoint = (typeof API_URL === 'string') ? API_URL : 'https://trive-api.onrender.com/api/order';
+    await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        customer: { name: 'VIP Lead (' + contact + ')', phone: contact, email: 'support.trive@gmail.com' },
+        address: { street: 'VIP Drop 01 Waitlist', city: 'Bhopal', state: 'Madhya Pradesh', pincode: '462001' },
+        product: { name: 'VIP Drop 01 Early Access', sku: 'VIP-DROP01-WAITLIST', price: 0 },
+        items: [{ name: 'VIP Drop 01 Early Access', sku: 'VIP-DROP01-WAITLIST', price: 0, quantity: 1 }],
+        totalAmount: 0,
+        paymentMode: 'VIP_LEAD',
+        utr: 'VIP_WAITLIST'
+      })
+    });
+  } catch (err) {}
+  if (input) input.value = '';
+  if (typeof gtag === 'function') gtag('event', 'generate_lead', { event_category: 'VIP_Waitlist', event_label: 'DROP_01_DEC_1' });
+  if (msg) msg.style.display = 'inline';
+}
+</script>
+
+    <!-- Modular Ingestion Slots -->
+    <div id="slot-header"></div>
+    <div id="slot-catalog"></div>
+    <div id="slot-checkout"></div>
+    <div id="slot-footer"></div>
+
+    <!-- 1. Load Product Catalog & Assets Data FIRST -->
+    <script src="products.js"></script>
+
+    <!-- 2. Load Main Store Logic, Cart & Checkout Dispatch SECOND -->
+    <script src="upi-qr.js"></script>
+<script src="app.js"></script>
+
+    <!-- 3. Load Modular HTML Parts & Trigger Store Render After DOM Injection -->
+    <script>
+        async function loadPart(slotId, filename) {
+            try {
+                const res = await fetch(filename);
+                if (!res.ok) throw new Error(`Failed to load ${filename} (${res.status})`);
+                const slot = document.getElementById(slotId);
+                if (slot) slot.innerHTML = await res.text();
+            } catch (err) {
+                console.error(`[TRIVÉ Loader Error]`, err);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            await Promise.all([
+                loadPart('slot-header', 'header.html'),
+                loadPart('slot-catalog', 'catalog-view.html'),
+                loadPart('slot-checkout', 'checkout-views.html'),
+                loadPart('slot-footer', 'footer.html')
+            ]);
+
+            if (typeof renderCatalog === 'function') renderCatalog();
+            if (typeof updateCartUI === 'function') updateCartUI();
+            if (typeof startDealTimer === 'function') startDealTimer();
+        });
+    </script>
+<script src="./reviews.js"></script>
+<script src="./fit-guide.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+========== ENVIRONMENT FILE NAMES ONLY ==========
+
+========== CHECKOUT AND SECURITY CODE ==========
+app.js : Line 1 : const UPI_SHIPPING_FEE = 0;
+app.js : Line 2 : const UPI_PACKING_FEE = 0;
+app.js : Line 3 : const COD_SHIPPING_FEE = 0;
+app.js : Line 4 : const COD_PACKING_FEE = 0;
+app.js : Line 5 : const COD_SURCHARGE = 149;
+app.js : Line 7 : function calculateOrderCharges(subtotal, discount, paymentMode) {
+app.js : Line 9 : return { shippingFee: 0, packingFee: 0, codFee: 0, totalAmount: 0 };
+app.js : Line 12 : const isCod = paymentMode === 'COD';
+app.js : Line 13 : const shippingFee = isCod ? COD_SHIPPING_FEE : UPI_SHIPPING_FEE;
+app.js : Line 14 : const packingFee = isCod ? COD_PACKING_FEE : UPI_PACKING_FEE;
+app.js : Line 15 : const codFee = isCod ? COD_SURCHARGE : 0;
+app.js : Line 16 : const totalAmount = Math.max(0, discountedSubtotal + shippingFee + packingFee + codFee);
+app.js : Line 17 : return { shippingFee, packingFee, codFee, totalAmount };
+app.js : Line 30 : const savedCart = localStorage.getItem('trive_cart');
+app.js : Line 35 : let selectedPaymentMode = 'UPI';
+app.js : Line 39 : let API_URL = `${RENDER_BACKEND_URL}/api/order`;
+app.js : Line 41 : API_URL = '/api/order';
+app.js : Line 68 : grid.innerHTML = `
+app.js : Line 69 : <div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:#888;border:1px dashed #222;border-radius:12px;">
+app.js : Line 75 : grid.innerHTML = filtered
+app.js : Line 92 : style="display:inline-block;width:14px;height:14px;border-radius:50%;background:${c.hex};border:1px solid #444;cursor:pointer;">
+app.js : Line 102 : <div class="product-card" onclick="openProduct('${product.id}')" style="background:#0c0c0e;border:1px solid #1e1e22;border-radius:12px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between;transition:transform 0.2s ease, border-color 0.2s ease;">
+app.js : Line 121 : };font-size:10px;font-weight:900;padding:4px 8px;border-radius:4px;letter-spacing:0.08em;text-transform:uppercase;">${tagText}</span>`
+app.js : Line 151 : };border:1px solid ${
+app.js : Line 153 : };border-radius:6px;font-size:11px;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;">
+app.js : Line 226 : thumbsEl.innerHTML = selectedColor.images
+app.js : Line 233 : style="width:72px;height:86px;object-fit:cover;border-radius:6px;cursor:pointer;border:1px solid ${idx === 0 ? '#d7ff3e' : '#26262b'};"
+app.js : Line 243 : img.style.borderColor = '#26262b';
+app.js : Line 245 : if (el) el.style.borderColor = '#d7ff3e';
+app.js : Line 253 : pickerEl.innerHTML = currentProduct.colors
+app.js : Line 359 : localStorage.setItem('trive_cart', JSON.stringify(cart));
+app.js : Line 376 : itemsContainer.innerHTML = `<div style="text-align:center;color:#666;padding:40px 10px;font-size:13px;">Your archival bag is empty.</div>`;
+app.js : Line 378 : itemsContainer.innerHTML = cart
+app.js : Line 381 : <div style="display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid #1f1f23;">
+app.js : Line 382 : <img src="${item.image}" alt="${item.name}" style="width:56px;height:68px;object-fit:cover;border-radius:6px;background:#111;">
+app.js : Line 387 : <button type="button" onclick="updateItemQty(${i}, -1)" style="width:22px;height:22px;background:#18181b;color:#fff;border:1px solid #333;border-radius:4px;cursor:pointer;">-</button>
+app.js : Line 389 : <button type="button" onclick="updateItemQty(${i}, 1)" style="width:22px;height:22px;background:#18181b;color:#fff;border:1px solid #333;border-radius:4px;cursor:pointer;">+</button>
+app.js : Line 394 : <button type="button" onclick="removeFromCart(${i})" style="background:none;border:none;color:#ef4444;font-size:11px;cursor:pointer;margin-top:6px;">Remove</button>
+app.js : Line 406 : updateCheckoutSummary();
+app.js : Line 448 : // 4. VIEW SWITCHING, CHECKOUT & PAYMENT FLOW
+app.js : Line 466 : else if (viewName === 'checkout') proceedToCheckoutFromCart();
+app.js : Line 467 : else if (viewName === 'payment') goToPayment();
+app.js : Line 476 : function proceedToCheckoutFromCart() {
+app.js : Line 482 : updateCheckoutSummary();
+app.js : Line 483 : switchView('view-checkout');
+app.js : Line 486 : function proceedToCheckout() {
+app.js : Line 487 : proceedToCheckoutFromCart();
+app.js : Line 490 : async function applyCoupon() {
+app.js : Line 491 : const input = document.getElementById('coupon-code');
+app.js : Line 492 : const couponRow = document.getElementById('coupon-row');
+app.js : Line 496 : const code = input.value.trim().toUpperCase();
+app.js : Line 499 : if (code === 'FIRST50') {
+app.js : Line 502 : alert('FIRST50 is valid on orders over ₹1.');
+app.js : Line 505 : const baseApi = API_URL.replace(/\/api\/order$/, '');
+app.js : Line 506 : const res = await fetch(`${baseApi}/api/promo-status/FIRST50`);
+app.js : Line 510 : alert('FIRST50 limit (first 50 orders) has been reached! Use TRIVE10 for 10% off.');
+app.js : Line 518 : } else if (code === 'TRIVE10') {
+app.js : Line 520 : } else if (code === 'BUNDLE300') {
+app.js : Line 541 : alert('Invalid promo code. Try FIRST50, TRIVE10, or BUNDLE300.');
+app.js : Line 544 : if (couponRow) {
+app.js : Line 545 : couponRow.style.display = discountAmount > 0 ? 'flex' : 'none';
+app.js : Line 550 : updateCheckoutSummary();
+app.js : Line 553 : function updateCheckoutSummary() {
+app.js : Line 555 : const codFee = selectedPaymentMode === 'COD' ? 99 : 0;
+app.js : Line 556 : const finalTotal = Math.max(0, subtotal - discountAmount + codFee);
+app.js : Line 560 : const couponRow = document.getElementById('coupon-row');
+app.js : Line 565 : if (couponRow) couponRow.style.display = discountAmount > 0 ? 'flex' : 'none';
+app.js : Line 567 : if (selectedPaymentMode === 'UPI' && typeof window.renderInstantUpiQr === 'function') {
+app.js : Line 568 : window.renderInstantUpiQr({ amount: finalTotal, orderNote: 'TRIVE Archival Order', onPaymentSuccess: () => { if (typeof dispatchOrder === 'function') dispatchOrder(); } });
+app.js : Line 572 : function goToPayment() {
+app.js : Line 580 : alert('Please fill in Name, Mobile Number, Street Address, City, and PIN Code first.');
+app.js : Line 584 : updateCheckoutSummary();
+app.js : Line 585 : switchView('view-payment');
+app.js : Line 588 : function selectPaymentMode(mode) {
+app.js : Line 589 : selectedPaymentMode = mode;
+app.js : Line 591 : const optUpi = document.getElementById('opt-upi');
+app.js : Line 592 : const optCod = document.getElementById('opt-cod');
+app.js : Line 593 : const upiBox = document.getElementById('upi-box');
+app.js : Line 595 : if (optUpi) {
+app.js : Line 596 : if (mode === 'UPI') optUpi.classList.add('selected');
+app.js : Line 597 : else optUpi.classList.remove('selected');
+app.js : Line 599 : if (optCod) {
+app.js : Line 600 : if (mode === 'COD') optCod.classList.add('selected');
+app.js : Line 601 : else optCod.classList.remove('selected');
+app.js : Line 603 : if (upiBox) {
+app.js : Line 604 : upiBox.style.display = mode === 'UPI' ? 'block' : 'none';
+app.js : Line 606 : updateCheckoutSummary();
+app.js : Line 623 : // 5. ORDER DISPATCH TO EXPRESS BACKEND
+app.js : Line 626 : async function dispatchOrder() {
+app.js : Line 632 : const utr = window.__TRIVE_ACTIVE_UPI_REF__ || 'AUTO_UPI_CONFIRMED';
+app.js : Line 635 : alert('Please complete your shipping details before placing the order.');
+app.js : Line 636 : switchView('view-checkout');
+app.js : Line 642 : const submitBtn = document.getElementById('btn-submit-order');
+app.js : Line 645 : submitBtn.textContent = 'DISPATCHING ARCHIVAL ORDER...';
+app.js : Line 649 : const codFee = selectedPaymentMode === 'COD' ? 99 : 0;
+app.js : Line 650 : const totalAmount = Math.max(0, subtotal - discountAmount + codFee);
+app.js : Line 657 : const orderPayload = {
+app.js : Line 668 : utr: selectedPaymentMode === 'UPI' ? (window.__TRIVE_ACTIVE_UPI_REF__ || utr || 'AUTO_UPI_CONFIRMED') : 'COD_ORDER',
+app.js : Line 669 : paymentMode: selectedPaymentMode,
+app.js : Line 670 : address: { street, city, state: 'Madhya Pradesh', pincode: pin }
+app.js : Line 677 : body: JSON.stringify(orderPayload)
+app.js : Line 683 : const orderId = data.orderId ? data.orderId : `TRV-${Date.now().toString().slice(-6)}`;
+app.js : Line 689 : if (confirmedIdEl) confirmedIdEl.textContent = `#${orderId}`;
+app.js : Line 692 : const waText = encodeURIComponent(
+app.js : Line 693 : `TRIVÉ Order Confirmed! ID: #${orderId} | Name: ${name} | Total: ₹${totalAmount} | Mode: ${selectedPaymentMode}`
+app.js : Line 701 : if (typeof gtag === 'function') gtag('event', 'purchase', { transaction_id: data.orderId || ('TV-' + Date.now()), value: totalAmount, currency: 'INR' });
+app.js : Line 704 : throw new Error(data.message ? data.message : 'Server error while processing order.');
+app.js : Line 707 : console.error('[TRIVE Order Dispatch Error]:', err);
+app.js : Line 708 : alert(`Order dispatch failed: ${err.message}`);
+app.js : Line 712 : submitBtn.textContent = 'Confirm & Place Order';
+bot.js : Line 3 : // Initialize bot with your Telegram token (Regenerate a fresh token via @BotFather after testing)
+bot.js : Line 4 : const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '9234651103:AAGBmV8-rDbKecvvFXB8Pr0pRX-qFMxSESI';
+bot.js : Line 5 : const bot = new Telegraf(BOT_TOKEN);
+bot.js : Line 7 : // In-memory session store for active user orders
+bot.js : Line 14 : ? `${process.env.RENDER_EXTERNAL_URL}/api/order`
+bot.js : Line 15 : : `http://localhost:${PORT}/api/order`;
+bot.js : Line 35 : `Explore our live store archive or place an order directly right here in chat:`,
+bot.js : Line 40 : [Markup.button.callback('ðŸ›ï¸ View Catalog & Order', 'view_catalog')],
+bot.js : Line 41 : [Markup.button.callback('ðŸ“¦ Track My Order', 'track_order')]
+bot.js : Line 52 : `ðŸ—‚ï¸ *TRIVÃ‰ ACTIVE CATALOG & DROPS*\nSelect an item to begin your order:`,
+bot.js : Line 121 : `Got your number! ðŸ“²\n\nFinally, please reply with your *full delivery address* (House/Street, City, Pincode):`,
+bot.js : Line 136 : `Got your number! ðŸ“²\n\nFinally, please reply with your *full delivery address* (House/Street, City, Pincode):`,
+bot.js : Line 145 : const orderPayload = {
+bot.js : Line 169 : utr: 'TELEGRAM_BOT_ORDER',
+bot.js : Line 170 : paymentMode: 'TELEGRAM // COD-UPI',
+bot.js : Line 175 : pincode: ''
+bot.js : Line 179 : let orderId = `TV-${Date.now().toString().slice(-6)}`;
+bot.js : Line 185 : body: JSON.stringify(orderPayload)
+bot.js : Line 188 : if (result.orderId) orderId = result.orderId;
+bot.js : Line 189 : console.log('Synced Telegram order to backend & email:', result);
+bot.js : Line 191 : console.error('Failed to sync Telegram order:', err.message);
+bot.js : Line 194 : const orderSummary =
+bot.js : Line 195 : `ðŸŽ‰ *ORDER PLACED SUCCESSFULLY!*\n\n` +
+bot.js : Line 196 : `ðŸ†” *Order ID:* #${orderId}\n` +
+bot.js : Line 202 : `Our concierge team has received your order email and will verify dispatch shortly!`;
+bot.js : Line 204 : await ctx.reply(orderSummary, {
+bot.js : Line 208 : [Markup.button.callback('ðŸ›ï¸ Place Another Order', 'view_catalog')]
+bot.js : Line 226 : [Markup.button.callback('ðŸ›ï¸ View Catalog & Order', 'view_catalog')],
+bot.js : Line 227 : [Markup.button.callback('ðŸ“¦ Track My Order', 'track_order')]
+bot.js : Line 242 : console.log('ðŸ¤– TRIVÃ‰ Platinum Telegram Ordering Bot is live and running!');
+bot.js : Line 248 : bot.action('track_order', async (ctx) => {
+bot.js : Line 250 : await ctx.reply(`ðŸ“¦ All recent drops are shipped via express courier within 48 hours. Drop your Order ID (#TV-XXXXXX) here for status inquiries.`);
+bot.js : Line 254 : console.log('ðŸ¤– TRIVÃ‰ Platinum Telegram Ordering Bot is live and running!');
+cart.js : Line 1 : // TRIV� Cart & Checkout Logic
+catalog-view.html : Line 1 : <section style="background:radial-gradient(circle at center, #161616 0%, #080808 100%);border-top:1px solid #222;border-bottom:1px solid #222;padding:26px 20px;text-align:center;">
+catalog-view.html : Line 26 : <div style="margin-top:80px;border-top:1px solid var(--border);padding-top:40px;">
+catalog-view.html : Line 32 : <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;"><img src="assets/lookbook/160959.jpeg" alt="Lookbook 1" style="width:100%;height:380px;object-fit:cover;"></div>
+catalog-view.html : Line 33 : <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;"><img src="assets/lookbook/160958.jpeg" alt="Lookbook 2" style="width:100%;height:380px;object-fit:cover;"></div>
+catalog-view.html : Line 34 : <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;"><img src="assets/lookbook/160957.jpeg" alt="Lookbook 3" style="width:100%;height:380px;object-fit:cover;"></div>
+catalog-view.html : Line 35 : <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;"><img src="assets/lookbook/160956.png" alt="Lookbook 5" style="width:100%;height:380px;object-fit:cover;"></div>
+catalog-view.html : Line 36 : <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;"><img src="assets/lookbook/160954.jpeg" alt="Lookbook 7" style="width:100%;height:380px;object-fit:cover;"></div>
+catalog-view.html : Line 37 : <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;"><img src="assets/lookbook/160955.jpeg" alt="Lookbook 8" style="width:100%;height:380px;object-fit:cover;"></div>
+catalog-view.html : Line 38 : <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;"><img src="assets/lookbook/160952.jpeg" alt="Lookbook 9" style="width:100%;height:380px;object-fit:cover;"></div>
+checkout-views.html : Line 34 : <!-- SHIPPING & CHECKOUT -->
+checkout-views.html : Line 35 : <section id="view-checkout" class="view">
+checkout-views.html : Line 36 : <div class="checkout-container">
+checkout-views.html : Line 58 : <label>PIN Code</label>
+checkout-views.html : Line 63 : <div class="coupon-box">
+checkout-views.html : Line 64 : <input type="text" id="coupon-code" placeholder="Enter Promo (FIRST50, TRIVE10, BUNDLE300)">
+checkout-views.html : Line 65 : <button type="button" onclick="applyCoupon()">Apply</button>
+checkout-views.html : Line 68 : <div class="order-summary-box">
+checkout-views.html : Line 77 : <div class="summary-row" id="coupon-row" style="display:none; color:var(--accent);">
+checkout-views.html : Line 78 : <span>Promo Discount</span>
+checkout-views.html : Line 87 : <button class="btn-primary" onclick="goToPayment()">Continue to Payment &rarr;</button>
+checkout-views.html : Line 91 : <!-- PAYMENT -->
+checkout-views.html : Line 92 : <section id="view-payment" class="view">
+checkout-views.html : Line 93 : <div class="checkout-container">
+checkout-views.html : Line 94 : <div class="breadcrumb" onclick="navigateTo('checkout')">&larr; Edit Shipping Address</div>
+checkout-views.html : Line 95 : <h2>Select Payment Mode</h2>
+checkout-views.html : Line 97 : <div class="payment-options">
+checkout-views.html : Line 98 : <label class="pay-card selected" id="opt-upi" onclick="selectPaymentMode('UPI')">
+checkout-views.html : Line 101 : <h4>Instant UPI / QR</h4>
+checkout-views.html : Line 105 : <label class="pay-card" id="opt-cod" onclick="selectPaymentMode('COD')">
+checkout-views.html : Line 108 : <h4>Cash on Delivery (COD)</h4>
+checkout-views.html : Line 114 : <div id="upi-box" class="upi-display">
+checkout-views.html : Line 115 : <div class="upi-id-badge">UPI: Dev11verma@ybl</div>
+checkout-views.html : Line 116 : <div class="upi-qr-box">
+checkout-views.html : Line 123 : <button class="btn-primary" id="btn-submit-order" onclick="dispatchOrder()">Confirm & Place Order</button>
+checkout-views.html : Line 131 : <h2>Order Placed Successfully</h2>
+checkout-views.html : Line 137 : <div><strong>Order ID:</strong> <span id="confirmed-id">#TV-1001</span></div>
+checkout-views.html : Line 152 : <button class="cart-btn" style="width:100%; border-radius:6px;" onclick="navigateTo('catalog')">Return to Catalog</button>
+fit-guide.js : Line 7 : .trive-float-btn { background: #121212; color: #fff; border: 1px solid #333; border-radius: 999px; padding: 10px 15px; font-size: 12px; font-weight: 800; letter-spacing: 0.04em; cursor: pointer; box-shadow: 0 10px 26px rgba(0,0,0,0.45); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+fit-guide.js : Line 8 : .trive-float-btn.accent { background: #d7ff3e; color: #0a0a0a; border-color: #d7ff3e; }
+fit-guide.js : Line 10 : #trive-fit-card { background: #111; border: 1px solid #2b2b2b; border-radius: 14px; max-width: 520px; width: 100%; padding: 22px; color: #f5f5f5; }
+fit-guide.js : Line 11 : #trive-fit-card table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 13px; }
+fit-guide.js : Line 12 : #trive-fit-card th, #trive-fit-card td { border: 1px solid #262626; padding: 9px 10px; text-align: center; }
+fit-guide.js : Line 19 : widget.innerHTML = `
+fit-guide.js : Line 27 : modal.innerHTML = `
+fit-guide.js : Line 34 : <button type="button" id="trive-close-fit" style="background:#1c1c1c;color:#fff;border:1px solid #333;border-radius:8px;padding:6px 11px;cursor:pointer;font-weight:800;">✕</button>
+footer.html : Line 2 : <div style="background:#111;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:16px 0;overflow:hidden;white-space:nowrap;margin-top:60px;">
+footer.html : Line 15 : <footer style="background:#070709;border-top:1px solid var(--border);padding:60px 5% 40px;color:var(--muted);font-size:13px;">
+footer.html : Line 23 : <h4 style="color:#fff;font-size:12px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:16px;">Help & Orders</h4>
+footer.html : Line 27 : <li><a href="javascript:void(0)" onclick="openModal('support-modal')" style="color:var(--muted);text-decoration:none;">Get Help With Order</a></li>
+footer.html : Line 28 : <li><a href="javascript:void(0)" onclick="navigateTo('success')" style="color:var(--muted);text-decoration:none;">Track Your Order</a></li>
+footer.html : Line 43 : <a href="https://wa.me/919202142350" target="_blank" style="display:inline-block;background:#161619;border:1px solid #333;color:#fff;padding:10px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;text-transform:uppercase;margin-right:8px;margin-bottom:8px;">WhatsApp Dev</a>
+footer.html : Line 44 : <a href="https://wa.me/918223009117" target="_blank" style="display:inline-block;background:#161619;border:1px solid #333;color:#fff;padding:10px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;text-transform:uppercase;margin-bottom:8px;">WhatsApp CO-FOUNDER</a>
+footer.html : Line 46 : <a href="https://mail.google.com/mail/?view=cm&fs=1&to=support.trive@gmail.com" target="_blank" style="color:#aaa;font-size:12px;text-decoration:none;border-bottom:1px solid #444;">support.trive@gmail.com</a>
+footer.html : Line 50 : <div style="max-width:1200px;margin:0 auto;border-top:1px solid #161619;padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;font-size:12px;color:#666;">
+footer.html : Line 64 : <div style="border-top:1px solid var(--border); padding-top:16px;">
+footer.html : Line 69 : <button class="btn-primary" style="margin-top:14px;" onclick="proceedToCheckoutFromCart()">Proceed to Checkout</button>
+footer.html : Line 75 : <div id="shipping-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid var(--border);border-radius:14px;padding:24px;z-index:10000;color:#eee;">
+footer.html : Line 76 : <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><div style="font-weight:900;text-transform:uppercase;color:var(--accent);">Shipping Policy</div><button onclick="closeAllModals()" style="background:none;border:none;color:#888;font-size:20px;cursor:pointer;">&times;</button></div>
+footer.html : Line 79 : <div id="returns-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid var(--border);border-radius:14px;padding:24px;z-index:10000;color:#eee;">
+footer.html : Line 80 : <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><div style="font-weight:900;text-transform:uppercase;color:var(--accent);">Returns & Exchanges</div><button onclick="closeAllModals()" style="background:none;border:none;color:#888;font-size:20px;cursor:pointer;">&times;</button></div>
+footer.html : Line 83 : <div id="support-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid var(--border);border-radius:14px;padding:24px;z-index:10000;color:#eee;">
+footer.html : Line 84 : <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><div style="font-weight:900;text-transform:uppercase;color:var(--accent);">Customer Support</div><button onclick="closeAllModals()" style="background:none;border:none;color:#888;font-size:20px;cursor:pointer;">&times;</button></div>
+footer.html : Line 87 : <div id="terms-modal" class="trive-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:#111;border:1px solid var(--border);border-radius:14px;padding:24px;z-index:10000;color:#eee;">
+footer.html : Line 88 : <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><div style="font-weight:900;text-transform:uppercase;color:var(--accent);">Terms & Conditions</div><button onclick="closeAllModals()" style="background:none;border:none;color:#888;font-size:20px;cursor:pointer;">&times;</button></div>
+generate_payloads.js : Line 3 : order_number: "TRIVÉ-SANDBOX-01",
+generate_payloads.js : Line 11 : country_code: "IN",
+generate_payloads.js : Line 18 : gateway: "COD",
+generate_payloads.js : Line 19 : qikink_shipping: "1"
+generate_payloads.js : Line 22 : order_number: "TRIVÉ-SANDBOX-02",
+generate_payloads.js : Line 30 : country_code: "IN",
+generate_payloads.js : Line 37 : gateway: "COD",
+generate_payloads.js : Line 38 : qikink_shipping: "1"
+generate_payloads.js : Line 41 : order_number: "TRIVÉ-SANDBOX-03",
+generate_payloads.js : Line 49 : country_code: "IN",
+generate_payloads.js : Line 56 : gateway: "COD",
+generate_payloads.js : Line 57 : qikink_shipping: "1"
+get_chat_id.js : Line 2 : const token = '9234651103:AAGBmV8-rDbKecvvFXB8Pr0pRX-qFMxSESI';
+get_chat_id.js : Line 3 : const url = `https://api.telegram.org/bot${token}/getUpdates`;
+get_chat_id.js : Line 18 : console.log("\n[!] No messages found yet. Make sure you sent 'Test' or '/start' to t.me/TRIVÉorderbot on Telegram first!");
+header.html : Line 3 : <img src="assets/Main/fevicon.png" alt="TRIVÉ Logo" style="width: 32px; height: 32px; object-fit: contain; border-radius: 4px;">
+index.html : Line 24 : button, .btn, a[href^="upi://"] { min-height: 44px; }
+index.html : Line 25 : .checkout-container, .modal-content, .cart-drawer {
+index.html : Line 30 : box-sizing: border-box !important;
+index.html : Line 34 : <meta name="description" content="TRIVÉ Heavywear — Archival Indian streetwear crafted in 240–380 GSM combed cotton. Drop 01 & 02 launching December 1. Use code FIRST50 for 38% off the first 50 orders." />
+index.html : Line 49 : <div id="trive-vip-bar" style="background:#0d0d0d;border-bottom:1px solid #262626;color:#f5f5f5;padding:10px 14px;text-align:center;font-family:inherit;font-size:13px;">
+index.html : Line 54 : <input id="vip-contact" type="text" required placeholder="WhatsApp or @instagram" style="padding:7px 10px;border-radius:6px;border:1px solid #333;background:#171717;color:#fff;font-size:14px;min-width:190px;" />
+index.html : Line 55 : <button type="submit" style="padding:7px 14px;border-radius:6px;border:none;background:#d7ff3e;color:#0a0a0a;font-weight:800;cursor:pointer;">Join VIP</button>
+index.html : Line 68 : const endpoint = (typeof API_URL === 'string') ? API_URL : 'https://trive-api.onrender.com/api/order';
+index.html : Line 74 : address: { street: 'VIP Drop 01 Waitlist', city: 'Bhopal', state: 'Madhya Pradesh', pincode: '462001' },
+index.html : Line 78 : paymentMode: 'VIP_LEAD',
+index.html : Line 79 : utr: 'VIP_WAITLIST'
+index.html : Line 92 : <div id="slot-checkout"></div>
+index.html : Line 98 : <!-- 2. Load Main Store Logic, Cart & Checkout Dispatch SECOND -->
+index.html : Line 99 : <script src="upi-qr.js"></script>
+index.html : Line 109 : if (slot) slot.innerHTML = await res.text();
+index.html : Line 119 : loadPart('slot-checkout', 'checkout-views.html'),
+instagram-teaser.html : Line 7 : * { box-sizing: border-box; }
+instagram-teaser.html : Line 9 : .toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; background: #121212; border: 1px solid #262626; border-radius: 14px; padding: 14px 18px; max-width: 900px; width: 100%; }
+instagram-teaser.html : Line 10 : .toolbar button, .toolbar select, .toolbar label { background: #1b1b1b; color: #fff; border: 1px solid #333; border-radius: 8px; padding: 10px 14px; font-size: 13px; font-weight: 700; cursor: pointer; }
+instagram-teaser.html : Line 11 : .toolbar button.active, .toolbar button.download { background: #d7ff3e; color: #0a0a0a; border-color: #d7ff3e; }
+instagram-teaser.html : Line 12 : canvas { width: 360px; height: 640px; display: block; border-radius: 16px; background: #0a0a0a; border: 1px solid #242424; }
+instagram-teaser.html : Line 38 : { badge: 'LIMITED LAUNCH ALLOCATION', t1: 'FIRST', t2: 'FIFTY.', sub: '38% OFF FOR THE FIRST 50 ORDERS ONLY • CODE: FIRST50', pill: '50 / 50 SLOTS REMAINING', cta: 'JOIN VIP LIST → TRIVESTORE.IN' }
+order.js : Line 13 : const ORDERS_FILE = path.join(__dirname, 'orders.json');
+order.js : Line 14 : if (!fs.existsSync(ORDERS_FILE)) {
+order.js : Line 15 : fs.writeFileSync(ORDERS_FILE, '[]', 'utf8');
+order.js : Line 18 : function readOrdersSafe() {
+order.js : Line 20 : const raw = fs.readFileSync(ORDERS_FILE, 'utf8').replace(/^\uFEFF/, '').trim();
+order.js : Line 30 : app.get('/api/promo-status/:code', (req, res) => {
+order.js : Line 31 : const code = String(req.params.code || '').trim().toUpperCase();
+order.js : Line 32 : if (code === 'FIRST50') {
+order.js : Line 34 : return res.json({ code: 'FIRST50', available: remaining > 0, remaining, limit: FIRST50_LIMIT });
+order.js : Line 36 : return res.json({ code, available: true });
+order.js : Line 43 : sheetWebhookConfigured: Boolean(process.env.GOOGLE_SHEET_WEBHOOK),
+order.js : Line 48 : app.post('/api/order', async (req, res) => {
+order.js : Line 49 : const appliedPromo = String(req.body?.promoCode || req.body?.couponCode || '').trim().toUpperCase();
+order.js : Line 50 : if (appliedPromo === 'FIRST50') {
+order.js : Line 51 : if (first50UsedCount >= FIRST50_LIMIT) return res.status(400).json({ success: false, message: 'FIRST50 limit (50 orders) reached.' });
+order.js : Line 62 : utr = 'COD_ORDER',
+order.js : Line 63 : paymentMode = 'UPI',
+order.js : Line 74 : const orderId = `TV-${Date.now().toString().slice(-6)}`;
+order.js : Line 77 : const orderRecord = {
+order.js : Line 78 : orderId,
+order.js : Line 90 : paymentMode,
+order.js : Line 91 : utr,
+order.js : Line 96 : pincode: address.pincode || ''
+order.js : Line 98 : fulfillmentStatus: 'QUEUED_FOR_QIKINK'
+order.js : Line 101 : // 1. Save Order Locally
+order.js : Line 102 : const existingOrders = readOrdersSafe();
+order.js : Line 103 : existingOrders.unshift(orderRecord);
+order.js : Line 104 : fs.writeFileSync(ORDERS_FILE, JSON.stringify(existingOrders, null, 2), 'utf8');
+order.js : Line 106 : // 2. Forward to Google Apps Script (Logs to Sheet + Sends Gmail via GmailApp + Pushes to Qikink)
+order.js : Line 109 : if (process.env.GOOGLE_SHEET_WEBHOOK) {
+order.js : Line 111 : const primaryItem = orderRecord.items[0] || {};
+order.js : Line 113 : orderId,
+order.js : Line 114 : paymentMode,
+order.js : Line 115 : utr,
+order.js : Line 116 : items: orderRecord.items,
+order.js : Line 117 : customer: orderRecord.customer,
+order.js : Line 119 : name: orderRecord.items.map((i) => `${i.name} (${i.color}/${i.size} x${i.quantity})`).join(', ') || primaryItem.name,
+order.js : Line 120 : price: String(orderRecord.totalAmount)
+order.js : Line 122 : payment: {
+order.js : Line 123 : paymentId: `${paymentMode} // ${utr}`
+order.js : Line 125 : address: orderRecord.address
+order.js : Line 127 : const gsRes = await fetch(process.env.GOOGLE_SHEET_WEBHOOK, {
+order.js : Line 135 : console.log(`[TRIVÉ Apps Script Sync]: #${orderId} -> status=${gsRes.status} body=${gsText.slice(0, 150)}`);
+order.js : Line 138 : console.error('[TRIVÉ Apps Script Webhook Error]:', gsErr.message);
+order.js : Line 141 : sheetError = 'GOOGLE_SHEET_WEBHOOK not set in Render Environment';
+order.js : Line 144 : console.log(`[TRIVÉ ORDER LOGGED] #${orderId} | sheetSynced=${sheetSynced}`);
+order.js : Line 148 : orderId,
+order.js : Line 151 : message: 'Order logged and synced to Google Sheet & Gmail.',
+order.js : Line 152 : order: orderRecord
+order.js : Line 155 : console.error('[TRIVÉ Order API Error]:', error);
+order.js : Line 158 : message: error.message || 'Internal server error while saving order.'
+order.js : Line 164 : const paidUpiRefs = new Set();
+order.js : Line 166 : app.post('/api/payment-confirm', (req, res) => {
+order.js : Line 169 : return res.status(400).json({ success: false, message: 'Missing payment reference ID.' });
+order.js : Line 171 : paidUpiRefs.add(ref);
+order.js : Line 175 : app.get('/api/payment-status/:refId', (req, res) => {
+order.js : Line 177 : const isPaid = paidUpiRefs.has(ref);
+order.js : Line 185 : app.get('/api/orders', (req, res) => {
+order.js : Line 186 : const orders = readOrdersSafe();
+order.js : Line 187 : res.json({ count: orders.length, orders });
+package-lock.json : Line 240 : "node_modules/encodeurl": {
+package-lock.json : Line 242 : "resolved": "https://registry.npmjs.org/encodeurl/-/encodeurl-2.0.3.tgz",
+package-lock.json : Line 321 : "encodeurl": "^2.0.0",
+package-lock.json : Line 357 : "encodeurl": "^2.0.0",
+package-lock.json : Line 630 : "encoding": "^0.1.0"
+package-lock.json : Line 633 : "encoding": {
+package-lock.json : Line 829 : "encodeurl": "^2.0.0",
+package-lock.json : Line 854 : "encodeurl": "^2.0.0",
+package.json : Line 5 : "main": "order.js",
+package.json : Line 8 : "start": "node order.js"
+products.js : Line 123 : id: 'calm-a-sutra-01',
+products.js : Line 124 : name: 'Calm-A-Sutra // Heavy Tee',
+products.js : Line 130 : tag: 'Calm-A-Sutra // Heavy Tee',
+products.js : Line 133 : { name: 'Charcoal', hex: '#27272a', images: ['assets/Calm-A-Sutra/Screenshot%202026-11-13%20163146.png', 'assets/Calm-A-Sutra/Screenshot%202026-11-13%20163159.png'] },
+products.js : Line 134 : { name: 'Navy Blue', hex: '#263447', images: ['assets/Calm-A-Sutra/Screenshot%202026-11-13%20163153.png', 'assets/Calm-A-Sutra/Screenshot%202026-11-13%20163205.png'] }
+reviews.js : Line 7 : section.style.cssText = 'max-width:1120px;margin:48px auto;padding:28px 18px;border-top:1px solid #242424;color:#f5f5f5;';
+reviews.js : Line 9 : section.innerHTML = `
+reviews.js : Line 15 : <button id="trive-open-review-btn" type="button" style="padding:10px 16px;border-radius:8px;border:1px solid #d7ff3e;background:#d7ff3e;color:#0a0a0a;font-weight:800;cursor:pointer;min-height:44px;">
+reviews.js : Line 20 : <form id="trive-review-form" style="display:none;background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:18px;margin-bottom:24px;">
+reviews.js : Line 22 : <input id="rev-name" type="text" required placeholder="Your Name (e.g., Siddharth K.)" style="padding:10px 12px;border-radius:8px;border:1px solid #333;background:#181818;color:#fff;font-size:16px;" />
+reviews.js : Line 23 : <input id="rev-order" type="text" placeholder="Order ID (optional, e.g., TV-123456)" style="padding:10px 12px;border-radius:8px;border:1px solid #333;background:#181818;color:#fff;font-size:16px;" />
+reviews.js : Line 24 : <select id="rev-rating" style="padding:10px 12px;border-radius:8px;border:1px solid #333;background:#181818;color:#fff;font-size:16px;">
+reviews.js : Line 31 : <input id="rev-item" type="text" placeholder="Product & Size (e.g., Hoodie - L)" style="padding:10px 12px;border-radius:8px;border:1px solid #333;background:#181818;color:#fff;font-size:16px;" />
+reviews.js : Line 33 : <textarea id="rev-text" rows="3" required placeholder="Share your thoughts on fabric weight, fit, and delivery..." style="width:100%;box-sizing:border-box;padding:10px 12px;border-radius:8px;border:1px solid #333;background:#181818;color:#fff;font-size:16px;margin-bottom:12px;"></textarea>
+reviews.js : Line 35 : <button type="submit" style="padding:10px 18px;border-radius:8px;border:none;background:#d7ff3e;color:#0a0a0a;font-weight:800;cursor:pointer;min-height:44px;">Submit Review</button>
+reviews.js : Line 62 : const orderId = (document.getElementById('rev-order')?.value || '').trim() || 'NO_ORDER_ID';
+reviews.js : Line 70 : const endpoint = (typeof API_URL === 'string') ? API_URL : 'https://trivestore.in/api/order';
+reviews.js : Line 75 : customer: { name, phone: orderId, email: 'support.trive@gmail.com' },
+reviews.js : Line 76 : address: { street: `[${rating}/5] ${item}: ${comment}`, city: 'India', state: 'India', pincode: '000000' },
+reviews.js : Line 80 : paymentMode: 'CUSTOMER_REVIEW',
+reviews.js : Line 81 : utr: `RATING_${rating}_STAR`
+reviews.js : Line 103 : grid.innerHTML = '<div style="color:#a3a3a3;font-size:14px;">Reviews will appear here shortly.</div>';
+reviews.js : Line 107 : grid.innerHTML = list.map((r) => {
+reviews.js : Line 111 : <article style="background:#121212;border:1px solid #262626;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px;">
+reviews.js : Line 117 : <div style="margin-top:auto;padding-top:8px;border-top:1px solid #1f1f1f;display:flex;justify-content:space-between;font-size:12px;color:#a3a3a3;">
+reviews.json : Line 5 : "orderId": "TV-104218",
+reviews.json : Line 14 : "orderId": "TV-104390",
+reviews.json : Line 23 : "orderId": "TV-104512",
+reviews.json : Line 25 : "item": "TRIVÉ Bundle Order",
+reviews.json : Line 27 : "comment": "Fast UPI checkout and clean heavywear finish. Already planning to grab another drop piece."
+server.js : Line 13 : const ORDERS_FILE = path.join(__dirname, 'orders.json');
+server.js : Line 14 : if (!fs.existsSync(ORDERS_FILE)) {
+server.js : Line 15 : fs.writeFileSync(ORDERS_FILE, '[]', 'utf8');
+server.js : Line 18 : function readOrdersSafe() {
+server.js : Line 20 : const raw = fs.readFileSync(ORDERS_FILE, 'utf8').replace(/^\uFEFF/, '').trim();
+server.js : Line 30 : app.get('/api/promo-status/:code', (req, res) => {
+server.js : Line 31 : const code = String(req.params.code || '').trim().toUpperCase();
+server.js : Line 32 : if (code === 'FIRST50') {
+server.js : Line 34 : return res.json({ code: 'FIRST50', available: remaining > 0, remaining, limit: FIRST50_LIMIT });
+server.js : Line 36 : return res.json({ code, available: true });
+server.js : Line 43 : sheetWebhookConfigured: Boolean(process.env.GOOGLE_SHEET_WEBHOOK),
+server.js : Line 48 : app.post('/api/order', async (req, res) => {
+server.js : Line 49 : const appliedPromo = String(req.body?.promoCode || req.body?.couponCode || '').trim().toUpperCase();
+server.js : Line 50 : if (appliedPromo === 'FIRST50') {
+server.js : Line 51 : if (first50UsedCount >= FIRST50_LIMIT) return res.status(400).json({ success: false, message: 'FIRST50 limit (50 orders) reached.' });
+server.js : Line 62 : utr = 'COD_ORDER',
+server.js : Line 63 : paymentMode = 'UPI',
+server.js : Line 74 : const orderId = `TV-${Date.now().toString().slice(-6)}`;
+server.js : Line 77 : const orderRecord = {
+server.js : Line 78 : orderId,
+server.js : Line 90 : paymentMode,
+server.js : Line 91 : utr,
+server.js : Line 96 : pincode: address.pincode || ''
+server.js : Line 98 : fulfillmentStatus: 'QUEUED_FOR_QIKINK'
+server.js : Line 101 : // 1. Save Order Locally
+server.js : Line 102 : const existingOrders = readOrdersSafe();
+server.js : Line 103 : existingOrders.unshift(orderRecord);
+server.js : Line 104 : fs.writeFileSync(ORDERS_FILE, JSON.stringify(existingOrders, null, 2), 'utf8');
+server.js : Line 106 : // 2. Forward to Google Apps Script (Logs to Sheet + Sends Gmail via GmailApp + Pushes to Qikink)
+server.js : Line 109 : if (process.env.GOOGLE_SHEET_WEBHOOK) {
+server.js : Line 111 : const primaryItem = orderRecord.items[0] || {};
+server.js : Line 113 : orderId,
+server.js : Line 114 : paymentMode,
+server.js : Line 115 : utr,
+server.js : Line 116 : items: orderRecord.items,
+server.js : Line 117 : customer: orderRecord.customer,
+server.js : Line 119 : name: orderRecord.items.map((i) => `${i.name} (${i.color}/${i.size} x${i.quantity})`).join(', ') || primaryItem.name,
+server.js : Line 120 : price: String(orderRecord.totalAmount)
+server.js : Line 122 : payment: {
+server.js : Line 123 : paymentId: `${paymentMode} // ${utr}`
+server.js : Line 125 : address: orderRecord.address
+server.js : Line 127 : const gsRes = await fetch(process.env.GOOGLE_SHEET_WEBHOOK, {
+server.js : Line 135 : console.log(`[TRIVÉ Apps Script Sync]: #${orderId} -> status=${gsRes.status} body=${gsText.slice(0, 150)}`);
+server.js : Line 138 : console.error('[TRIVÉ Apps Script Webhook Error]:', gsErr.message);
+server.js : Line 141 : sheetError = 'GOOGLE_SHEET_WEBHOOK not set in Render Environment';
+server.js : Line 144 : console.log(`[TRIVÉ ORDER LOGGED] #${orderId} | sheetSynced=${sheetSynced}`);
+server.js : Line 148 : orderId,
+server.js : Line 151 : message: 'Order logged and synced to Google Sheet & Gmail.',
+server.js : Line 152 : order: orderRecord
+server.js : Line 155 : console.error('[TRIVÉ Order API Error]:', error);
+server.js : Line 158 : message: error.message || 'Internal server error while saving order.'
+server.js : Line 164 : const paidUpiRefs = new Set();
+server.js : Line 166 : app.post('/api/payment-confirm', (req, res) => {
+server.js : Line 169 : return res.status(400).json({ success: false, message: 'Missing payment reference ID.' });
+server.js : Line 171 : paidUpiRefs.add(ref);
+server.js : Line 175 : app.get('/api/payment-status/:refId', (req, res) => {
+server.js : Line 177 : const isPaid = paidUpiRefs.has(ref);
+server.js : Line 185 : app.get('/api/orders', (req, res) => {
+server.js : Line 186 : const orders = readOrdersSafe();
+server.js : Line 187 : res.json({ count: orders.length, orders });
+styles.css : Line 4 : --border: #232328;
+styles.css : Line 14 : * { box-sizing: border-box; margin: 0; padding: 0; }
+styles.css : Line 33 : border-bottom: 1px solid var(--border);
+styles.css : Line 38 : border: none;
+styles.css : Line 52 : border: 1px solid var(--border);
+styles.css : Line 55 : border-radius: 99px;
+styles.css : Line 63 : .cart-btn:hover { border-color: var(--text); }
+styles.css : Line 73 : border-radius: 50%;
+styles.css : Line 85 : border: 1px solid #3f3f46;
+styles.css : Line 86 : border-radius: 12px;
+styles.css : Line 94 : transition: border-color 0.2s, transform 0.2s;
+styles.css : Line 96 : .deal-banner:hover { border-color: var(--accent); transform: translateY(-2px); }
+styles.css : Line 104 : border-radius: 4px;
+styles.css : Line 121 : border: 1px solid var(--border);
+styles.css : Line 123 : border-radius: 6px;
+styles.css : Line 132 : .gender-tabs { display: flex; gap: 12px; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+styles.css : Line 135 : border: none;
+styles.css : Line 143 : border-radius: 6px;
+styles.css : Line 150 : border: 1px solid var(--border);
+styles.css : Line 153 : border-radius: 99px;
+styles.css : Line 160 : .pill.active, .pill:hover { border-color: #fff; color: #fff; background: #1c1c21; }
+styles.css : Line 165 : border: 1px solid var(--border);
+styles.css : Line 166 : border-radius: 8px;
+styles.css : Line 169 : transition: transform 0.25s, border-color 0.25s;
+styles.css : Line 172 : .product-card:hover { transform: translateY(-4px); border-color: #3f3f46; }
+styles.css : Line 179 : border: 1px solid var(--border);
+styles.css : Line 184 : border-radius: 4px;
+styles.css : Line 212 : border-radius: 8px;
+styles.css : Line 214 : border: 1px solid var(--border);
+styles.css : Line 221 : border-radius: 6px;
+styles.css : Line 222 : border: 1px solid var(--border);
+styles.css : Line 228 : .thumb.active, .thumb:hover { opacity: 1; border-color: #fff; }
+styles.css : Line 245 : border-top: 1px solid var(--border);
+styles.css : Line 246 : border-bottom: 1px solid var(--border);
+styles.css : Line 264 : border: 1px solid var(--border);
+styles.css : Line 266 : border-radius: 6px;
+styles.css : Line 272 : .color-chip.active, .color-chip:hover { border-color: #fff; background: #1c1c21; }
+styles.css : Line 273 : .color-dot { width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); }
+styles.css : Line 279 : border-radius: 6px;
+styles.css : Line 281 : border: 1px solid var(--border);
+styles.css : Line 289 : .size-btn.active, .size-btn:hover { background: #1e1e24; color: #fff; border-color: var(--accent); }
+styles.css : Line 295 : border: none;
+styles.css : Line 297 : border-radius: 6px;
+styles.css : Line 308 : .checkout-container {
+styles.css : Line 312 : border: 1px solid var(--border);
+styles.css : Line 313 : border-radius: 12px;
+styles.css : Line 316 : .checkout-container h2 { font-family: var(--font-display); font-size: 24px; font-weight: 900; text-transform: uppercase; margin-bottom: 24px; }
+styles.css : Line 330 : border: 1px solid var(--border);
+styles.css : Line 333 : border-radius: 6px;
+styles.css : Line 337 : .form-group input:focus { outline: none; border-color: #fff; }
+styles.css : Line 340 : .coupon-box {
+styles.css : Line 344 : border-top: 1px solid var(--border);
+styles.css : Line 345 : border-bottom: 1px solid var(--border);
+styles.css : Line 348 : .coupon-box input {
+styles.css : Line 351 : border: 1px solid var(--border);
+styles.css : Line 354 : border-radius: 6px;
+styles.css : Line 358 : .coupon-box button {
+styles.css : Line 360 : border: 1px solid var(--border);
+styles.css : Line 363 : border-radius: 6px;
+styles.css : Line 368 : .order-summary-box {
+styles.css : Line 370 : border: 1px solid var(--border);
+styles.css : Line 371 : border-radius: 6px;
+styles.css : Line 378 : border-top: 1px solid var(--border);
+styles.css : Line 386 : .payment-options { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
+styles.css : Line 389 : border: 1px solid var(--border);
+styles.css : Line 390 : border-radius: 8px;
+styles.css : Line 398 : .pay-card.selected { border-color: var(--accent); background: #121204; }
+styles.css : Line 403 : .upi-display {
+styles.css : Line 405 : border: 1px solid var(--border);
+styles.css : Line 406 : border-radius: 8px;
+styles.css : Line 411 : .upi-qr-box {
+styles.css : Line 415 : border-radius: 8px;
+styles.css : Line 418 : .upi-qr-box img { width: 140px; height: 140px; display: block; }
+styles.css : Line 419 : .upi-id-badge {
+styles.css : Line 423 : border-radius: 99px;
+styles.css : Line 434 : border: 1px solid var(--border);
+styles.css : Line 435 : border-radius: 12px;
+styles.css : Line 442 : border-radius: 50%;
+styles.css : Line 449 : .status-icon.success { background: rgba(34, 197, 94, 0.1); color: #22c55e; border: 1px solid #22c55e; }
+styles.css : Line 450 : .status-icon.fail { background: rgba(239, 68, 68, 0.1); color: var(--danger); border: 1px solid var(--danger); }
+styles.css : Line 455 : border: 1px solid var(--border);
+styles.css : Line 456 : border-radius: 8px;
+styles.css : Line 464 : .track-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; }
+styles.css : Line 485 : border-left: 1px solid var(--border);
+styles.css : Line 496 : .close-btn { background: none; border: none; color: #fff; font-size: 20px; cursor: pointer; }
+styles.css : Line 498 : .cart-item { display: flex; gap: 14px; border-bottom: 1px solid var(--border); padding: 14px 0; }
+styles.css : Line 499 : .cart-item img { width: 64px; height: 80px; object-fit: cover; border-radius: 4px; }
+test_sandbox.js : Line 3 : // Qikink Sandbox API Endpoint & Test Payload
+test_sandbox.js : Line 5 : order_number: "TRIVÉ-SANDBOX-01",
+test_sandbox.js : Line 24 : payment_mode: "Prepaid",
+test_sandbox.js : Line 28 : // Qikink Sandbox URL (or replace with your integration method if using specific sandbox keys)
+test_sandbox.js : Line 30 : hostname: 'api.qikink.com', // or sandbox url if provided by qikink docs
+test_sandbox.js : Line 32 : path: '/api/v1/orders/create', // standard qikink endpoint
+test_sandbox.js : Line 37 : // 'Authorization': 'Bearer YOUR_SANDBOX_API_KEY' if required by your setup
+test_sandbox.js : Line 41 : console.log("Dispatching sandbox order to Qikink...");
+test_sandbox.js : Line 46 : console.log("QIKINK SANDBOX RESPONSE:", resData);
+test_tg.js : Line 2 : const token = '9234651103:AAGBmV8-rDbKecvvFXB8Pr0pRX-qFMxSESI';
+test_tg.js : Line 15 : path: `/bot${token}/sendMessage`,
+upi-qr.js : Line 2 : const TRIVE_UPI_ID = window.TRIVE_UPI_ID || 'Dev11verma@ybl';
+upi-qr.js : Line 16 : if (window.QRCode) return callback();
+upi-qr.js : Line 23 : script.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
+upi-qr.js : Line 34 : return document.querySelector('#upi-box .upi-qr-box') || document.querySelector('.upi-qr-box');
+upi-qr.js : Line 37 : async function pollPaymentUntilSuccess(paymentRef, onPaid) {
+upi-qr.js : Line 39 : window.__TRIVE_ACTIVE_UPI_REF__ = paymentRef;
+upi-qr.js : Line 43 : const res = await fetch(`/api/payment-status/${encodeURIComponent(paymentRef)}`, {
+upi-qr.js : Line 50 : const statusEl = document.getElementById('trive-upi-auto-status');
+upi-qr.js : Line 52 : statusEl.textContent = 'Payment confirmed! Proceeding automatically...';
+upi-qr.js : Line 60 : // Keep polling quietly while waiting for gateway/webhook confirmation
+upi-qr.js : Line 65 : window.renderInstantUpiQr = function (opts) {
+upi-qr.js : Line 67 : containerId = 'trive-upi-qr-box',
+upi-qr.js : Line 69 : orderNote = 'TRIVE Order',
+upi-qr.js : Line 70 : onPaymentSuccess = null
+upi-qr.js : Line 81 : container.innerHTML = '<p style="color:#a1a1aa;font-size:13px;">Add an item to generate payment QR.</p>';
+upi-qr.js : Line 85 : const paymentRef = `TRV${Date.now().toString().slice(-8)}`;
+upi-qr.js : Line 86 : const upiUrl =
+upi-qr.js : Line 87 : `upi://pay?pa=${encodeURIComponent(TRIVE_UPI_ID)}` +
+upi-qr.js : Line 88 : `&pn=${encodeURIComponent(TRIVE_MERCHANT_NAME)}` +
+upi-qr.js : Line 89 : `&tr=${encodeURIComponent(paymentRef)}` +
+upi-qr.js : Line 90 : `&am=${encodeURIComponent(formattedAmount)}` +
+upi-qr.js : Line 92 : `&tn=${encodeURIComponent(orderNote)}`;
+upi-qr.js : Line 96 : container.innerHTML = `
+upi-qr.js : Line 97 : <div style="background:#111114;border:1px solid #27272a;border-radius:12px;padding:16px;text-align:center;width:100%;max-width:340px;box-sizing:border-box;margin:10px auto;">
+upi-qr.js : Line 99 : INSTANT UPI QR // EXACT AMOUNT
+upi-qr.js : Line 104 : <div id="${canvasId}" style="background:#ffffff;padding:10px;border-radius:10px;display:inline-block;margin-bottom:10px;"></div>
+upi-qr.js : Line 106 : Scan with GPay, PhonePe, Paytm or any UPI App<br/>
+upi-qr.js : Line 107 : <span style="color:#e4e4e7;font-family:monospace;">${TRIVE_UPI_ID}</span>
+upi-qr.js : Line 109 : <a href="${upiUrl}" style="display:block;width:100%;box-sizing:border-box;padding:12px 16px;background:#d7ff3e;color:#09090b;font-weight:700;font-size:12px;padding:9px 16px;border-radius:6px;text-decoration:none;letter-spacing:0.5px;margin-bottom:10px;">
+upi-qr.js : Line 110 : PAY ₹${cleanAmount.toLocaleString('en-IN')} IN UPI APP
+upi-qr.js : Line 112 : <div id="trive-upi-auto-status" style="font-size:12px;color:#a1a1aa;margin-top:4px;">
+upi-qr.js : Line 113 : Waiting for UPI payment confirmation... Page will proceed automatically.
+upi-qr.js : Line 122 : target.innerHTML = '';
+upi-qr.js : Line 123 : new window.QRCode(target, {
+upi-qr.js : Line 124 : text: upiUrl,
+upi-qr.js : Line 129 : correctLevel: window.QRCode.CorrectLevel.M
+upi-qr.js : Line 135 : target.innerHTML = `<img src="${FALLBACK_STATIC_QR}" alt="TRIVÉ UPI QR" style="width:180px;height:180px;object-fit:contain;" />`;
+upi-qr.js : Line 140 : pollPaymentUntilSuccess(paymentRef, function (paymentData) {
+upi-qr.js : Line 141 : if (typeof onPaymentSuccess === 'function') {
+upi-qr.js : Line 142 : onPaymentSuccess(paymentData);
+upi-qr.js : Line 143 : } else if (typeof window.dispatchOrder === 'function') {
+upi-qr.js : Line 144 : window.dispatchOrder();
+backend\package-lock.json : Line 210 : "node_modules/encodeurl": {
+backend\package-lock.json : Line 212 : "resolved": "https://registry.npmjs.org/encodeurl/-/encodeurl-2.0.1.tgz",
+backend\package-lock.json : Line 283 : "encodeurl": "~2.0.0",
+backend\package-lock.json : Line 321 : "encodeurl": "~2.0.0",
+backend\package-lock.json : Line 707 : "encodeurl": "~2.0.0",
+backend\package-lock.json : Line 734 : "encodeurl": "~2.0.0",
+backend\server.js : Line 10 : const DB_FILE = path.resolve('orders.json');
+backend\server.js : Line 12 : const QIKINK_CLIENT_ID = process.env.QIKINK_CLIENT_ID || '979710787663166';
+backend\server.js : Line 13 : const QIKINK_CLIENT_SECRET = process.env.QIKINK_CLIENT_SECRET || '';
+backend\server.js : Line 20 : pass: process.env.EMAIL_APP_PASSWORD || '' // Set this in your Render environment variables (Gmail App Password)
+backend\server.js : Line 24 : async function sendOrderEmail(orderData, fullOrderText) {
+backend\server.js : Line 29 : subject: `🚨 New Order Confirmed [${orderData.orderId}] - ₹${orderData.total}`,
+backend\server.js : Line 30 : text: `A new order has been placed on TRIVÉ!\n\nOrder ID: ${orderData.orderId}\nCustomer: ${orderData.customer} (${orderData.phone})\nAddress: ${orderData.address}\nPayment Status: ${orderData.paymentStatus}\nQikink Status: ${orderData.qikinkStatus}\n\n${fullOrderText}`
+backend\server.js : Line 32 : console.log(`Email notification sent successfully for ${orderData.orderId}`);
+backend\server.js : Line 41 : function loadOrders() {
+backend\server.js : Line 43 : if (!fs.existsSync(ORDERS_FILE)) {
+backend\server.js : Line 44 : fs.writeFileSync(ORDERS_FILE, JSON.stringify([]));
+backend\server.js : Line 47 : let data = fs.readFileSync(ORDERS_FILE, 'utf8');
+backend\server.js : Line 50 : if (data.charCodeAt(0) === 0xFEFF) {
+backend\server.js : Line 56 : console.error("Failed reading orders.json", err);
+backend\server.js : Line 61 : function saveOrders(ordersList) {
+backend\server.js : Line 63 : fs.writeFileSync(DB_FILE, JSON.stringify(ordersList, null, 2), 'utf-8');
+backend\server.js : Line 65 : console.error('Failed saving orders.json', e);
+backend\server.js : Line 69 : let orders = loadOrders();
+backend\server.js : Line 72 : const QIKINK_STORE_SKUS = {
+backend\server.js : Line 110 : async function getQikinkAuth() {
+backend\server.js : Line 112 : 'https://api.qikink.com',
+backend\server.js : Line 113 : 'https://sandbox.qikink.com'
+backend\server.js : Line 119 : params.append('ClientId', QIKINK_CLIENT_ID);
+backend\server.js : Line 120 : params.append('client_secret', QIKINK_CLIENT_SECRET);
+backend\server.js : Line 122 : const res = await fetch(`${host}/api/token`, {
+backend\server.js : Line 124 : headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+backend\server.js : Line 129 : const token = data?.Accesstoken || data?.access_token || data?.token;
+backend\server.js : Line 130 : if (token) return { token, baseUrl: host };
+backend\server.js : Line 132 : console.log(`Token fetch failed on ${host}:`, e.message);
+backend\server.js : Line 141 : architecture: 'Custom Cloud Storefront + TRIVÉ Engine + Qikink Gateway',
+backend\server.js : Line 142 : activeOrders: orders.length,
+backend\server.js : Line 148 : orders = loadOrders();
+backend\server.js : Line 149 : const orderCards = orders.slice().reverse().map(o => {
+backend\server.js : Line 154 : ? `<span style="background:#22c55e22;color:#22c55e;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:700;">APPROVED & DISPATCHED</span>`
+backend\server.js : Line 156 : ? `<span style="background:#ef444422;color:#ef4444;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:700;">DECLINED</span>`
+backend\server.js : Line 157 : : `<span style="background:#f59e0b22;color:#f59e0b;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:700;">PENDING APPROVAL</span>`;
+backend\server.js : Line 160 : <div style="background:#141414;border:1px solid #2a2a2a;border-radius:12px;padding:20px;margin-bottom:16px;color:#eee;">
+backend\server.js : Line 163 : <span style="font-weight:900;color:#d7ff3e;font-size:17px;">#${o.orderId}</span>
+backend\server.js : Line 175 : <strong>Payment:</strong> ₹${o.total.toLocaleString('en-IN')} &bull; ${o.paymentStatus}<br>
+backend\server.js : Line 176 : <strong>Qikink Status:</strong> <span style="color:#38bdf8;">${o.qikinkStatus || 'Awaiting Review'}</span>
+backend\server.js : Line 178 : <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;border-top:1px solid #222;padding-top:12px;">
+backend\server.js : Line 180 : <button onclick="updateOrderStatus('${o.orderId}', 'ACCEPTED')" style="background:#d7ff3e;color:#000;border:none;padding:8px 16px;border-radius:6px;font-size:12px;font-weight:bold;cursor:pointer;">
+backend\server.js : Line 181 : ✓ Accept Order
+backend\server.js : Line 185 : <button onclick="updateOrderStatus('${o.orderId}', 'REJECTED')" style="background:#222;color:#ef4444;border:1px solid #444;padding:8px 14px;border-radius:6px;font-size:12px;cursor:pointer;">
+backend\server.js : Line 189 : <a href="${o.whatsappLink}" target="_blank" style="background:#25D366;color:#000;text-decoration:none;padding:8px 14px;border-radius:6px;font-size:12px;font-weight:bold;text-transform:uppercase;">
+backend\server.js : Line 192 : <button onclick="navigator.clipboard.writeText(decodeURIComponent('${encodeURIComponent(JSON.stringify(o.qikinkPayload))}')); alert('Qikink payload copied!');" style="background:#1a1a1a;color:#fff;border:1px solid #333;padding:8px 14px;border-radius:6px;font-size:12px;cursor:pointer;">
+backend\server.js : Line 215 : <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;"><span style="background:#fff;color:#000;font-weight:900;padding:4px 8px;border-radius:4px;font-size:14px;letter-spacing:1px;">TRIVÉ</span><h1 style="margin:0;font-size:20px;">COMMAND CENTER</h1></div>
+backend\server.js : Line 216 : <div class="sub">Total Orders Logged: ${orders.length} (Persistent Storage)</div>
+backend\server.js : Line 217 : ${orders.length ? orderCards : '<div style="color:#555;padding:40px 0;text-align:center;">No orders yet. Place an order from your storefront.</div>'}
+backend\server.js : Line 220 : async function updateOrderStatus(orderId, status) {
+backend\server.js : Line 222 : const res = await fetch('/api/order/status', {
+backend\server.js : Line 225 : body: JSON.stringify({ orderId, status })
+backend\server.js : Line 238 : app.post('/api/order/status', (req, res) => {
+backend\server.js : Line 239 : const { orderId, status } = req.body || {};
+backend\server.js : Line 240 : orders = loadOrders();
+backend\server.js : Line 241 : const order = orders.find(o => o.orderId === orderId);
+backend\server.js : Line 242 : if (order) {
+backend\server.js : Line 243 : order.acceptanceStatus = status;
+backend\server.js : Line 244 : saveOrders(orders);
+backend\server.js : Line 247 : res.status(404).json({ error: 'Order not found' });
+backend\server.js : Line 250 : app.post('/api/order', async (req, res) => {
+backend\server.js : Line 251 : const { customer, product, size, color, quantity, utr, address } = req.body || {};
+backend\server.js : Line 257 : orders = loadOrders();
+backend\server.js : Line 258 : const orderNum = 1000 + orders.length + 1;
+backend\server.js : Line 259 : const orderId = `TV-${orderNum}`;
+backend\server.js : Line 260 : const alphanumericOrderNo = `TRV${Date.now().toString().slice(-4)}${orderNum}`;
+backend\server.js : Line 280 : const resolvedStoreSku = QIKINK_STORE_SKUS[variantKey] || QIKINK_STORE_SKUS['Bk-L'];
+backend\server.js : Line 284 : const waMsg = encodeURIComponent(
+backend\server.js : Line 285 : `*TRIVÉ // ORDER CONFIRMED [${orderId}]*\n\n` +
+backend\server.js : Line 287 : `Your order for *${productName}* has been received:\n\n` +
+backend\server.js : Line 291 : `📦 *Delivery Destination:* ${address.city}, ${address.pincode}\n` +
+backend\server.js : Line 293 : `⚡ *Status:* Reviewing order in TRIVÉ Command Center.\n\n` +
+backend\server.js : Line 297 : const isCod = utr?.toUpperCase() === 'COD';
+backend\server.js : Line 299 : const qikinkPayload = {
+backend\server.js : Line 300 : order_number: alphanumericOrderNo,
+backend\server.js : Line 301 : qikink_shipping: "1",
+backend\server.js : Line 302 : gateway: isCod ? "COD" : "Prepaid",
+backend\server.js : Line 303 : total_order_value: String(totalAmount),
+backend\server.js : Line 312 : zip: String(address.pincode),
+backend\server.js : Line 314 : country_code: "IN"
+backend\server.js : Line 326 : let qikinkLiveStatus = 'Queued';
+backend\server.js : Line 328 : const auth = await getQikinkAuth();
+backend\server.js : Line 329 : if (auth?.token) {
+backend\server.js : Line 330 : const qikinkRes = await fetch(`${auth.baseUrl}/api/order/create`, {
+backend\server.js : Line 334 : 'ClientId': QIKINK_CLIENT_ID,
+backend\server.js : Line 335 : 'Accesstoken': auth.token
+backend\server.js : Line 337 : body: JSON.stringify(qikinkPayload)
+backend\server.js : Line 339 : const qikinkData = await qikinkRes.json();
+backend\server.js : Line 340 : console.log('Qikink Response:', qikinkData);
+backend\server.js : Line 342 : if (qikinkData?.error) {
+backend\server.js : Line 343 : qikinkLiveStatus = `Qikink: ${qikinkData.error}`;
+backend\server.js : Line 344 : } else if (qikinkData?.errors || qikinkData?.message) {
+backend\server.js : Line 345 : qikinkLiveStatus = qikinkData.message || JSON.stringify(qikinkData.errors);
+backend\server.js : Line 347 : qikinkLiveStatus = qikinkData?.status || `Sent (${auth.baseUrl.includes('sandbox') ? 'Sandbox' : 'Live'})`;
+backend\server.js : Line 350 : qikinkLiveStatus = 'Auth Pending (Awaiting Live Activation)';
+backend\server.js : Line 353 : console.error('Qikink Dispatch Error:', err.message);
+backend\server.js : Line 354 : qikinkLiveStatus = 'Dispatch Timeout (Manual Payload Available)';
+backend\server.js : Line 357 : const fullFormattedAddress = `${address.street}, ${address.city}, ${address.state || 'Madhya Pradesh'} ${address.pincode}`;
+backend\server.js : Line 359 : const newOrder = {
+backend\server.js : Line 360 : orderId,
+backend\server.js : Line 367 : paymentStatus: isCod ? 'Pending (COD)' : `Prepaid (UTR: ${utr})`,
+backend\server.js : Line 372 : qikinkPayload,
+backend\server.js : Line 373 : qikinkStatus: qikinkLiveStatus,
+backend\server.js : Line 378 : orders.push(newOrder);
+backend\server.js : Line 379 : saveOrders(orders);
+backend\server.js : Line 382 : const emailTextSummary = `Product: ${productName}\nColor: ${garmentColor}\nSize: ${garmentSize}\nQuantity: ${qty}\nPayment: ${newOrder.paymentStatus}`;
+backend\server.js : Line 383 : sendOrderEmail(newOrder, emailTextSummary);
+backend\server.js : Line 387 : orderId,
+backend\server.js : Line 390 : qikinkStatus: qikinkLiveStatus,
+backend\server.js : Line 391 : message: `Order #${orderId} logged successfully into TRIVÉ Command Center.`
+backend\server.js : Line 395 : app.get('/api/orders', (req, res) => res.json({ brand: 'TRIVÉ', total: orders.length, orders: loadOrders() }));
+backend\my-backend\package-lock.json : Line 305 : "node_modules/encodeurl": {
+backend\my-backend\package-lock.json : Line 307 : "resolved": "https://registry.npmjs.org/encodeurl/-/encodeurl-2.0.1.tgz",
+backend\my-backend\package-lock.json : Line 377 : "encodeurl": "^2.0.0",
+backend\my-backend\package-lock.json : Line 426 : "encodeurl": "^2.0.0",
+backend\my-backend\package-lock.json : Line 1025 : "encodeurl": "^2.0.0",
+backend\my-backend\package-lock.json : Line 1050 : "encodeurl": "^2.0.0",
+backend\my-backend\server.js : Line 9 : const DB_FILE = path.resolve('orders.json');
+backend\my-backend\server.js : Line 11 : const QIKINK_CLIENT_ID = process.env.QIKINK_CLIENT_ID || '979710787663166';
+backend\my-backend\server.js : Line 12 : const QIKINK_CLIENT_SECRET = process.env.QIKINK_CLIENT_SECRET || '';
+backend\my-backend\server.js : Line 17 : function loadOrders() {
+backend\my-backend\server.js : Line 23 : console.error('Failed reading orders.json', e);
+backend\my-backend\server.js : Line 28 : function saveOrders(ordersList) {
+backend\my-backend\server.js : Line 30 : fs.writeFileSync(DB_FILE, JSON.stringify(ordersList, null, 2), 'utf-8');
+backend\my-backend\server.js : Line 32 : console.error('Failed saving orders.json', e);
+backend\my-backend\server.js : Line 36 : let orders = loadOrders();
+backend\my-backend\server.js : Line 39 : const QIKINK_STORE_SKUS = {
+backend\my-backend\server.js : Line 77 : async function getQikinkAuth() {
+backend\my-backend\server.js : Line 79 : 'https://api.qikink.com',
+backend\my-backend\server.js : Line 80 : 'https://sandbox.qikink.com'
+backend\my-backend\server.js : Line 86 : params.append('ClientId', QIKINK_CLIENT_ID);
+backend\my-backend\server.js : Line 87 : params.append('client_secret', QIKINK_CLIENT_SECRET);
+backend\my-backend\server.js : Line 89 : const res = await fetch(`${host}/api/token`, {
+backend\my-backend\server.js : Line 91 : headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+backend\my-backend\server.js : Line 96 : const token = data?.Accesstoken || data?.access_token || data?.token;
+backend\my-backend\server.js : Line 97 : if (token) return { token, baseUrl: host };
+backend\my-backend\server.js : Line 99 : console.log(`Token fetch failed on ${host}:`, e.message);
+backend\my-backend\server.js : Line 108 : architecture: 'Custom Cloud Storefront + TRIVÉ Engine + Qikink Gateway',
+backend\my-backend\server.js : Line 109 : activeOrders: orders.length,
+backend\my-backend\server.js : Line 115 : orders = loadOrders();
+backend\my-backend\server.js : Line 116 : const orderCards = orders.slice().reverse().map(o => {
+backend\my-backend\server.js : Line 121 : ? `<span style="background:#22c55e22;color:#22c55e;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:700;">APPROVED & DISPATCHED</span>`
+backend\my-backend\server.js : Line 123 : ? `<span style="background:#ef444422;color:#ef4444;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:700;">DECLINED</span>`
+backend\my-backend\server.js : Line 124 : : `<span style="background:#f59e0b22;color:#f59e0b;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:700;">PENDING APPROVAL</span>`;
+backend\my-backend\server.js : Line 127 : <div style="background:#141414;border:1px solid #2a2a2a;border-radius:12px;padding:20px;margin-bottom:16px;color:#eee;">
+backend\my-backend\server.js : Line 130 : <span style="font-weight:900;color:#d7ff3e;font-size:17px;">#${o.orderId}</span>
+backend\my-backend\server.js : Line 142 : <strong>Payment:</strong> ₹${o.total.toLocaleString('en-IN')} &bull; ${o.paymentStatus}<br>
+backend\my-backend\server.js : Line 143 : <strong>Qikink Status:</strong> <span style="color:#38bdf8;">${o.qikinkStatus || 'Awaiting Review'}</span>
+backend\my-backend\server.js : Line 145 : <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;border-top:1px solid #222;padding-top:12px;">
+backend\my-backend\server.js : Line 147 : <button onclick="updateOrderStatus('${o.orderId}', 'ACCEPTED')" style="background:#d7ff3e;color:#000;border:none;padding:8px 16px;border-radius:6px;font-size:12px;font-weight:bold;cursor:pointer;">
+backend\my-backend\server.js : Line 148 : ✓ Accept Order
+backend\my-backend\server.js : Line 152 : <button onclick="updateOrderStatus('${o.orderId}', 'REJECTED')" style="background:#222;color:#ef4444;border:1px solid #444;padding:8px 14px;border-radius:6px;font-size:12px;cursor:pointer;">
+backend\my-backend\server.js : Line 156 : <a href="${o.whatsappLink}" target="_blank" style="background:#25D366;color:#000;text-decoration:none;padding:8px 14px;border-radius:6px;font-size:12px;font-weight:bold;text-transform:uppercase;">
+backend\my-backend\server.js : Line 159 : <button onclick="navigator.clipboard.writeText(decodeURIComponent('${encodeURIComponent(JSON.stringify(o.qikinkPayload))}')); alert('Qikink payload copied!');" style="background:#1a1a1a;color:#fff;border:1px solid #333;padding:8px 14px;border-radius:6px;font-size:12px;cursor:pointer;">
+backend\my-backend\server.js : Line 182 : <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;"><span style="background:#fff;color:#000;font-weight:900;padding:4px 8px;border-radius:4px;font-size:14px;letter-spacing:1px;">TRIVÉ</span><h1 style="margin:0;font-size:20px;">COMMAND CENTER</h1></div>
+backend\my-backend\server.js : Line 183 : <div class="sub">Total Orders Logged: ${orders.length} (Persistent Storage)</div>
+backend\my-backend\server.js : Line 184 : ${orders.length ? orderCards : '<div style="color:#555;padding:40px 0;text-align:center;">No orders yet. Place an order from your storefront.</div>'}
+backend\my-backend\server.js : Line 187 : async function updateOrderStatus(orderId, status) {
+backend\my-backend\server.js : Line 189 : const res = await fetch('/api/order/status', {
+backend\my-backend\server.js : Line 192 : body: JSON.stringify({ orderId, status })
+backend\my-backend\server.js : Line 205 : app.post('/api/order/status', (req, res) => {
+backend\my-backend\server.js : Line 206 : const { orderId, status } = req.body || {};
+backend\my-backend\server.js : Line 207 : orders = loadOrders();
+backend\my-backend\server.js : Line 208 : const order = orders.find(o => o.orderId === orderId);
+backend\my-backend\server.js : Line 209 : if (order) {
+backend\my-backend\server.js : Line 210 : order.acceptanceStatus = status;
+backend\my-backend\server.js : Line 211 : saveOrders(orders);
+backend\my-backend\server.js : Line 214 : res.status(404).json({ error: 'Order not found' });
+backend\my-backend\server.js : Line 217 : app.post('/api/order', async (req, res) => {
+backend\my-backend\server.js : Line 218 : const { customer, product, size, color, quantity, utr, address } = req.body || {};
+backend\my-backend\server.js : Line 224 : orders = loadOrders();
+backend\my-backend\server.js : Line 225 : const orderNum = 1000 + orders.length + 1;
+backend\my-backend\server.js : Line 226 : const orderId = `TV-${orderNum}`;
+backend\my-backend\server.js : Line 227 : const alphanumericOrderNo = `TRV${Date.now().toString().slice(-4)}${orderNum}`;
+backend\my-backend\server.js : Line 247 : const resolvedStoreSku = QIKINK_STORE_SKUS[variantKey] || QIKINK_STORE_SKUS['Bk-L'];
+backend\my-backend\server.js : Line 249 : const waMsg = encodeURIComponent(
+backend\my-backend\server.js : Line 250 : `*TRIVÉ // ORDER CONFIRMED [${orderId}]*\n\n` +
+backend\my-backend\server.js : Line 252 : `Your order for *${product?.name || "You Can't Please Everyone // Acid Wash Hoodie"}* has been received:\n\n` +
+backend\my-backend\server.js : Line 256 : `📦 *Delivery Destination:* ${address.city}, ${address.pincode}\n` +
+backend\my-backend\server.js : Line 258 : `⚡ *Status:* Reviewing order in TRIVÉ Command Center.\n\n` +
+backend\my-backend\server.js : Line 262 : const isCod = utr?.toUpperCase() === 'COD';
+backend\my-backend\server.js : Line 264 : const qikinkPayload = {
+backend\my-backend\server.js : Line 265 : order_number: alphanumericOrderNo,
+backend\my-backend\server.js : Line 266 : qikink_shipping: "1",
+backend\my-backend\server.js : Line 267 : gateway: isCod ? "COD" : "Prepaid",
+backend\my-backend\server.js : Line 268 : total_order_value: String(totalAmount),
+backend\my-backend\server.js : Line 277 : zip: String(address.pincode),
+backend\my-backend\server.js : Line 279 : country_code: "IN"
+backend\my-backend\server.js : Line 291 : let qikinkLiveStatus = 'Queued';
+backend\my-backend\server.js : Line 293 : const auth = await getQikinkAuth();
+backend\my-backend\server.js : Line 294 : if (auth?.token) {
+backend\my-backend\server.js : Line 295 : const qikinkRes = await fetch(`${auth.baseUrl}/api/order/create`, {
+backend\my-backend\server.js : Line 299 : 'ClientId': QIKINK_CLIENT_ID,
+backend\my-backend\server.js : Line 300 : 'Accesstoken': auth.token
+backend\my-backend\server.js : Line 302 : body: JSON.stringify(qikinkPayload)
+backend\my-backend\server.js : Line 304 : const qikinkData = await qikinkRes.json();
+backend\my-backend\server.js : Line 305 : console.log('Qikink Response:', qikinkData);
+backend\my-backend\server.js : Line 307 : if (qikinkData?.error) {
+backend\my-backend\server.js : Line 308 : qikinkLiveStatus = `Qikink: ${qikinkData.error}`;
+backend\my-backend\server.js : Line 309 : } else if (qikinkData?.errors || qikinkData?.message) {
+backend\my-backend\server.js : Line 310 : qikinkLiveStatus = qikinkData.message || JSON.stringify(qikinkData.errors);
+backend\my-backend\server.js : Line 312 : qikinkLiveStatus = qikinkData?.status || `Sent (${auth.baseUrl.includes('sandbox') ? 'Sandbox' : 'Live'})`;
+backend\my-backend\server.js : Line 315 : qikinkLiveStatus = 'Auth Pending (Awaiting Live Activation)';
+backend\my-backend\server.js : Line 318 : console.error('Qikink Dispatch Error:', err.message);
+backend\my-backend\server.js : Line 319 : qikinkLiveStatus = 'Dispatch Timeout (Manual Payload Available)';
+backend\my-backend\server.js : Line 322 : const newOrder = {
+backend\my-backend\server.js : Line 323 : orderId,
+backend\my-backend\server.js : Line 330 : paymentStatus: isCod ? 'Pending (COD)' : `Prepaid (UTR: ${utr})`,
+backend\my-backend\server.js : Line 333 : address: `${address.street}, ${address.city}, ${address.state || 'Madhya Pradesh'} - ${address.pincode}`,
+backend\my-backend\server.js : Line 335 : qikinkPayload,
+backend\my-backend\server.js : Line 336 : qikinkStatus: qikinkLiveStatus,
+backend\my-backend\server.js : Line 341 : orders.push(newOrder);
+backend\my-backend\server.js : Line 342 : saveOrders(orders);
+backend\my-backend\server.js : Line 346 : orderId,
+backend\my-backend\server.js : Line 349 : qikinkStatus: qikinkLiveStatus,
+backend\my-backend\server.js : Line 350 : message: `Order #${orderId} logged successfully into TRIVÉ Command Center.`
+backend\my-backend\server.js : Line 354 : app.get('/api/orders', (req, res) => res.json({ brand: 'TRIVÉ', total: orders.length, orders: loadOrders() }));
+triox-site\script.js : Line 8 : document.getElementById("products").innerHTML=products.map(p=>`
+triox-site\styles.css : Line 2 : *{box-sizing:border-box;margin:0;padding:0}
+triox-site\styles.css : Line 5 : .nav{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 5vw;background:rgba(11,11,11,.92);backdrop-filter:blur(10px);border-bottom:1px solid #222}
+triox-site\styles.css : Line 9 : .cta{border:1px solid var(--cream);padding:10px 18px;border-radius:999px;font-size:13px;text-transform:uppercase}
+triox-site\styles.css : Line 16 : .btn{display:inline-block;padding:15px 28px;border-radius:999px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:13px}
+triox-site\styles.css : Line 18 : .ghost{border:1px solid #444}
+triox-site\styles.css : Line 19 : .ghost:hover{border-color:var(--cream)}
+triox-site\styles.css : Line 20 : .marquee{overflow:hidden;white-space:nowrap;border-top:1px solid #222;border-bottom:1px solid #222;padding:16px 0;background:#111}
+triox-site\styles.css : Line 28 : .card{background:#121212;border:1px solid #222;border-radius:18px;overflow:hidden;transition:.25s}
+triox-site\styles.css : Line 29 : .card:hover{transform:translateY(-6px);border-color:#3a3a3a}
+triox-site\styles.css : Line 35 : .dark{background:#0e0e0e;border-top:1px solid #222;border-bottom:1px solid #222}
+triox-site\styles.css : Line 37 : .values div{border:1px solid #222;border-radius:16px;padding:24px;background:#121212}
+triox-site\styles.css : Line 41 : #subscribe input{flex:1;padding:15px 18px;border-radius:999px;border:1px solid #333;background:#121212;color:var(--cream)}
+triox-site\styles.css : Line 44 : footer{padding:40px 5vw;border-top:1px solid #222;color:var(--grey);font-size:13px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+========== LARGEST SOURCE FILES ==========
+
+File                                                        SizeKB
+----                                                        ------
+assets\lookbook\160956.png                                 8442.44
+assets\hoodies\green back.png                              7392.57
+assets\hoodies\black back.png                              7273.61
+assets\hoodies\green front.png                             6794.96
+assets\hoodies\blue front.png                              6101.26
+assets\hoodies\white front.png                             5858.59
+assets\Main\hero_brand.png                                 4460.66
+assets\hoodies\white back.png                              4232.53
+assets\lookbook\160957.jpeg                                 618.52
+assets\hoodies\blue back.png                                473.05
+assets\mohmaya\Screenshot 2026-11-13 163134.png             457.28
+assets\broken\yellow pocket.jpg                             446.34
+assets\tees\yellow_pocket.jpg                               446.34
+assets\hoodies\black front.png                              407.35
+assets\Parth\Screenshot 2026-11-13 162944.png                404.9
+assets\Parth\Screenshot 2026-11-13 162907.png               388.03
+assets\Parth\Screenshot 2026-11-13 163004.png               376.14
+assets\Parth\Screenshot 2026-11-13 162948.png               373.13
+assets\Parth\Screenshot 2026-11-13 163000.png               370.46
+assets\LEGENCY EDITION\Screenshot 2026-11-12 162057.png     365.83
+assets\Parth\Screenshot 2026-11-13 162956.png               365.31
+assets\Parth\Screenshot 2026-11-13 162952.png               363.18
+assets\LEGENCY EDITION\Screenshot 2026-11-12 162104.png     361.15
+assets\karan Arjun\Screenshot 2026-11-13 163032.png         360.61
+assets\LEGENCY EDITION\Screenshot 2026-11-12 162044.png        358
+assets\LEGENCY EDITION\Screenshot 2026-11-12 162112.png     355.06
+assets\Parth\Screenshot 2026-11-13 162915.png               354.38
+assets\Parth\Screenshot 2026-11-13 162925.png               354.32
+assets\Parth\Screenshot 2026-11-13 162933.png               354.25
+assets\mohmaya\Screenshot 2026-11-13 163115.png             351.53
+assets\Parth\Screenshot 2026-11-13 162929.png               346.26
+assets\Parth\Screenshot 2026-11-13 162921.png               342.47
+assets\LEGENCY EDITION\Screenshot 2026-11-12 162035.png     330.77
+assets\Spiritual-Gangster\Screenshot 2026-11-13 162711.png   322.2
+assets\Parth\Screenshot 2026-11-13 162937.png               315.94
+assets\LEGENCY EDITION\Screenshot 2026-11-12 162017.png      309.9
+assets\LEGENCY EDITION\Screenshot 2026-11-12 162006.png     308.37
+assets\LEGENCY EDITION\Screenshot 2026-11-12 162026.png     307.35
+assets\LEGENCY EDITION\Screenshot 2026-11-12 162307.png     306.69
+assets\Spiritual-Gangster\Screenshot 2026-11-13 162627.png  303.37
+
+
+
+
+========== NPM SCRIPTS ==========
+
+
+test  : echo "Error: no test specified" && exit 1
+start : node order.js
+
+
+
+

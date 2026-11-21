@@ -276,5 +276,49 @@ const PRODUCTS = [
     tag: 'Coming Soon // Drop 03',
     desc: '380 GSM premium fleece featuring a precise red target chest hit and distressed collage back graphic.',
     colors: [{ name: 'Chalk White', hex: '#e4e4e7', images: ['assets/soonnn.png', 'assets/soonnn.png'] }]
+  },
+  {
+    id: 'doom-01',
+    name: 'Marvel Doomsday // Heavy Hoodie',
+    price: 1799,
+    originalPrice: 2499,
+    gender: 'unisex',
+    category: 'hoodie',
+    sku: 'TRV-DOOM-01',
+    tag: 'Drop 01 // Archival Heavywear',
+    desc: 'Heavyweight oversized streetwear hoodie featuring bold graphic typography and archival front/back artwork across three colorways.',
+    colors: [
+      { name: 'White', hex: '#f8fafc', images: ['assets/MARVEL%20DOOMSDAY/Front_1_c_1.png', 'assets/MARVEL%20DOOMSDAY/Back_2_c_1.png'] },
+      { name: 'Black', hex: '#18181b', images: ['assets/MARVEL%20DOOMSDAY/Front_1_c_2.png', 'assets/MARVEL%20DOOMSDAY/Back_2_c_2.png'] },
+      { name: 'Navy Blue', hex: '#1e293b', images: ['assets/MARVEL%20DOOMSDAY/Front_1_c_3.jpg', 'assets/MARVEL%20DOOMSDAY/Back_2_c_3.jpg'] }
+    ]
+  },
+  {
+    id: 'deadpool-crop-01',
+    name: 'Deadpool "Do I Look Like I Care?" // Cropped Hoodie',
+    price: 1799,
+    originalPrice: 2499,
+    gender: 'women',
+    category: 'hoodie',
+    sku: 'TRV-DP-CROP-01',
+    tag: 'Drop 01 // Graphic Fleece',
+    desc: 'Black cropped hoodie with statement front graphic print and playful back graphic detailing.',
+    colors: [
+      { name: 'Black', hex: '#18181b', images: ['assets/DEAD%20POOL/Front_1_c_2.jpg', 'assets/DEAD%20POOL/Back_2_c_2.jpg'] }
+    ]
+  },
+  {
+    id: 'spiderman-miles-zip-01',
+    name: 'Spider-Man Miles Morales // Zip-Up Hoodie',
+    price: 1799,
+    originalPrice: 2499,
+    gender: 'unisex',
+    category: 'hoodie',
+    sku: 'TRV-SM-ZIP-01',
+    tag: 'Drop 01 // Archival Zipwear',
+    desc: 'Black zip-up hoodie featuring dual front chest graphics and a full archival Spider-Man Miles Morales back print.',
+    colors: [
+      { name: 'Black', hex: '#18181b', images: ['assets/SPIDER%20MAN/Left_Pocket_1_c_2.jpg', 'assets/SPIDER%20MAN/Right_Pocket_2_c_2.jpg', 'assets/SPIDER%20MAN/Back_3_c_2.jpg'] }
+    ]
   }
 ];
