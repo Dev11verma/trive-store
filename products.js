@@ -288,9 +288,10 @@ const PRODUCTS = [
     tag: 'Drop 01 // Archival Heavywear',
     desc: 'Heavyweight oversized streetwear hoodie featuring bold graphic typography and archival front/back artwork across three colorways.',
     colors: [
-      { name: 'White', hex: '#f8fafc', images: ['assets/DOOMSDAY/Front_1_c_1.png', 'assets/DOOMSDAY/Back_2_c_1.png'] },
-      { name: 'Black', hex: '#18181b', images: ['assets/DOOMSDAY/Front_1_c_2.png', 'assets/DOOMSDAY/Back_2_c_2.png'] },
-      { name: 'Navy Blue', hex: '#1e293b', images: ['assets/DOOMSDAY/Front_1_c_3.jpg', 'assets/DOOMSDAY/Back_2_c_3.jpg'] }
+      { name: 'Black', hex: '#18181b', images: ['assets/DOOMSDAY/Back_2_c_2.jpg', 'assets/DOOMSDAY/Front_1_c_2.jpg'] },
+      { name: 'Navy Blue', hex: '#1e293b', images: ['assets/DOOMSDAY/Back_2_c_1.jpg', 'assets/DOOMSDAY/Front_1_c_3.jpg'] },
+      { name: 'off-White', hex: '#c5ca9e', images: ['assets/DOOMSDAY/Back_3_c_2.png', 'assets/DOOMSDAY/Front_3_c_1.png'] },
+      { name: 'White', hex: '#f8fafc', images: ['assets/DOOMSDAY/default.jpg', 'assets/DOOMSDAY/Front_1_c_1.jpg'] },
     ]
   },
   {
@@ -318,7 +319,7 @@ const PRODUCTS = [
     tag: 'Drop 01 // Archival Zipwear',
     desc: 'Black zip-up hoodie featuring dual front chest graphics and a full archival Spider-Man Miles Morales back print.',
     colors: [
-      { name: 'Black', hex: '#18181b', images: ['assets/SPIDER%20MAN/Left_Pocket_1_c_2.jpg', 'assets/SPIDER%20MAN/Right_Pocket_2_c_2.jpg', 'assets/SPIDER%20MAN/Back_3_c_2.jpg'] }
+      { name: 'Black', hex: '#18181b', images: ['assets/SPIDER%20MAN/Back_3_c_2.jpg', 'assets/SPIDER%20MAN/Right_Pocket_2_c_2.jpg', 'assets/SPIDER%20MAN/Left_Pocket_1_c_2.jpg'] }
     ]
   }
 ];
