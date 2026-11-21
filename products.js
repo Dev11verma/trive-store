@@ -32,6 +32,51 @@ const PRODUCTS = [
       { name: 'Graphic Off-White', hex: '#f4f4f5', images: ['assets/karan%20Arjun/Screenshot%202026-11-13%20163032.png', 'assets/karan%20Arjun/Screenshot%202026-11-13%20163020.png'] }
     ]
   },
+    {
+    id: 'doom-01',
+    name: 'Marvel Doomsday // Heavy Hoodie',
+    price: 1799,
+    originalPrice: 2499,
+    gender: 'unisex',
+    category: 'hoodie',
+    sku: 'TRV-DOOM-01',
+    tag: 'Drop 01 // Archival Heavywear',
+    desc: 'Heavyweight oversized streetwear hoodie featuring bold graphic typography and archival front/back artwork across three colorways.',
+    colors: [
+      { name: 'Black', hex: '#18181b', images: ['assets/DOOMSDAY/Back_2_c_2.jpg', 'assets/DOOMSDAY/Front_1_c_2.jpg'] },
+      { name: 'Navy Blue', hex: '#1e293b', images: ['assets/DOOMSDAY/Back_2_c_1.jpg', 'assets/DOOMSDAY/Front_1_c_3.jpg'] },
+      { name: 'off-White', hex: '#c5ca9e', images: ['assets/DOOMSDAY/Back_3_c_2.png', 'assets/DOOMSDAY/Front_3_c_1.png'] },
+      { name: 'White', hex: '#f8fafc', images: ['assets/DOOMSDAY/default.jpg', 'assets/DOOMSDAY/Front_1_c_1.jpg'] },
+    ]
+  },
+  {
+    id: 'deadpool-crop-01',
+    name: 'Deadpool "Do I Look Like I Care?" // Cropped Hoodie',
+    price: 1799,
+    originalPrice: 2499,
+    gender: 'women',
+    category: 'hoodie',
+    sku: 'TRV-DP-CROP-01',
+    tag: 'Drop 01 // Graphic Fleece',
+    desc: 'Black cropped hoodie with statement front graphic print and playful back graphic detailing.',
+    colors: [
+      { name: 'Black', hex: '#18181b', images: ['assets/DEAD%20POOL/Front_1_c_2.jpg', 'assets/DEAD%20POOL/Back_2_c_2.jpg'] }
+    ]
+  },
+  {
+    id: 'spiderman-miles-zip-01',
+    name: 'Spider-Man Miles Morales // Zip-Up Hoodie',
+    price: 1799,
+    originalPrice: 2499,
+    gender: 'unisex',
+    category: 'hoodie',
+    sku: 'TRV-SM-ZIP-01',
+    tag: 'Drop 01 // Archival Zipwear',
+    desc: 'Black zip-up hoodie featuring dual front chest graphics and a full archival Spider-Man Miles Morales back print.',
+    colors: [
+      { name: 'Black', hex: '#18181b', images: ['assets/SPIDER%20MAN/Back_3_c_2.jpg', 'assets/SPIDER%20MAN/Right_Pocket_2_c_2.jpg', 'assets/SPIDER%20MAN/Left_Pocket_1_c_2.jpg'] }
+    ]
+  },
   {
     id: 'parth-hoodie-01',
     name: 'Parth Collection // Archival Hoodie',
@@ -132,23 +177,6 @@ const PRODUCTS = [
     colors: [
       { name: 'Charcoal', hex: '#27272a', images: ['assets/Calm-A-Sutra/Screenshot%202026-11-13%20163146.png', 'assets/Calm-A-Sutra/Screenshot%202026-11-13%20163159.png'] },
       { name: 'Navy Blue', hex: '#263447', images: ['assets/Calm-A-Sutra/Screenshot%202026-11-13%20163153.png', 'assets/Calm-A-Sutra/Screenshot%202026-11-13%20163205.png'] }
-    ]
-  },
-  {
-    id: 'tee-drop-02',
-    name: 'Lost But Never Broken // Oversized Tee',
-    price: 1199,
-    originalPrice: 1999,
-    gender: 'unisex',
-    category: 't-shirt',
-    sku: 'TRV-TEE-02',
-    tag: 'Drop 02 // 240 GSM',
-    desc: '240 GSM 100% Super Combed Terry Cotton. Features a 4" chest pocket print and high-definition archival compass rose back screen print. Bio-washed and pre-shrunk.',
-    colors: [
-      { name: 'Onyx Black', hex: '#141416', images: ['assets/broken/black%20f.jpg', 'assets/broken/black%20pocket.jpg'] },
-      { name: 'Navy Blue', hex: '#263447', images: ['assets/broken/blue%20f.jpg', 'assets/broken/blue%20pocket.jpg'] },
-      { name: 'Mustard Yellow', hex: '#d97706', images: ['assets/broken/Yellow%20f.jpg', 'assets/broken/yellow%20pocket.jpg'] },
-      { name: 'Olive / Mehndi', hex: '#3b4d3c', images: ['assets/broken/default.jpg', 'assets/broken/mehndi.jpg'] }
     ]
   },
 {
@@ -277,49 +305,4 @@ const PRODUCTS = [
     desc: '380 GSM premium fleece featuring a precise red target chest hit and distressed collage back graphic.',
     colors: [{ name: 'Chalk White', hex: '#e4e4e7', images: ['assets/soonnn.png', 'assets/soonnn.png'] }]
   },
-  {
-    id: 'doom-01',
-    name: 'Marvel Doomsday // Heavy Hoodie',
-    price: 1799,
-    originalPrice: 2499,
-    gender: 'unisex',
-    category: 'hoodie',
-    sku: 'TRV-DOOM-01',
-    tag: 'Drop 01 // Archival Heavywear',
-    desc: 'Heavyweight oversized streetwear hoodie featuring bold graphic typography and archival front/back artwork across three colorways.',
-    colors: [
-      { name: 'Black', hex: '#18181b', images: ['assets/DOOMSDAY/Back_2_c_2.jpg', 'assets/DOOMSDAY/Front_1_c_2.jpg'] },
-      { name: 'Navy Blue', hex: '#1e293b', images: ['assets/DOOMSDAY/Back_2_c_1.jpg', 'assets/DOOMSDAY/Front_1_c_3.jpg'] },
-      { name: 'off-White', hex: '#c5ca9e', images: ['assets/DOOMSDAY/Back_3_c_2.png', 'assets/DOOMSDAY/Front_3_c_1.png'] },
-      { name: 'White', hex: '#f8fafc', images: ['assets/DOOMSDAY/default.jpg', 'assets/DOOMSDAY/Front_1_c_1.jpg'] },
-    ]
-  },
-  {
-    id: 'deadpool-crop-01',
-    name: 'Deadpool "Do I Look Like I Care?" // Cropped Hoodie',
-    price: 1799,
-    originalPrice: 2499,
-    gender: 'women',
-    category: 'hoodie',
-    sku: 'TRV-DP-CROP-01',
-    tag: 'Drop 01 // Graphic Fleece',
-    desc: 'Black cropped hoodie with statement front graphic print and playful back graphic detailing.',
-    colors: [
-      { name: 'Black', hex: '#18181b', images: ['assets/DEAD%20POOL/Front_1_c_2.jpg', 'assets/DEAD%20POOL/Back_2_c_2.jpg'] }
-    ]
-  },
-  {
-    id: 'spiderman-miles-zip-01',
-    name: 'Spider-Man Miles Morales // Zip-Up Hoodie',
-    price: 1799,
-    originalPrice: 2499,
-    gender: 'unisex',
-    category: 'hoodie',
-    sku: 'TRV-SM-ZIP-01',
-    tag: 'Drop 01 // Archival Zipwear',
-    desc: 'Black zip-up hoodie featuring dual front chest graphics and a full archival Spider-Man Miles Morales back print.',
-    colors: [
-      { name: 'Black', hex: '#18181b', images: ['assets/SPIDER%20MAN/Back_3_c_2.jpg', 'assets/SPIDER%20MAN/Right_Pocket_2_c_2.jpg', 'assets/SPIDER%20MAN/Left_Pocket_1_c_2.jpg'] }
-    ]
-  }
 ];
