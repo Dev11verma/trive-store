@@ -305,4 +305,105 @@ const PRODUCTS = [
     desc: '380 GSM premium fleece featuring a precise red target chest hit and distressed collage back graphic.',
     colors: [{ name: 'Chalk White', hex: '#e4e4e7', images: ['assets/soonnn.png', 'assets/soonnn.png'] }]
   },
+  {
+    id: 'doomsday2-01',
+    name: 'Doomsday Archive // Heavy Hoodie II',
+    price: 1799,
+    originalPrice: 2499,
+    gender: 'unisex',
+    category: 'hoodie',
+    sku: 'TRV-DOOM2-01',
+    tag: 'Drop 01 // Archival Heavywear',
+    desc: 'Heavyweight oversized streetwear hoodie in White, Black, and Navy Blue with front and back archival graphics.',
+    colors: [
+      { name: 'Black', hex: '#18181b', images: ['assets/DOOMSDAY2/Back_2_c_2.jpg', 'assets/DOOMSDAY2/Front_1_c_2.jpg'] },
+      { name: 'White', hex: '#f8fafc', images: ['assets/DOOMSDAY2/Front_1_c_1.jpg', 'assets/DOOMSDAY2/Front_1_c_1.jpg'] },
+      { name: 'Navy Blue', hex: '#1e293b', images: ['assets/DOOMSDAY2/Back_2_c_3.jpg', 'assets/DOOMSDAY2/Front_1_c_3.jpg'] }
+    ]
+  },
+  {
+    id: 'marvel-doomsday-bg-01',
+    name: 'Doomsday // Cutout Graphic Hoodie',
+    price: 1799,
+    originalPrice: 2499,
+    gender: 'unisex',
+    category: 'hoodie',
+    sku: 'TRV-DOOM-BG-01',
+    tag: 'Drop 01 // Cutout Studio',
+    desc: 'Clean studio cutout edition featuring DOOM graphic artwork and chest emblem detailing.',
+    colors: [
+      { name: 'Charcoal & Pine', hex: '#1f2937', images: ['assets/MARVEL%20DOOMSDAY/Screenshot_2026-11-22_122212-removebg-preview.png','assets/MARVEL%20DOOMSDAY/Screenshot_2026-11-22_122149-removebg-preview.png'] },
+      { name: 'Black', hex: '#18181b', images: ['assets/MARVEL%20DOOMSDAY/Screenshot_2026-11-22_122155-removebg-preview.png','assets/MARVEL%20DOOMSDAY/Screenshot_2026-11-22_122138-removebg-preview.png'] }
+    ]
+  },
+  {
+    id: 'oops-spidy-01',
+    name: 'Oops Spidey // Archival Graphic Hoodie',
+    price: 1799,
+    originalPrice: 2499,
+    gender: 'unisex',
+    category: 'hoodie',
+    sku: 'TRV-SPIDY-01',
+    tag: 'Drop 01 // Archival Heavywear',
+    desc: 'Heavyweight streetwear hoodie featuring bold Spidey back artwork and minimalist front chest graphic across 15 colorways.',
+    colors: [
+      { name: 'Black', hex: '#18181b', images: ['assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121348.png', 'assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121152.png'] },
+      { name: 'White', hex: '#f8fafc', images: ['assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121335.png', 'assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121129.png'] },
+      { name: 'Navy Blue', hex: '#1e293b', images: ['assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121358.png', 'assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121210.png'] },
+      { name: 'Maroon', hex: '#4c0519', images: ['assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121353.png', 'assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121203.png'] },
+      { name: 'Crimson Red', hex: '#b91c1c', images: ['assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121343.png', 'assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121140.png'] },
+      { name: 'Royal Blue', hex: '#1d4ed8', images: ['assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121451.png', 'assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121330.png'] },
+      { name: 'Forest Green', hex: '#14532d', images: ['assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121446.png', 'assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121325.png'] },
+      { name: 'Olive Green', hex: '#4d5d3b', images: ['assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121411.png', 'assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121235.png'] },
+      { name: 'Heather Grey', hex: '#9ca3af', images: ['assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121405.png', 'assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121225.png'] },
+      { name: 'Mustard Gold', hex: '#ca8a04', images: ['assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121416.png', 'assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121242.png'] },
+      { name: 'Coral Rose', hex: '#e11d48', images: ['assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121430.png', 'assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121305.png'] },
+      { name: 'Light Pink', hex: '#f9a8d4', images: ['assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121422.png', 'assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121251.png'] },
+      { name: 'Lavender Lilac', hex: '#c4b5fd', images: ['assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121426.png', 'assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121257.png'] },
+      { name: 'Sky Blue', hex: '#93c5fd', images: ['assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121441.png', 'assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121320.png'] },
+      { name: 'Mint Green', hex: '#86efac', images: ['assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121435.png', 'assets/OOPS%20SPIDYY/Screenshot%202026-11-22%20121314.png'] }
+    ]
+  },
+  {
+    id: 'child-of-god-tee-01',
+    name: 'Child Of God // Heavy Graphic Tee',
+    price: 1199,
+    originalPrice: 1699,
+    gender: 'unisex',
+    category: 'tshirt',
+    sku: 'TRV-COG-TEE-01',
+    tag: 'Drop 01 // Graphic Tee',
+    desc: 'Black heavyweight streetwear t-shirt featuring bold front typography and back graphic artwork.',
+    colors: [
+      { name: 'Black', hex: '#18181b', images: ['assets/CHILD%OF%GOD/Screenshot 2026-11-22 121109.png','assets/CHILD%OF%GOD/Screenshot 2026-11-22 121059.png'] }
+    ]
+  },
+  {
+    id: 'krishn-01',
+    name: 'Krishn // Archival Colorway Hoodie',
+    price: 1899,
+    originalPrice: 2599,
+    gender: 'unisex',
+    category: 'hoodie',
+    sku: 'TRV-KRISHN-01',
+    tag: 'Drop 01 // Full Palette',
+    desc: 'Signature archival graphic hoodie available across 15 curated colorways with front and back views.',
+    colors: [
+      { name: 'White', hex: '#f8fafc', images: ['assets/KRISHN/Front_1_c_1.jpg', 'assets/KRISHN/Back_2_c_1.jpg'] },
+      { name: 'Black', hex: '#18181b', images: ['assets/KRISHN/Front_1_c_2.jpg', 'assets/KRISHN/Back_2_c_2.jpg'] },
+      { name: 'Navy Blue', hex: '#1e293b', images: ['assets/KRISHN/Front_1_c_3.jpg', 'assets/KRISHN/Back_2_c_3.jpg'] },
+      { name: 'Charcoal Slate', hex: '#334155', images: ['assets/KRISHN/Front_1_c_4.jpg', 'assets/KRISHN/Back_2_c_4.jpg'] },
+      { name: 'Forest Green', hex: '#14532d', images: ['assets/KRISHN/Front_1_c_8.jpg', 'assets/KRISHN/Back_2_c_8.jpg'] },
+      { name: 'Cobalt Blue', hex: '#1d4ed8', images: ['assets/KRISHN/Front_1_c_9.jpg', 'assets/KRISHN/Back_2_c_9.jpg'] },
+      { name: 'Crimson Red', hex: '#b91c1c', images: ['assets/KRISHN/Front_1_c_10.jpg', 'assets/KRISHN/Back_2_c_10.jpg'] },
+      { name: 'Burgundy Wine', hex: '#4c0519', images: ['assets/KRISHN/Front_1_c_25.jpg', 'assets/KRISHN/Back_2_c_25.jpg'] },
+      { name: 'Olive Drab', hex: '#4d5d3b', images: ['assets/KRISHN/Front_1_c_41.jpg', 'assets/KRISHN/Back_2_c_41.jpg'] },
+      { name: 'Mustard Ochre', hex: '#ca8a04', images: ['assets/KRISHN/Front_1_c_43.jpg', 'assets/KRISHN/Back_2_c_43.jpg'] },
+      { name: 'Blush Pink', hex: '#f9a8d4', images: ['assets/KRISHN/Front_1_c_45.jpg', 'assets/KRISHN/Back_2_c_45.jpg'] },
+      { name: 'Lavender Lilac', hex: '#c4b5fd', images: ['assets/KRISHN/Front_1_c_49.jpg', 'assets/KRISHN/Back_2_c_49.jpg'] },
+      { name: 'Terracotta Rose', hex: '#e11d48', images: ['assets/KRISHN/Front_1_c_52.jpg', 'assets/KRISHN/Back_2_c_52.jpg'] },
+      { name: 'Mint Sage', hex: '#86efac', images: ['assets/KRISHN/Front_1_c_53.jpg', 'assets/KRISHN/Back_2_c_53.jpg'] },
+      { name: 'Sky Ice', hex: '#93c5fd', images: ['assets/KRISHN/Front_1_c_54.jpg', 'assets/KRISHN/Back_2_c_54.jpg'] }
+    ]
+  }
 ];
