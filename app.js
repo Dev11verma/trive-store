@@ -46,8 +46,7 @@ if (window.location.hostname.includes('onrender.com') || window.location.hostnam
 // ==========================================
 
 function renderCatalog() {
-  renderMarvelCollection();
-  let grid = document.getElementById('products-grid');
+let grid = document.getElementById('products-grid');
   if (!grid) grid = document.getElementById('product-grid');
   if (!grid) return;
   if (typeof PRODUCTS === 'undefined') return;
@@ -740,57 +739,3 @@ function startDealTimer() {
 
 
 
-
-function renderMarvelCollection() {
-  const mGrid = document.getElementById('marvel-collection-grid');
-  const mCount = document.getElementById('marvel-collection-count');
-  if (!mGrid || typeof PRODUCTS === 'undefined') return;
-
-  const marvelItems = PRODUCTS.filter((p) => {
-    const hay = `${p.id || ''} ${p.name || ''} ${p.sku || ''} ${p.tag || ''} ${p.desc || ''}`.toLowerCase();
-    return hay.includes('marvel') || hay.includes('doomsday') || hay.includes('spidey') || hay.includes('spider-man') || hay.includes('deadpool');
-  });
-
-  if (mCount) {
-    mCount.textContent = `${marvelItems.length} Archival Pieces`;
-  }
-
-  if (marvelItems.length === 0) {
-    mGrid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:32px;color:#888;">Marvel pieces coming soon.</div>`;
-    return;
-  }
-
-  mGrid.innerHTML = marvelItems.map((product) => {
-    const primaryColor = product.colors && product.colors[0] ? product.colors[0] : { name: 'Default', hex: '#18181b', images: [''] };
-    const mainImg = primaryColor.images && primaryColor.images[0] ? primaryColor.images[0] : '';
-    const altImg = primaryColor.images && primaryColor.images[1] ? primaryColor.images[1] : mainImg;
-    const discountPct = product.originalPrice
-      ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
-      : 0;
-
-    const swatches = (product.colors || []).slice(0, 8).map((c, idx) =>
-      `<button type="button" title="${c.name}" onclick="event.stopPropagation(); swapCardColor('${product.id}', ${idx}); const mImg = document.getElementById('marvel-card-img-${product.id}'); if (mImg && PRODUCTS) { const prod = PRODUCTS.find(x => x.id === '${product.id}'); if (prod && prod.colors[${idx}] && prod.colors[${idx}].images[0]) mImg.src = prod.colors[${idx}].images[0]; }" style="width:14px;height:14px;border-radius:50%;border:1px solid rgba(255,255,255,0.35);background:${c.hex};cursor:pointer;"></button>`
-    ).join('');
-
-    return `
-      <div class="product-card" onclick="openProduct('${product.id}')" style="cursor:pointer;">
-        <div class="product-img-wrap" style="position:relative;overflow:hidden;border-radius:10px;background:#141417;">
-          <img id="marvel-card-img-${product.id}" src="${mainImg}" alt="${product.name}" loading="lazy" style="width:100%;aspect-ratio:4/5;object-fit:cover;display:block;" onmouseover="if('${altImg}') this.src='${altImg}'" onmouseout="this.src='${mainImg}'">
-        </div>
-        <div style="padding-top:12px;">
-          <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#a1a1aa;">${product.tag || 'Drop 01'}</div>
-          <div style="font-weight:700;color:#fff;margin:4px 0;">${product.name}</div>
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-            <span style="color:#fff;font-weight:700;">₹${product.price}</span>
-            ${product.originalPrice ? `<span style="color:#71717a;text-decoration:line-through;font-size:12px;">₹${product.originalPrice}</span>` : ''}
-            ${discountPct > 0 ? `<span style="color:#22c55e;font-size:11px;font-weight:600;">${discountPct}% OFF</span>` : ''}
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
-            <div style="display:flex;flex-wrap:wrap;gap:5px;">${swatches}</div>
-            <button type="button" onclick="event.stopPropagation(); quickAddToCart('${product.id}');" style="padding:6px 10px;border-radius:6px;border:1px solid #3f3f46;background:#18181b;color:#fff;font-size:11px;cursor:pointer;">+ Bag</button>
-          </div>
-        </div>
-      </div>
-    `;
-  }).join('');
-}
