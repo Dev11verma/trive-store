@@ -373,9 +373,9 @@ const PRODUCTS = [
     category: 'tshirt',
     sku: 'TRV-COG-TEE-01',
     tag: 'Drop 01 // Graphic Tee',
-    desc: 'Black heavyweight streetwear t-shirt featuring bold front typography and back graphic artwork.',
+    desc: 'Black heavyweight streetwear t-shirt featuring archival back artwork and bold front typography.',
     colors: [
-      { name: 'Black', hex: '#18181b', images: ['assets/CHILD%OF%GOD/Screenshot 2026-11-22 121109.png','assets/CHILD%OF%GOD/Screenshot 2026-11-22 121059.png'] }
+      { name: 'Black', hex: '#18181b', images: ['assets/CHILD%20OF%20GOD/Screenshot%202026-11-22%20121059.png', 'assets/CHILD%20OF%20GOD/Screenshot%202026-11-22%20121109.png'] }
     ]
   },
   {
