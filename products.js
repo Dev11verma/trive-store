@@ -104,11 +104,22 @@ const PRODUCTS = [
     category: 'hoodie',
     sku: 'TRV-DOOM2-01',
     tag: 'Drop 01 // Archival Heavywear',
-    desc: 'Heavyweight oversized streetwear hoodie in White, Black, and Navy Blue with front and back archival graphics.',
+    desc: 'Heavyweight oversized streetwear hoodie featuring Doomsday back artwork first and front graphic second across 14 colorways.',
     colors: [
+      { name: 'White', hex: '#f8fafc', images: ['assets/DOOMSDAY2/Back_2_c_1.jpg', 'assets/DOOMSDAY2/Front_1_c_1.jpg'] },
       { name: 'Black', hex: '#18181b', images: ['assets/DOOMSDAY2/Back_2_c_2.jpg', 'assets/DOOMSDAY2/Front_1_c_2.jpg'] },
-      { name: 'White', hex: '#f8fafc', images: ['assets/DOOMSDAY2/Front_1_c_1.jpg', 'assets/DOOMSDAY2/Front_1_c_1.jpg'] },
-      { name: 'Navy Blue', hex: '#1e293b', images: ['assets/DOOMSDAY2/Back_2_c_3.jpg', 'assets/DOOMSDAY2/Front_1_c_3.jpg'] }
+      { name: 'Navy Blue', hex: '#1e293b', images: ['assets/DOOMSDAY2/Back_2_c_3.jpg', 'assets/DOOMSDAY2/Front_1_c_3.jpg'] },
+      { name: 'Heather Grey', hex: '#9ca3af', images: ['assets/DOOMSDAY2/Back_2_c_4.jpg', 'assets/DOOMSDAY2/Front_1_c_4.jpg'] },
+      { name: 'Forest Green', hex: '#14532d', images: ['assets/DOOMSDAY2/Back_2_c_8.jpg', 'assets/DOOMSDAY2/Front_1_c_8.jpg'] },
+      { name: 'Cobalt Blue', hex: '#1d4ed8', images: ['assets/DOOMSDAY2/Back_2_c_9.jpg', 'assets/DOOMSDAY2/Front_1_c_9.jpg'] },
+      { name: 'Crimson Red', hex: '#b91c1c', images: ['assets/DOOMSDAY2/Back_2_c_10.jpg', 'assets/DOOMSDAY2/Front_1_c_10.jpg'] },
+      { name: 'Olive Drab', hex: '#4d5d3b', images: ['assets/DOOMSDAY2/Back_2_c_41.jpg', 'assets/DOOMSDAY2/Front_1_c_41.jpg'] },
+      { name: 'Mustard Gold', hex: '#ca8a04', images: ['assets/DOOMSDAY2/Back_2_c_43.jpg', 'assets/DOOMSDAY2/Front_1_c_43.jpg'] },
+      { name: 'Light Pink', hex: '#f9a8d4', images: ['assets/DOOMSDAY2/Back_2_c_45.jpg', 'assets/DOOMSDAY2/Front_1_c_45.jpg'] },
+      { name: 'Lavender Lilac', hex: '#c4b5fd', images: ['assets/DOOMSDAY2/Back_2_c_49.jpg', 'assets/DOOMSDAY2/Front_1_c_49.jpg'] },
+      { name: 'Coral Rose', hex: '#e11d48', images: ['assets/DOOMSDAY2/Back_2_c_52.jpg', 'assets/DOOMSDAY2/Front_1_c_52.jpg'] },
+      { name: 'Mint Green', hex: '#86efac', images: ['assets/DOOMSDAY2/Back_2_c_53.jpg', 'assets/DOOMSDAY2/Front_1_c_53.jpg'] },
+      { name: 'Sky Blue', hex: '#93c5fd', images: ['assets/DOOMSDAY2/Back_2_c_54.jpg', 'assets/DOOMSDAY2/Front_1_c_54.jpg'] }
     ]
   },
   {
