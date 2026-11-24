@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TRIVÉ // Born to Rule — Archival Streetwear</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root {
+      --bg-ivory: #F6F2EA;
+      --bg-card: #EFE9DD;
+      --bg-dark: #161412;
+      --ink-main: #1A1715;
+      --ink-muted: #6B6259;
+      --ink-light: #F6F2EA;
+      --gold: #B8860B;
+      --gold-soft: #D4AF37;
+      --vermilion: #9E2A2B;
+      --border-warm: rgba(26, 23, 21, 0.13);
+    }
+
+    body.v2-body {
+      margin: 0;
+      background: var(--bg-ivory) !important;
+      color: var(--ink-main) !important;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* 1. Top Ticker & Sticky Header */
+    .v2-ticker {
+      background: var(--bg-dark);
+      color: var(--gold-soft);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 10px 16px;
+    }
+    .v2-header {
+      position: sticky;
+      top: 0;
+      z-index: 45;
+      background: rgba(246, 242, 234, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-warm);
+    }
+    .v2-nav {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .v2-brand {
+      font-family: 'Cinzel', serif;
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      color: var(--ink-main);
+      text-decoration: none;
+    }
+    .v2-links { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; }
+    .v2-links a {
+      text-decoration: none;
+      color: var(--ink-main);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .v2-links a:hover { color: var(--gold); }
+    .v2-actions { display: flex; gap: 10px; align-items: center; }
+    .v2-pill-btn {
+      background: var(--bg-dark);
+      color: var(--ink-light);
+      border: 1px solid var(--bg-dark);
+      padding: 9px 16px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .v2-pill-btn.ghost {
+      background: transparent;
+      color: var(--ink-main);
+      border-color: var(--border-warm);
+    }
+
+    /* 2. Engraved Heritage Banner */
+    .v2-banner-wrap {
+      max-width: 1360px;
+      margin: 24px auto 0;
+      padding: 0 24px;
+    }
+    .v2-banner-frame {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border-warm);
+      background: #EFE9DD;
+      box-shadow: 0 14px 34px rgba(22, 20, 18, 0.07);
+    }
+    .v2-banner-frame img {
+      width: 100%;
+      max-height: 460px;
+      object-fit: cover;
+      display: block;
+    }
+    .v2-banner-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 20px;
+      background: var(--bg-dark);
+      color: var(--ink-light);
+    }
+
+    /* 3. Auto-Moving Lookbook Strip */
+    .v2-lookbook {
+      margin: 34px 0;
+      padding: 14px 0;
+      background: var(--bg-card);
+      border-top: 1px solid var(--border-warm);
+      border-bottom: 1px solid var(--border-warm);
+      overflow: hidden;
+    }
+    .v2-marquee {
+      display: flex;
+      gap: 16px;
+      width: max-content;
+      animation: v2Scroll 36s linear infinite;
+    }
+    .v2-lookbook:hover .v2-marquee { animation-play-state: paused; }
+    @keyframes v2Scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .v2-look-card {
+      width: 190px;
+      flex-shrink: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-warm);
+      background: var(--bg-ivory);
+      cursor: pointer;
+    }
+    .v2-look-card img { width: 100%; height: 230px; object-fit: cover; display: block; }
+    .v2-look-card span {
+      display: block;
+      padding: 8px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* 4. Born to Rule Slogan Band */
+    .v2-creed {
+      max-width: 1020px;
+      margin: 48px auto;
+      padding: 40px 28px;
+      text-align: center;
+      border: 1px solid var(--border-warm);
+      border-radius: 20px;
+      background: radial-gradient(circle at top, #FBF8F2, #EFE9DD);
+    }
+    .v2-seal {
+      display: inline-block;
+      background: var(--vermilion);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      padding: 4px 12px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+    .v2-creed h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 4.5vw, 3.3rem);
+      letter-spacing: 0.12em;
+      margin: 0 0 12px;
+      color: var(--ink-main);
+    }
+    .v2-creed p {
+      max-width: 660px;
+      margin: 0 auto 20px;
+      color: var(--ink-muted);
+      font-size: 15px;
+    }
+
+    /* 5. Category Sections & Product Cards */
+    .v2-section {
+      max-width: 1360px;
+      margin: 56px auto;
+      padding: 0 24px;
+    }
+    .v2-sec-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 14px;
+      border-bottom: 1px solid var(--border-warm);
+      padding-bottom: 14px;
+      margin-bottom: 26px;
+    }
+    .v2-sec-head h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 26px;
+      margin: 0;
+      letter-spacing: 0.06em;
+    }
+    .v2-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+      gap: 24px;
+    }
+    .v2-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-warm);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+    .v2-card:hover { transform: translateY(-4px); box-shadow: 0 14px 28px rgba(22,20,18,0.08); }
+    .v2-img-box {
+      position: relative;
+      aspect-ratio: 4/5;
+      background: #E4DEC9;
+      overflow: hidden;
+    }
+    .v2-img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .v2-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(22, 20, 18, 0.88);
+      color: var(--gold-soft);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .v2-card-body { padding: 16px; display: flex; flex-direction: column; flex: 1; }
+    .v2-swatches { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+    .v2-swatch {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(0,0,0,0.28);
+      cursor: pointer;
+    }
+    .v2-swatch.active { outline: 2px solid var(--gold); outline-offset: 2px; }
+    .v2-sizes { display: flex; gap: 6px; margin-bottom: 12px; }
+    .v2-size-btn {
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border-warm);
+      background: var(--bg-ivory);
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .v2-size-btn.active { background: var(--bg-dark); color: var(--gold-soft); border-color: var(--bg-dark); }
+    .v2-add-btn {
+      margin-top: auto;
+      width: 100%;
+      background: var(--bg-dark);
+      color: var(--ink-light);
+      border: none;
+      padding: 11px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .v2-add-btn:hover { background: var(--gold); }
+
+    /* Custom Atelier & Lowerwear */
+    .v2-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-warm);
+      border-radius: 18px;
+      padding: 26px;
+    }
+
+    /* FAQ & Reviews */
+    .v2-faq-item {
+      border-bottom: 1px solid var(--border-warm);
+      padding: 14px 0;
+    }
+    .v2-faq-q {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--ink-main);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+    }
+    .v2-faq-a { display: none; padding-top: 8px; color: var(--ink-muted); font-size: 14px; }
+    .v2-faq-item.open .v2-faq-a { display: block; }
+
+    /* Footer & Policy Modal */
+    .v2-footer {
+      background: var(--bg-dark);
+      color: rgba(246, 242, 234, 0.8);
+      padding: 52px 24px 32px;
+      margin-top: 64px;
+    }
+    .v2-footer-grid {
+      max-width: 1360px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 28px;
+    }
+    .v2-footer h4 { color: var(--gold-soft); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 12px; }
+    .v2-footer button, .v2-footer a {
+      display: block;
+      background: none;
+      border: none;
+      padding: 4px 0;
+      color: rgba(246, 242, 234, 0.78);
+      font-size: 13px;
+      text-align: left;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .v2-footer button:hover, .v2-footer a:hover { color: var(--gold-soft); }
+
+    .v2-modal-bg {
+      position: fixed;
+      inset: 0;
+      background: rgba(22, 20, 18, 0.72);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 80;
+      padding: 20px;
+    }
+    .v2-modal-bg.open { display: flex; }
+    .v2-modal-card {
+      background: var(--bg-ivory);
+      color: var(--ink-main);
+      max-width: 680px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      border-radius: 18px;
+      padding: 28px;
+      border: 1px solid var(--border-warm);
+    }
+
+    @media (max-width: 860px) {
+      .v2-links { display: none; }
+      .v2-split, .v2-footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="v2-body">
+
+  <!-- 1. TOP BAR & STICKY NAVIGATION -->
+  <div class="v2-ticker">DROP 01 // BORN TO RULE • ZERO-FEE UPI PREPAID • COD (+₹149) • PAN-INDIA DISPATCH</div>
+  <header class="v2-header">
+    <nav class="v2-nav">
+      <a href="index-v2.html" class="v2-brand">TRIVÉ</a>
+      <div class="v2-links">
+        <a href="#v2-hoodies">Hoodies</a>
+        <a href="#v2-tees">T-Shirts</a>
+        <a href="#v2-lowerwear">Lowerwear</a>
+        <a href="#v2-custom">Custom Atelier</a>
+        <a href="#v2-reviews">Reviews</a>
+        <a href="#v2-faq">FAQ</a>
+        <a href="#v2-story">Our Story</a>
+      </div>
+      <div class="v2-actions">
+        <button type="button" class="v2-pill-btn ghost" onclick="openTrackModal()">Track AWB</button>
+        <button type="button" class="v2-pill-btn" onclick="openV2Bag()">Bag (<span id="v2-bag-count">0</span>)</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- 2. OUR BANNER -->
+  <section class="v2-banner-wrap">
+    <div class="v2-banner-frame">
+      <img src="assets/trive-banner-v2.png" alt="TRIVÉ Archival Heritage Banner" onerror="this.style.display='none'" />
+      <div class="v2-banner-bar">
+        <span style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-soft);font-weight:700;">DROP 01 // ARCHIVAL HEAVYWEAR &amp; CULTURE</span>
+        <div style="display:flex;gap:10px;align-items:center;">
+          <button type="button" class="v2-pill-btn" style="background:var(--gold-soft);color:#161412;border-color:var(--gold-soft);" onclick="toggleGlobalView()">View: <span id="v2-view-txt">Back Artwork</span></button>
+          <a href="index.html" style="color:#F6F2EA;font-size:12px;text-decoration:underline;">Classic Index</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. AUTO-MOVING LOOKBOOK -->
+  <section class="v2-lookbook" aria-label="Drop 01 Lookbook">
+    <div class="v2-marquee" id="v2-lookbook-track"></div>
+  </section>
+
+  <!-- 4. OUR SLOGAN -->
+  <section class="v2-creed">
+    <span class="v2-seal">त्रि वे • ARCHIVE 01</span>
+    <h1>BORN TO RULE</h1>
+    <p>Heavyweight silhouettes rooted in Indian heritage, sovereign self-expression, and fearless street culture. Every garment is engineered back-artwork first so your presence speaks before you turn around.</p>
+    <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
+      <a href="#v2-hoodies" class="v2-pill-btn" style="text-decoration:none;">Shop Heavy Hoodies</a>
+      <a href="#v2-tees" class="v2-pill-btn ghost" style="text-decoration:none;">Shop Graphic Tees</a>
+    </div>
+  </section>
+
+  <!-- 5A. OUR HOODIES SECTION -->
+  <section class="v2-section" id="v2-hoodies">
+    <div class="v2-sec-head">
+      <div>
+        <span style="font-size:11px;font-weight:700;letter-spacing:0.14em;color:var(--gold);text-transform:uppercase;">380–420 GSM FRENCH TERRY</span>
+        <h2>HEAVYWEIGHT HOODIES</h2>
+      </div>
+      <span style="font-size:13px;color:var(--ink-muted);">Hover any card to preview Front chest graphic</span>
+    </div>
+    <div class="v2-grid" id="v2-hoodie-grid"></div>
+  </section>
+
+  <!-- 5B. OUR T-SHIRTS SECTION -->
+  <section class="v2-section" id="v2-tees">
+    <div class="v2-sec-head">
+      <div>
+        <span style="font-size:11px;font-weight:700;letter-spacing:0.14em;color:var(--gold);text-transform:uppercase;">260 GSM OVERSIZED COMBED COTTON</span>
+        <h2>GRAPHIC T-SHIRTS</h2>
+      </div>
+      <span style="font-size:13px;color:var(--ink-muted);">Drop-shoulder street fit • ₹999 Launch Edition</span>
+    </div>
+    <div class="v2-grid" id="v2-tee-grid"></div>
+  </section>
+
+  <!-- 5C. OUR LOWERWEAR SECTION (DROPPING SOON) -->
+  <section class="v2-section" id="v2-lowerwear">
+    <div class="v2-sec-head">
+      <div>
+        <span style="font-size:11px;font-weight:700;letter-spacing:0.14em;color:var(--vermilion);text-transform:uppercase;">ARCHIVE 02 PREVIEW</span>
+        <h2>LOWERWEAR // DROPPING NEXT</h2>
+      </div>
+    </div>
+    <div class="v2-split">
+      <div>
+        <h3 style="font-family:'Cinzel',serif;margin-top:0;">Sovereign Heavy Cargo &amp; Archival Sweatpants</h3>
+        <p style="color:var(--ink-muted);font-size:14px;">Wide-leg heavyweight French terry sweatpants and multi-pocket utility cargos tailored to pair with Drop 01 oversized hoodies.</p>
+        <div style="display:flex;gap:8px;margin-top:16px;">
+          <input type="email" id="v2-notify-email" placeholder="Enter email for early access..." style="flex:1;padding:10px 14px;border-radius:10px;border:1px solid var(--border-warm);" />
+          <button type="button" class="v2-pill-btn" onclick="notifyLowerwear()">Notify Me</button>
+        </div>
+        <p id="v2-notify-msg" style="font-size:12px;color:var(--gold);font-weight:700;margin-top:8px;"></p>
+      </div>
+      <div style="background:var(--bg-dark);color:var(--ink-light);border-radius:14px;padding:22px;display:flex;flex-direction:column;justify-content:center;">
+        <span style="color:var(--gold-soft);font-size:11px;font-weight:700;letter-spacing:0.14em;">EARLY ACCESS PERK</span>
+        <strong style="font-family:'Cinzel',serif;font-size:20px;margin:8px 0;">First 100 Waitlist Members Get Priority Sizing</strong>
+        <span style="font-size:13px;opacity:0.8;">Dispatched from Bhopal, MP across India with live AWB tracking.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5D. CUSTOM ATELIER SECTION -->
+  <section class="v2-section" id="v2-custom">
+    <div class="v2-sec-head">
+      <div>
+        <span style="font-size:11px;font-weight:700;letter-spacing:0.14em;color:var(--gold);text-transform:uppercase;">1-OF-1 BESPOKE STUDIO • UPI PREPAID ONLY</span>
+        <h2>TRIVÉ CUSTOM ATELIER</h2>
+      </div>
+    </div>
+    <div class="v2-split">
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <label style="font-size:12px;font-weight:700;">1. Select Base Garment</label>
+        <select id="cust-garment" onchange="updateCustomPreview()" style="padding:10px;border-radius:10px;border:1px solid var(--border-warm);">
+          <option value="Heavyweight Custom Hoodie|1599">Heavyweight Custom Hoodie (420 GSM) — ₹1,599</option>
+          <option value="Oversized Custom Graphic Tee|1299">Oversized Custom Graphic Tee (260 GSM) — ₹1,299</option>
+        </select>
+        <label style="font-size:12px;font-weight:700;">2. Custom Back / Sleeve Text or Monogram</label>
+        <input type="text" id="cust-text" maxlength="26" value="BORN TO RULE // 01" oninput="updateCustomPreview()" style="padding:10px;border-radius:10px;border:1px solid var(--border-warm);" />
+        <div style="display:flex;gap:10px;">
+          <select id="cust-ink" onchange="updateCustomPreview()" style="flex:1;padding:10px;border-radius:10px;border:1px solid var(--border-warm);">
+            <option value="#D4AF37">Antique Gold Print</option>
+            <option value="#9E2A2B">Vermilion Red Print</option>
+            <option value="#F6F2EA">Bone Ivory Print</option>
+          </select>
+          <select id="cust-size" style="width:110px;padding:10px;border-radius:10px;border:1px solid var(--border-warm);">
+            <option>S</option><option>M</option><option selected>L</option><option>XL</option>
+          </select>
+        </div>
+        <button type="button" class="v2-add-btn" onclick="addCustomToBag()">+ Add 1-of-1 Custom Piece to Bag (UPI Prepaid)</button>
+      </div>
+      <div style="background:var(--bg-dark);border-radius:16px;padding:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#F6F2EA;">
+        <span style="font-size:10px;letter-spacing:0.16em;color:var(--gold-soft);margin-bottom:10px;">LIVE ARCHIVE MOCKUP</span>
+        <div style="border:1px dashed rgba(212,175,55,0.45);padding:26px 20px;border-radius:12px;width:100%;max-width:320px;">
+          <div style="font-family:'Cinzel',serif;font-size:12px;letter-spacing:0.2em;opacity:0.7;margin-bottom:8px;">TRIVÉ ATELIER</div>
+          <div id="cust-preview-txt" style="font-family:'Cinzel',serif;font-size:20px;font-weight:800;color:#D4AF37;word-break:break-word;">BORN TO RULE // 01</div>
+          <div style="margin-top:10px;display:inline-block;background:var(--vermilion);color:#fff;font-size:9px;padding:2px 8px;border-radius:4px;">BORN TO RULE SEAL</div>
+        </div>
+        <div id="cust-price-lbl" style="margin-top:14px;font-weight:700;font-size:16px;">₹1,599 (UPI Prepaid Only)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. CUSTOMER REVIEWS (CONNECTED TO EXISTING reviews.js) -->
+  <section class="v2-section" id="v2-reviews">
+    <div class="v2-sec-head">
+      <div>
+        <span style="font-size:11px;font-weight:700;letter-spacing:0.14em;color:var(--gold);text-transform:uppercase;">COMMUNITY &amp; FIT CHECKS</span>
+        <h2>CUSTOMER REVIEWS</h2>
+      </div>
+    </div>
+    <div id="reviews-container"></div>
+  </section>
+
+  <!-- 7. FREQUENT QUESTIONS -->
+  <section class="v2-section" id="v2-faq">
+    <div class="v2-sec-head">
+      <h2>FREQUENT QUESTIONS</h2>
+    </div>
+    <div style="background:var(--bg-card);border:1px solid var(--border-warm);border-radius:16px;padding:10px 22px;">
+      <div class="v2-faq-item open">
+        <button type="button" class="v2-faq-q" onclick="this.parentElement.classList.toggle('open')"><span>1. What is the fabric weight (GSM) and fit?</span><span>+</span></button>
+        <div class="v2-faq-a">Our Heavyweight Hoodies are crafted in 380–420 GSM French Terry fleece and our Graphic Tees in 260 GSM combed cotton, both cut in a relaxed drop-shoulder oversized streetwear silhouette.</div>
+      </div>
+      <div class="v2-faq-item">
+        <button type="button" class="v2-faq-q" onclick="this.parentElement.classList.toggle('open')"><span>2. How do UPI Prepaid and Cash on Delivery (COD) work?</span><span>+</span></button>
+        <div class="v2-faq-a">UPI Prepaid orders carry ₹0 shipping/handling fee and get priority dispatch. Cash on Delivery (COD) is available on standard catalog items for an additional ₹149 handling fee. Custom Atelier pieces require UPI Prepaid.</div>
+      </div>
+      <div class="v2-faq-item">
+        <button type="button" class="v2-faq-q" onclick="this.parentElement.classList.toggle('open')"><span>3. How fast will I receive my tracking ID?</span><span>+</span></button>
+        <div class="v2-faq-a">Orders are dispatched within 24–48 business hours. You receive an email and live AWB tracking link (via courierupdates.com) as soon as your parcel is booked.</div>
+      </div>
+      <div class="v2-faq-item">
+        <button type="button" class="v2-faq-q" onclick="this.parentElement.classList.toggle('open')"><span>4. What is your size exchange and return policy?</span><span>+</span></button>
+        <div class="v2-faq-a">We offer a 7-day size exchange on unworn, unwashed standard items with original tags intact. Custom 1-of-1 Atelier orders are final sale unless damaged in transit.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. OUR STORY & VISION -->
+  <section class="v2-section" id="v2-story">
+    <div class="v2-split">
+      <div>
+        <span style="font-size:11px;font-weight:700;letter-spacing:0.14em;color:var(--gold);text-transform:uppercase;">OUR STORY</span>
+        <h2 style="font-family:'Cinzel',serif;margin:6px 0 12px;">BUILT FROM CONVICTION, CRAFTED TO OUTLAST TRENDS</h2>
+        <p style="color:var(--ink-muted);font-size:14px;">Born in Bhopal, Madhya Pradesh, TRIVÉ started with a simple refusal to settle for thin blanks and forgettable prints. Every drop blends sovereign Indian heritage, bold back-canvas storytelling, and heavyweight street tailoring under one creed: <strong>Born to Rule</strong>.</p>
+      </div>
+      <div>
+        <span style="font-size:11px;font-weight:700;letter-spacing:0.14em;color:var(--vermilion);text-transform:uppercase;">OUR VISION</span>
+        <h2 style="font-family:'Cinzel',serif;margin:6px 0 12px;">ARCHIVAL STREETWEAR FOR THE FEARLESS</h2>
+        <p style="color:var(--ink-muted);font-size:14px;">We produce in focused, quality-checked batches rather than mass fast-fashion runs—so every piece you wear carries distinct artwork, heavyweight drape, and lasting print integrity.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXISTING CHECKOUT SLOT (WIRES DIRECTLY TO checkout-views.html + app.js + upi-qr.js) -->
+  <div id="slot-checkout" style="max-width:1100px;margin:0 auto;padding:0 24px;"></div>
+
+  <!-- FOOTER WITH ABOUT & POLICIES -->
+  <footer class="v2-footer">
+    <div class="v2-footer-grid">
+      <div>
+        <div style="font-family:'Cinzel',serif;font-size:22px;font-weight:800;letter-spacing:0.18em;color:#F6F2EA;margin-bottom:8px;">TRIVÉ</div>
+        <p style="font-size:13px;max-width:300px;">Born to Rule • Archival Heavyweight Streetwear crafted in India.</p>
+        <p style="font-size:12px;color:var(--gold-soft);margin-top:8px;">Bhopal, Madhya Pradesh, India</p>
+      </div>
+      <div>
+        <h4>About</h4>
+        <button type="button" onclick="openPolicy('vision')">Our Vision &amp; Story</button>
+        <button type="button" onclick="openPolicy('disclaimer')">Disclaimer</button>
+        <button type="button" onclick="openPolicy('contact')">Contact Us</button>
+      </div>
+      <div>
+        <h4>Policies</h4>
+        <button type="button" onclick="openPolicy('shipping')">Shipping Policy</button>
+        <button type="button" onclick="openPolicy('returns')">Return &amp; Refund Policy</button>
+        <button type="button" onclick="openPolicy('terms')">Terms of Service</button>
+        <button type="button" onclick="openPolicy('privacy')">Privacy Policy</button>
+      </div>
+      <div>
+        <h4>Support &amp; Tracking</h4>
+        <button type="button" onclick="openTrackModal()">Track Order (AWB)</button>
+        <a href="mailto:support@trivestore.in">support@trivestore.in</a>
+        <a href="index.html">Switch to Classic View</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BAG DRAWER MODAL -->
+  <div class="v2-modal-bg" id="v2-bag-modal" onclick="if(event.target===this) closeV2Bag()">
+    <div class="v2-modal-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-warm);padding-bottom:12px;margin-bottom:14px;">
+        <strong style="font-family:'Cinzel',serif;font-size:18px;">YOUR TRIVÉ BAG</strong>
+        <button type="button" onclick="closeV2Bag()" style="background:none;border:none;font-size:20px;cursor:pointer;">✕</button>
+      </div>
+      <div id="v2-bag-list" style="display:flex;flex-direction:column;gap:10px;max-height:320px;overflow-y:auto;"></div>
+      <div style="border-top:1px solid var(--border-warm);padding-top:14px;margin-top:14px;display:flex;justify-content:space-between;align-items:center;">
+        <strong id="v2-bag-subtotal" style="font-size:17px;">Subtotal: ₹0</strong>
+        <button type="button" class="v2-pill-btn" onclick="proceedToRealCheckout()">Proceed to Checkout →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- POLICY / STORY READER MODAL -->
+  <div class="v2-modal-bg" id="v2-policy-modal" onclick="if(event.target===this) this.classList.remove('open')">
+    <div class="v2-modal-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-warm);padding-bottom:12px;margin-bottom:14px;">
+        <strong id="v2-policy-title" style="font-family:'Cinzel',serif;font-size:18px;">POLICY</strong>
+        <button type="button" onclick="document.getElementById('v2-policy-modal').classList.remove('open')" style="background:none;border:none;font-size:20px;cursor:pointer;">✕</button>
+      </div>
+      <div id="v2-policy-body" style="font-size:14px;color:var(--ink-muted);line-height:1.7;"></div>
+    </div>
+  </div>
+
+  <!-- AWB ORDER TRACKER MODAL -->
+  <div class="v2-modal-bg" id="v2-track-modal" onclick="if(event.target===this) this.classList.remove('open')">
+    <div class="v2-modal-card" style="max-width:460px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <strong style="font-family:'Cinzel',serif;font-size:17px;">TRACK YOUR SHIPMENT</strong>
+        <button type="button" onclick="document.getElementById('v2-track-modal').classList.remove('open')" style="background:none;border:none;font-size:20px;cursor:pointer;">✕</button>
+      </div>
+      <p style="font-size:13px;color:var(--ink-muted);margin-bottom:12px;">Enter your 14-digit AWB number from your dispatch email (e.g., 46600611882543).</p>
+      <div style="display:flex;gap:8px;">
+        <input type="text" id="v2-awb-input" placeholder="Enter AWB ID..." style="flex:1;padding:10px;border-radius:10px;border:1px solid var(--border-warm);" />
+        <button type="button" class="v2-pill-btn" onclick="launchCourierTrack()">Track Live</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXISTING STORE SCRIPTS -->
+  <script src="products.js"></script>
+  <script src="upi-qr.js"></script>
+  <script>
+    let showFront = false;
+    const v2ColorState = {};
+    const v2SizeState = {};
+
+    function getCartArray() {
+      try {
+        return JSON.parse(localStorage.getItem('trive_cart') || localStorage.getItem('cart') || '[]');
+      } catch (e) { return []; }
+    }
+
+    function saveCartArray(arr) {
+      localStorage.setItem('trive_cart', JSON.stringify(arr));
+      localStorage.setItem('cart', JSON.stringify(arr));
+      if (typeof window.cart !== 'undefined' && Array.isArray(window.cart)) {
+        window.cart.length = 0;
+        arr.forEach(item => window.cart.push(item));
+      }
+      if (typeof window.updateCartBadge === 'function') window.updateCartBadge();
+      if (typeof window.renderCart === 'function') window.renderCart();
+      updateV2BagBadge();
+    }
+
+    function updateV2BagBadge() {
+      const items = getCartArray();
+      const qty = items.reduce((sum, x) => sum + (Number(x.quantity || x.qty) || 1), 0);
+      document.getElementById('v2-bag-count').textContent = qty;
+    }
+
+    function toggleGlobalView() {
+      showFront = !showFront;
+      document.getElementById('v2-view-txt').textContent = showFront ? 'Front View' : 'Back Artwork';
+      renderV2Catalogs();
+    }
+
+    function renderV2Lookbook() {
+      if (typeof PRODUCTS === 'undefined') return;
+      const track = document.getElementById('v2-lookbook-track');
+      const cards = PRODUCTS.slice(0, 10).map(p => {
+        const img = (p.colors && p.colors[0] && p.colors[0].images[0]) || '';
+        return `<div class="v2-look-card" onclick="document.getElementById('v2-hoodies').scrollIntoView({behavior:'smooth'})">
+          <img src="${img}" alt="${p.name}" loading="lazy" />
+          <span>${p.name}</span>
+        </div>`;
+      }).join('');
+      track.innerHTML = cards + cards;
+    }
+
+    function buildCardHtml(p) {
+      const cIdx = v2ColorState[p.id] || 0;
+      const sz = v2SizeState[p.id] || 'L';
+      const c = (p.colors && p.colors[cIdx]) || { name: 'Standard', hex: '#18181b', images: [''] };
+      const backImg = c.images[0] || '';
+      const frontImg = c.images[1] || backImg;
+      const primaryImg = showFront ? frontImg : backImg;
+      const hoverImg = showFront ? backImg : frontImg;
+
+      const swatches = (p.colors || []).slice(0, 8).map((col, idx) =>
+        `<button type="button" class="v2-swatch ${idx === cIdx ? 'active' : ''}" style="background:${col.hex};" title="${col.name}"
+          onclick="v2ColorState['${p.id}']=${idx}; renderV2Catalogs();"></button>`
+      ).join('');
+
+      const sizes = ['S', 'M', 'L', 'XL'].map(s =>
+        `<button type="button" class="v2-size-btn ${s === sz ? 'active' : ''}"
+          onclick="v2SizeState['${p.id}']='${s}'; renderV2Catalogs();">${s}</button>`
+      ).join('');
+
+      return `
+        <article class="v2-card">
+          <div class="v2-img-box">
+            <span class="v2-tag">${p.tag || 'Drop 01'}</span>
+            <img src="${primaryImg}" alt="${p.name}" loading="lazy"
+              onmouseover="this.src='${hoverImg}'" onmouseout="this.src='${primaryImg}'" />
+          </div>
+          <div class="v2-card-body">
+            <strong style="font-size:15px;">${p.name}</strong>
+            <div style="margin:6px 0;">
+              <strong style="font-size:16px;">₹${p.price}</strong>
+              ${p.originalPrice ? `<span style="text-decoration:line-through;color:var(--ink-muted);font-size:13px;margin-left:6px;">₹${p.originalPrice}</span>` : ''}
+            </div>
+            <div class="v2-swatches">${swatches}</div>
+            <div class="v2-sizes">${sizes}</div>
+            <button type="button" class="v2-add-btn" onclick="addProductToV2Bag('${p.id}')">+ Add to Bag (${c.name} / ${sz})</button>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderV2Catalogs() {
+      if (typeof PRODUCTS === 'undefined') return;
+      const hoodies = PRODUCTS.filter(p => (p.category || '').toLowerCase().replace('-', '') === 'hoodie');
+      const tees = PRODUCTS.filter(p => (p.category || '').toLowerCase().replace('-', '') === 'tshirt');
+      document.getElementById('v2-hoodie-grid').innerHTML = hoodies.map(buildCardHtml).join('');
+      document.getElementById('v2-tee-grid').innerHTML = tees.map(buildCardHtml).join('');
+    }
+
+    function addProductToV2Bag(id) {
+      const p = PRODUCTS.find(x => x.id === id);
+      if (!p) return;
+      const c = p.colors[v2ColorState[id] || 0] || p.colors[0];
+      const size = v2SizeState[id] || 'L';
+      const cartArr = getCartArray();
+      const found = cartArr.find(i => i.id === p.id && i.color === c.name && i.size === size);
+      if (found) found.quantity = (found.quantity || 1) + 1;
+      else cartArr.push({ id: p.id, sku: p.sku, name: p.name, price: p.price, color: c.name, size: size, image: c.images[0], quantity: 1 });
+      saveCartArray(cartArr);
+      openV2Bag();
+    }
+
+    function updateCustomPreview() {
+      const [label, price] = document.getElementById('cust-garment').value.split('|');
+      const txt = document.getElementById('cust-text').value || 'BORN TO RULE';
+      const ink = document.getElementById('cust-ink').value;
+      const prev = document.getElementById('cust-preview-txt');
+      prev.textContent = txt;
+      prev.style.color = ink;
+      document.getElementById('cust-price-lbl').textContent = `₹${price} (UPI Prepaid Only)`;
+    }
+
+    function addCustomToBag() {
+      const [label, priceStr] = document.getElementById('cust-garment').value.split('|');
+      const price = Number(priceStr);
+      const txt = (document.getElementById('cust-text').value || 'BORN TO RULE').trim();
+      const size = document.getElementById('cust-size').value;
+      const cartArr = getCartArray();
+      cartArr.push({
+        id: 'custom-' + Date.now(),
+        sku: 'TRV-CUSTOM-01',
+        name: `${label} ["${txt}"]`,
+        price: price,
+        color: 'Bespoke Edition (UPI Only)',
+        size: size,
+        image: 'assets/trive-banner-v2.png',
+        quantity: 1,
+        prepaidOnly: true
+      });
+      saveCartArray(cartArr);
+      openV2Bag();
+    }
+
+    function openV2Bag() {
+      const items = getCartArray();
+      const list = document.getElementById('v2-bag-list');
+      const sub = items.reduce((s, i) => s + (Number(i.price) * (Number(i.quantity) || 1)), 0);
+      document.getElementById('v2-bag-subtotal').textContent = `Subtotal: ₹${sub}`;
+      list.innerHTML = items.length ? items.map((i, idx) => `
+        <div style="display:flex;justify-content:space-between;align-items:center;background:var(--bg-card);padding:10px;border-radius:10px;">
+          <div>
+            <strong style="font-size:13px;">${i.name}</strong>
+            <div style="font-size:12px;color:var(--ink-muted);">${i.color} • Size ${i.size} × ${i.quantity || 1}</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <strong>₹${i.price * (i.quantity || 1)}</strong>
+            <button type="button" onclick="removeV2Item(${idx})" style="background:none;border:none;color:var(--vermilion);font-weight:700;cursor:pointer;">✕</button>
+          </div>
+        </div>
+      `).join('') : '<p style="color:var(--ink-muted);font-size:14px;">Your bag is currently empty.</p>';
+      document.getElementById('v2-bag-modal').classList.add('open');
+    }
+
+    function removeV2Item(idx) {
+      const items = getCartArray();
+      items.splice(idx, 1);
+      saveCartArray(items);
+      openV2Bag();
+    }
+
+    function closeV2Bag() { document.getElementById('v2-bag-modal').classList.remove('open'); }
+
+    function proceedToRealCheckout() {
+      closeV2Bag();
+      if (typeof window.openCheckout === 'function') {
+        window.openCheckout();
+      } else {
+        const slot = document.getElementById('slot-checkout');
+        if (slot) slot.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function notifyLowerwear() {
+      const em = document.getElementById('v2-notify-email').value.trim();
+      document.getElementById('v2-notify-msg').textContent = em
+        ? `Added ${em} to the Archive 02 Lowerwear priority list.`
+        : 'Please enter a valid email address.';
+    }
+
+    function openTrackModal() { document.getElementById('v2-track-modal').classList.add('open'); }
+    function launchCourierTrack() {
+      const awb = (document.getElementById('v2-awb-input').value || '').trim();
+      if (awb) window.open(`https://courierupdates.com/?awb=${encodeURIComponent(awb)}`, '_blank', 'noopener');
+    }
+
+    const POLICIES = {
+      vision: ['Our Story & Vision', 'TRIVÉ is an independent Indian streetwear label rooted in Bhopal, Madhya Pradesh. Under our creed "Born to Rule", we craft heavyweight hoodies and tees with archival back-first graphics and honest batch production.'],
+      disclaimer: ['Disclaimer', 'Product mockups are calibrated accurately, though minor tonal variations may occur between digital screens and physical fabric dyes.'],
+      contact: ['Contact Information', 'Email: support@trivestore.in<br>Origin: Bhopal, Madhya Pradesh, India<br>Dispatch & Tracking Support: Monday–Saturday, 10 AM – 7 PM IST.'],
+      shipping: ['Shipping Policy', 'Orders dispatch within 24–48 business hours. UPI Prepaid carries ₹0 shipping fee. Cash on Delivery (COD) carries a ₹149 handling surcharge. Live AWB tracking is sent via email upon dispatch.'],
+      returns: ['Return & Refund Policy', 'We offer a 7-day size exchange on unworn, unwashed standard catalog items with original tags intact. Custom 1-of-1 Atelier pieces are non-returnable unless received damaged.'],
+      terms: ['Terms of Service', 'All original TRIVÉ designs, branding, and custom graphics remain intellectual property of TRIVÉ. COD orders may undergo phone/WhatsApp confirmation prior to dispatch.'],
+      privacy: ['Privacy Policy', 'Customer name, shipping address, phone number, and email are used strictly for order fulfillment, AWB tracking updates, and support—never sold to third parties.']
+    };
+
+    function openPolicy(key) {
+      const [title, body] = POLICIES[key] || ['TRIVÉ', ''];
+      document.getElementById('v2-policy-title').textContent = title;
+      document.getElementById('v2-policy-body').innerHTML = `<p>${body}</p>`;
+      document.getElementById('v2-policy-modal').classList.add('open');
+    }
+
+    // Load existing checkout-views.html partial and initialize existing app.js, reviews.js, and fit-guide.js
+    fetch('checkout-views.html')
+      .then(r => r.ok ? r.text() : '')
+      .then(html => {
+        if (html) document.getElementById('slot-checkout').innerHTML = html;
+      })
+      .finally(() => {
+        ['app.js', './reviews.js', './fit-guide.js'].forEach(src => {
+          const s = document.createElement('script');
+          s.src = src;
+          document.body.appendChild(s);
+        });
+      });
+
+    renderV2Lookbook();
+    renderV2Catalogs();
+    updateV2BagBadge();
+  </script>
+</body>
+</html>
