@@ -32,15 +32,4 @@ function openBag(){renderBag();document.getElementById("nw-bag-modal").classList
 function closeBag(){document.getElementById("nw-bag-modal").classList.remove("open")}
 function removeItem(idx){nwBag.splice(idx,1);saveBag()}
 function renderBag(){document.getElementById("nw-bag-count").textContent=nwBag.reduce((s,i)=>s+(i.quantity||1),0);const sub=nwBag.reduce((s,i)=>s+i.price*(i.quantity||1),0),fee=(payMode==="COD"&&sub>0)?149:0;document.getElementById("nw-bag-total").textContent=`Total: ₹${sub+fee}`;document.getElementById("nw-bag-list").innerHTML=nwBag.length?nwBag.map((i,idx)=>`<div style="display:flex;justify-content:space-between;align-items:center;background:var(--bg-card);padding:10px;border-radius:10px;"><div><strong style="font-size:13px;">${i.name}</strong><div style="font-size:12px;color:var(--ink-muted);">${i.color} • ${i.size} × ${i.quantity||1}</div></div><div style="display:flex;align-items:center;gap:10px;"><strong>₹${i.price*(i.quantity||1)}</strong><button type="button" onclick="removeItem(${idx})" style="background:none;border:none;color:var(--vermilion);font-weight:700;cursor:pointer;">✕</button></div></div>`).join(""):'<p style="color:var(--ink-muted);font-size:14px;">Bag is empty.</p>'}
-function openRealCheckout(){if(!nwBag.length)return;saveBag();closeBag();if(typeof window.openCheckout==="function")window.openCheckout();else{const s=document.getElementById("slot-checkout");if(s)s.scrollIntoView({behavior:"smooth"});}}
-function notifyLowerwear(){const em=document.getElementById("nw-notify-email").value.trim();document.getElementById("nw-notify-msg").textContent=em?`Registered ${em} for Lowerwear early access.`:"Enter an email first."}
-function openPolicy(k){const[t,b]=NW_DATA.policies[k]||["TRIVÉ",""];document.getElementById("nw-pol-title").textContent=t;document.getElementById("nw-pol-body").innerHTML=`<p>${b}</p>`;document.getElementById("nw-policy-modal").classList.add("open")}
-function openTrackModal(){document.getElementById("nw-track-modal").classList.add("open")}
-
-mountShell();renderLookbook();renderCatalogs();renderBag();
-// brokenImgGuard: hide broken or empty images cleanly instead of showing browser broken-icon
-document.addEventListener("error", function (ev) {
-  if (ev.target && ev.target.tagName === "IMG") {
-    ev.target.style.display = "none";
-  }
-}, true);
+function openRealCheckout(){if(!nwBag.length)return;saveBag();localStorage.setItem("trive_pay_mode",payMode);window.location.assign("checkout.html");}, true);

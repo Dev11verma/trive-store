@@ -65,3 +65,10 @@ body{background:var(--bg-ivory);color:var(--ink-main);font-family:'Plus Jakarta 
 #slot-checkout img[src=""], #slot-checkout img:not([src]) {
   display: none !important;
 }
+/* Keep standalone checkout/payment blocks hidden on index.html */
+body:not([data-page="checkout"]):not([data-page="payment"]) #slot-checkout,
+body:not([data-page="checkout"]):not([data-page="payment"]) [id*="payment-mode"],
+body:not([data-page="checkout"]):not([data-page="payment"]) [id*="upi-qr"],
+body:not([data-page="checkout"]):not([data-page="payment"]) [class*="upi-qr"] {
+  display: none !important;
+}
