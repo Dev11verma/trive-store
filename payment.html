@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TRIVÉ // Payment</title>
+  <link rel="icon" type="image/png" href="assets/Main/fevicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#F5F0E6; --card:#EFE9DD; --ink:#221D19; --muted:#6E655C; --line:rgba(34,29,25,.28); --vermilion:#9E2A2B; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { background:var(--bg); color:var(--ink); font-family:'Plus Jakarta Sans',sans-serif; min-height:100vh; }
+    .pay-shell { max-width:640px; margin:0 auto; padding:28px 20px 56px; }
+    .brand-head { text-align:center; margin-bottom:28px; }
+    .word { font-family:'Cinzel',serif; font-size:2.4rem; font-weight:700; letter-spacing:.14em; color:var(--ink); text-decoration:none; }
+    .seal { display:inline-block; background:var(--vermilion); color:#F5F0E6; font-size:9px; font-weight:800; padding:3px 5px; border-radius:3px; vertical-align:bottom; margin-left:4px; }
+    .sub-t { font-family:'Cinzel',serif; font-size:20px; letter-spacing:.14em; margin-top:10px; }
+    .box { border:1px solid var(--line); background:rgba(239,233,221,.6); border-radius:8px; padding:26px; }
+    .qr-dark { background:#181512; color:#F5F0E6; border-radius:8px; padding:22px; text-align:center; margin:16px 0; }
+    .qr-dark canvas, .qr-dark img { margin:12px auto; display:block; background:#fff; padding:8px; border-radius:8px; }
+    .btn-vermilion { width:100%; background:var(--vermilion); color:#F5F0E6; border:none; border-radius:6px; padding:15px; font-size:13px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; cursor:pointer; margin-top:10px; }
+  </style>
+</head>
+<body>
+  <div class="pay-shell">
+    <a href="checkout.html" style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;">← Edit Checkout</a>
+    <header class="brand-head">
+      <a href="index.html" class="word">TRIVÉ</a><span class="seal">त्रि<br>वे</span>
+      <div class="sub-t">PAYMENT</div>
+    </header>
+
+    <div class="box" id="pay-step">
+      <p id="pay-meta" style="font-size:14px;color:var(--muted);margin-bottom:14px;"></p>
+
+      <div id="upi-panel" class="qr-dark" style="display:none;">
+        <div style="font-size:11px;letter-spacing:.14em;color:#D4AF37;font-weight:700;">INSTANT UPI QR // SCAN TO PAY</div>
+        <div id="pay-big" style="font-size:28px;font-weight:800;margin:6px 0;">₹0</div>
+        <div id="qr-slot"></div>
+        <div style="font-size:13px;margin-top:8px;">UPI ID: <strong>Dev11verma@ybl</strong></div>
+        <input id="pay-utr" placeholder="Enter 12-digit UPI UTR / Ref No. (optional)" style="margin-top:12px;width:100%;max-width:340px;padding:10px;border-radius:6px;border:1px solid #444;background:#24201c;color:#fff;" />
+      </div>
+
+      <div id="cod-panel" style="display:none;padding:16px;border:1px solid var(--line);border-radius:6px;background:rgba(255,255,255,.45);margin:14px 0;font-size:14px;">
+        <strong>Cash on Delivery (COD)</strong> — Pay <span id="cod-big">₹0</span> at your doorstep (+₹149 handling included).
+      </div>
+
+      <button type="button" id="confirm-btn" class="btn-vermilion" onclick="finishOrder()">CONFIRM &amp; PLACE ORDER</button>
+    </div>
+
+    <div class="box" id="done-step" style="display:none;text-align:center;">
+      <div style="font-size:34px;color:var(--vermilion);">✓</div>
+      <h2 style="font-family:'Cinzel',serif;font-size:22px;letter-spacing:.1em;margin:8px 0;">ORDER CONFIRMED</h2>
+      <p id="done-msg" style="font-size:14px;color:var(--muted);margin-bottom:20px;"></p>
+      <a href="index.html" class="btn-vermilion" style="display:inline-block;text-decoration:none;">RETURN TO STORE</a>
+    </div>
+  </div>
+
+  <script src="upi-qr.js"></script>
+  <script>
+    const draft = JSON.parse(localStorage.getItem("trive_payment_draft") || "null");
+    if (!draft || !draft.items || !draft.items.length) {
+      document.getElementById("pay-meta").innerHTML = `No active order found. <a href="checkout.html">Return to Checkout</a>.`;
+      document.getElementById("confirm-btn").style.display = "none";
+    } else {
+      document.getElementById("pay-meta").textContent = `${draft.shipping.name} • ${draft.shipping.city} (${draft.shipping.pin}) • Grand Total: ₹${draft.total}`;
+      document.getElementById("pay-big").textContent = "₹" + draft.total;
+      document.getElementById("cod-big").textContent = "₹" + draft.total;
+      if (draft.mode === "UPI") {
+        document.getElementById("upi-panel").style.display = "block";
+        const upiUrl = `upi://pay?pa=Dev11verma@ybl&pn=TRIVE&am=${encodeURIComponent(draft.total)}&cu=INR`;
+        const slot = document.getElementById("qr-slot");
+        if (typeof window.renderUPIQR === "function") window.renderUPIQR(slot, { amount: draft.total, upiId: "Dev11verma@ybl", name: "TRIVE" });
+        else if (typeof window.generateUPIQR === "function") slot.innerHTML = window.generateUPIQR(draft.total);
+        else slot.innerHTML = `<a href="${upiUrl}" style="display:inline-block;margin-top:8px;padding:10px 18px;background:#9E2A2B;color:#F5F0E6;border-radius:6px;font-weight:700;text-decoration:none;">Pay ₹${draft.total} in UPI App</a>`;
+      } else {
+        document.getElementById("cod-panel").style.display = "block";
+      }
+    }
+
+    async function finishOrder() {
+      if (!draft) return;
+      const btn = document.getElementById("confirm-btn");
+      btn.disabled = true;
+      btn.textContent = "LOGGING ORDER...";
+      const utr = (document.getElementById("pay-utr")?.value || "").trim() || (draft.mode === "COD" ? "COD" : "UPI_PENDING");
+      const oid = "TV-" + Math.floor(1000 + Math.random() * 9000);
+      try {
+        await fetch("https://trive-api.onrender.com/api/order", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            orderId: oid,
+            customer: { name: draft.shipping.name, phone: draft.shipping.phone, email: draft.shipping.email },
+            address: { street: draft.shipping.addr, city: draft.shipping.city, state: "Madhya Pradesh", pincode: draft.shipping.pin },
+            items: draft.items,
+            totalAmount: draft.total,
+            paymentMode: draft.mode,
+            utr
+          })
+        });
+      } catch (e) {}
+      localStorage.removeItem("trive_cart");
+      localStorage.removeItem("nw_trive_bag");
+      localStorage.removeItem("trive_payment_draft");
+      document.getElementById("pay-step").style.display = "none";
+      document.getElementById("done-step").style.display = "block";
+      document.getElementById("done-msg").textContent = `Order ID: #${oid} • Delivery to: ${draft.shipping.city} (${draft.shipping.pin}) • Payment: ${draft.mode} • Total: ₹${draft.total}`;
+    }
+  </script>
+</body>
+</html>
