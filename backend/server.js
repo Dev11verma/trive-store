@@ -10,49 +10,67 @@ const PORT = process.env.PORT || 5000;
 const DB_FILE = path.resolve('orders.json');
 
 const QIKINK_CLIENT_ID = process.env.QIKINK_CLIENT_ID || '979710787663166';
-const QIKINK_CLIENT_SECRET = process.env.QIKINK_CLIENT_SECRET || '748049b9438fb541618c6b7bd2a43f4574ee1917b591ae8c51f69b98a50c39f3';
+const QIKINK_CLIENT_SECRET = process.env.QIKINK_CLIENT_SECRET || '';
 
-// Configure your Nodemailer transporter for Gmail notifications
+const gmailUser = process.env.GMAIL_USER || process.env.EMAIL_USER || 'support.trive@gmail.com';
+const gmailPass = (process.env.GMAIL_PASS || process.env.EMAIL_APP_PASSWORD || '').replace(/\s+/g, '');
+
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'abhayvermasoni604@gmail.com',
-    pass: process.env.EMAIL_APP_PASSWORD || '' // Set this in your Render environment variables (Gmail App Password)
+    user: gmailUser,
+    pass: gmailPass
+  }
+});
+
+transporter.verify((err) => {
+  if (err) {
+    console.error('[TRIVÉ Mailer Verify Failed]:', err.message);
+  } else {
+    console.log(`[TRIVÉ Mailer Ready] Sending via ${gmailUser}`);
   }
 });
 
 async function sendOrderEmail(orderData, fullOrderText) {
   try {
-    const custEmail = orderData?.email || orderData?.customerEmail || orderData?.customer?.email || 'N/A';
+    if (!gmailUser || !gmailPass) {
+      console.warn('[TRIVÉ Mailer Skipped] Missing GMAIL_USER or GMAIL_PASS');
+      return;
+    }
+
+    const custEmail = orderData?.email || orderData?.customerEmail || orderData?.customer?.email || '';
     const deliveryWay = orderData?.deliveryWay || (orderData?.paymentMode === 'COD' ? 'Cash on Delivery (COD - ₹149 Fee)' : 'UPI Prepaid');
     const payRef = orderData?.utr || orderData?.paymentId || orderData?.paymentStatus || 'N/A';
     const productLine = orderData?.productName || orderData?.product?.name || orderData?.product || 'N/A';
     const amountLine = orderData?.total ?? orderData?.amount ?? orderData?.product?.price ?? 'N/A';
 
     const bodyText = [
-      'New Paid Order on TRIVÉ via Razorpay!',
+      'New Order on TRIVÉ!',
       '',
       `Order ID: ${orderData?.orderId || 'N/A'}`,
-      `Razorpay Payment ID: ${payRef}`,
+      `Payment Ref / UTR: ${payRef}`,
       `Customer Name: ${orderData?.customer || orderData?.customerName || 'N/A'}`,
       `Phone No: ${orderData?.phone || 'N/A'}`,
-      `Customer Email: ${custEmail}`,
+      `Customer Email: ${custEmail || 'N/A'}`,
       `Delivery Way: ${deliveryWay}`,
       `Product: ${productLine}`,
-      `Amount Paid: ₹${amountLine}`,
+      `Amount: ₹${amountLine}`,
       `Delivery Address: ${orderData?.address || 'N/A'}`,
       `Payment Status: ${orderData?.paymentStatus || deliveryWay}`,
       `Qikink Status: ${orderData?.qikinkStatus || 'PENDING'}`,
       fullOrderText ? `\n${fullOrderText}` : ''
     ].filter(Boolean).join('\n');
 
+    const recipients = [gmailUser, custEmail].filter(Boolean).join(', ');
+
     await transporter.sendMail({
-      from: '"TRIVÉ Storefront" <abhayvermasoni604@gmail.com>',
-      to: 'abhayvermasoni604@gmail.com',
+      from: `"TRIVÉ Storefront" <${gmailUser}>`,
+      to: recipients,
       subject: `🚨 New Order Confirmed [${orderData?.orderId || 'ORDER'}] - ₹${amountLine}`,
       text: bodyText
     });
-    console.log(`Email notification sent successfully for ${orderData?.orderId}`);
+
+    console.log(`Email notification sent successfully for ${orderData?.orderId} to ${recipients}`);
   } catch (err) {
     console.error('Failed to send email notification:', err.message);
   }
@@ -68,15 +86,12 @@ function loadOrders() {
       return [];
     }
     let data = fs.readFileSync(DB_FILE, 'utf8');
-    
-    // Automatically strip UTF-8 BOM character if present
     if (data.charCodeAt(0) === 0xFEFF) {
       data = data.slice(1);
     }
-    
     return JSON.parse(data);
   } catch (err) {
-    console.error("Failed reading orders.json", err);
+    console.error('Failed reading orders.json', err);
     return [];
   }
 }
@@ -91,9 +106,7 @@ function saveOrders(ordersList) {
 
 let orders = loadOrders();
 
-// Comprehensive Store SKU Dictionary for all 28 variants
 const QIKINK_STORE_SKUS = {
-  // Black / Grey
   'Bk-XS': 'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9neU',
   'Bk-S':  'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nee',
   'Bk-M':  'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nef',
@@ -101,8 +114,6 @@ const QIKINK_STORE_SKUS = {
   'Bk-XL': 'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9neZ',
   'Bk-XXL':'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nea',
   'Bk-3XL':'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9neb',
-
-  // Navy Blue
   'Nb-XS': 'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nSZ',
   'Nb-S':  'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9neV',
   'Nb-M':  'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nSc',
@@ -110,8 +121,6 @@ const QIKINK_STORE_SKUS = {
   'Nb-XL': 'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nSe',
   'Nb-XXL':'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nSf',
   'Nb-3XL':'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nSY',
-
-  // Bottle Green
   'Gn-XS': 'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nWe',
   'Gn-S':  'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nSa',
   'Gn-M':  'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nSb',
@@ -119,8 +128,6 @@ const QIKINK_STORE_SKUS = {
   'Gn-XL': 'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nSV',
   'Gn-XXL':'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nWc',
   'Gn-3XL':'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nWd',
-
-  // Maroon
   'Mn-XS': 'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nWV',
   'Mn-S':  'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nWf',
   'Mn-M':  'v-9R6p1SeGaVZW1sUJPBAtubfWqALf9nWY',
@@ -131,23 +138,17 @@ const QIKINK_STORE_SKUS = {
 };
 
 async function getQikinkAuth() {
-  const hosts = [
-    'https://api.qikink.com',
-    'https://sandbox.qikink.com'
-  ];
-
+  const hosts = ['https://api.qikink.com', 'https://sandbox.qikink.com'];
   for (const host of hosts) {
     try {
       const params = new URLSearchParams();
       params.append('ClientId', QIKINK_CLIENT_ID);
       params.append('client_secret', QIKINK_CLIENT_SECRET);
-
       const res = await fetch(`${host}/api/token`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: params.toString()
       });
-
       const data = await res.json();
       const token = data?.Accesstoken || data?.access_token || data?.token;
       if (token) return { token, baseUrl: host };
@@ -172,7 +173,6 @@ app.get('/admin', (req, res) => {
   const orderCards = orders.slice().reverse().map(o => {
     const isAccepted = o.acceptanceStatus === 'ACCEPTED';
     const isRejected = o.acceptanceStatus === 'REJECTED';
-
     const statusBadge = isAccepted
       ? `<span style="background:#22c55e22;color:#22c55e;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:700;">APPROVED & DISPATCHED</span>`
       : isRejected
@@ -195,26 +195,14 @@ app.get('/admin', (req, res) => {
         <div style="color:#aaa;font-size:13px;line-height:1.6;margin-bottom:12px;">
           <strong>Customer:</strong> ${o.customer} (<a href="tel:${o.phone}" style="color:#d7ff3e;">${o.phone}</a>)<br>
           <strong>Address:</strong> ${o.address}<br>
-          <strong>Payment:</strong> ₹${o.total.toLocaleString('en-IN')} &bull; ${o.paymentStatus}<br>
+          <strong>Payment:</strong> ₹${Number(o.total || 0).toLocaleString('en-IN')} &bull; ${o.paymentStatus}<br>
           <strong>Qikink Status:</strong> <span style="color:#38bdf8;">${o.qikinkStatus || 'Awaiting Review'}</span>
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;border-top:1px solid #222;padding-top:12px;">
-          ${!isAccepted ? `
-            <button onclick="updateOrderStatus('${o.orderId}', 'ACCEPTED')" style="background:#d7ff3e;color:#000;border:none;padding:8px 16px;border-radius:6px;font-size:12px;font-weight:bold;cursor:pointer;">
-              ✓ Accept Order
-            </button>
-          ` : ''}
-          ${!isRejected ? `
-            <button onclick="updateOrderStatus('${o.orderId}', 'REJECTED')" style="background:#222;color:#ef4444;border:1px solid #444;padding:8px 14px;border-radius:6px;font-size:12px;cursor:pointer;">
-              ✕ Reject
-            </button>
-          ` : ''}
-          <a href="${o.whatsappLink}" target="_blank" style="background:#25D366;color:#000;text-decoration:none;padding:8px 14px;border-radius:6px;font-size:12px;font-weight:bold;text-transform:uppercase;">
-            📲 WhatsApp
-          </a>
-          <button onclick="navigator.clipboard.writeText(decodeURIComponent('${encodeURIComponent(JSON.stringify(o.qikinkPayload))}')); alert('Qikink payload copied!');" style="background:#1a1a1a;color:#fff;border:1px solid #333;padding:8px 14px;border-radius:6px;font-size:12px;cursor:pointer;">
-            📋 Copy Payload
-          </button>
+          ${!isAccepted ? `<button onclick="updateOrderStatus('${o.orderId}', 'ACCEPTED')" style="background:#d7ff3e;color:#000;border:none;padding:8px 16px;border-radius:6px;font-size:12px;font-weight:bold;cursor:pointer;">✓ Accept Order</button>` : ''}
+          ${!isRejected ? `<button onclick="updateOrderStatus('${o.orderId}', 'REJECTED')" style="background:#222;color:#ef4444;border:1px solid #444;padding:8px 14px;border-radius:6px;font-size:12px;cursor:pointer;">✕ Reject</button>` : ''}
+          <a href="${o.whatsappLink}" target="_blank" style="background:#25D366;color:#000;text-decoration:none;padding:8px 14px;border-radius:6px;font-size:12px;font-weight:bold;text-transform:uppercase;">📲 WhatsApp</a>
+          <button onclick="navigator.clipboard.writeText(decodeURIComponent('${encodeURIComponent(JSON.stringify(o.qikinkPayload))}')); alert('Qikink payload copied!');" style="background:#1a1a1a;color:#fff;border:1px solid #333;padding:8px 14px;border-radius:6px;font-size:12px;cursor:pointer;">📋 Copy Payload</button>
         </div>
       </div>
     `;
@@ -271,7 +259,7 @@ app.post('/api/order/status', (req, res) => {
 });
 
 app.post('/api/order', async (req, res) => {
-  const { customer, product, size, color, quantity, utr, address } = req.body || {};
+  const { customer, product, items, size, color, quantity, utr, address, totalAmount: bodyTotal, paymentMode } = req.body || {};
 
   if (!customer?.name || !customer?.phone || !address?.city) {
     return res.status(400).json({ error: 'Customer name, phone, and address are required.' });
@@ -279,21 +267,25 @@ app.post('/api/order', async (req, res) => {
 
   orders = loadOrders();
   const orderNum = 1000 + orders.length + 1;
-  const orderId = `TV-${orderNum}`;
+  const orderId = req.body?.orderId || `TV-${orderNum}`;
   const alphanumericOrderNo = `TRV${Date.now().toString().slice(-4)}${orderNum}`;
-  
-  let unitPrice = Number(product?.price) || 1799;
-  if (unitPrice > 10000) unitPrice = Math.round(unitPrice / 100);
 
-  const qty = parseInt(quantity, 10) || 1;
-  const totalAmount = unitPrice;
-  const garmentColor = color || 'Washed Mineral Grey';
-  let garmentSize = (size || 'L').toUpperCase().trim();
+  const firstItem = Array.isArray(items) && items.length ? items[0] : null;
+  const computedItemsTotal = Array.isArray(items) && items.length
+    ? items.reduce((sum, item) => sum + (Number(item.price) || 0) * (parseInt(item.quantity, 10) || 1), 0)
+    : 0;
+
+  let totalAmount = Number(bodyTotal) || computedItemsTotal || Number(product?.price) || 1799;
+  if (totalAmount > 10000) totalAmount = Math.round(totalAmount / 100);
+
+  const qty = parseInt(quantity || firstItem?.quantity, 10) || 1;
+  const unitPrice = Math.max(1, Math.round(totalAmount / qty));
+  const garmentColor = color || firstItem?.color || 'Washed Mineral Grey';
+  let garmentSize = (size || firstItem?.size || 'L').toUpperCase().trim();
   if (garmentSize === '2XL') garmentSize = 'XXL';
 
   const cleanPhone = customer.phone.replace(/[^0-9]/g, '').slice(-10);
 
-  // Parse color prefix
   let colorPrefix = 'Bk';
   if (garmentColor.toLowerCase().includes('blue')) colorPrefix = 'Nb';
   else if (garmentColor.toLowerCase().includes('green')) colorPrefix = 'Gn';
@@ -302,7 +294,9 @@ app.post('/api/order', async (req, res) => {
   const variantKey = `${colorPrefix}-${garmentSize}`;
   const resolvedStoreSku = QIKINK_STORE_SKUS[variantKey] || QIKINK_STORE_SKUS['Bk-L'];
 
-  const productName = product?.name || "You Can't Please Everyone // Acid Wash Hoodie";
+  const productName = Array.isArray(items) && items.length > 1
+    ? items.map(i => `${i.name} (${i.size || 'L'} × ${i.quantity || 1})`).join(', ')
+    : (product?.name || firstItem?.name || "You Can't Please Everyone // Acid Wash Hoodie");
 
   const waMsg = encodeURIComponent(
     `*TRIVÉ // ORDER CONFIRMED [${orderId}]*\n\n` +
@@ -316,25 +310,28 @@ app.post('/api/order', async (req, res) => {
     `⚡ *Status:* Reviewing order in TRIVÉ Command Center.\n\n` +
     `_TRIVÉ Heavywear — BORN TO RULE._`
   );
-  const whatsappLink = `https://wa.me/919202142350${cleanPhone}?text=${waMsg}`;
-  const isCod = utr?.toUpperCase() === 'COD';
+  const whatsappLink = cleanPhone.length === 10
+    ? `https://wa.me/91${cleanPhone}?text=${waMsg}`
+    : `https://wa.me/?text=${waMsg}`;
+
+  const isCod = (paymentMode || '').toUpperCase() === 'COD' || (utr || '').toUpperCase() === 'COD';
 
   const qikinkPayload = {
     order_number: alphanumericOrderNo,
-    qikink_shipping: "1",
-    gateway: isCod ? "COD" : "Prepaid",
+    qikink_shipping: '1',
+    gateway: isCod ? 'COD' : 'Prepaid',
     total_order_value: String(totalAmount),
     shipping_address: {
       first_name: customer.name.split(' ')[0],
       last_name: customer.name.split(' ').slice(1).join(' ') || 'Customer',
       address1: address.street,
-      address2: "",
+      address2: '',
       phone: cleanPhone,
-      email: customer.email || "support.trive@gmail.com",
+      email: customer.email || gmailUser,
       city: address.city,
       zip: String(address.pincode),
-      province: address.state || "Madhya Pradesh",
-      country_code: "IN"
+      province: address.state || 'Madhya Pradesh',
+      country_code: 'IN'
     },
     line_items: [
       {
@@ -387,7 +384,7 @@ app.post('/api/order', async (req, res) => {
     size: garmentSize,
     quantity: qty,
     total: totalAmount,
-    paymentStatus: isCod ? 'Pending (COD)' : `Prepaid (UTR: ${utr})`,
+    paymentStatus: isCod ? 'Pending (COD)' : `Prepaid (UTR: ${utr || 'UPI_PENDING'})`,
     customer: customer.name,
     phone: customer.phone,
     email: customer?.email || req.body?.email || 'N/A',
@@ -403,9 +400,8 @@ app.post('/api/order', async (req, res) => {
   orders.push(newOrder);
   saveOrders(orders);
 
-  // Trigger silent email notification to abhayvermasoni604@gmail.com
   const emailTextSummary = `Product: ${productName}\nColor: ${garmentColor}\nSize: ${garmentSize}\nQuantity: ${qty}\nPayment: ${newOrder.paymentStatus}`;
-  sendOrderEmail(newOrder, emailTextSummary);
+  await sendOrderEmail(newOrder, emailTextSummary);
 
   res.json({
     success: true,
@@ -422,5 +418,3 @@ app.get('/api/orders', (req, res) => res.json({ brand: 'TRIVÉ', total: orders.l
 app.listen(PORT, () => {
   console.log(`TRIVÉ Engine running on http://localhost:${PORT}`);
 });
-
-

@@ -52,8 +52,8 @@ const PRODUCTS = [
   {
     id: 'deadpool-crop-01',
     name: 'Deadpool "Do I Look Like I Care?" // Cropped Hoodie',
-    price: 1799,
-    originalPrice: 2499,
+    price: 1399,
+    originalPrice: 2199,
     gender: 'women',
     category: 'hoodie',
     sku: 'TRV-DP-CROP-01',
@@ -125,7 +125,7 @@ const PRODUCTS = [
   {
     id: 'marvel-doomsday-bg-01',
     name: 'Doomsday // Cutout Graphic Hoodie',
-    price: 1499,
+    price: 1299,
     originalPrice: 2099,
     gender: 'unisex',
     category: 'hoodie',

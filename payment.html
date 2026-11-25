@@ -11,19 +11,30 @@
   <style>
     :root { --bg:#F5F0E6; --card:#EFE9DD; --ink:#221D19; --muted:#6E655C; --line:rgba(34,29,25,.28); --vermilion:#9E2A2B; }
     * { box-sizing:border-box; margin:0; padding:0; }
-    body { background:var(--bg); color:var(--ink); font-family:'Plus Jakarta Sans',sans-serif; min-height:100vh; }
-    .pay-shell { max-width:640px; margin:0 auto; padding:28px 20px 56px; }
+    body { background:var(--bg); color:var(--ink); font-family:'Plus Jakarta Sans',sans-serif; min-height:100vh; position:relative; overflow-x:hidden; }
+    .engrave-side { position:fixed; top:0; bottom:0; width:185px; pointer-events:none; opacity:.25; z-index:0; }
+    .engrave-side.left { left:0; }
+    .engrave-side.right { right:0; transform:scaleX(-1); }
+    .pay-shell { position:relative; z-index:1; max-width:640px; margin:0 auto; padding:28px 20px 56px; }
     .brand-head { text-align:center; margin-bottom:28px; }
-    .word { font-family:'Cinzel',serif; font-size:2.4rem; font-weight:700; letter-spacing:.14em; color:var(--ink); text-decoration:none; }
+    .word { font-family:'Cinzel',serif; font-size:2.5rem; font-weight:700; letter-spacing:.14em; color:var(--ink); text-decoration:none; }
     .seal { display:inline-block; background:var(--vermilion); color:#F5F0E6; font-size:9px; font-weight:800; padding:3px 5px; border-radius:3px; vertical-align:bottom; margin-left:4px; }
     .sub-t { font-family:'Cinzel',serif; font-size:20px; letter-spacing:.14em; margin-top:10px; }
-    .box { border:1px solid var(--line); background:rgba(239,233,221,.6); border-radius:8px; padding:26px; }
+    .box { border:1px solid var(--line); background:rgba(239,233,221,.65); border-radius:8px; padding:26px; }
     .qr-dark { background:#181512; color:#F5F0E6; border-radius:8px; padding:22px; text-align:center; margin:16px 0; }
     .qr-dark canvas, .qr-dark img { margin:12px auto; display:block; background:#fff; padding:8px; border-radius:8px; }
     .btn-vermilion { width:100%; background:var(--vermilion); color:#F5F0E6; border:none; border-radius:6px; padding:15px; font-size:13px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; cursor:pointer; margin-top:10px; }
+    @media(max-width:780px) { .engrave-side { display:none; } }
   </style>
 </head>
 <body>
+  <svg class="engrave-side left" viewBox="0 0 180 900" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="35" cy="310" r="88" stroke="#5A4F45" stroke-width="1.1"/><rect x="20" y="419" width="60" height="270" stroke="#5A4F45" stroke-width="1.2"/><circle cx="35" cy="790" r="105" stroke="#5A4F45" stroke-width="1.2"/>
+  </svg>
+  <svg class="engrave-side right" viewBox="0 0 180 900" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="35" cy="310" r="88" stroke="#5A4F45" stroke-width="1.1"/><rect x="20" y="419" width="60" height="270" stroke="#5A4F45" stroke-width="1.2"/><circle cx="35" cy="790" r="105" stroke="#5A4F45" stroke-width="1.2"/>
+  </svg>
+
   <div class="pay-shell">
     <a href="checkout.html" style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;">← Edit Checkout</a>
     <header class="brand-head">
@@ -83,31 +94,55 @@
       if (!draft) return;
       const btn = document.getElementById("confirm-btn");
       btn.disabled = true;
-      btn.textContent = "LOGGING ORDER...";
+      btn.textContent = "PLACING ORDER...";
       const utr = (document.getElementById("pay-utr")?.value || "").trim() || (draft.mode === "COD" ? "COD" : "UPI_PENDING");
       const oid = "TV-" + Math.floor(1000 + Math.random() * 9000);
+      const apiEndpoint = "https://www.trivestore.in/api/order";
+      const payload = {
+        orderId: oid,
+        customer: { name: draft.shipping.name, phone: draft.shipping.phone, email: draft.shipping.email },
+        address: { street: draft.shipping.addr, city: draft.shipping.city, state: "Madhya Pradesh", pincode: draft.shipping.pin },
+        product: { name: draft.items[0]?.name || "TRIVE Drop 01", sku: draft.items[0]?.sku || "TRV-01", price: draft.total },
+        items: draft.items,
+        totalAmount: draft.total,
+        paymentMode: draft.mode,
+        utr
+      };
       try {
-        await fetch("https://trive-api.onrender.com/api/order", {
+        const res = await fetch(apiEndpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            orderId: oid,
-            customer: { name: draft.shipping.name, phone: draft.shipping.phone, email: draft.shipping.email },
-            address: { street: draft.shipping.addr, city: draft.shipping.city, state: "Madhya Pradesh", pincode: draft.shipping.pin },
-            items: draft.items,
-            totalAmount: draft.total,
-            paymentMode: draft.mode,
-            utr
-          })
+          body: JSON.stringify(payload)
         });
-      } catch (e) {}
-      localStorage.removeItem("trive_cart");
-      localStorage.removeItem("nw_trive_bag");
-      localStorage.removeItem("trive_payment_draft");
-      document.getElementById("pay-step").style.display = "none";
-      document.getElementById("done-step").style.display = "block";
-      document.getElementById("done-msg").textContent = `Order ID: #${oid} • Delivery to: ${draft.shipping.city} (${draft.shipping.pin}) • Payment: ${draft.mode} • Total: ₹${draft.total}`;
-    }
+        const data = await res.json();
+        if (!res.ok || !data.success) throw new Error(data.error || "Order failed on server");
+        localStorage.removeItem("trive_cart");
+        localStorage.removeItem("nw_trive_bag");
+        localStorage.removeItem("trive_payment_draft");
+        document.getElementById("pay-step").style.display = "none";
+        document.getElementById("done-step").style.display = "block";
+        document.getElementById("done-msg").textContent = `Order ID: #${data.orderId || oid} • Delivery to: ${draft.shipping.city} (${draft.shipping.pin}) • Payment: ${draft.mode} • Total: ₹${draft.total}`;
+      } catch (e) {
+        btn.disabled = false;
+        btn.textContent = "CONFIRM & PLACE ORDER";
+        alert("Order could not reach server: " + e.message);
+      }
+    });
+    const data = await res.json();
+    if (!res.ok || !data.success) throw new Error(data.error || "Order failed on server");
+
+    localStorage.removeItem("trive_cart");
+    localStorage.removeItem("nw_trive_bag");
+    localStorage.removeItem("trive_payment_draft");
+    document.getElementById("pay-step").style.display = "none";
+    document.getElementById("done-step").style.display = "block";
+    document.getElementById("done-msg").textContent = `Order ID: #${data.orderId || oid} • Delivery to: ${draft.shipping.city} (${draft.shipping.pin}) • Payment: ${draft.mode} • Total: ₹${draft.total}`;
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = "CONFIRM & PLACE ORDER";
+    alert("Order could not reach server: " + e.message);
+  }
+}
   </script>
 </body>
 </html>

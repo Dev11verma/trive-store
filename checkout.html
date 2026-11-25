@@ -28,25 +28,23 @@
       position: relative;
       overflow-x: hidden;
     }
-    /* Fine-line architectural temple & mandala side engravings */
     .engrave-side {
       position: fixed;
       top: 0;
       bottom: 0;
-      width: 170px;
+      width: 185px;
       pointer-events: none;
-      opacity: 0.24;
+      opacity: 0.25;
       z-index: 0;
     }
     .engrave-side.left { left: 0; }
     .engrave-side.right { right: 0; transform: scaleX(-1); }
-
     .page-shell {
       position: relative;
       z-index: 1;
-      max-width: 980px;
+      max-width: 960px;
       margin: 0 auto;
-      padding: 28px 24px 56px;
+      padding: 26px 24px 56px;
     }
     .top-back {
       display: inline-block;
@@ -56,14 +54,10 @@
       text-transform: uppercase;
       color: var(--muted);
       text-decoration: none;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .top-back:hover { color: var(--ink); }
-
-    .brand-head {
-      text-align: center;
-      margin-bottom: 34px;
-    }
+    .brand-head { text-align: center; margin-bottom: 34px; }
     .brand-mark {
       display: inline-flex;
       align-items: flex-end;
@@ -71,9 +65,9 @@
       text-decoration: none;
       color: var(--ink);
     }
-    .brand-mark span.word {
+    .brand-mark .word {
       font-family: 'Cinzel', serif;
-      font-size: clamp(2.1rem, 4vw, 2.9rem);
+      font-size: clamp(2.2rem, 4vw, 3rem);
       font-weight: 700;
       letter-spacing: 0.14em;
       line-height: 1;
@@ -86,18 +80,15 @@
       padding: 3px 5px;
       border-radius: 3px;
       line-height: 1.05;
-      letter-spacing: 0.04em;
       margin-bottom: 3px;
     }
     .page-title {
       font-family: 'Cinzel', serif;
-      font-size: 22px;
+      font-size: 21px;
       font-weight: 600;
       letter-spacing: 0.14em;
       margin-top: 12px;
-      color: var(--ink);
     }
-
     .co-grid {
       display: grid;
       grid-template-columns: 1.35fr 0.85fr;
@@ -105,7 +96,7 @@
       align-items: start;
     }
     .sec-lbl {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
       letter-spacing: 0.08em;
       color: #3A2622;
@@ -113,12 +104,11 @@
       margin: 22px 0 10px;
     }
     .sec-lbl:first-child { margin-top: 0; }
-
     .arch-input, .arch-select {
       width: 100%;
       padding: 12px 14px;
       margin-bottom: 12px;
-      background: rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.36);
       border: 1px solid var(--line);
       border-radius: 6px;
       font-family: inherit;
@@ -129,22 +119,17 @@
     }
     .arch-input:focus, .arch-select:focus {
       border-color: var(--vermilion);
-      background: rgba(255, 255, 255, 0.72);
+      background: rgba(255, 255, 255, 0.75);
     }
-    .arch-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
+    .arch-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .summary-card {
       border: 1px solid var(--line-soft);
-      background: rgba(239, 233, 221, 0.55);
+      background: rgba(239, 233, 221, 0.58);
       border-radius: 8px;
       padding: 22px;
     }
     .summary-card h2 {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -168,33 +153,8 @@
       font-size: 11px;
       margin-top: 2px;
     }
-    .promo-row {
-      display: flex;
-      gap: 8px;
-      margin: 14px 0 6px;
-    }
-    .promo-row input {
-      flex: 1;
-      padding: 8px 10px;
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      background: rgba(255,255,255,0.45);
-      font-size: 12px;
-    }
-    .promo-row button {
-      padding: 8px 12px;
-      border: 1px solid var(--ink);
-      background: transparent;
-      color: var(--ink);
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      cursor: pointer;
-    }
     .sum-totals {
-      margin-top: 14px;
+      margin-top: 16px;
       padding-top: 12px;
       border-top: 1px solid var(--line-soft);
       display: flex;
@@ -214,11 +174,7 @@
       font-weight: 700;
       letter-spacing: 0.04em;
     }
-
-    .cta-wrap {
-      text-align: center;
-      margin-top: 34px;
-    }
+    .cta-wrap { text-align: center; margin-top: 34px; }
     .btn-complete {
       background: var(--vermilion);
       color: #F5F0E6;
@@ -237,65 +193,38 @@
       background: var(--vermilion-dark);
       transform: translateY(-1px);
     }
-
-    @media (max-width: 960px) {
-      .engrave-side { width: 85px; opacity: 0.14; }
-    }
-    @media (max-width: 780px) {
-      .engrave-side { display: none; }
-      .co-grid, .arch-row { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 960px) { .engrave-side { width: 90px; opacity: 0.14; } }
+    @media (max-width: 780px) { .engrave-side { display: none; } .co-grid, .arch-row { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
-
-  <!-- Engraved Temple Pillar & Mandala Line Art (Left & Right) -->
   <svg class="engrave-side left" viewBox="0 0 180 900" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <path d="M0 0 C95 45 145 115 110 195 C85 245 35 230 55 170 C70 125 125 145 115 210" stroke="#5A4F45" stroke-width="1.3"/>
-    <circle cx="35" cy="310" r="88" stroke="#5A4F45" stroke-width="1.1"/>
-    <circle cx="35" cy="310" r="64" stroke="#5A4F45" stroke-width="1" stroke-dasharray="4 4"/>
-    <circle cx="35" cy="310" r="40" stroke="#5A4F45" stroke-width="1.1"/>
-    <rect x="12" y="405" width="76" height="14" rx="2" stroke="#5A4F45" stroke-width="1.2"/>
-    <rect x="20" y="419" width="60" height="270" stroke="#5A4F45" stroke-width="1.2"/>
-    <line x1="35" y1="419" x2="35" y2="689" stroke="#5A4F45" stroke-width="1"/>
-    <line x1="50" y1="419" x2="50" y2="689" stroke="#5A4F45" stroke-width="1"/>
-    <line x1="65" y1="419" x2="65" y2="689" stroke="#5A4F45" stroke-width="1"/>
-    <circle cx="35" cy="790" r="105" stroke="#5A4F45" stroke-width="1.2"/>
-    <circle cx="35" cy="790" r="76" stroke="#5A4F45" stroke-width="1"/>
-    <circle cx="35" cy="790" r="46" stroke="#5A4F45" stroke-width="1.1" stroke-dasharray="3 3"/>
+    <circle cx="35" cy="310" r="88" stroke="#5A4F45" stroke-width="1.1"/><circle cx="35" cy="310" r="64" stroke="#5A4F45" stroke-width="1" stroke-dasharray="4 4"/><circle cx="35" cy="310" r="40" stroke="#5A4F45" stroke-width="1.1"/>
+    <rect x="12" y="405" width="76" height="14" rx="2" stroke="#5A4F45" stroke-width="1.2"/><rect x="20" y="419" width="60" height="270" stroke="#5A4F45" stroke-width="1.2"/>
+    <line x1="35" y1="419" x2="35" y2="689" stroke="#5A4F45" stroke-width="1"/><line x1="50" y1="419" x2="50" y2="689" stroke="#5A4F45" stroke-width="1"/><line x1="65" y1="419" x2="65" y2="689" stroke="#5A4F45" stroke-width="1"/>
+    <circle cx="35" cy="790" r="105" stroke="#5A4F45" stroke-width="1.2"/><circle cx="35" cy="790" r="76" stroke="#5A4F45" stroke-width="1"/><circle cx="35" cy="790" r="46" stroke="#5A4F45" stroke-width="1.1" stroke-dasharray="3 3"/>
   </svg>
   <svg class="engrave-side right" viewBox="0 0 180 900" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <path d="M0 0 C95 45 145 115 110 195 C85 245 35 230 55 170 C70 125 125 145 115 210" stroke="#5A4F45" stroke-width="1.3"/>
-    <circle cx="35" cy="310" r="88" stroke="#5A4F45" stroke-width="1.1"/>
-    <circle cx="35" cy="310" r="64" stroke="#5A4F45" stroke-width="1" stroke-dasharray="4 4"/>
-    <circle cx="35" cy="310" r="40" stroke="#5A4F45" stroke-width="1.1"/>
-    <rect x="12" y="405" width="76" height="14" rx="2" stroke="#5A4F45" stroke-width="1.2"/>
-    <rect x="20" y="419" width="60" height="270" stroke="#5A4F45" stroke-width="1.2"/>
-    <line x1="35" y1="419" x2="35" y2="689" stroke="#5A4F45" stroke-width="1"/>
-    <line x1="50" y1="419" x2="50" y2="689" stroke="#5A4F45" stroke-width="1"/>
-    <line x1="65" y1="419" x2="65" y2="689" stroke="#5A4F45" stroke-width="1"/>
-    <circle cx="35" cy="790" r="105" stroke="#5A4F45" stroke-width="1.2"/>
-    <circle cx="35" cy="790" r="76" stroke="#5A4F45" stroke-width="1"/>
-    <circle cx="35" cy="790" r="46" stroke="#5A4F45" stroke-width="1.1" stroke-dasharray="3 3"/>
+    <circle cx="35" cy="310" r="88" stroke="#5A4F45" stroke-width="1.1"/><circle cx="35" cy="310" r="64" stroke="#5A4F45" stroke-width="1" stroke-dasharray="4 4"/><circle cx="35" cy="310" r="40" stroke="#5A4F45" stroke-width="1.1"/>
+    <rect x="12" y="405" width="76" height="14" rx="2" stroke="#5A4F45" stroke-width="1.2"/><rect x="20" y="419" width="60" height="270" stroke="#5A4F45" stroke-width="1.2"/>
+    <line x1="35" y1="419" x2="35" y2="689" stroke="#5A4F45" stroke-width="1"/><line x1="50" y1="419" x2="50" y2="689" stroke="#5A4F45" stroke-width="1"/><line x1="65" y1="419" x2="65" y2="689" stroke="#5A4F45" stroke-width="1"/>
+    <circle cx="35" cy="790" r="105" stroke="#5A4F45" stroke-width="1.2"/><circle cx="35" cy="790" r="76" stroke="#5A4F45" stroke-width="1"/><circle cx="35" cy="790" r="46" stroke="#5A4F45" stroke-width="1.1" stroke-dasharray="3 3"/>
   </svg>
 
   <div class="page-shell">
     <a href="index.html" class="top-back">← Back to Store</a>
-
     <header class="brand-head">
-      <a href="index.html" class="brand-mark">
-        <span class="word">TRIVÉ</span>
-        <span class="brand-seal">त्रि<br>वे</span>
-      </a>
+      <a href="index.html" class="brand-mark"><span class="word">TRIVÉ</span><span class="brand-seal">त्रि<br>वे</span></a>
       <h1 class="page-title">CHECKOUT</h1>
     </header>
 
     <form id="co-form" onsubmit="proceedToPayment(event)">
       <div class="co-grid">
-        <!-- LEFT COLUMN: CONTACT, SHIPPING, PAYMENT -->
         <div>
           <div class="sec-lbl">CONTACT</div>
-          <input class="arch-input" id="co-name" required placeholder="Full Name" />
+          <input class="arch-input" id="co-name" required placeholder="First & Last Name" />
           <div class="arch-row">
             <input class="arch-input" id="co-email" type="email" required placeholder="Email Address" />
             <input class="arch-input" id="co-phone" type="tel" required placeholder="Mobile Number (WhatsApp)" />
@@ -315,21 +244,12 @@
           </select>
         </div>
 
-        <!-- RIGHT COLUMN: ORDER SUMMARY -->
         <aside class="summary-card">
           <h2>ORDER SUMMARY</h2>
           <div id="co-items"></div>
-
-          <div class="promo-row">
-            <input id="co-promo" placeholder="Promo (FIRST50, TRIVE10)" />
-            <button type="button" onclick="applyPromo()">Apply</button>
-          </div>
-          <div id="co-promo-msg" style="font-size:11px;font-weight:700;color:var(--vermilion);"></div>
-
           <div class="sum-totals">
             <div class="sum-line"><span>SUBTOTAL</span><span id="co-sub">₹0</span></div>
-            <div class="sum-line"><span>Discount</span><span id="co-disc">-₹0</span></div>
-            <div class="sum-line"><span>Shipping &amp; Handling</span><span id="co-fee">₹0</span></div>
+            <div class="sum-line"><span>Shipping &amp; Handling</span><span id="co-fee">FREE (₹0)</span></div>
             <div class="sum-grand"><span>GRAND TOTAL</span><span id="co-total">₹0</span></div>
           </div>
         </aside>
@@ -342,26 +262,11 @@
   </div>
 
   <script>
-    let disc = 0;
     const bag = JSON.parse(localStorage.getItem("trive_cart") || localStorage.getItem("nw_trive_bag") || "[]");
     const saved = JSON.parse(localStorage.getItem("trive_shipping") || "null");
-    if (saved) {
-      ["name","email","phone","addr","city","pin"].forEach(k => {
-        const el = document.getElementById("co-" + k);
-        if (el && saved[k]) el.value = saved[k];
-      });
-    }
-
-    function applyPromo() {
-      const code = (document.getElementById("co-promo").value || "").trim().toUpperCase();
-      const sub = bag.reduce((s, i) => s + Number(i.price) * (Number(i.quantity) || 1), 0);
-      if (code === "FIRST50") disc = Math.round(sub * 0.38);
-      else if (code === "TRIVE10") disc = Math.round(sub * 0.10);
-      else if (code === "BUNDLE300") disc = sub >= 1500 ? 300 : 0;
-      else disc = 0;
-      document.getElementById("co-promo-msg").textContent = disc > 0 ? `Applied ${code} (-₹${disc})` : "Invalid or inapplicable code";
-      renderSummary();
-    }
+    if (saved) ["name","email","phone","addr","city","pin"].forEach(k => { const el = document.getElementById("co-" + k); if (el && saved[k]) el.value = saved[k]; });
+    const pm = localStorage.getItem("trive_pay_mode");
+    if (pm && document.getElementById("co-mode")) document.getElementById("co-mode").value = pm;
 
     function renderSummary() {
       const mode = document.getElementById("co-mode").value;
@@ -369,12 +274,10 @@
         ? bag.map((i, idx) => `<div class="sum-item"><div><strong>${i.name || ("ITEM " + (idx + 1))}</strong><small>${i.color || "Standard"} • Size ${i.size || "L"} × ${i.quantity || 1}</small></div><strong>₹${Number(i.price) * (Number(i.quantity) || 1)}</strong></div>`).join("")
         : `<p style="font-size:13px;color:var(--muted);">Your bag is empty. <a href="index.html" style="color:var(--vermilion);">Return to store</a>.</p>`;
       const sub = bag.reduce((s, i) => s + Number(i.price) * (Number(i.quantity) || 1), 0);
-      const afterDisc = Math.max(0, sub - disc);
       const fee = (mode === "COD" && sub > 0) ? 149 : 0;
       document.getElementById("co-sub").textContent = "₹" + sub;
-      document.getElementById("co-disc").textContent = "-₹" + disc;
       document.getElementById("co-fee").textContent = fee === 0 ? "FREE (₹0)" : "₹" + fee;
-      document.getElementById("co-total").textContent = "₹" + (afterDisc + fee);
+      document.getElementById("co-total").textContent = "₹" + (sub + fee);
     }
 
     function proceedToPayment(e) {
@@ -382,7 +285,6 @@
       if (!bag.length) return alert("Your bag is empty.");
       const mode = document.getElementById("co-mode").value;
       const sub = bag.reduce((s, i) => s + Number(i.price) * (Number(i.quantity) || 1), 0);
-      const afterDisc = Math.max(0, sub - disc);
       const fee = mode === "COD" ? 149 : 0;
       const ship = {
         name: document.getElementById("co-name").value.trim(),
@@ -393,9 +295,7 @@
         pin: document.getElementById("co-pin").value.trim()
       };
       localStorage.setItem("trive_shipping", JSON.stringify(ship));
-      localStorage.setItem("trive_payment_draft", JSON.stringify({
-        mode, subtotal: sub, discount: disc, fee, total: afterDisc + fee, items: bag, shipping: ship
-      }));
+      localStorage.setItem("trive_payment_draft", JSON.stringify({ mode, subtotal: sub, fee, total: sub + fee, items: bag, shipping: ship }));
       location.href = "payment.html";
     }
     renderSummary();
