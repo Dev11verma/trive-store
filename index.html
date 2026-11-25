@@ -8,14 +8,14 @@
   <title>TRIVÉ // BORN TO RULE — Archival Heavywear</title>
   <link rel="icon" type="image/png" href="assets/Main/fevicon.png" />
   <link rel="apple-touch-icon" href="assets/Main/fevicon.png" />
-  <meta name="description" content="TRIVÉ Heavywear — Archival Indian streetwear crafted in 240–380 GSM combed cotton. Drop 01 & 02 launching December 1." />
+  <meta name="description" content="TRIVÉ Heavywear — Archival Indian streetwear crafted in 260–420 GSM combed cotton. Drop 01 launching December 1." />
   <link rel="canonical" href="https://trivestore.in/" />
   <meta property="og:title" content="TRIVÉ // BORN TO RULE — Drop 01 Launching Dec 1" />
   <meta property="og:image" content="https://trivestore.in/assets/lookbook/160957.jpeg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="nw-styles.css" />
+  <link rel="stylesheet" href="nw-styles.css?v=3" />
 </head>
 <body>
   <div id="root-ticker"></div>
@@ -32,16 +32,11 @@
     <section id="root-faq"></section>
     <section id="root-story"></section>
   </main>
-  <div id="slot-checkout"></div>
   <footer id="root-footer"></footer>
   <div id="root-modals"></div>
-  <script src="products.js"></script>
-  <script src="upi-qr.js"></script>
-  <script src="nw-data.js"></script>
-  <script src="nw-ui.js"></script>
-  <script src="app.js"></script>
-  <script>fetch('checkout-views.html').then(r=>r.ok?r.text():'').then(h=>{const s=document.getElementById('slot-checkout');if(s&&h)s.innerHTML=h;if(typeof updateCartUI==='function')updateCartUI();});</script>
-  <script src="./reviews.js"></script>
-  <script src="./fit-guide.js"></script>
+
+  <script src="products.js?v=3"></script>
+  <script src="nw-data.js?v=3"></script>
+  <script src="nw-ui.js?v=3"></script>
 </body>
 </html>
