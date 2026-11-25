@@ -38,3 +38,9 @@ function openPolicy(k){const[t,b]=NW_DATA.policies[k]||["TRIVÉ",""];document.ge
 function openTrackModal(){document.getElementById("nw-track-modal").classList.add("open")}
 
 mountShell();renderLookbook();renderCatalogs();renderBag();
+// brokenImgGuard: hide broken or empty images cleanly instead of showing browser broken-icon
+document.addEventListener("error", function (ev) {
+  if (ev.target && ev.target.tagName === "IMG") {
+    ev.target.style.display = "none";
+  }
+}, true);
