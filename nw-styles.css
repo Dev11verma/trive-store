@@ -58,17 +58,3 @@ body{background:var(--bg-ivory);color:var(--ink-main);font-family:'Plus Jakarta 
 .nw-modal-bg.open{display:flex}
 .nw-modal-card{background:var(--bg-ivory);color:var(--ink-main);max-width:640px;width:100%;max-height:85vh;overflow-y:auto;border-radius:18px;padding:28px;border:1px solid var(--border)}
 @media(max-width:860px){.nw-links{display:none}.nw-split,.nw-footer-grid{grid-template-columns:1fr}}
-/* Hide un-triggered checkout-views sub-panels until activated */
-#slot-checkout > div:not(.active):not(.open):not([style*="display: block"]):not([style*="display: flex"]) {
-  display: none;
-}
-#slot-checkout img[src=""], #slot-checkout img:not([src]) {
-  display: none !important;
-}
-/* Keep standalone checkout/payment blocks hidden on index.html */
-body:not([data-page="checkout"]):not([data-page="payment"]) #slot-checkout,
-body:not([data-page="checkout"]):not([data-page="payment"]) [id*="payment-mode"],
-body:not([data-page="checkout"]):not([data-page="payment"]) [id*="upi-qr"],
-body:not([data-page="checkout"]):not([data-page="payment"]) [class*="upi-qr"] {
-  display: none !important;
-}
