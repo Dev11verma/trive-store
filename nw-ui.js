@@ -3,7 +3,7 @@ const colorIdx = {}, sizeIdx = {};
 let nwBag = JSON.parse(localStorage.getItem("trive_cart") || localStorage.getItem("nw_trive_bag") || "[]");
 
 function mountShell() {
-  document.getElementById("root-ticker").innerHTML = `<div class="nw-ticker">DROP 01 // BORN TO RULE • CODE FIRST50 (38% OFF FIRST 50 ORDERS) • ZERO-FEE UPI PREPAID</div>`;
+  document.getElementById("root-ticker").innerHTML = `<div class="nw-ticker">DROP 01 // BORN TO RULE • CODE FIRST50 (38% OFF ON ORDERS ₹2,500+) • ZERO-FEE UPI PREPAID</div>`;
   document.getElementById("root-header").innerHTML = `<div class="nw-header"><nav class="nw-nav"><a href="index.html" class="nw-brand">TRIVÉ</a><div class="nw-links"><a href="#root-hoodies">Hoodies</a><a href="#root-zip-hoodies">Zip Hoodies</a><a href="#root-jackets">Jackets</a><a href="#root-tees">Tees &amp; Sweatshirts</a><a href="#root-lowerwear">Lowerwear</a><a href="#root-custom">Custom Atelier</a><a href="#root-reviews">Reviews</a><a href="#root-faq">FAQ</a><a href="#root-story">Our Story</a></div><div class="nw-actions"><a href="classic-backup/index.html" class="nw-btn ghost">Classic View</a><button type="button" class="nw-btn ghost" onclick="openTrackModal()">Track AWB</button><button type="button" class="nw-btn" onclick="openBag()">Bag (<span id="nw-bag-count">0</span>)</button></div></nav></div>`;
   document.getElementById("root-banner").innerHTML = `<div class="nw-banner"><div class="nw-banner-box"><img src="assets/Main/banner.png" alt="TRIVÉ Archival Heritage Banner" onerror="this.style.display='none'" /><div class="nw-banner-bar"><span style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-soft);font-weight:700;">DROP 01 // ARCHIVAL HEAVYWEAR</span><button type="button" class="nw-btn" style="background:var(--gold-soft);color:#161412;border-color:var(--gold-soft);" onclick="toggleGlobalView()">View: <span id="nw-view-txt">Back Artwork</span></button></div></div></div>`;
   document.getElementById("root-lookbook").innerHTML = `<div class="nw-lookbook"><div class="nw-marquee" id="nw-lookbook-track"></div></div>`;
@@ -94,13 +94,43 @@ function renderCatalogs() {
 
 function addProd(id){const p=PRODUCTS.find(x=>x.id===id);if(!p)return;const c=p.colors[colorIdx[id]||0]||p.colors[0],sz=sizeIdx[id]||"L",found=nwBag.find(i=>i.id===p.id&&i.color===c.name&&i.size===sz);if(found)found.quantity+=1;else nwBag.push({id:p.id,sku:p.sku,name:p.name,price:p.price,color:c.name,size:sz,image:c.images[0],quantity:1});saveBag();openBag()}
 function updateCustomPreview(){const[l,p]=document.getElementById("cust-garment").value.split("|");const el=document.getElementById("cust-preview-txt");el.textContent=document.getElementById("cust-text").value||"BORN TO RULE";el.style.color=document.getElementById("cust-ink").value;document.getElementById("cust-price-lbl").textContent=`₹${p} (UPI Prepaid Only)`}
-function addCustomToBag(){const[l,p]=document.getElementById("cust-garment").value.split("|");const txt=(document.getElementById("cust-text").value||"BORN TO RULE").trim();nwBag.push({id:"cust-"+Date.now(),sku:"TRV-CUSTOM-01",name:`${l} ["${txt}"]`,price:Number(p),color:"Bespoke UPI Only",size:document.getElementById("cust-size").value,image:"assets/Main/banner.png",quantity:1});saveBag();openBag()}
-function setPay(m){payMode=m;document.getElementById("nw-pay-upi").className=m==="UPI"?"nw-btn":"nw-btn ghost";document.getElementById("nw-pay-cod").className=m==="COD"?"nw-btn":"nw-btn ghost";renderBag()}
+function addCustomToBag(){const[l,p]=document.getElementById("cust-garment").value.split("|");const txt=(document.getElementById("cust-text").value||"BORN TO RULE").trim();nwBag.push({id:"cust-"+Date.now(),sku:"TRV-CUSTOM-01",name:`${l} ["${txt}"]`,price:Number(p),color:"Bespoke UPI Only",size:document.getElementById("cust-size").value,image:"assets/Main/banner.png",quantity:1});if(payMode==="COD")setPay("UPI");saveBag();openBag()}
+
+function setPay(m) {
+  if (m === "COD" && nwBag.some(i => i.sku === "TRV-CUSTOM-01")) {
+    alert("Custom Atelier 1-of-1 pieces are available on UPI Prepaid only.");
+    return;
+  }
+  payMode = m;
+  document.getElementById("nw-pay-upi").className = m === "UPI" ? "nw-btn" : "nw-btn ghost";
+  document.getElementById("nw-pay-cod").className = m === "COD" ? "nw-btn" : "nw-btn ghost";
+  renderBag();
+}
+
 function saveBag(){localStorage.setItem("trive_cart",JSON.stringify(nwBag));localStorage.setItem("nw_trive_bag",JSON.stringify(nwBag));if(Array.isArray(window.cart)){window.cart.length=0;nwBag.forEach(i=>window.cart.push(i));}if(typeof window.updateCartUI==="function")window.updateCartUI();renderBag()}
 function openBag(){renderBag();document.getElementById("nw-bag-modal").classList.add("open")}
 function closeBag(){document.getElementById("nw-bag-modal").classList.remove("open")}
 function removeItem(idx){nwBag.splice(idx,1);saveBag()}
-function renderBag(){document.getElementById("nw-bag-count").textContent=nwBag.reduce((s,i)=>s+(i.quantity||1),0);const sub=nwBag.reduce((s,i)=>s+i.price*(i.quantity||1),0),fee=(payMode==="COD"&&sub>0)?149:0;document.getElementById("nw-bag-total").textContent=`Total: ₹${sub+fee}`;document.getElementById("nw-bag-list").innerHTML=nwBag.length?nwBag.map((i,idx)=>`<div style="display:flex;justify-content:space-between;align-items:center;background:var(--bg-card);padding:10px;border-radius:10px;"><div><strong style="font-size:13px;">${i.name}</strong><div style="font-size:12px;color:var(--ink-muted);">${i.color} • ${i.size} × ${i.quantity||1}</div></div><div style="display:flex;align-items:center;gap:10px;"><strong>₹${i.price*(i.quantity||1)}</strong><button type="button" onclick="removeItem(${idx})" style="background:none;border:none;color:var(--vermilion);font-weight:700;cursor:pointer;">✕</button></div></div>`).join(""):'<p style="color:var(--ink-muted);font-size:14px;">Bag is empty.</p>'}
+
+function renderBag() {
+  document.getElementById("nw-bag-count").textContent = nwBag.reduce((s, i) => s + (i.quantity || 1), 0);
+  const sub = nwBag.reduce((s, i) => s + i.price * (i.quantity || 1), 0);
+  const fee = (payMode === "COD" && sub > 0) ? 149 : 0;
+  const minCoupon = 2500;
+  const rem = Math.max(0, minCoupon - sub);
+
+  const promoHint = sub === 0
+    ? ""
+    : rem > 0
+      ? `<div style="background:rgba(212,175,55,.12);border:1px solid var(--gold);color:var(--ink);padding:8px 12px;border-radius:10px;font-size:12px;margin-top:6px;">Add <strong>₹${rem}</strong> more to unlock <strong>FIRST50 (38% OFF)</strong> on orders ₹2,500+</div>`
+      : `<div style="background:rgba(37,211,102,.14);border:1px solid #25D366;color:var(--ink);padding:8px 12px;border-radius:10px;font-size:12px;margin-top:6px;">✓ Cart eligible for <strong>FIRST50 (38% OFF)</strong> — apply at checkout!</div>`;
+
+  document.getElementById("nw-bag-total").textContent = `Total: ₹${sub + fee}`;
+  document.getElementById("nw-bag-list").innerHTML = (nwBag.length
+    ? nwBag.map((i, idx) => `<div style="display:flex;justify-content:space-between;align-items:center;background:var(--bg-card);padding:10px;border-radius:10px;"><div><strong style="font-size:13px;">${i.name}</strong><div style="font-size:12px;color:var(--ink-muted);">${i.color} • ${i.size} × ${i.quantity || 1}</div></div><div style="display:flex;align-items:center;gap:10px;"><strong>₹${i.price * (i.quantity || 1)}</strong><button type="button" onclick="removeItem(${idx})" style="background:none;border:none;color:var(--vermilion);font-weight:700;cursor:pointer;">✕</button></div></div>`).join("")
+    : '<p style="color:var(--ink-muted);font-size:14px;">Bag is empty.</p>') + promoHint;
+}
+
 function openRealCheckout() {if (!nwBag.length) return;saveBag();localStorage.setItem("trive_pay_mode", payMode);window.location.href = "checkout.html";}
 function notifyLowerwear(){const em=document.getElementById("nw-notify-email").value.trim();document.getElementById("nw-notify-msg").textContent=em?`Registered ${em} for Lowerwear early access.`:"Enter an email first."}
 function openPolicy(k){const[t,b]=NW_DATA.policies[k]||["TRIVÉ",""];document.getElementById("nw-pol-title").textContent=t;document.getElementById("nw-pol-body").innerHTML=`<p>${b}</p>`;document.getElementById("nw-policy-modal").classList.add("open")}
