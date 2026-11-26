@@ -41,20 +41,26 @@ function buildCard(p){
   return `<article class="nw-card"><div class="nw-img"><span class="nw-tag">${p.tag||"Drop 01"}</span><img src="${m}" alt="${p.name}" loading="lazy" onmouseover="this.src='${h}'" onmouseout="this.src='${m}'" /></div><div class="nw-body"><strong style="font-size:15px;">${p.name}</strong><div style="margin:6px 0;"><strong style="font-size:16px;">₹${p.price}</strong>${p.originalPrice?`<span style="text-decoration:line-through;color:var(--ink-muted);font-size:13px;margin-left:6px;">₹${p.originalPrice}</span>`:""}</div><div class="nw-swatches">${sw}</div><div class="nw-sizes">${sl}</div><button type="button" class="nw-add" onclick="addProd('${p.id}')">+ Add (${c.name} / ${sz})</button></div></article>`;
 }
 
-function renderCatalogs(){
-  if(typeof PRODUCTS==="undefined")return;
-  const norm = p => (p.category||"").toLowerCase().replace(/\s+/g,"");
-  const hoodieEl = document.getElementById("nw-hoodie-grid");
-  const zipEl = document.getElementById("nw-zip-grid");
-  const jacketEl = document.getElementById("nw-jacket-grid");
-  const teeEl = document.getElementById("nw-tee-grid");
-  const lowerEl = document.getElementById("nw-lower-grid");
+function renderLookbook() {
+  const track = document.getElementById("nw-lookbook-track");
+  if (!track) return;
 
-  if(hoodieEl) hoodieEl.innerHTML = PRODUCTS.filter(p => norm(p) === "hoodie").map(buildCard).join("");
-  if(zipEl) zipEl.innerHTML = PRODUCTS.filter(p => norm(p) === "ziphoodie" || norm(p) === "zip-hoodie").map(buildCard).join("");
-  if(jacketEl) jacketEl.innerHTML = PRODUCTS.filter(p => norm(p) === "jacket").map(buildCard).join("");
-  if(teeEl) teeEl.innerHTML = PRODUCTS.filter(p => ["tshirt","t-shirt","sweatshirt"].includes(norm(p))).map(buildCard).join("");
-  if(lowerEl) lowerEl.innerHTML = PRODUCTS.filter(p => ["lower","lowerwear"].includes(norm(p))).map(buildCard).join("");
+  const lookbookItems = [
+    { img: "assets/lookbook/160959.jpeg", caption: "ARCHIVE 01 // LOOK 01" },
+    { img: "assets/lookbook/160958.jpeg", caption: "ARCHIVE 01 // LOOK 02" },
+    { img: "assets/lookbook/160957.jpeg", caption: "ARCHIVE 01 // LOOK 03" },
+    { img: "assets/lookbook/160956.PNG", caption: "ARCHIVE 01 // LOOK 04" },
+    { img: "assets/lookbook/160950.jpeg", caption: "ARCHIVE 01 // LOOK 05" },
+    { img: "assets/lookbook/160951.jpeg", caption: "ARCHIVE 01 // LOOK 06" },
+    { img: "assets/lookbook/160952.jpeg", caption: "ARCHIVE 01 // LOOK 07" },
+    { img: "assets/lookbook/160953.jpeg", caption: "ARCHIVE 01 // LOOK 08" }
+  ];
+
+  const cards = lookbookItems.map(item =>
+    `<div class="nw-look" onclick="document.getElementById('root-hoodies').scrollIntoView({behavior:'smooth'})"><img src="${item.img}" alt="${item.caption}" loading="lazy" /><span>${item.caption}</span></div>`
+  ).join("");
+
+  track.innerHTML = cards + cards;
 }
 
 function addProd(id){const p=PRODUCTS.find(x=>x.id===id);if(!p)return;const c=p.colors[colorIdx[id]||0]||p.colors[0],sz=sizeIdx[id]||"L",found=nwBag.find(i=>i.id===p.id&&i.color===c.name&&i.size===sz);if(found)found.quantity+=1;else nwBag.push({id:p.id,sku:p.sku,name:p.name,price:p.price,color:c.name,size:sz,image:c.images[0],quantity:1});saveBag();openBag()}
