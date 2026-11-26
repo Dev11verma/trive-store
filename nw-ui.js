@@ -39,7 +39,6 @@ function toggleGlobalView(){
 function renderLookbook() {
   const track = document.getElementById("nw-lookbook-track");
   if (!track) return;
-
   const lookbookItems = [
     { img: "assets/lookbook/160959.jpeg", caption: "ARCHIVE 01 // LOOK 01" },
     { img: "assets/lookbook/160958.jpeg", caption: "ARCHIVE 01 // LOOK 02" },
@@ -49,20 +48,31 @@ function renderLookbook() {
     { img: "assets/lookbook/160951.jpeg", caption: "ARCHIVE 01 // LOOK 06" },
     { img: "assets/lookbook/160950.jpeg", caption: "ARCHIVE 01 // LOOK 07" }
   ];
-
   const cards = lookbookItems.map(item =>
     `<div class="nw-look" onclick="document.getElementById('root-hoodies').scrollIntoView({behavior:'smooth'})"><img src="${item.img}" alt="${item.caption}" loading="lazy" onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src=this.src.replace('.jpeg','.png');}else if(this.dataset.tried==='1'){this.dataset.tried='2';this.src=this.src.replace('.png','.jpg');}else{this.parentElement.style.display='none';}" /><span>${item.caption}</span></div>`
   ).join("");
-
   track.innerHTML = cards + cards;
 }
 
-function buildCard(p){
-  const cI=colorIdx[p.id]||0, sz=sizeIdx[p.id]||"L", c=p.colors?.[cI]||{name:"Standard",hex:"#18181b",images:[""]};
-  const b=c.images[0]||"", f=c.images[1]||c.images[0]||"", m=showFront?f:b, h=showFront?b:f;
-  const sw=(p.colors||[]).slice(0,8).map((col,idx)=>`<button type="button" class="nw-swatch ${idx===cI?"active":""}" style="background:${col.hex};" title="${col.name}" onclick="colorIdx['${p.id}']=${idx}; renderCatalogs();"></button>`).join("");
-  const sl=["S","M","L","XL"].map(s=>`<button type="button" class="nw-size ${s===sz?"active":""}" onclick="sizeIdx['${p.id}']='${s}'; renderCatalogs();">${s}</button>`).join("");
-  return `<article class="nw-card"><div class="nw-img"><span class="nw-tag">${p.tag||"Drop 01"}</span><img src="${m}" alt="${p.name}" loading="lazy" onmouseover="this.src='${h}'" onmouseout="this.src='${m}'" /></div><div class="nw-body"><strong style="font-size:15px;">${p.name}</strong><div style="margin:6px 0;"><strong style="font-size:16px;">₹${p.price}</strong>${p.originalPrice?`<span style="text-decoration:line-through;color:var(--ink-muted);font-size:13px;margin-left:6px;">₹${p.originalPrice}</span>`:""}</div><div class="nw-swatches">${sw}</div><div class="nw-sizes">${sl}</div><button type="button" class="nw-add" onclick="addProd('${p.id}')">+ Add (${c.name} / ${sz})</button></div></article>`;
+function buildCard(p) {
+  const cI = colorIdx[p.id] || 0;
+  const sz = sizeIdx[p.id] || "L";
+  const c = p.colors?.[cI] || { name: "Standard", hex: "#18181b", images: [""] };
+  const b = c.images[0] || "";
+  const f = c.images[1] || c.images[0] || "";
+  const m = showFront ? f : b;
+  const h = showFront ? b : f;
+  const isSoon = (p.tag || "").toLowerCase().includes("coming soon");
+  const sw = (p.colors || []).slice(0, 8).map((col, idx) =>
+    `<button type="button" class="nw-swatch ${idx === cI ? "active" : ""}" style="background:${col.hex};" title="${col.name}" onclick="colorIdx['${p.id}']=${idx}; renderCatalogs();"></button>`
+  ).join("");
+  const sl = ["S", "M", "L", "XL", "XXL"].map(s =>
+    `<button type="button" class="nw-size ${s === sz ? "active" : ""}" onclick="sizeIdx['${p.id}']='${s}'; renderCatalogs();">${s}</button>`
+  ).join("");
+  const actionBtn = isSoon
+    ? `<button type="button" class="nw-add" disabled style="opacity:.55;cursor:not-allowed;">Coming Soon // Drop 03</button>`
+    : `<button type="button" class="nw-add" onclick="addProd('${p.id}')">+ Add (${c.name} / ${sz})</button>`;
+  return `<article class="nw-card"><div class="nw-img"><span class="nw-tag">${p.tag || "Drop 01"}</span><img src="${m}" alt="${p.name}" loading="lazy" onmouseover="this.src='${h}'" onmouseout="this.src='${m}'" /></div><div class="nw-body"><strong style="font-size:15px;">${p.name}</strong><div style="margin:6px 0;"><strong style="font-size:16px;">₹${p.price}</strong>${p.originalPrice ? `<span style="text-decoration:line-through;color:var(--ink-muted);font-size:13px;margin-left:6px;">₹${p.originalPrice}</span>` : ""}</div><div class="nw-swatches">${sw}</div><div class="nw-sizes">${sl}</div>${actionBtn}</div></article>`;
 }
 
 function renderCatalogs() {
