@@ -30,15 +30,10 @@ function mountShell() {
   document.getElementById("root-modals").innerHTML = `<div class="nw-modal-bg" id="nw-bag-modal" onclick="if(event.target===this) closeBag()"><div class="nw-modal-card"><div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);padding-bottom:12px;margin-bottom:14px;"><strong style="font-family:'Cinzel',serif;font-size:18px;">YOUR BAG</strong><button type="button" onclick="closeBag()" style="background:none;border:none;font-size:20px;cursor:pointer;">✕</button></div><div id="nw-bag-list" style="display:flex;flex-direction:column;gap:10px;max-height:260px;overflow-y:auto;"></div><div style="display:flex;gap:8px;margin-top:14px;"><button type="button" id="nw-pay-upi" class="nw-btn" style="flex:1;" onclick="setPay('UPI')">UPI Prepaid (₹0)</button><button type="button" id="nw-pay-cod" class="nw-btn ghost" style="flex:1;" onclick="setPay('COD')">COD (+₹149)</button></div><div style="border-top:1px solid var(--border);padding-top:14px;margin-top:14px;display:flex;justify-content:space-between;align-items:center;"><strong id="nw-bag-total" style="font-size:17px;">Total: ₹0</strong><button type="button" class="nw-btn" onclick="openRealCheckout()">Proceed to Checkout →</button></div></div></div><div class="nw-modal-bg" id="nw-policy-modal" onclick="if(event.target===this) this.classList.remove('open')"><div class="nw-modal-card"><div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);padding-bottom:12px;margin-bottom:14px;"><strong id="nw-pol-title" style="font-family:'Cinzel',serif;font-size:18px;">POLICY</strong><button type="button" onclick="document.getElementById('nw-policy-modal').classList.remove('open')" style="background:none;border:none;font-size:20px;cursor:pointer;">✕</button></div><div id="nw-pol-body" style="font-size:14px;color:var(--ink-muted);"></div></div></div><div class="nw-modal-bg" id="nw-track-modal" onclick="if(event.target===this) this.classList.remove('open')"><div class="nw-modal-card" style="max-width:440px;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;"><strong style="font-family:'Cinzel',serif;font-size:17px;">TRACK AWB</strong><button type="button" onclick="document.getElementById('nw-track-modal').classList.remove('open')" style="background:none;border:none;font-size:20px;cursor:pointer;">✕</button></div><div style="display:flex;gap:8px;"><input type="text" id="nw-awb-input" placeholder="Enter AWB..." style="flex:1;padding:10px;border-radius:10px;border:1px solid var(--border);" /><button type="button" class="nw-btn" onclick="const v=document.getElementById('nw-awb-input').value.trim(); if(v) window.open('https://courierupdates.com/?awb='+encodeURIComponent(v),'_blank','noopener');">Track</button></div></div></div>`;
 }
 
-function toggleGlobalView(){showFront=!showFront;document.getElementById("nw-view-txt").textContent=showFront?"Front View":"Back Artwork";renderCatalogs()}
-function renderLookbook(){if(typeof PRODUCTS==="undefined")return;const cards=PRODUCTS.slice(0,10).map(p=>`<div class="nw-look" onclick="document.getElementById('root-hoodies').scrollIntoView({behavior:'smooth'})"><img src="${(p.colors?.[0]?.images?.[0])||""}" alt="${p.name}" loading="lazy" /><span>${p.name}</span></div>`).join("");document.getElementById("nw-lookbook-track").innerHTML=cards+cards}
-
-function buildCard(p){
-  const cI=colorIdx[p.id]||0, sz=sizeIdx[p.id]||"L", c=p.colors?.[cI]||{name:"Standard",hex:"#18181b",images:[""]};
-  const b=c.images[0]||"", f=c.images[1]||c.images[0]||"", m=showFront?f:b, h=showFront?b:f;
-  const sw=(p.colors||[]).slice(0,8).map((col,idx)=>`<button type="button" class="nw-swatch ${idx===cI?"active":""}" style="background:${col.hex};" title="${col.name}" onclick="colorIdx['${p.id}']=${idx}; renderCatalogs();"></button>`).join("");
-  const sl=["S","M","L","XL"].map(s=>`<button type="button" class="nw-size ${s===sz?"active":""}" onclick="sizeIdx['${p.id}']='${s}'; renderCatalogs();">${s}</button>`).join("");
-  return `<article class="nw-card"><div class="nw-img"><span class="nw-tag">${p.tag||"Drop 01"}</span><img src="${m}" alt="${p.name}" loading="lazy" onmouseover="this.src='${h}'" onmouseout="this.src='${m}'" /></div><div class="nw-body"><strong style="font-size:15px;">${p.name}</strong><div style="margin:6px 0;"><strong style="font-size:16px;">₹${p.price}</strong>${p.originalPrice?`<span style="text-decoration:line-through;color:var(--ink-muted);font-size:13px;margin-left:6px;">₹${p.originalPrice}</span>`:""}</div><div class="nw-swatches">${sw}</div><div class="nw-sizes">${sl}</div><button type="button" class="nw-add" onclick="addProd('${p.id}')">+ Add (${c.name} / ${sz})</button></div></article>`;
+function toggleGlobalView(){
+  showFront=!showFront;
+  document.getElementById("nw-view-txt").textContent=showFront?"Front View":"Back Artwork";
+  renderCatalogs();
 }
 
 function renderLookbook() {
@@ -60,6 +55,31 @@ function renderLookbook() {
   ).join("");
 
   track.innerHTML = cards + cards;
+}
+
+function buildCard(p){
+  const cI=colorIdx[p.id]||0, sz=sizeIdx[p.id]||"L", c=p.colors?.[cI]||{name:"Standard",hex:"#18181b",images:[""]};
+  const b=c.images[0]||"", f=c.images[1]||c.images[0]||"", m=showFront?f:b, h=showFront?b:f;
+  const sw=(p.colors||[]).slice(0,8).map((col,idx)=>`<button type="button" class="nw-swatch ${idx===cI?"active":""}" style="background:${col.hex};" title="${col.name}" onclick="colorIdx['${p.id}']=${idx}; renderCatalogs();"></button>`).join("");
+  const sl=["S","M","L","XL"].map(s=>`<button type="button" class="nw-size ${s===sz?"active":""}" onclick="sizeIdx['${p.id}']='${s}'; renderCatalogs();">${s}</button>`).join("");
+  return `<article class="nw-card"><div class="nw-img"><span class="nw-tag">${p.tag||"Drop 01"}</span><img src="${m}" alt="${p.name}" loading="lazy" onmouseover="this.src='${h}'" onmouseout="this.src='${m}'" /></div><div class="nw-body"><strong style="font-size:15px;">${p.name}</strong><div style="margin:6px 0;"><strong style="font-size:16px;">₹${p.price}</strong>${p.originalPrice?`<span style="text-decoration:line-through;color:var(--ink-muted);font-size:13px;margin-left:6px;">₹${p.originalPrice}</span>`:""}</div><div class="nw-swatches">${sw}</div><div class="nw-sizes">${sl}</div><button type="button" class="nw-add" onclick="addProd('${p.id}')">+ Add (${c.name} / ${sz})</button></div></article>`;
+}
+
+function renderCatalogs() {
+  if (typeof PRODUCTS === "undefined" || !Array.isArray(PRODUCTS)) return;
+  const norm = p => (p.category || "").toLowerCase().replace(/\s+/g, "");
+
+  const hoodieEl = document.getElementById("nw-hoodie-grid");
+  const zipEl = document.getElementById("nw-zip-grid");
+  const jacketEl = document.getElementById("nw-jacket-grid");
+  const teeEl = document.getElementById("nw-tee-grid");
+  const lowerEl = document.getElementById("nw-lower-grid");
+
+  if (hoodieEl) hoodieEl.innerHTML = PRODUCTS.filter(p => norm(p) === "hoodie").map(buildCard).join("");
+  if (zipEl) zipEl.innerHTML = PRODUCTS.filter(p => ["ziphoodie", "zip-hoodie"].includes(norm(p))).map(buildCard).join("");
+  if (jacketEl) jacketEl.innerHTML = PRODUCTS.filter(p => norm(p) === "jacket").map(buildCard).join("");
+  if (teeEl) teeEl.innerHTML = PRODUCTS.filter(p => ["tshirt", "t-shirt", "sweatshirt"].includes(norm(p))).map(buildCard).join("");
+  if (lowerEl) lowerEl.innerHTML = PRODUCTS.filter(p => ["lower", "lowerwear"].includes(norm(p))).map(buildCard).join("");
 }
 
 function addProd(id){const p=PRODUCTS.find(x=>x.id===id);if(!p)return;const c=p.colors[colorIdx[id]||0]||p.colors[0],sz=sizeIdx[id]||"L",found=nwBag.find(i=>i.id===p.id&&i.color===c.name&&i.size===sz);if(found)found.quantity+=1;else nwBag.push({id:p.id,sku:p.sku,name:p.name,price:p.price,color:c.name,size:sz,image:c.images[0],quantity:1});saveBag();openBag()}
