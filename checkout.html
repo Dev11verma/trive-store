@@ -247,9 +247,17 @@
         <aside class="summary-card">
           <h2>ORDER SUMMARY</h2>
           <div id="co-items"></div>
+          <div style="margin-top:12px;">
+            <div style="display:flex;gap:8px;">
+              <input class="arch-input" id="co-coupon" placeholder="Coupon code (₹2,500+ orders)" style="margin-bottom:0;text-transform:uppercase;" />
+              <button type="button" onclick="applyCouponCode()" style="padding:0 16px;border-radius:6px;border:1px solid var(--line);background:var(--ink);color:#F5F0E6;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;white-space:nowrap;">Apply</button>
+            </div>
+            <div id="co-coupon-msg" style="font-size:12px;margin-top:6px;min-height:16px;color:var(--muted);"></div>
+          </div>
           <div class="sum-totals">
             <div class="sum-line"><span>SUBTOTAL</span><span id="co-sub">₹0</span></div>
             <div class="sum-line"><span>Shipping &amp; Handling</span><span id="co-fee">FREE (₹0)</span></div>
+            <div class="sum-line" id="co-disc-row" style="display:none;color:var(--vermilion);font-weight:600;"><span>Discount (<span id="co-disc-code"></span>)</span><span id="co-disc-val">-₹0</span></div>
             <div class="sum-grand"><span>GRAND TOTAL</span><span id="co-total">₹0</span></div>
           </div>
         </aside>
@@ -264,30 +272,101 @@
     </div>
   </div>
   <script>
+    const MIN_COUPON_SUBTOTAL = 2500;
     const bag = JSON.parse(localStorage.getItem("trive_cart") || localStorage.getItem("nw_trive_bag") || "[]");
     const saved = JSON.parse(localStorage.getItem("trive_shipping") || "null");
     if (saved) ["name","email","phone","addr","city","pin"].forEach(k => { const el = document.getElementById("co-" + k); if (el && saved[k]) el.value = saved[k]; });
     const pm = localStorage.getItem("trive_pay_mode");
     if (pm && document.getElementById("co-mode")) document.getElementById("co-mode").value = pm;
 
+    let appliedCode = "";
+
+    function getSubtotal() {
+      return bag.reduce((s, i) => s + Number(i.price) * (Number(i.quantity) || 1), 0);
+    }
+
+    function evaluateCoupon(codeRaw, sub) {
+      const code = (codeRaw || "").trim().toUpperCase();
+      if (!code) return { valid: false, code: "", discount: 0, msg: "" };
+      if (sub < MIN_COUPON_SUBTOTAL) {
+        const diff = MIN_COUPON_SUBTOTAL - sub;
+        return { valid: false, code, discount: 0, msg: "Coupons require a minimum order of ₹" + MIN_COUPON_SUBTOTAL + ". Add ₹" + diff + " more to use " + code + "." };
+      }
+      if (code === "FIRST50") {
+        const discount = Math.round(sub * 0.38);
+        return { valid: true, code, discount, msg: "FIRST50 applied (38% off orders ₹2,500+) — saved ₹" + discount + "." };
+      }
+      return { valid: false, code, discount: 0, msg: "Invalid coupon code." };
+    }
+
+    function applyCouponCode() {
+      const input = document.getElementById("co-coupon");
+      const msgEl = document.getElementById("co-coupon-msg");
+      const code = (input.value || "").trim().toUpperCase();
+      if (!code) {
+        appliedCode = "";
+        msgEl.style.color = "var(--muted)";
+        msgEl.textContent = "Enter a coupon code for orders of ₹2,500+.";
+        renderSummary();
+        return;
+      }
+      appliedCode = code;
+      renderSummary();
+    }
+
     function renderSummary() {
       const mode = document.getElementById("co-mode").value;
       document.getElementById("co-items").innerHTML = bag.length
         ? bag.map((i, idx) => `<div class="sum-item"><div><strong>${i.name || ("ITEM " + (idx + 1))}</strong><small>${i.color || "Standard"} • Size ${i.size || "L"} × ${i.quantity || 1}</small></div><strong>₹${Number(i.price) * (Number(i.quantity) || 1)}</strong></div>`).join("")
         : `<p style="font-size:13px;color:var(--muted);">Your bag is empty. <a href="index.html" style="color:var(--vermilion);">Return to store</a>.</p>`;
-      const sub = bag.reduce((s, i) => s + Number(i.price) * (Number(i.quantity) || 1), 0);
+
+      const sub = getSubtotal();
       const fee = (mode === "COD" && sub > 0) ? 149 : 0;
+      const coupon = evaluateCoupon(appliedCode, sub);
+      const discount = coupon.valid ? coupon.discount : 0;
+      const grandTotal = Math.max(0, sub - discount + fee);
+
+      const msgEl = document.getElementById("co-coupon-msg");
+      const discRow = document.getElementById("co-disc-row");
+      if (appliedCode) {
+        msgEl.style.color = coupon.valid ? "#1f6e3a" : "var(--vermilion)";
+        msgEl.textContent = coupon.msg;
+      } else if (sub > 0 && sub < MIN_COUPON_SUBTOTAL) {
+        msgEl.style.color = "var(--muted)";
+        msgEl.textContent = "Add ₹" + (MIN_COUPON_SUBTOTAL - sub) + " more to unlock coupons (₹2,500+ minimum).";
+      } else {
+        msgEl.style.color = "var(--muted)";
+        msgEl.textContent = sub >= MIN_COUPON_SUBTOTAL ? "Eligible for coupons on ₹2,500+ orders." : "";
+      }
+
+      if (coupon.valid && discount > 0) {
+        discRow.style.display = "flex";
+        document.getElementById("co-disc-code").textContent = coupon.code;
+        document.getElementById("co-disc-val").textContent = "-₹" + discount;
+      } else {
+        discRow.style.display = "none";
+        document.getElementById("co-disc-code").textContent = "";
+        document.getElementById("co-disc-val").textContent = "-₹0";
+      }
+
       document.getElementById("co-sub").textContent = "₹" + sub;
       document.getElementById("co-fee").textContent = fee === 0 ? "FREE (₹0)" : "₹" + fee;
-      document.getElementById("co-total").textContent = "₹" + (sub + fee);
+      document.getElementById("co-total").textContent = "₹" + grandTotal;
     }
 
     function proceedToPayment(e) {
       e.preventDefault();
       if (!bag.length) return alert("Your bag is empty.");
       const mode = document.getElementById("co-mode").value;
-      const sub = bag.reduce((s, i) => s + Number(i.price) * (Number(i.quantity) || 1), 0);
+      const sub = getSubtotal();
       const fee = mode === "COD" ? 149 : 0;
+      const coupon = evaluateCoupon(appliedCode, sub);
+      if (appliedCode && !coupon.valid) {
+        renderSummary();
+        return alert(coupon.msg);
+      }
+      const discount = coupon.valid ? coupon.discount : 0;
+      const total = Math.max(0, sub - discount + fee);
       const ship = {
         name: document.getElementById("co-name").value.trim(),
         email: document.getElementById("co-email").value.trim(),
@@ -297,7 +376,16 @@
         pin: document.getElementById("co-pin").value.trim()
       };
       localStorage.setItem("trive_shipping", JSON.stringify(ship));
-      localStorage.setItem("trive_payment_draft", JSON.stringify({ mode, subtotal: sub, fee, total: sub + fee, items: bag, shipping: ship }));
+      localStorage.setItem("trive_payment_draft", JSON.stringify({
+        mode,
+        subtotal: sub,
+        couponCode: coupon.valid ? coupon.code : "",
+        discount,
+        fee,
+        total,
+        items: bag,
+        shipping: ship
+      }));
       location.href = "payment.html";
     }
     renderSummary();
