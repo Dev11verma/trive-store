@@ -1,5 +1,6 @@
 // TRIVÉ Complete Product Catalog & Global State
 const PRODUCTS = [
+  // ================= PULLOVER HOODIES ('hoodie') =================
   {
     id: 'deal-01',
     name: "You Can't Please Everyone // Acid Wash Hoodie",
@@ -32,7 +33,7 @@ const PRODUCTS = [
       { name: 'Graphic Off-White', hex: '#f4f4f5', images: ['assets/karan%20Arjun/Screenshot%202026-11-13%20163032.png', 'assets/karan%20Arjun/Screenshot%202026-11-13%20163020.png'] }
     ]
   },
-    {
+  {
     id: 'doom-01',
     name: 'Marvel Doomsday // Heavy Hoodie',
     price: 1299,
@@ -41,12 +42,12 @@ const PRODUCTS = [
     category: 'hoodie',
     sku: 'TRV-DOOM-01',
     tag: 'Drop 01 // Archival Heavywear',
-    desc: 'Heavyweight oversized streetwear hoodie featuring bold graphic typography and archival front/back artwork across three colorways.',
+    desc: 'Heavyweight oversized streetwear hoodie featuring bold graphic typography and archival front/back artwork across four colorways.',
     colors: [
       { name: 'Black', hex: '#18181b', images: ['assets/DOOMSDAY/Back_2_c_2.jpg', 'assets/DOOMSDAY/Front_1_c_2.jpg'] },
       { name: 'Navy Blue', hex: '#1e293b', images: ['assets/DOOMSDAY/Back_2_c_1.jpg', 'assets/DOOMSDAY/Front_1_c_3.jpg'] },
-      { name: 'off-White', hex: '#c5ca9e', images: ['assets/DOOMSDAY/Back_3_c_2.png', 'assets/DOOMSDAY/Front_3_c_1.png'] },
-      { name: 'White', hex: '#f8fafc', images: ['assets/DOOMSDAY/default.jpg', 'assets/DOOMSDAY/Front_1_c_1.jpg'] },
+      { name: 'Off-White', hex: '#c5ca9e', images: ['assets/DOOMSDAY/Back_3_c_2.png', 'assets/DOOMSDAY/Front_3_c_1.png'] },
+      { name: 'White', hex: '#f8fafc', images: ['assets/DOOMSDAY/default.jpg', 'assets/DOOMSDAY/Front_1_c_1.jpg'] }
     ]
   },
   {
@@ -61,20 +62,6 @@ const PRODUCTS = [
     desc: 'Black cropped hoodie with statement front graphic print and playful back graphic detailing.',
     colors: [
       { name: 'Black', hex: '#18181b', images: ['assets/DEAD%20POOL/Front_1_c_2.jpg', 'assets/DEAD%20POOL/Back_2_c_2.jpg'] }
-    ]
-  },
-  {
-    id: 'spiderman-miles-zip-01',
-    name: 'Spider-Man Miles Morales // Zip-Up Hoodie',
-    price: 1299,
-    originalPrice: 2099,
-    gender: 'unisex',
-    category: 'hoodie',
-    sku: 'TRV-SM-ZIP-01',
-    tag: 'Drop 01 // Archival Zipwear',
-    desc: 'Black zip-up hoodie featuring dual front chest graphics and a full archival Spider-Man Miles Morales back print.',
-    colors: [
-      { name: 'Black', hex: '#18181b', images: ['assets/SPIDER%20MAN/Back_3_c_2.jpg', 'assets/SPIDER%20MAN/Right_Pocket_2_c_2.jpg', 'assets/SPIDER%20MAN/Left_Pocket_1_c_2.jpg'] }
     ]
   },
   {
@@ -133,8 +120,8 @@ const PRODUCTS = [
     tag: 'Drop 01 // Cutout Studio',
     desc: 'Clean studio cutout edition featuring DOOM graphic artwork and chest emblem detailing.',
     colors: [
-      { name: 'Charcoal & Pine', hex: '#1f2937', images: ['assets/MARVEL%20DOOMSDAY/Screenshot_2026-11-22_122212-removebg-preview.png','assets/MARVEL%20DOOMSDAY/Screenshot_2026-11-22_122149-removebg-preview.png'] },
-      { name: 'Black', hex: '#18181b', images: ['assets/MARVEL%20DOOMSDAY/Screenshot_2026-11-22_122155-removebg-preview.png','assets/MARVEL%20DOOMSDAY/Screenshot_2026-11-22_122138-removebg-preview.png'] }
+      { name: 'Charcoal & Pine', hex: '#1f2937', images: ['assets/MARVEL%20DOOMSDAY/Screenshot_2026-11-22_122212-removebg-preview.png', 'assets/MARVEL%20DOOMSDAY/Screenshot_2026-11-22_122149-removebg-preview.png'] },
+      { name: 'Black', hex: '#18181b', images: ['assets/MARVEL%20DOOMSDAY/Screenshot_2026-11-22_122155-removebg-preview.png', 'assets/MARVEL%20DOOMSDAY/Screenshot_2026-11-22_122138-removebg-preview.png'] }
     ]
   },
   {
@@ -230,13 +217,138 @@ const PRODUCTS = [
       { name: 'Grey', hex: '#38393a', images: ['assets/Parth/Screenshot%202026-11-13%20162944.png', 'assets/Parth/Screenshot%202026-11-13%20162907.png'] }
     ]
   },
+
+  // ================= ZIPPED-UP HOODIES ('zip-hoodie') =================
+  {
+    id: 'porsche-s-zip-01',
+    name: 'Porsche S-Crest // Heavy Zip-Up Hoodie',
+    price: 1399,
+    originalPrice: 2199,
+    gender: 'unisex',
+    category: 'zip-hoodie',
+    sku: 'TRV-POR-ZIP-01',
+    tag: 'Drop 01 // Archival Zipwear',
+    desc: 'Full-zip heavyweight fleece hoodie featuring metallic Porsche S-emblem back artwork and minimal chest badge.',
+    colors: [
+      { name: 'Black', hex: '#18181b', images: ['assets/PORCHE/Screenshot%202026-11-26%20142307.png', 'assets/PORCHE/Screenshot%202026-11-26%20142329.png'] },
+      { name: 'White', hex: '#f8fafc', images: ['assets/PORCHE/Screenshot%202026-11-26%20142300.png', 'assets/PORCHE/Screenshot%202026-11-26%20142324.png'] }
+    ]
+  },
+  {
+    id: 'spiderman-miles-zip-01',
+    name: 'Spider-Man Miles Morales // Zip-Up Hoodie',
+    price: 1299,
+    originalPrice: 2099,
+    gender: 'unisex',
+    category: 'zip-hoodie',
+    sku: 'TRV-SM-ZIP-01',
+    tag: 'Drop 01 // Archival Zipwear',
+    desc: 'Black zip-up hoodie featuring dual front chest graphics and a full archival Spider-Man Miles Morales back print.',
+    colors: [
+      { name: 'Black', hex: '#18181b', images: ['assets/SPIDER%20MAN/Back_3_c_2.jpg', 'assets/SPIDER%20MAN/Right_Pocket_2_c_2.jpg', 'assets/SPIDER%20MAN/Left_Pocket_1_c_2.jpg'] }
+    ]
+  },
+
+  // ================= JACKETS ('jacket') =================
+  {
+    id: 'punisher-jacket-01',
+    name: 'Punisher // Contrast Varsity Jacket',
+    price: 1899,
+    originalPrice: 2799,
+    gender: 'unisex',
+    category: 'jacket',
+    sku: 'TRV-JKT-01',
+    tag: 'Drop 01 // Archival Outerwear',
+    desc: 'Heavyweight fleece varsity jacket with contrast off-white sleeves, bold Punisher back emblem in front, and minimal TRIVÉ chest crest.',
+    colors: [
+      { name: 'Black', hex: '#18181b', images: ['assets/Punisher%20Jacket/Back_3_c_2.JPG', 'assets/Punisher%20Jacket/Left_Pocket_1_c_2.JPG'] },
+      { name: 'Navy Blue', hex: '#1e293b', images: ['assets/Punisher%20Jacket/Back_3_c_3.JPG', 'assets/Punisher%20Jacket/Left_Pocket_1_c_3.JPG'] },
+      { name: 'Forest Green', hex: '#14532d', images: ['assets/Punisher%20Jacket/Back_3_c_8.JPG', 'assets/Punisher%20Jacket/Left_Pocket_1_c_8.JPG'] },
+      { name: 'Crimson Red', hex: '#b91c1c', images: ['assets/Punisher%20Jacket/Back_3_c_10.JPG', 'assets/Punisher%20Jacket/Left_Pocket_1_c_10.JPG'] },
+      { name: 'Burgundy Wine', hex: '#4c0519', images: ['assets/Punisher%20Jacket/Back_3_c_25.JPG', 'assets/Punisher%20Jacket/Left_Pocket_1_c_25.JPG'] }
+    ]
+  },
+
+  // ================= T-SHIRTS & SWEATSHIRTS ('t-shirt') =================
+  {
+    id: 'porsche-gt-01',
+    name: 'Porsche 911 GT // Archival Sweatshirt',
+    price: 1299,
+    originalPrice: 2099,
+    gender: 'unisex',
+    category: 't-shirt',
+    sku: 'TRV-POR-02',
+    tag: 'Drop 01 // Archival Crewneck',
+    desc: 'Heavyweight French terry crewneck featuring rear GT wing schematic in front and Porsche side-profile crest on the chest across 7 colorways.',
+    colors: [
+      { name: 'Forest Green', hex: '#1b3626', images: ['assets/PORCHE%202/11.png', 'assets/PORCHE%202/1.png'] },
+      { name: 'Lavender Mist', hex: '#c4b5fd', images: ['assets/PORCHE%202/22.png', 'assets/PORCHE%202/2.png'] },
+      { name: 'Blush Pink', hex: '#f9a8d4', images: ['assets/PORCHE%202/33.png', 'assets/PORCHE%202/3.png'] },
+      { name: 'Midnight Navy', hex: '#1e293b', images: ['assets/PORCHE%202/44.png', 'assets/PORCHE%202/4.png'] },
+      { name: 'Burgundy Wine', hex: '#4c0519', images: ['assets/PORCHE%202/55.png', 'assets/PORCHE%202/5.png'] },
+      { name: 'Black', hex: '#18181b', images: ['assets/PORCHE%202/66.png', 'assets/PORCHE%202/6.png'] },
+      { name: 'White', hex: '#f8fafc', images: ['assets/PORCHE%202/77.png', 'assets/PORCHE%202/7.png'] }
+    ]
+  },
+  {
+    id: 'lions-roar-01',
+    name: 'Lions Roar // Sovereign Sweatshirt',
+    price: 1299,
+    originalPrice: 2099,
+    gender: 'unisex',
+    category: 't-shirt',
+    sku: 'TRV-LION-01',
+    tag: 'Drop 01 // Archival Crewneck',
+    desc: 'Oversized heavyweight sweatshirt featuring roaring lion archival back print first and tonal TRIVÉ chest wordmark second.',
+    colors: [
+      { name: 'Black', hex: '#18181b', images: ['assets/LION%20ROAR/44.png', 'assets/LION%20ROAR/4.png'] },
+      { name: 'Forest Green', hex: '#1b3626', images: ['assets/LION%20ROAR/22.png', 'assets/LION%20ROAR/2.png'] },
+      { name: 'Burgundy Wine', hex: '#4c0519', images: ['assets/LION%20ROAR/33.png', 'assets/LION%20ROAR/3.png'] },
+      { name: 'White', hex: '#f8fafc', images: ['assets/LION%20ROAR/11.png', 'assets/LION%20ROAR/1.png'] }
+    ]
+  },
+  {
+    id: 'millionaire-acid-tee-01',
+    name: 'Millionaire In Progress // Acid Wash Tee',
+    price: 999,
+    originalPrice: 1599,
+    gender: 'unisex',
+    category: 't-shirt',
+    sku: 'TRV-MIL-01',
+    tag: 'Drop 01 // 240 GSM Acid Wash',
+    desc: '240 GSM mineral-washed oversized tee featuring Millionaire back graphic in front and bold MONEY chest typography on the back view across 5 colorways.',
+    colors: [
+      { name: 'Washed Forest Green', hex: '#1e382b', images: ['assets/MILLIONER/11.png', 'assets/MILLIONER/1.png'] },
+      { name: 'Washed Olive Drab', hex: '#4d5d3b', images: ['assets/MILLIONER/22.png', 'assets/MILLIONER/2.png'] },
+      { name: 'Washed Indigo Blue', hex: '#263447', images: ['assets/MILLIONER/33.png', 'assets/MILLIONER/3.png'] },
+      { name: 'Archival Maroon', hex: '#472228', images: ['assets/MILLIONER/44.png', 'assets/MILLIONER/4.png'] },
+      { name: 'Washed Mineral Grey', hex: '#2b2b2e', images: ['assets/MILLIONER/55.png', 'assets/MILLIONER/5.png'] }
+    ]
+  },
+  {
+    id: 'shiva-chakras-tee-01',
+    name: 'Five Chakras of Shiva // Acid Wash Tee',
+    price: 999,
+    originalPrice: 1599,
+    gender: 'unisex',
+    category: 't-shirt',
+    sku: 'TRV-SHV-01',
+    tag: 'Drop 01 // 240 GSM Acid Wash',
+    desc: 'Heavyweight vintage mineral-wash cotton tee featuring sacred geometric Shiva & Five Chakras artwork across 4 colorways.',
+    colors: [
+      { name: 'Washed Forest Green', hex: '#1e382b', images: ['assets/5%20Chakras%20of%20Shiva/1.png', 'assets/5%20Chakras%20of%20Shiva/1.png'] },
+      { name: 'Washed Olive Drab', hex: '#4d5d3b', images: ['assets/5%20Chakras%20of%20Shiva/2.png', 'assets/5%20Chakras%20of%20Shiva/2.png'] },
+      { name: 'Washed Indigo Blue', hex: '#263447', images: ['assets/5%20Chakras%20of%20Shiva/3.png', 'assets/5%20Chakras%20of%20Shiva/3.png'] },
+      { name: 'Archival Maroon', hex: '#472228', images: ['assets/5%20Chakras%20of%20Shiva/4.png', 'assets/5%20Chakras%20of%20Shiva/4.png'] }
+    ]
+  },
   {
     id: 'child-of-god-tee-01',
     name: 'Child Of God // Heavy Graphic Tee',
     price: 999,
     originalPrice: 1599,
     gender: 'unisex',
-    category: 'tshirt',
+    category: 't-shirt',
     sku: 'TRV-COG-TEE-01',
     tag: 'Drop 01 // Graphic Tee',
     desc: 'Black heavyweight streetwear t-shirt featuring archival back artwork and bold front typography.',
@@ -291,7 +403,7 @@ const PRODUCTS = [
       { name: 'Navy Blue', hex: '#263447', images: ['assets/Calm-A-Sutra/Screenshot%202026-11-13%20163153.png', 'assets/Calm-A-Sutra/Screenshot%202026-11-13%20163205.png'] }
     ]
   },
-{
+  {
     id: 'tee-01',
     name: 'Born to Reign // Legacy Edition Tee',
     price: 1299,
@@ -309,6 +421,42 @@ const PRODUCTS = [
       { name: 'Vintage Olive', hex: '#3b4d3c', images: ['assets/LEGENCY%20EDITION/Screenshot%202026-11-12%20162112.png', 'assets/LEGENCY%20EDITION/Screenshot%202026-11-12%20162017.png'] }
     ]
   },
+
+  // ================= LOWERS ('lower') =================
+  {
+    id: 'trive-wide-leg-lower-01',
+    name: 'TRIVÉ // Archival Wide-Leg Sweatpants',
+    price: 1099,
+    originalPrice: 1799,
+    gender: 'unisex',
+    category: 'lower',
+    sku: 'TRV-LOW-WIDE-01',
+    tag: 'Drop 01 // Wide-Leg Terry',
+    desc: 'Relaxed straight-leg 380 GSM French terry sweatpants with embroidered crimson crest and minimal TRIVÉ leg hit.',
+    colors: [
+      { name: 'Obsidian Black', hex: '#141416', images: ['assets/Trive%20Lowerwear/black%201.png', 'assets/Trive%20Lowerwear/black%202.png'] },
+      { name: 'Archival Cream', hex: '#f5f2eb', images: ['assets/Trive%20Lowerwear/white%201.png', 'assets/Trive%20Lowerwear/white%202.png'] }
+    ]
+  },
+  {
+    id: 'trive-cuffed-lower-02',
+    name: 'TRIVÉ // Signature Cuffed Joggers',
+    price: 999,
+    originalPrice: 1699,
+    gender: 'unisex',
+    category: 'lower',
+    sku: 'TRV-LOW-CUFF-01',
+    tag: 'Drop 01 // Heavy Fleece',
+    desc: 'Tapered-cuff heavyweight fleece joggers featuring minimal left-thigh TRIVÉ branding across 4 colorways.',
+    colors: [
+      { name: 'Black', hex: '#18181b', images: ['assets/lower/Left_Pocket_1_c_2.jpg', 'assets/lower/Left_Pocket_1_c_2.jpg'] },
+      { name: 'Forest Green', hex: '#14532d', images: ['assets/lower/default.jpg', 'assets/lower/Left_Pocket_1_c_8.jpg'] },
+      { name: 'Navy Blue', hex: '#1e293b', images: ['assets/lower/Left_Pocket_1_c_3.jpg', 'assets/lower/Left_Pocket_1_c_3.jpg'] },
+      { name: 'Burgundy Wine', hex: '#4c0519', images: ['assets/lower/Left_Pocket_1_c_25.jpg', 'assets/lower/Left_Pocket_1_c_25.jpg'] }
+    ]
+  },
+
+  // ================= COMING SOON / DROP 03 =================
   {
     id: 'tee-02',
     name: 'Sub-Zero Oversized Tee',
@@ -416,5 +564,5 @@ const PRODUCTS = [
     tag: 'Coming Soon // Drop 03',
     desc: '380 GSM premium fleece featuring a precise red target chest hit and distressed collage back graphic.',
     colors: [{ name: 'Chalk White', hex: '#e4e4e7', images: ['assets/soonnn.png', 'assets/soonnn.png'] }]
-  },
+  }
 ];

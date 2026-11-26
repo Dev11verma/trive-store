@@ -1,0 +1,126 @@
+﻿[
+    {
+        "id":  "trv-01",
+        "title":  "TRIVÉ PORCHE 2",
+        "category":  "Sweatshirts",
+        "price":  1499,
+        "images":  [
+                       "assets/PORCHE%202/1.png",
+                       "assets/PORCHE%202/11.png",
+                       "assets/PORCHE%202/2.png",
+                       "assets/PORCHE%202/22.png",
+                       "assets/PORCHE%202/3.png",
+                       "assets/PORCHE%202/33.png",
+                       "assets/PORCHE%202/4.png",
+                       "assets/PORCHE%202/44.png",
+                       "assets/PORCHE%202/5.png",
+                       "assets/PORCHE%202/55.png",
+                       "assets/PORCHE%202/6.png",
+                       "assets/PORCHE%202/66.png",
+                       "assets/PORCHE%202/7.png",
+                       "assets/PORCHE%202/77.png"
+                   ]
+    },
+    {
+        "id":  "trv-02",
+        "title":  "TRIVÉ PORCHE",
+        "category":  "Hoodies",
+        "price":  1699,
+        "images":  [
+                       "assets/PORCHE/Screenshot%202026-11-26%20142300.png",
+                       "assets/PORCHE/Screenshot%202026-11-26%20142307.png",
+                       "assets/PORCHE/Screenshot%202026-11-26%20142324.png",
+                       "assets/PORCHE/Screenshot%202026-11-26%20142329.png"
+                   ]
+    },
+    {
+        "id":  "trv-03",
+        "title":  "TRIVÉ LION ROAR",
+        "category":  "Sweatshirts",
+        "price":  1499,
+        "images":  [
+                       "assets/LION%20ROAR/1.png",
+                       "assets/LION%20ROAR/11.png",
+                       "assets/LION%20ROAR/2.png",
+                       "assets/LION%20ROAR/22.png",
+                       "assets/LION%20ROAR/3.png",
+                       "assets/LION%20ROAR/33.png",
+                       "assets/LION%20ROAR/4.png",
+                       "assets/LION%20ROAR/44.png"
+                   ]
+    },
+    {
+        "id":  "trv-04",
+        "title":  "TRIVÉ MILLIONER",
+        "category":  "Tees",
+        "price":  999,
+        "images":  [
+                       "assets/MILLIONER/1.png",
+                       "assets/MILLIONER/11.png",
+                       "assets/MILLIONER/2.png",
+                       "assets/MILLIONER/22.png",
+                       "assets/MILLIONER/3.png",
+                       "assets/MILLIONER/33.png",
+                       "assets/MILLIONER/4.png",
+                       "assets/MILLIONER/44.png",
+                       "assets/MILLIONER/5.png",
+                       "assets/MILLIONER/55.png"
+                   ]
+    },
+    {
+        "id":  "trv-05",
+        "title":  "TRIVÉ 5 Chakras of Shiva",
+        "category":  "Tees",
+        "price":  1099,
+        "images":  [
+                       "assets/5%20Chakras%20of%20Shiva/1.png",
+                       "assets/5%20Chakras%20of%20Shiva/2.png",
+                       "assets/5%20Chakras%20of%20Shiva/3.png",
+                       "assets/5%20Chakras%20of%20Shiva/4.png"
+                   ]
+    },
+    {
+        "id":  "trv-06",
+        "title":  "TRIVÉ Trive Lowerwear",
+        "category":  "Lowerwear",
+        "price":  1299,
+        "images":  [
+                       "assets/Trive%20Lowerwear/black%201.png",
+                       "assets/Trive%20Lowerwear/black%202.png",
+                       "assets/Trive%20Lowerwear/white%201.png",
+                       "assets/Trive%20Lowerwear/white%202.png"
+                   ]
+    },
+    {
+        "id":  "trv-07",
+        "title":  "TRIVÉ Punisher Jacket",
+        "category":  "Jackets",
+        "price":  2199,
+        "images":  [
+                       "assets/Punisher%20Jacket/Back_3_c_10.jpg",
+                       "assets/Punisher%20Jacket/Back_3_c_2.jpg",
+                       "assets/Punisher%20Jacket/Back_3_c_25.jpg",
+                       "assets/Punisher%20Jacket/Back_3_c_3.jpg",
+                       "assets/Punisher%20Jacket/Back_3_c_8.jpg",
+                       "assets/Punisher%20Jacket/default.jpg",
+                       "assets/Punisher%20Jacket/Left_Pocket_1_c_10.jpg",
+                       "assets/Punisher%20Jacket/Left_Pocket_1_c_2.jpg",
+                       "assets/Punisher%20Jacket/Left_Pocket_1_c_25.jpg",
+                       "assets/Punisher%20Jacket/Left_Pocket_1_c_3.jpg",
+                       "assets/Punisher%20Jacket/Left_Pocket_1_c_8.jpg"
+                   ]
+    },
+    {
+        "id":  "trv-08",
+        "title":  "TRIVÉ lower",
+        "category":  "Lowerwear",
+        "price":  1199,
+        "images":  [
+                       "assets/lower/default.jpg",
+                       "assets/lower/Left_Pocket_1_c_2.jpg",
+                       "assets/lower/Left_Pocket_1_c_25.jpg",
+                       "assets/lower/Left_Pocket_1_c_3.jpg",
+                       "assets/lower/Left_Pocket_1_c_8.jpg"
+                   ]
+    }
+]
