@@ -792,40 +792,40 @@ const PRODUCTS = [
         "name": "Black",
         "hex": "#18181b",
         "images": [
-          "assets/Punisher%20Jacket/Back_3_c_2.JPG",
-          "assets/Punisher%20Jacket/Left_Pocket_1_c_2.JPG"
+          "assets/Punisher%20Jacket/Back_3_c_2.jpg",
+          "assets/Punisher%20Jacket/Left_Pocket_1_c_2.jpg"
         ]
       },
       {
         "name": "Navy Blue",
         "hex": "#1e293b",
         "images": [
-          "assets/Punisher%20Jacket/Back_3_c_3.JPG",
-          "assets/Punisher%20Jacket/Left_Pocket_1_c_3.JPG"
+          "assets/Punisher%20Jacket/Back_3_c_3.jpg",
+          "assets/Punisher%20Jacket/Left_Pocket_1_c_3.jpg"
         ]
       },
       {
         "name": "Forest Green",
         "hex": "#14532d",
         "images": [
-          "assets/Punisher%20Jacket/Back_3_c_8.JPG",
-          "assets/Punisher%20Jacket/Left_Pocket_1_c_8.JPG"
+          "assets/Punisher%20Jacket/Back_3_c_8.jpg",
+          "assets/Punisher%20Jacket/Left_Pocket_1_c_8.jpg"
         ]
       },
       {
         "name": "Crimson Red",
         "hex": "#b91c1c",
         "images": [
-          "assets/Punisher%20Jacket/Back_3_c_10.JPG",
-          "assets/Punisher%20Jacket/Left_Pocket_1_c_10.JPG"
+          "assets/Punisher%20Jacket/Back_3_c_10.jpg",
+          "assets/Punisher%20Jacket/Left_Pocket_1_c_10.jpg"
         ]
       },
       {
         "name": "Burgundy Wine",
         "hex": "#4c0519",
         "images": [
-          "assets/Punisher%20Jacket/Back_3_c_25.JPG",
-          "assets/Punisher%20Jacket/Left_Pocket_1_c_25.JPG"
+          "assets/Punisher%20Jacket/Back_3_c_25.jpg",
+          "assets/Punisher%20Jacket/Left_Pocket_1_c_25.jpg"
         ]
       }
     ]
