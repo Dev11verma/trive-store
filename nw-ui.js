@@ -49,9 +49,10 @@ function renderLookbook() {
     { img: "assets/lookbook/160959.jpeg", caption: "ARCHIVE 01 // LOOK 01" },
     { img: "assets/lookbook/160958.jpeg", caption: "ARCHIVE 01 // LOOK 02" },
     { img: "assets/lookbook/160957.jpeg", caption: "ARCHIVE 01 // LOOK 03" },
-    { img: "assets/lookbook/160956.PNG", caption: "ARCHIVE 01 // LOOK 04" },
-    { img: "assets/lookbook/160950.jpeg", caption: "ARCHIVE 01 // LOOK 05" },
-    { img: "assets/lookbook/160951.jpeg", caption: "ARCHIVE 01 // LOOK 06" }
+    { img: "assets/lookbook/160956.png", caption: "ARCHIVE 01 // LOOK 04" },
+    { img: "assets/lookbook/160953.jpeg", caption: "ARCHIVE 01 // LOOK 05" },
+    { img: "assets/lookbook/160951.jpeg", caption: "ARCHIVE 01 // LOOK 06" },
+    { img: "assets/lookbook/160950.jpeg", caption: "ARCHIVE 01 // LOOK 07" }
   ];
 
   const cards = lookbookItems.map(item =>
