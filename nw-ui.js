@@ -51,13 +51,11 @@ function renderLookbook() {
     { img: "assets/lookbook/160957.jpeg", caption: "ARCHIVE 01 // LOOK 03" },
     { img: "assets/lookbook/160956.PNG", caption: "ARCHIVE 01 // LOOK 04" },
     { img: "assets/lookbook/160950.jpeg", caption: "ARCHIVE 01 // LOOK 05" },
-    { img: "assets/lookbook/160951.jpeg", caption: "ARCHIVE 01 // LOOK 06" },
-    { img: "assets/lookbook/160952.jpeg", caption: "ARCHIVE 01 // LOOK 07" },
-    { img: "assets/lookbook/160953.jpeg", caption: "ARCHIVE 01 // LOOK 08" }
+    { img: "assets/lookbook/160951.jpeg", caption: "ARCHIVE 01 // LOOK 06" }
   ];
 
   const cards = lookbookItems.map(item =>
-    `<div class="nw-look" onclick="document.getElementById('root-hoodies').scrollIntoView({behavior:'smooth'})"><img src="${item.img}" alt="${item.caption}" loading="lazy" /><span>${item.caption}</span></div>`
+    `<div class="nw-look" onclick="document.getElementById('root-hoodies').scrollIntoView({behavior:'smooth'})"><img src="${item.img}" alt="${item.caption}" loading="lazy" onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src=this.src.replace('.jpeg','.png');}else if(this.dataset.tried==='1'){this.dataset.tried='2';this.src=this.src.replace('.png','.jpg');}else{this.parentElement.style.display='none';}" /><span>${item.caption}</span></div>`
   ).join("");
 
   track.innerHTML = cards + cards;
